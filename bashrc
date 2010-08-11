@@ -1,20 +1,22 @@
 ##
 # Set of alias
 for a in ~/etc/mydotfiles/bash/alias.d/*.alias; do
-
-  source ${a}
-done 2>/dev/null
+  . ${a}
+done
 
 ##
 # Completions
 for c in ~/etc/mydotfiles/bash/completion.d/*.completion; do
-
-  source ${c}
-done 2>/dev/null
+  . ${c}
+done
 
 ##
 # User specific profiles
 for p in ~/etc/mydotfiles/bash/profile.d/*.profile; do 
+  . ${p}
+done
 
-  source ${p}
-done 2>/dev/null
+##
+# Other subsystems....
+[ -s ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
+
