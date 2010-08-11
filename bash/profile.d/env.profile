@@ -1,0 +1,8 @@
+##
+# General User environment
+export EDITOR="vim"
+export PAGER=most
+
+##
+# Path
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:~/bin:${PATH}

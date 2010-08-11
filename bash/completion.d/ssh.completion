@@ -1,0 +1,5 @@
+#!/bin/bash
+
+SSH_CONFIG_HOSTS=`cat ~/.ssh/config|grep "Host "|grep -v "*"|cut -f2 -d' '` 
+
+complete -o default -W "${SSH_CONFIG_HOSTS[*]}" ssh
