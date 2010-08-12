@@ -1,1 +1,1 @@
-[ -f ~/etc/mydotfiles/bashrc ] && . ~/etc/mydotfiles/bashrc 
+[ -f ~/etc/mydotfiles/bashrc ] && source ~/etc/mydotfiles/bashrc 
