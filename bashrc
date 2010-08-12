@@ -1,19 +1,19 @@
 ##
 # Set of alias
-for a in ~/etc/mydotfiles/bash/alias.d/*.alias; do
-  . ${a}
+for f in ~/etc/mydotfiles/bash/alias.d/*.alias; do
+  . ${f}
 done
 
 ##
 # Completions
-for c in ~/etc/mydotfiles/bash/completion.d/*.completion; do
-  . ${c}
+for f in ~/etc/mydotfiles/bash/completion.d/*.completion; do
+  . ${f}
 done
 
 ##
 # User specific profiles
-for p in ~/etc/mydotfiles/bash/profile.d/*.profile; do 
-  . ${p}
+for f in ~/etc/mydotfiles/bash/profile.d/*.profile; do 
+  . ${f}
 done
 
 ##
