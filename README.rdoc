@@ -11,4 +11,4 @@ Install from GitHub the latest version which it's compatible with
 
 == License
 
-Copyright &copy; 2007-2010 Javier Juarez, released under the MIT license.
+Copyright © 2007-2010 Javier Juarez, released under the MIT license.
