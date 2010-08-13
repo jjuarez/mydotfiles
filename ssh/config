@@ -374,7 +374,12 @@ Host mylinux
 #
 Host *
   ForwardAgent yes
+  ForwardX11             no
   IdentityFile ~/.ssh/id_dsa.cti_sysadmin
+  Ciphers                blowfish-cbc
+  ServerAliveInterval    10
   KeepAlive yes
+  Compression            yes
+  CheckHostIP            no
   User root
   Port 22
