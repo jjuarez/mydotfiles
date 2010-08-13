@@ -1,0 +1,29 @@
+
+set bell-style none
+set completion-query-items 2000
+set show-all-if-ambiguous
+
+$if Bash
+  Space: magic-space
+$endif
+
+"\e`": "$(!!)"
+"\e": "!! | vim -R -"
+"\el": "!! | less"
+
+"\C-f": unix-filename-rubout
+
+"\e,": menu-complete
+
+# same as Vim shortcut
+"\et": "vim-"
+
+# set editing-mode vi
+
+$if mode=vi
+  set keymap vi-insert
+  "\C-l": clear-screen
+  "\C-w": backward-kill-word
+$endif
+
+
