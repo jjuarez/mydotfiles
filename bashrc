@@ -1,4 +1,8 @@
 ##
+# General environment
+export PS1="\h@\u:\W$ "
+
+##
 # Set of alias
 for f in ~/etc/mydotfiles/bash/alias.d/*.alias; do
   source ${f}
@@ -16,7 +20,12 @@ for f in ~/etc/mydotfiles/bash/profile.d/*.profile; do
   source ${f}
 done
 
+## 
+# Command warppers
+for f in ~/etc/mydotfiles/bash/command.d/*.command; do
+  source ${f}
+done
+
 ##
 # Other subsystems....
 [ -s ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
-

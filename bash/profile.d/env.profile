@@ -1,6 +1,6 @@
 ##
 # General User environment
-export EDITOR="vim"
+export EDITOR=vim
 export PAGER=most
 
 ##
