@@ -1,5 +1,3 @@
-" Example Vim configuration.
-" Copy or symlink to ~/.vimrc or ~/_vimrc.
 
 set nocompatible                  " Must come first because it changes other options.
 
@@ -42,7 +40,7 @@ set nobackup                      " Don't make a backup before overwriting a fil
 set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp/,.  " Keep swap files in one location
 
-" UNCOMMENT TO USE
+" Tab behaviour
 set tabstop=2                    " Global tab width.
 set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
@@ -54,7 +52,8 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLo
 
 " Or use vividchalk
 " colorscheme topfunky-light
-colorscheme vividchalk
+" colorscheme vividchalk
+colorscheme slate
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -86,4 +85,3 @@ let g:snippetsEmu_key = "<S-Tab>"
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 " autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-
