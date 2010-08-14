@@ -1,0 +1,18 @@
+export COMP_WORDBREAKS=${COMP_WORDBREAKS/\:/}
+
+RAKE_TASKS_FILE=".rake_tasks~"
+
+__rake_complete() {
+
+  [ -f Rakefile ] && {
+
+    recent=`ls -t ${RAKE_TASKS_FILE} Rakefile **/*.rake 2>/dev/null|head -n 1`
+
+    [[ $recent != '${RAKE_TASKS_FILE}' ]] && rake --silent --tasks|cut -d " " -f 2 > ${RAKE_TASKS_FILE}
+
+    COMPREPLY=($(compgen -W "`cat ${RAKE_TASKS_FILE}`" -- ${COMP_WORDS[COMP_CWORD]}))
+    return 0
+  } 
+}
+
+complete -o default -o nospace -F __rake_complete rake
