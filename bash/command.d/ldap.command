@@ -14,7 +14,6 @@ NI_PASSWORD=$(head -1 ${HOME}/.ldap.credentials)
 
 __find() { 
 
-  echo ${NI_PASSWORD}
   /usr/bin/ldapsearch -LLL -x -H ${LDAP_READ_SERVER} -x -D ${READ_USER} -w ${NI_PASSWORD} -b ${USERS_BASE} ${@} 2>/dev/null 
 }
 
