@@ -52,8 +52,8 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLo
 
 " Or use vividchalk
 " colorscheme topfunky-light
-" colorscheme vividchalk
-colorscheme slate
+colorscheme vividchalk
+" colorscheme slate
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
