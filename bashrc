@@ -1,6 +1,6 @@
 ##
 # General environment
-PS1="\h@\u:\W $(vcprompt)"
+PS1='\h@\u:\W $(vcprompt)'
 
 ##
 # Set of alias
