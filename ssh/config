@@ -31,14 +31,14 @@ Host captalius.pro
   HostName captalius.com
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
-
+# Alias en /etc/hosts
 Host captalius.dev
-  HostName 82.165.136.123
+  HostName dev.captalius.com
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
 
-Host captalius.backups
-  HostName 82.165.136.123
+Host backups.captalius.dev
+  HostName dev.captalius.com
   IdentityFile ~/.ssh/id_dsa.captalius_backups
   User backup
 
