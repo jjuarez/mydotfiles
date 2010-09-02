@@ -28,7 +28,7 @@ Host iphone
 # FreeLance
 #
 Host captalius.pro
-  HostName 212.227.88.217
+  HostName captalius.com
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
 
@@ -36,6 +36,11 @@ Host captalius.dev
   HostName 82.165.136.123
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
+
+Host captalius.backups
+  HostName 82.165.136.123
+  IdentityFile ~/.ssh/id_dsa.captalius_backups
+  User backup
 
 #
 # Sysadmin Infrastructure
