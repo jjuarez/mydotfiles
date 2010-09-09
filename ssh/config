@@ -31,9 +31,9 @@ Host captalius.pro
   HostName captalius.com
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
-# Alias en /etc/hosts
+
 Host captalius.dev
-  HostName dev.captalius.com
+  HostName s15407732.onlinehome-server.info
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
 
@@ -41,6 +41,11 @@ Host backups.captalius.dev
   HostName dev.captalius.com
   IdentityFile ~/.ssh/id_dsa.captalius_backups
   User backup
+
+Host noticiasyempleo
+  HostName noticiasyempleo.com
+  IdentityFile ~/.ssh/id_dsa.captalius
+  User root
 
 #
 # Sysadmin Infrastructure
@@ -82,6 +87,20 @@ Host vpnserver
 Host redmine
   HostName redmine.sistemas.cti.csic.es
   User root
+
+Host redmine
+  HostName redmine.sistemas.cti.csic.es
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
+
+#Host constellation
+#  HostName redmine.sistemas.cti.csic.es
+#  User root
+
+Host constellation
+  HostName redmine.sistemas.cti.csic.es
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host nagios
   HostName monitor.redcorp.privada.csic.es
