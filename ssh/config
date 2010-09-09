@@ -384,7 +384,16 @@ Host proxy.pro
 
 Host proxy.pre
   HostName proxy-firma.pre.gestion.privada.csic.es 
-  
+ 
+#
+# Publicaciones
+#
+Host publicaciones-bo.pro
+  HostName 192.168.54.22
+
+Host publicaciones-tienda.pro
+  HostName 192.168.54.23
+ 
 #
 # My Linux Box
 #
