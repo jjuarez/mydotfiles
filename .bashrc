@@ -1,1 +1,2 @@
-[ -f ~/etc/mydotfiles/bashrc ] && source ~/etc/mydotfiles/bashrc 
+[ -f ${MYDOTFILES}/bashrc ] && . ${MYDOTFILES}/bashrc || echo "Oooppppssss!!!" >2
+

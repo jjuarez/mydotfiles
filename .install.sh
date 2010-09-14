@@ -12,21 +12,24 @@ cd
 
 ##
 # Shell
-do_slink ${MYDOTFILES}/.inputrc
-do_slink ${MYDOTFILES}/.bashrc
-do_slink ${MYDOTFILES}/.bash_profile
-do_slink ${MYDOTFILES}/.bash_logout
+for shell_cf in .bashrc .bash_profile .bash_logout .inputrc; do
+
+  do_slink ${MYDOTFILES}/${shell_cf}
+done
 
 ##
 # Vim
-do_slink ${MYDOTFILES}/.vim
-do_slink ${MYDOTFILES}/.vim/.vimrc
-do_slink ${MYDOTFILES}/.vim/.gvimrc
+for vim_cf in .vim .vim/.vimrc .vim/.gvimrc; do
+
+  do_slink ${MYDOTFILES}/${vim_cf}
+done
 
 ##
 # Ruby stuff
-do_slink ${MYDOTFILES}/ruby/.irbrc
-do_slink ${MYDOTFILES}/ruby/.gemrc
+for ruby_cf in .irbrc .gemrc; do
+
+  do_slink ${MYDOTFILES}/ruby/${ruby_cf}
+done
 
 ##
 # Screen
