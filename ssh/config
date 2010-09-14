@@ -28,7 +28,7 @@ Host iphone
 # FreeLance
 #
 Host captalius.pro
-  HostName captalius.com
+  HostName s15340281.onlinehome-server.info
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
 

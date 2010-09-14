@@ -1,8 +1,11 @@
 require 'rubygems'
 #require 'utility_belt'
+require 'sketches'
 require 'wirble'
 require 'hirb'
 require 'ap'
+
+Sketches.config :editor => 'vim'
 
 ##
 # Colorize my life...
