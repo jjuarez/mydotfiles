@@ -6,7 +6,7 @@
 if exists('g:autoloaded_rails') || &cp
   finish
 endif
-let g:autoloaded_rails = '4.2'
+let g:autoloaded_rails = '4.3'
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -2560,7 +2560,7 @@ function! s:viewEdit(cmd,...)
     let dir = fnamemodify(rails#app().path(found),':h')
     if !isdirectory(dir)
       if a:0 && a:1 =~ '!'
-        call mkdir(dir)
+        call mkdir(dir,'p')
       else
         return s:error('No such directory')
       endif
@@ -3176,6 +3176,13 @@ function! s:Extract(bang,...) range abort
   if filereadable(out) && !a:bang
     return s:error('E13: File exists (add ! to override)')
   endif
+  if !isdirectory(fnamemodify(out,':h'))
+    if a:bang
+      call mkdir(fnamemodify(out,':h'),'p')
+    else
+      return s:error('No such directory')
+    endif
+  endif
   " No tabs, they'll just complicate things
   if ext =~? '^\%(rhtml\|erb\|dryml\)$'
     let erub1 = '\<\%\s*'
@@ -3510,14 +3517,14 @@ function! s:BufSyntax()
         syn keyword rubyRailsARMethod observe
       endif
       if buffer.type_name('mailer')
-        syn keyword rubyRailsMethod logger attachments
+        syn keyword rubyRailsMethod logger url_for polymorphic_path polymorphic_url
         syn keyword rubyRailsRenderMethod mail render
-        syn keyword rubyRailsControllerMethod default helper helper_attr helper_method
+        syn keyword rubyRailsControllerMethod attachments default helper helper_attr helper_method
       endif
       if buffer.type_name('controller','view','helper')
         syn keyword rubyRailsMethod params request response session headers cookies flash
         syn keyword rubyRailsRenderMethod render
-        syn keyword rubyRailsMethod logger
+        syn keyword rubyRailsMethod logger polymorphic_path polymorphic_url
       endif
       if buffer.type_name('helper','view')
         exe "syn keyword rubyRailsHelperMethod ".s:gsub(s:helpermethods(),'<%(content_for|select)\s+','')
@@ -3557,6 +3564,7 @@ function! s:BufSyntax()
           syn match   rubyRailsTestControllerMethod  '\.\@<!\<\%(get\|post\|put\|delete\|head\|process\|assigns\)\>'
           syn keyword rubyRailsTestControllerMethod  integrate_views
           syn keyword rubyRailsMethod params request response session flash
+          syn keyword rubyRailsMethod polymorphic_path polymorphic_url
         endif
       endif
       if buffer.type_name('task')
@@ -3615,7 +3623,7 @@ function! s:BufSyntax()
       exe 'syn keyword '.&syntax.'RailsHelperMethod '.s:gsub(s:helpermethods(),'<%(content_for|select)\s+','').' contained containedin=@'.&syntax.'RailsRegions'
       exe 'syn match '.&syntax.'RailsHelperMethod "\<select\>\%(\s*{\|\s*do\>\|\s*(\=\s*&\)\@!" contained containedin=@'.&syntax.'RailsRegions'
       exe 'syn match '.&syntax.'RailsHelperMethod "\<\%(content_for?\=\|current_page?\)" contained containedin=@'.&syntax.'RailsRegions'
-      exe 'syn keyword '.&syntax.'RailsMethod debugger logger contained containedin=@'.&syntax.'RailsRegions'
+      exe 'syn keyword '.&syntax.'RailsMethod debugger logger polymorphic_path polymorphic_url contained containedin=@'.&syntax.'RailsRegions'
       exe 'syn keyword '.&syntax.'RailsMethod params request response session headers cookies flash contained containedin=@'.&syntax.'RailsRegions'
       exe 'syn match '.&syntax.'RailsViewMethod "\.\@<!\<\(h\|html_escape\|u\|url_encode\|controller\)\>" contained containedin=@'.&syntax.'RailsRegions'
       if buffer.type_name('view-partial')
@@ -4144,7 +4152,6 @@ function! s:BufAbbreviations()
       Rabbrev rs[ response
       Rabbrev se[ session
       Rabbrev hd[ headers
-      Rabbrev co[ cookies
       Rabbrev coo[ cookies
       Rabbrev fl[ flash
       Rabbrev rr( render
@@ -4505,7 +4512,7 @@ function! RailsBufInit(path)
     setlocal filetype=eruby
   elseif &ft =~ '^\%(conf\|ruby\)\=$' && expand("%:e") =~ '^\%(rjs\|rxml\|builder\|rake\|mab\)$'
     setlocal filetype=ruby
-  elseif &ft =~ '^\%(conf\|ruby\)\=$' && expand("%:t") =~ '^\%(Rake\|Gem\|Cap\)file$'
+  elseif &ft =~ '^\%(conf\|ruby\)\=$' && expand("%:t") =~ '^\%(\%(Rake\|Gem\|Cap\)file\|Isolate\)$'
     setlocal filetype=ruby
   elseif &ft =~ '^\%(liquid\)\=$' && expand("%:e") == "liquid"
     setlocal filetype=liquid
