@@ -32,6 +32,12 @@ Host captalius.pro
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
 
+Host captalius.pro.tunnel
+  HostName s15340281.onlinehome-server.info
+  LocalForward 2812 localhost:2812
+  IdentityFile ~/.ssh/id_dsa.captalius
+  User root
+
 Host captalius.dev
   HostName s15407732.onlinehome-server.info
   IdentityFile ~/.ssh/id_dsa.captalius
@@ -46,6 +52,7 @@ Host noticiasyempleo
   HostName noticiasyempleo.com
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
+
 
 #
 # Sysadmin Infrastructure
@@ -178,6 +185,10 @@ Host intranet.dev
   User jboss
 
 Host opencms.pro
+  HostName gescon.redcorp.privada.csic.es
+  User jboss
+
+Host gescon.pro
   HostName gescon.redcorp.privada.csic.es
   User jboss
 
@@ -398,7 +409,7 @@ Host publicaciones-tienda.pro
 # My Linux Box
 #
 Host mylinux
-  HostName pc834.cti.csic.es
+  HostName 161.111.83.4
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
