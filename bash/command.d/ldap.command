@@ -4,13 +4,20 @@
 LDAP_SEARCH=/usr/bin/ldapsearch
 LDAP_DELETE=/usr/bin/ldapdelete
 LDAP_MODIFY=/usr/bin/ldapmodify
+PB_SERVER="ldaps://paginasblancas.csic.es"
 LDAP_READ_SERVER="ldaps://menta.csic.es"
 LDAP_WRITE_SERVER="ldap://ldap.redcorp.privada.csic.es"
 USERS_BASE="idnc=usuarios,dc=csic,dc=es"
+PB_BASE="idnc=paginasblancas,dc=csic,dc=es"
 READ_USER="cn=casuser,dc=csic,dc=es"
 WRITE_USER="cn=admin,dc=csic,dc=es"
 NI_PASSWORD=$(head -1 ${HOME}/.ldap.credentials)
 
+
+pb_find() { 
+
+  /usr/bin/ldapsearch -LLL -x -H ${PB_SERVER} -x -D uid=09784758Y -W -b ${PB_BASE} ${@} 2>/dev/null 
+}
 
 __find() { 
 
