@@ -33,5 +33,3 @@ done 2>/dev/null
 ##
 # Other subsystems....
 [ -s ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
-
-[ -s ~/.screeninator/scripts/screeninator ] && source ~/.screeninator/scripts/screeninator
