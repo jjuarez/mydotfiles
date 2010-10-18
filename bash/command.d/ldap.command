@@ -44,9 +44,14 @@ ldap_id2dn() {
   [ -n "${*}" ] && __find idInterviniente=${1} dn 
 }
 
-ldap_audit_entry() {
+ldap_audit_uid() {
 
   [ -n "${*}" ] && __find uid=${1} creatorsName createTimestamp modifiersName modifyTimestamp 
+}
+
+ldap_audit_id() {
+
+  [ -n "${*}" ] && __find idInterviniente=${1} creatorsName createTimestamp modifiersName modifyTimestamp 
 }
 
 ldap_delete_id() {

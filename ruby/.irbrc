@@ -1,2 +1,7 @@
 require 'rubygems'
-require 'irbtools'
+
+begin
+ require 'irbtools'
+rescue LoadError => e
+  $stderr.puts "irbtools not found"
+end

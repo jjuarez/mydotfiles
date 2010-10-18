@@ -20,7 +20,7 @@ Host dreamhost
 # iPhone
 #
 Host iphone
-  HostName 192.168.2.2
+  HostName 192.168.88.21
   IdentityFile ~/.ssh/id_dsa
   User root
 
@@ -78,8 +78,13 @@ Host hudson
 Host slmirror
   HostName slmirror.gestion.privada.csic.es
 
+Host git
+  HostName git.sistemas.sgai.csic.es
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
 Host git.sistemas.cti.csic.es
-  HostName git.gestion.privada.csic.es
+  HostName git.sistemas.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa
   User git
 
@@ -92,24 +97,20 @@ Host vpnserver
   User root
 
 Host redmine
-  HostName redmine.sistemas.cti.csic.es
+  HostName redmine.sistemas.sgai.csic.es
   User root
 
 Host redmine
-  HostName redmine.sistemas.cti.csic.es
+  HostName redmine.sistemas.sgai.csic.es
   User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
-
-#Host constellation
-#  HostName redmine.sistemas.cti.csic.es
-#  User root
 
 Host constellation
-  HostName redmine.sistemas.cti.csic.es
+  HostName constellation.sistemas.sgai.csic.es
   User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
 
-Host nagios
+Host monitor
   HostName monitor.redcorp.privada.csic.es
 
 Host backup
@@ -362,14 +363,18 @@ Host alf.patenta.pro
 #
 # Thonsom/Reuters DBs
 #
-Host aranzadiproxy
-  HostName aranzadiproxy.gestion.privada.csic.es
-  User root
+#Host aranzadiproxy
+#  HostName aranzadiproxy.gestion.privada.csic.es
+#  User root
+#
+#Host aranzadiproxy.deploy
+#  HostName aranzadiproxy.gestion.privada.csic.es
+#  IdentityFile ~/.ssh/id_dsa.deployer
+#  User deployer
 
-Host aranzadiproxy.deploy
-  HostName aranzadiproxy.gestion.privada.csic.es
-  IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
+Host builds
+  HostName builds.gestion.privada.csic.es
+  User builder
 
 #
 # Sede Electronica
