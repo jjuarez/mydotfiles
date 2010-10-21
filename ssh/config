@@ -83,7 +83,7 @@ Host git
   IdentityFile ~/.ssh/id_dsa
   User git
 
-Host git.sistemas.cti.csic.es
+Host git.sistemas.sgai.csic.es
   HostName git.sistemas.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa
   User git
