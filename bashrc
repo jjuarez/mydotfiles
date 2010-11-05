@@ -31,5 +31,9 @@ for my_command in ${MYDOTFILES}/bash/command.d/*.command; do
 done 2>/dev/null
 
 ##
+# REE tunning
+[ -n "`ruby --version|grep 'Ruby Enterprise Edition' 2>/dev/null`" ] && source ~/.ree
+
+##
 # Other subsystems....
 [ -s ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm

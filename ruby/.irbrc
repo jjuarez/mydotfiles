@@ -1,7 +1,7 @@
 require 'rubygems'
 
 begin
- require 'irbtools'
+  require 'irbtools'
 rescue LoadError => e
-  $stderr.puts "irbtools not found"
+  $stderr.puts "Problemas cargado las gemas: #{e}"
 end

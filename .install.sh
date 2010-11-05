@@ -26,7 +26,7 @@ done
 
 ##
 # Ruby stuff
-for ruby_cf in .irbrc .gemrc; do
+for ruby_cf in .irbrc .gemrc .ree; do
 
   do_slink ${MYDOTFILES}/ruby/${ruby_cf}
 done

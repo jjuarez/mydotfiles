@@ -17,14 +17,6 @@ Host dreamhost
   User fjjuarez
 
 #
-# iPhone
-#
-Host iphone
-  HostName 192.168.88.21
-  IdentityFile ~/.ssh/id_dsa
-  User root
-
-#
 # FreeLance
 #
 Host captalius.pro
@@ -53,6 +45,10 @@ Host noticiasyempleo
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
 
+Host mylinux
+  HostName 161.111.83.4
+  IdentityFile ~/.ssh/id_dsa
+  User jjuarez
 
 #
 # Sysadmin Infrastructure
@@ -155,11 +151,6 @@ Host apps2.pre
 Host apps2.dev
   HostName apps2-dev.cti.csic.es
   User jboss
-
-Host apps2.dev.build
-  HostName apps2-dev.cti.csic.es
-  User builduser
-  IdentityFile ~/.ssh/id_dsa.builduser
 
 Host apps.pro
   HostName apps.redcorp.privada.csic.es
@@ -339,6 +330,7 @@ Host alf2.wi.pre
 
 Host lvs1.wi.pre
   HostName lvs1.wi.gestion.pre.privada.csic.es
+
 #
 # Otros Alfrescos
 #
@@ -360,17 +352,11 @@ Host lr.patenta.pro
 Host alf.patenta.pro
   HostName alfresco-patenta.redcorp.privada.csic.es
 
-#
-# Thonsom/Reuters DBs
-#
-#Host aranzadiproxy
-#  HostName aranzadiproxy.gestion.privada.csic.es
-#  User root
-#
-#Host aranzadiproxy.deploy
-#  HostName aranzadiproxy.gestion.privada.csic.es
-#  IdentityFile ~/.ssh/id_dsa.deployer
-#  User deployer
+Host lr.patenta.pre
+  HostName 192.168.54.34
+
+Host alf.patenta.pre
+  HostName 192.168.54.36
 
 Host builds
   HostName builds.gestion.privada.csic.es
@@ -381,6 +367,18 @@ Host builds
 #
 Host registro.dev
   HostName 161.111.16.43
+  User root
+
+Host registro.pre
+  HostName 192.168.54.19
+  User root
+
+Host registro.general.pro
+  HostName 192.168.10.217
+  User root
+
+Host registro.interno.pro
+  HostName 192.168.10.65
   User root
 
 Host ov.dev
@@ -409,14 +407,12 @@ Host publicaciones-bo.pro
 
 Host publicaciones-tienda.pro
   HostName 192.168.54.23
- 
+
 #
-# My Linux Box
+# CAU
 #
-Host mylinux
-  HostName 161.111.83.4
-  IdentityFile ~/.ssh/id_dsa
-  User jjuarez
+Host cau.pro
+  HostName cau.csic.es
 
 #
 # General
@@ -424,7 +420,7 @@ Host mylinux
 Host *
   ForwardAgent yes
   ForwardX11             no
-  IdentityFile ~/.ssh/id_dsa.cti_sysadmin
+  IdentityFile           ~/.ssh/id_dsa.cti_sysadmin
   Ciphers                blowfish-cbc
   ServerAliveInterval    10
   KeepAlive yes
