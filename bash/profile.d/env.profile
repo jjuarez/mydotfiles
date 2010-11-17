@@ -11,4 +11,4 @@ export GEM_CERTIFICATE_CHAIN='~/config/pki/certs/gem-public_cert.pem'
 
 ##
 # Path
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:~/bin:${PATH}
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/share/npm/bin:~/bin:${PATH}
