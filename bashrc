@@ -5,34 +5,26 @@ PS1='\h@\u:\W $(vcprompt)'
 ##
 # Set of alias
 for my_alias in ${MYDOTFILES}/bash/alias.d/*.alias; do
-
   source ${my_alias}
 done 2>/dev/null
 
 ##
 # Completions
 for my_completion in ${MYDOTFILES}/bash/completion.d/*.completion; do
-
   source ${my_completion}
 done 2>/dev/null
 
 ##
 # User specific profiles
 for my_profile in ${MYDOTFILES}/bash/profile.d/*.profile; do 
-
   source ${my_profile}
 done 2>/dev/null
 
 ## 
 # Command warppers
 for my_command in ${MYDOTFILES}/bash/command.d/*.command; do
-
   source ${my_command}
 done 2>/dev/null
-
-##
-# REE tunning
-[ -n "`ruby --version|grep 'Ruby Enterprise Edition' 2>/dev/null`" ] && source ~/.ree
 
 ##
 # Other subsystems....
