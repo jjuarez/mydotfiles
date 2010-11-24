@@ -24,7 +24,7 @@ Host captalius.pro
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
 
-Host captalius.pro.tunnel
+Host munin.captalius.pro
   HostName s15340281.onlinehome-server.info
   LocalForward 2812 localhost:2812
   IdentityFile ~/.ssh/id_dsa.captalius
@@ -35,8 +35,14 @@ Host captalius.dev
   IdentityFile ~/.ssh/id_dsa.captalius
   User root
 
+Host munin.captalius.dev
+  HostName s15407732.onlinehome-server.info
+  LocalForward 2812 localhost:2812
+  IdentityFile ~/.ssh/id_dsa.captalius
+  User root
+
 Host backups.captalius.dev
-  HostName dev.captalius.com
+  HostName s15407732.onlinehome-server.info
   IdentityFile ~/.ssh/id_dsa.captalius_backups
   User backup
 

@@ -1,7 +1,6 @@
-require 'rubygems'
-
 begin
-  require 'irbtools'
+  require 'rubygems'
+# require 'irbtools'
 rescue LoadError => e
-  $stderr.puts "Problemas cargado las gemas: #{e}"
+  #shhhhhhh
 end
