@@ -12,7 +12,7 @@ cd
 
 ##
 # Shell
-for shell_cf in .bashrc .bash_profile .bash_logout .inputrc; do
+for shell_cf in .bashrc .bash_profile; do
 
   do_slink ${MYDOTFILES}/${shell_cf}
 done
@@ -26,14 +26,10 @@ done
 
 ##
 # Ruby stuff
-for ruby_cf in .irbrc .gemrc .ree; do
+for ruby_cf in .irbrc .gemrc; do
 
   do_slink ${MYDOTFILES}/ruby/${ruby_cf}
 done
-
-##
-# Screen
-do_slink ${MYDOTFILES}/.screenrc
 
 ##
 # SSH
@@ -42,4 +38,3 @@ do_slink ${MYDOTFILES}/ssh/config ${HOME}/.ssh/config
 ##
 # Git
 do_slink ${MYDOTFILES}/.gitconfig
-
