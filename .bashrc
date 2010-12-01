@@ -1,1 +1,1 @@
-[ -f ${MYDOTFILES}/bashrc ] && . ${MYDOTFILES}/bashrc || exit 1
+[ -s "${MYDOTFILES}/bashrc" ] &&  source "${MYDOTFILES}/bashrc" 

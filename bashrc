@@ -4,30 +4,28 @@ PS1='\h@\u:\W $(vcprompt)'
 
 ##
 # Set of alias
-for my_alias in ${MYDOTFILES}/bash/alias.d/*.alias; do
-  source ${my_alias}
+for a in ${MYDOTFILES}/bash/alias.d/*.alias; do
+  source ${a}
 done 2>/dev/null
 
 ##
 # Completions
-for my_completion in ${MYDOTFILES}/bash/completion.d/*.completion; do
-  source ${my_completion}
+for c in ${MYDOTFILES}/bash/completion.d/*.completion; do
+  source ${c}
 done 2>/dev/null
 
 ##
 # User specific profiles
-for my_profile in ${MYDOTFILES}/bash/profile.d/*.profile; do 
-  source ${my_profile}
+for p in ${MYDOTFILES}/bash/profile.d/*.profile; do 
+  source ${p}
 done 2>/dev/null
 
 ## 
 # Command warppers
-for my_command in ${MYDOTFILES}/bash/command.d/*.command; do
-  source ${my_command}
+for c in ${MYDOTFILES}/bash/command.d/*.command; do
+  source ${c}
 done 2>/dev/null
 
 ##
 # Other subsystems....
 [ -s ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
-
-[ -r ~/.ree ] && source ~/.ree

@@ -1,3 +1,3 @@
-[ -z "${MYDOTFILES}" ] && [ -d "${HOME}/config/mydotfiles" ] && export MYDOTFILES="${HOME}/config/mydotfiles"
+[ -z "${MYDOTFILES}" ] && export MYDOTFILES="${HOME}/config/mydotfiles"
 
-[ -r ~/.bashrc ] && . ~/.bashrc
+[ -r "${HOME}/.bashrc" ] && source "${HOME}/.bashrc"
