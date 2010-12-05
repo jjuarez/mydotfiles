@@ -1,4 +1,4 @@
-alias reload='. ~/.bash_profile'
+alias reload='source ${HOME}/.bash_profile'
 alias ls='ls -ahG'
 alias ltr='ls -ltr'
 alias ..='cd ..'
@@ -18,5 +18,4 @@ pgrep() {
   /bin/ps -ef|/usr/bin/grep "[${F}]${R}"
 }
 
-alias h?="history | grep "
-
+alias h?='history | grep '

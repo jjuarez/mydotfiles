@@ -1,5 +1,5 @@
 #
-# Hosting stuff
+# FL projects
 #
 Host heroku.com
   HostName heroku.com
@@ -16,49 +16,148 @@ Host dreamhost
   IdentityFile ~/.ssh/id_dsa
   User fjjuarez
 
-#
-# FreeLance
-#
-Host captalius.pro
-  HostName s15340281.onlinehome-server.info
-  IdentityFile ~/.ssh/id_dsa.captalius
-  User root
+# Host captalius.pro
+#   HostName s15340281.onlinehome-server.info
+#   IdentityFile ~/.ssh/id_dsa.captalius
+#   User root
+# 
+# Host munin.captalius.pro
+#   HostName s15340281.onlinehome-server.info
+#   LocalForward 2812 localhost:2812
+#   IdentityFile ~/.ssh/id_dsa.captalius
+#   User root
+# 
+# Host captalius.dev
+#   HostName s15407732.onlinehome-server.info
+#   IdentityFile ~/.ssh/id_dsa.captalius
+#   User root
+# 
+# Host munin.captalius.dev
+#   HostName s15407732.onlinehome-server.info
+#   LocalForward 2812 localhost:2812
+#   IdentityFile ~/.ssh/id_dsa.captalius
+#   User root
+# 
+# Host backups.captalius.dev
+#   HostName s15407732.onlinehome-server.info
+#   IdentityFile ~/.ssh/id_dsa.captalius_backups
+#   User backup
+# 
+# Host noticiasyempleo
+#   HostName noticiasyempleo.com
+#   IdentityFile ~/.ssh/id_dsa.captalius
+#   User root
 
-Host munin.captalius.pro
-  HostName s15340281.onlinehome-server.info
-  LocalForward 2812 localhost:2812
-  IdentityFile ~/.ssh/id_dsa.captalius
-  User root
-
-Host captalius.dev
-  HostName s15407732.onlinehome-server.info
-  IdentityFile ~/.ssh/id_dsa.captalius
-  User root
-
-Host munin.captalius.dev
-  HostName s15407732.onlinehome-server.info
-  LocalForward 2812 localhost:2812
-  IdentityFile ~/.ssh/id_dsa.captalius
-  User root
-
-Host backups.captalius.dev
-  HostName s15407732.onlinehome-server.info
-  IdentityFile ~/.ssh/id_dsa.captalius_backups
-  User backup
-
-Host noticiasyempleo
-  HostName noticiasyempleo.com
-  IdentityFile ~/.ssh/id_dsa.captalius
-  User root
-
-Host mylinux
-  HostName 161.111.83.4
-  IdentityFile ~/.ssh/id_dsa
-  User jjuarez
 
 #
 # Sysadmin Infrastructure
 #
+Host mylinux
+  HostName pc834.cti.csic.es
+  IdentityFile ~/.ssh/id_dsa
+  User jjuarez
+
+Host builds
+  HostName builds.gestion.privada.csic.es
+  User builder
+
+Host git.sistemas.sgai.csic.es
+  HostName git.sistemas.sgai.csic.es
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
+Host spyglass
+  HostName spyglass.gestion.privada.csic.es
+  User fjjuarez
+
+Host redmine
+  HostName redmine.sistemas.sgai.csic.es
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host constellation
+  HostName constellation.sistemas.sgai.csic.es
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host hudson
+  HostName 192.168.54.25
+
+Host vpnserver
+  HostName vpnserver.cti.csic.es
+
+Host slmirror
+  HostName slmirror.gestion.privada.csic.es
+
+Host redmine
+  HostName redmine.sistemas.sgai.csic.es
+
+Host monitor
+  HostName monitor.redcorp.privada.csic.es
+  
+Host backup
+  HostName jacaranda.redcorp.privada.csic.es
+
+Host scm
+  HostName psi2.cti.csic.es
+
+Host chef
+  HostName chef-server.gestion.privada.csic.es
+
+Host jabber
+  HostName jabber.cti.csic.es
+
+#
+# SSO & LDAP servers
+#
+Host cas.pro
+  HostName cas.redcorp.privada.csic.es
+  User casuser
+
+Host cas.pre
+  HostName psi2.cti.csic.es
+  User caspre
+
+Host cas.dev
+  HostName psi2.cti.csic.es
+  User casdev
+
+Host cas.i2.pro
+  HostName cas2.redcorp.privada.csic.es
+
+Host cas1.i2.pre
+  HostName cas1.auth.gestion.pre.privada.csic.es
+
+Host cas2.i2.pre
+  HostName cas2.auth.gestion.pre.privada.csic.es
+
+#
+# LDAP Master & replicated servers
+#
+Host ldap.pro
+  HostName ldap.redcorp.privada.csic.es
+
+Host ldap.pre
+  HostName psi2.cti.csic.es
+
+Host ldap.dev
+  HostName psi2.cti.csic.es
+
+Host boj
+  HostName boj.redcorp.privada.csic.es
+
+Host boldo
+  HostName boldo.redcorp.privada.csic.es
+
+Host bonduc
+  HostName bonduc.redcorp.privada.csic.es
+
+Host blanca1
+  HostName blanca1.redcorp.privada.csic.es
+
+Host blanca2
+  HostName blanca2.redcorp.privada.csic.es
+
 Host cas1.sh.dev
   HostName cas1.sh.dev.gestion.privada.csic.es
 
@@ -73,59 +172,6 @@ Host ldap2.sh.dev
 
 Host ldap3.sh.dev
   HostName ldap3.sh.dev.gestion.privada.csic.es
-
-Host hudson
-  HostName 192.168.54.25
-
-Host slmirror
-  HostName slmirror.gestion.privada.csic.es
-
-Host git
-  HostName git.sistemas.sgai.csic.es
-  IdentityFile ~/.ssh/id_dsa
-  User git
-
-Host git.sistemas.sgai.csic.es
-  HostName git.sistemas.sgai.csic.es
-  IdentityFile ~/.ssh/id_dsa
-  User git
-
-Host spyglass
-  HostName spyglass.gestion.privada.csic.es
-  User fjjuarez
-
-Host vpnserver
-  HostName vpnserver.cti.csic.es
-  User root
-
-Host redmine
-  HostName redmine.sistemas.sgai.csic.es
-  User root
-
-Host redmine
-  HostName redmine.sistemas.sgai.csic.es
-  User deployer
-  IdentityFile ~/.ssh/id_dsa.deployer
-
-Host constellation
-  HostName constellation.sistemas.sgai.csic.es
-  User deployer
-  IdentityFile ~/.ssh/id_dsa.deployer
-
-Host monitor
-  HostName monitor.redcorp.privada.csic.es
-
-Host backup
-  HostName jacaranda.redcorp.privada.csic.es
-
-Host scm
-  HostName psi2.cti.csic.es
-
-Host chef
-  HostName chef-server.gestion.privada.csic.es
-
-Host jabber
-  HostName jabber.cti.csic.es
 
 #
 # Hosting J2EE
@@ -212,57 +258,6 @@ Host iserver.pro
   HostName iserver.redcorp.privada.csic.es
 
 #
-# CAS SSO
-#
-Host cas.pro
-  HostName cas.redcorp.privada.csic.es
-  User casuser
-
-Host cas.pre
-  HostName psi2.cti.csic.es
-  User caspre
-
-Host cas.dev
-  HostName psi2.cti.csic.es
-  User casdev
-
-Host cas.i2.pro
-  HostName cas2.redcorp.privada.csic.es
-
-Host cas1.i2.pre
-  HostName cas1.auth.gestion.pre.privada.csic.es
-
-Host cas2.i2.pre
-  HostName cas2.auth.gestion.pre.privada.csic.es
-
-#
-# LDAP Master & replicated servers
-#
-Host ldap.pro
-  HostName ldap.redcorp.privada.csic.es
-
-Host ldap.pre
-  HostName psi2.cti.csic.es
-
-Host ldap.dev
-  HostName psi2.cti.csic.es
-
-Host boj
-  HostName boj.redcorp.privada.csic.es
-
-Host boldo
-  HostName boldo.redcorp.privada.csic.es
-
-Host bonduc
-  HostName bonduc.redcorp.privada.csic.es
-
-Host blanca1
-  HostName blanca1.redcorp.privada.csic.es
-
-Host blanca2
-  HostName blanca2.redcorp.privada.csic.es
-
-#
 # I2 PRO 
 #
 Host lr1.i2.pro
@@ -338,7 +333,7 @@ Host lvs1.wi.pre
   HostName lvs1.wi.gestion.pre.privada.csic.es
 
 #
-# Otros Alfrescos
+# Alfresco Applications
 #
 Host alf.apps.pro
   HostName fresco1.redcorp.privada.csic.es
@@ -350,7 +345,7 @@ Host alf.apps.dev
   HostName alfrescodev.cti.csic.es
 
 #
-# Sistema Patenta/Publica
+# Patenta/Publica system
 #
 Host lr.patenta.pro
   HostName lray-patenta.redcorp.privada.csic.es
@@ -363,10 +358,6 @@ Host lr.patenta.pre
 
 Host alf.patenta.pre
   HostName 192.168.54.36
-
-Host builds
-  HostName builds.gestion.privada.csic.es
-  User builder
 
 #
 # Sede Electronica
@@ -430,13 +421,12 @@ Host cau.pro
 # General
 #
 Host *
-  ForwardAgent yes
+  ForwardAgent           yes
   ForwardX11             no
   IdentityFile           ~/.ssh/id_dsa.cti_sysadmin
-  Ciphers                blowfish-cbc
   ServerAliveInterval    10
-  KeepAlive yes
+  KeepAlive              yes
   Compression            yes
   CheckHostIP            no
-  User root
-  Port 22
+  User                   root
+  Port                   22

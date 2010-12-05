@@ -1,6 +1,5 @@
 ##
 # LDAP Stuff
-##
 LDAP_SEARCH=/usr/bin/ldapsearch
 LDAP_DELETE=/usr/bin/ldapdelete
 LDAP_MODIFY=/usr/bin/ldapmodify

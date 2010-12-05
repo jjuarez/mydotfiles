@@ -1,6 +1,8 @@
 begin
   require 'rubygems'
-# require 'irbtools'
+  require 'wirble'
+  
+  Wirble.init
+  Wirble.colorize
 rescue LoadError => e
-  #shhhhhhh
 end
