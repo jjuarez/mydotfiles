@@ -1,6 +1,6 @@
 ##
 # General environment
-[ -x /usr/bin/vcprompt ] && PS1='\h@\u:\W $(/usr/bin/vcprompt)$ ' || PS1='\h@u:\W$ '
+[ -x /usr/bin/vcprompt ] && PS1='\h@\u:\W$(/usr/bin/vcprompt)$ ' || PS1='\h@u:\W$ '
 
 ##
 # Set of alias

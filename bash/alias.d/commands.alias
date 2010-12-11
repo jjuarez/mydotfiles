@@ -1,21 +1,35 @@
 alias reload='source ${HOME}/.bash_profile'
-alias ls='ls -ahG'
-alias ltr='ls -ltr'
+alias vim='vim -N'
+alias tf='tail -f -n 50'
+alias h?='history | grep '
 alias ..='cd ..'
 alias .='cd - 2>/dev/null'
-alias tar='/usr/local/bin/gtar'
-alias find='/usr/local/bin/find'
-alias vim='vim -N'
-alias screen='TERM=screen screen'
-alias tf='tail -f -n 100'
-alias netstat='netstat -an -p tcp -f inet'
 
-pgrep() {
+case "`uname`" in
+  Darwin*)
+    alias ls='ls -ahG'
+    alias netstat='netstat -an -p tcp -f inet'
+    
+    # Alias over brew installation
+    alias tar='`brew --prefix`/bin/gtar'
+    alias find='`brew --prefix`/bin/find'
+    
+    ## 
+    # Specific aliases and functions
+    pgrep() {
 
-  F=`echo ${1}|sed -e 's/^\(.\).*/\1/'`
-  R=`echo ${1}|sed -e 's/^.\(.*\)/\1/'`
+      [ -n "${1}" ] && {
+        
+        F=`echo ${1}|sed -e 's/^\(.\).*/\1/'`
+        R=`echo ${1}|sed -e 's/^.\(.*\)/\1/'`
 
-  /bin/ps -ef|/usr/bin/grep "[${F}]${R}"
-}
-
-alias h?='history | grep '
+        /bin/ps -ef|/usr/bin/grep "[${F}]${R}"
+      }
+    }
+    ;;  
+    
+  Linux)
+    echo "set Linux aliases..."
+    alias ls='ls -ah --color'
+    ;;  
+esac
