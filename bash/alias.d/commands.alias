@@ -13,19 +13,6 @@ case "`uname`" in
     # Alias over brew installation
     alias tar='`brew --prefix`/bin/gtar'
     alias find='`brew --prefix`/bin/find'
-    
-    ## 
-    # Specific aliases and functions
-    pgrep() {
-
-      [ -n "${1}" ] && {
-        
-        F=`echo ${1}|sed -e 's/^\(.\).*/\1/'`
-        R=`echo ${1}|sed -e 's/^.\(.*\)/\1/'`
-
-        /bin/ps -ef|/usr/bin/grep "[${F}]${R}"
-      }
-    }
     ;;  
     
   Linux)
