@@ -7,7 +7,7 @@ alias .='cd - 2>/dev/null'
 
 case "`uname`" in
   Darwin*)
-    alias ls='ls -ahG'
+    alias ls='ls -hG'
     alias netstat='netstat -an -p tcp -f inet'
     
     # Alias over brew installation
@@ -17,6 +17,6 @@ case "`uname`" in
     
   Linux)
     echo "set Linux aliases..."
-    alias ls='ls -ah --color'
+    alias ls='ls -h --color'
     ;;  
 esac
