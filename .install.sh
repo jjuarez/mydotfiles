@@ -32,6 +32,11 @@ for ruby_cf in .irbrc .gemrc; do
 done
 
 ##
+# .bashrc fake
+[ -s ${HOME}/.bashrc ] && cp -f ${HOME}/.bashrc ${HOME}/.bashrc.backup-`date +%Y%m%d`
+do_slink ${MYDOTFILES}/.bash_profile ${HOME}/.bashrc
+
+##
 # SSH
 do_slink ${MYDOTFILES}/ssh/config ${HOME}/.ssh/config
 
