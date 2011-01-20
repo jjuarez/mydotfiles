@@ -16,39 +16,6 @@ Host dreamhost
   IdentityFile ~/.ssh/id_dsa
   User fjjuarez
 
-# Host captalius.pro
-#   HostName s15340281.onlinehome-server.info
-#   IdentityFile ~/.ssh/id_dsa.captalius
-#   User root
-# 
-# Host munin.captalius.pro
-#   HostName s15340281.onlinehome-server.info
-#   LocalForward 2812 localhost:2812
-#   IdentityFile ~/.ssh/id_dsa.captalius
-#   User root
-# 
-# Host captalius.dev
-#   HostName s15407732.onlinehome-server.info
-#   IdentityFile ~/.ssh/id_dsa.captalius
-#   User root
-# 
-# Host munin.captalius.dev
-#   HostName s15407732.onlinehome-server.info
-#   LocalForward 2812 localhost:2812
-#   IdentityFile ~/.ssh/id_dsa.captalius
-#   User root
-# 
-# Host backups.captalius.dev
-#   HostName s15407732.onlinehome-server.info
-#   IdentityFile ~/.ssh/id_dsa.captalius_backups
-#   User backup
-# 
-# Host noticiasyempleo
-#   HostName noticiasyempleo.com
-#   IdentityFile ~/.ssh/id_dsa.captalius
-#   User root
-
-
 #
 # Sysadmin Infrastructure
 #
@@ -79,6 +46,11 @@ Host constellation
   HostName constellation.sistemas.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
+
+Host salto
+  HostName 192.168.54.24
+  IdentityFile ~/.ssh/id_dsa
+  User jjuarez
 
 Host hudson
   HostName 192.168.54.25

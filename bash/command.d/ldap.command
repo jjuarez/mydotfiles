@@ -1,6 +1,6 @@
 ##
 # LDAP Stuff
-LDAP_READ_SERVER="ldaps://menta.csic.es"
+LDAP_READ_SERVER="ldap://boj.redcorp.privada.csic.es"
 LDAP_WRITE_SERVER="ldap://ldap.redcorp.privada.csic.es"
 USERS_BASE="idnc=usuarios,dc=csic,dc=es"
 READ_USER="cn=casuser,dc=csic,dc=es"
