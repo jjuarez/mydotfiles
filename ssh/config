@@ -104,7 +104,7 @@ Host cas2.i2.pre
   HostName cas2.auth.gestion.pre.privada.csic.es
 
 #
-# LDAP Master & replicated servers
+# LDAP Master & replicated servers
 #
 Host ldap.pro
   HostName ldap.redcorp.privada.csic.es
@@ -113,6 +113,15 @@ Host ldap.pre
   HostName psi2.cti.csic.es
 
 Host ldap.dev
+  HostName psi2.cti.csic.es
+
+Host master.pro
+  HostName ldap.redcorp.privada.csic.es
+
+Host master.pre
+  HostName psi2.cti.csic.es
+
+Host master.dev
   HostName psi2.cti.csic.es
 
 Host boj
