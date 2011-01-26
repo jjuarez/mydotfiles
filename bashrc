@@ -2,6 +2,11 @@
 # General environment
 [ -x /usr/bin/vcprompt ] && PS1='\h@\u:\W$(/usr/bin/vcprompt)$ ' || PS1='\h@u:\W$ '
 
+HISTTIMEFORMAT="$(hostname -s) %h/%d %H:%M:%S "
+HISTSIZE=2048
+
+export HISTTIMEFORMAT HISTSIZE
+
 ##
 # Set of alias
 for a in ${MYDOTFILES}/bash/alias.d/*.alias; do
