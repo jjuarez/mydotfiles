@@ -1,11 +1,9 @@
 ##
 # General environment
-[ -x /usr/bin/vcprompt ] && PS1='\h@\u:\W$(/usr/bin/vcprompt)$ ' || PS1='\h@u:\W$ '
+PS1="\u@\h:\W $(/usr/bin/vcprompt) "
 
-HISTTIMEFORMAT="$(hostname -s) %h/%d %H:%M:%S "
-HISTSIZE=2048
-
-export HISTTIMEFORMAT HISTSIZE
+export HISTTIMEFORMAT="$(hostname -s) %h/%d %H:%M:%S "
+export HISTSIZE=2048
 
 ##
 # Set of alias

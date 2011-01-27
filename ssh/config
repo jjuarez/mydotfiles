@@ -19,8 +19,14 @@ Host dreamhost
 #
 # Sysadmin Infrastructure
 #
+Host nagios3
+  HostName nagios3.sgai.csic.es
+  IdentityFile ~/.ssh/id_dsa
+  User jjuarez
+
 Host mylinux
   HostName pc834.cti.csic.es
+  Port 443
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
