@@ -45,8 +45,8 @@ Host spyglass
 
 Host redmine
   HostName redmine.sistemas.sgai.csic.es
-  IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
+# IdentityFile ~/.ssh/id_dsa.deployer
+# User deployer
 
 Host constellation
   HostName constellation.sistemas.sgai.csic.es

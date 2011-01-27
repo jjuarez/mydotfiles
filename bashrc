@@ -1,7 +1,9 @@
 ##
 # General environment
-PS1="\u@\h:\W $(/usr/bin/vcprompt) "
+export PS1="\u@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`/usr/bin/vcprompt` "
 
+##
+# bash history
 export HISTTIMEFORMAT="$(hostname -s) %h/%d %H:%M:%S "
 export HISTSIZE=2048
 
