@@ -1,4 +1,3 @@
-set nocompatible                  " Must come first because it changes other options.
 
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
@@ -6,8 +5,9 @@ call pathogen#helptags()
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
 
-runtime macros/matchit.vim        " Load the matchit plugin.
+"runtime macros/matchit.vim        " Load the matchit plugin.
 
+set nocompatible                  " Must come first because it changes other options.
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 
@@ -33,7 +33,6 @@ set scrolloff=3                   " Show 3 lines of context around the cursor.
 set title                         " Set the terminal's title
 
 set visualbell                    " No beeping.
-" No more dos2unix
 set ff=unix
 
 set nobackup                      " Don't make a backup before overwriting a file.
@@ -41,9 +40,9 @@ set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp/,.   " Keep swap files in one location
 
 " Tab behaviour
-set tabstop=2                    " Global tab width.
-set shiftwidth=2                 " And again, related.
-set expandtab                    " Use spaces instead of tabs
+set tabstop=2                     " Global tab width.
+set shiftwidth=2                  " And again, related.
+set expandtab                     " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
@@ -64,9 +63,6 @@ map <leader>tm :tabmove
 
 " Snippets support
 let g:snippetsEmu_key = "<S-Tab>"
-
-" Uncomment to use Jamis Buck's file opening plugin
-"map <Leader>t :FuzzyFinderTextMate<Enter>
 
 " Automatic fold settings for specific files. Uncomment to use.
 if has("autocmd")
