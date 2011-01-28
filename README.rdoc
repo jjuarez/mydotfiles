@@ -4,11 +4,12 @@
 
 Install from GitHub the latest version which it's compatible with 
 
-    $ mkdir -p ~/config && cd ~/config
-    $ git clone git@github.com:jjuarez/mydotfiles
-    $ cd mydotfiles 
-    $ ./.install.sh
+  $ mkdir -p ~/config && cd ~/config
+  $ git clone git@github.com:jjuarez/mydotfiles
+  $ cd ~/config/mydotfiles 
+  $ ./install.sh
 
 == License
 
 Copyright © 2007-2010 Javier Juarez, released under the MIT license.
+
