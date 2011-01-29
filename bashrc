@@ -1,6 +1,6 @@
 ##
 # General environment
-export PS1="\u@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`/usr/bin/vcprompt` "
+PS1='\u@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;33m\]$(/usr/local/bin/vcprompt)\[\033[00m\]$ '
 
 ##
 # bash history
