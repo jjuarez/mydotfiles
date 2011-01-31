@@ -14,7 +14,7 @@ do_slink() {
     ln -nfs ${1} ${2} 
   } || {
 
-    echo "Not found: ${1}" >&2
+    log_message "Not found: ${1}"
   }
 }
 
