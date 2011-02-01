@@ -9,16 +9,16 @@ synergy_server() {
   case ${1} in
 
     start|restart)
-      /usr/bin/killall synergys &>/dev/null
-      ${SYNERGY_SERVER} --debug ERROR --daemon --name pc8341 --config ${CONFIG}
+      /usr/bin/killall ${SYNERGY_SERVER} &>/dev/null
+      ${SYNERGY_SERVER} --name pc8341 --config ${CONFIG}
       ;;
 
     debug)
-      ${SYNERGY_SERVER} --debug DEBUG --no-daemon --name pc8341 --config ${CONFIG}
+      ${SYNERGY_SERVER} --debug DEBUG2 --no-daemon --name pc8341 --config ${CONFIG}
       ;;
 
     stop)
-      /usr/bin/killall synergys &>/dev/null
+      /usr/bin/killall ${SYNERGY_SERVER} &>/dev/null
       ;;
   esac
 }
