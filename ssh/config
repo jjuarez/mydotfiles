@@ -184,7 +184,7 @@ Host apps2.pre
   User jboss
 
 Host apps2.dev
-  HostName apps2-dev.cti.csic.es
+  HostName 192.168.54.40
   User jboss
 
 Host apps.pro
@@ -382,11 +382,21 @@ Host proxy.pre
 #
 # Publicaciones
 #
+Host publicaciones-bo.pre
+  HostName pol-pre.cti.csic.es
+  User jboss
+
+Host publicaciones-tienda.pre
+  HostName pol-pre.cti.csic.es
+  User jbosstienda
+
 Host publicaciones-bo.pro
-  HostName 192.168.54.22
+  HostName publicaciones-bo.gestion.privada.csic.es
+  User jboss
 
 Host publicaciones-tienda.pro
   HostName 192.168.54.23
+  User jboss
 
 #
 # Bases de datos
