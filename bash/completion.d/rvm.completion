@@ -1,1 +1,1 @@
-complete -C ${HOME}/.rvm/scripts/rvm-completion.rb -o default rvm
+complete -C ${HOME}/.rvm/scripts/completion -o default rvm
