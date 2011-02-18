@@ -11,6 +11,16 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa
   User git
 
+Host beanstalkapp.com
+  HostName jjuarez.beanstalkapp.com
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
+Host toomanyfoobars.com
+  HostName toomanyfoobars.com
+  IdentityFile ~/.ssh/id_dsa
+  User u62243337
+
 Host dreamhost
   HostName portlouis.dreamhost.com
   IdentityFile ~/.ssh/id_dsa
@@ -35,6 +45,11 @@ Host builds
   User builder
 
 Host git.sistemas.sgai.csic.es
+  HostName git.sistemas.sgai.csic.es
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
+Host git
   HostName git.sistemas.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa
   User git
