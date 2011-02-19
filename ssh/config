@@ -25,6 +25,10 @@ Host dreamhost
   HostName portlouis.dreamhost.com
   IdentityFile ~/.ssh/id_dsa
   User fjjuarez
+Host iphone
+  HostName 161.111.88.46
+  IdentityFile ~/.ssh/id_dsa
+  User root
 
 #
 # Sysadmin Infrastructure
