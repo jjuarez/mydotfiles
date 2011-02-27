@@ -16,8 +16,7 @@ case "`uname`" in
     alias find='`brew --prefix`/bin/find'
     ;;  
     
-  Linux)
-    echo "set Linux aliases..."
+  *)
     alias ls='ls -h --color'
     ;;  
 esac

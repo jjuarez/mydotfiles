@@ -34,105 +34,105 @@
 
 # setup file to store bookmarks
 if [ ! -n "$SDIRS" ]; then
-    SDIRS=~/.sdirs
+  SDIRS=~/.sdirs
 fi
 touch $SDIRS
 
 # save current directory to bookmarks
 function s {
-	check_help $1
-    _bookmark_name_valid "$@"
-    if [ -z "$exit_message" ]; then
-	cat $SDIRS | grep -v "export DIR_$1=" > $SDIRS.tmp
-	mv $SDIRS.tmp $SDIRS
-	echo "export DIR_$1='$PWD'" >> $SDIRS
-    fi
+  check_help $1
+  _bookmark_name_valid "$@"
+  if [ -z "$exit_message" ]; then
+    cat $SDIRS | grep -v "export DIR_$1=" > $SDIRS.tmp
+    mv $SDIRS.tmp $SDIRS
+    echo "export DIR_$1='$PWD'" >> $SDIRS
+  fi
 }
 
 # jump to bookmark
 function g {
-	check_help $1
-    source $SDIRS
-    cd "$(eval $(echo echo $(echo \$DIR_$1)))"
+  check_help $1
+  source $SDIRS
+  cd "$(eval $(echo echo $(echo \$DIR_$1)))"
 }
 
 # print bookmark
 function p {
-	check_help $1
-    source $SDIRS
-    echo "$(eval $(echo echo $(echo \$DIR_$1)))"
+  check_help $1
+  source $SDIRS
+  echo "$(eval $(echo echo $(echo \$DIR_$1)))"
 }
 
 # delete bookmark
 function d {
-	check_help $1
-    _bookmark_name_valid "$@"
-    if [ -z "$exit_message" ]; then
-	cat $SDIRS | grep -v "export DIR_$1=" > $SDIRS.tmp
-	mv $SDIRS.tmp $SDIRS
-	unset "DIR_$1"
-    fi
+  check_help $1
+  _bookmark_name_valid "$@"
+  if [ -z "$exit_message" ]; then
+    cat $SDIRS | grep -v "export DIR_$1=" > $SDIRS.tmp
+    mv $SDIRS.tmp $SDIRS
+    unset "DIR_$1"
+  fi
 }
 
 # print out help for the forgetful
 function check_help {
-	if [ "$1" = "-h" ] || [ "$1" = "-help" ] || [ "$1" = "--help" ] ; then
-		echo ''
-	    echo 's <bookmark_name> - Saves the current directory as "bookmark_name"'
-	    echo 'g <bookmark_name> - Goes (cd) to the directory associated with "bookmark_name"'
-	    echo 'p <bookmark_name> - Prints the directory associated with "bookmark_name"'
-	    echo 'd <bookmark_name> - Deletes the bookmark'
-	    echo 'l                 - Lists all available bookmarks'
-		kill -SIGINT $$
-	fi
+  if [ "$1" = "-h" ] || [ "$1" = "-help" ] || [ "$1" = "--help" ] ; then
+    echo ''
+    echo 's <bookmark_name> - Saves the current directory as "bookmark_name"'
+    echo 'g <bookmark_name> - Goes (cd) to the directory associated with "bookmark_name"'
+    echo 'p <bookmark_name> - Prints the directory associated with "bookmark_name"'
+    echo 'd <bookmark_name> - Deletes the bookmark'
+    echo 'l                 - Lists all available bookmarks'
+    kill -SIGINT $$
+  fi
 }
 
 # list bookmarks with dirnam
 function l {
-	check_help $1
-	source $SDIRS
-	env | grep "^DIR_" | cut -c5- | grep "^.*="
+  check_help $1
+  source $SDIRS
+  env | grep "^DIR_" | cut -c5- | grep "^.*="
 }
 # list bookmarks without dirname
 function _l {
-    source $SDIRS
-    env | grep "^DIR_" | cut -c5- | grep "^.*=" | cut -f1 -d "="
+  source $SDIRS
+  env | grep "^DIR_" | cut -c5- | grep "^.*=" | cut -f1 -d "="
 }
 
 # validate bookmark name
 function _bookmark_name_valid {
-    exit_message=""
-    if [ -z $1 ]; then
-		exit_message="bookmark name required"
-		echo $exit_message
-	elif [ "$1" != "$(echo $1 | sed 's/[^A-Za-z0-9_]//g')" ]; then
-		exit_message="bookmark name is not valid"
-		echo $exit_message
-    fi
+  exit_message=""
+  if [ -z $1 ]; then
+    exit_message="bookmark name required"
+    echo $exit_message
+  elif [ "$1" != "$(echo $1 | sed 's/[^A-Za-z0-9_]//g')" ]; then
+    exit_message="bookmark name is not valid"
+    echo $exit_message
+  fi
 }
 
 # completion command
 function _comp {
-    local curw
-    COMPREPLY=()
-    curw=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=($(compgen -W '`_l`' -- $curw))
-    return 0
+  local curw
+  COMPREPLY=()
+  curw=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=($(compgen -W '`_l`' -- $curw))
+  return 0
 }
 
 # ZSH completion command
 function _compzsh {
-    reply=($(_l))
+  reply=($(_l))
 }
 
 # bind completion command for g,p,d to _comp
 if [ $ZSH_VERSION ]; then
-    compctl -K _compzsh g
-    compctl -K _compzsh p
-    compctl -K _compzsh d
+  compctl -K _compzsh g
+  compctl -K _compzsh p
+  compctl -K _compzsh d
 else
-    shopt -s progcomp
-    complete -F _comp g
-    complete -F _comp p
-    complete -F _comp d
+  shopt -s progcomp
+  complete -F _comp g
+  complete -F _comp p
+  complete -F _comp d
 fi
