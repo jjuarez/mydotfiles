@@ -1,3 +1,3 @@
-NPM_HOME=/usr/local/share/npm
+NODE_PATH=${NODE_PATH}/usr/local/lib/node
 
-export PATH=${PATH}:${NPM_HOME}/bin
+export PATH=${PATH}:${NODE_PATH}
