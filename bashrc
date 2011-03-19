@@ -3,6 +3,17 @@
 PS1='\u@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\[\033[01;33m\]$(/usr/bin/vcprompt)\[\033[00m\]$ '
 
 ##
+# Show a host banner
+[ -n "`which figlet`" ] && {
+
+  echo -e "\033[0;34m"
+  echo -en "\033[$FG\033[$BG"
+  figlet `hostname -s`
+  echo -en "\033[0m"
+  echo
+}
+
+##
 # bash history
 export HISTTIMEFORMAT="$(hostname -s) %h/%d %H:%M:%S "
 export HISTSIZE=2048
