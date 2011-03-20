@@ -41,43 +41,43 @@ DOTFILES = [
 ]
 
 VIM_PLUGINS = [
-  { :name=>"vim-pathogen",    
+  { :name=>"Pathogen",    
     :url=>"https://github.com/tpope/vim-pathogen.git",    
     :local_name=>"vim/bundle/pathogen"    },
-  { :name=>"vim-rake",        
+  { :name=>"Rake",        
     :url=>"https://github.com/tpope/vim-rake.git",        
     :local_name=>"vim/bundle/rake"        },
-  { :name=>"vim-rails",       
+  { :name=>"Rails",       
     :url=>"https://github.com/tpope/vim-rails.git",       
     :local_name=>"vim/bundle/rails"       },
-  { :name=>"vim-ruby-runner", 
+  { :name=>"Ruby runner", 
     :url=>"https://github.com/henrik/vim-ruby-runner",    
     :local_name=>"vim/bundle/ruby-runner" },
-  { :name=>"vim-endwise",     
+  { :name=>"ENDwise",     
     :url=>"https://github.com/tpope/vim-endwise.git",     
     :local_name=>"vim/bundle/endwise"     },
-  { :name=>"vim-surround",    
+  { :name=>"Surround",    
     :url=>"https://github.com/tpope/vim-surround.git",    
     :local_name=>"vim/bundle/surround"    },
-  { :name=>"vim-unimpaired",  
+  { :name=>"Unimpaired",  
     :url=>"https://github.com/tpope/vim-unimpaired.git",  
     :local_name=>"vim/bundle/unimpaired"  },
-  { :name=>"vim-fugitive",    
+  { :name=>"Fugitive",    
     :url=>"https://github.com/tpope/vim-fugitive.git",    
     :local_name=>"vim/bundle/fugitive"    },
-  { :name=>"vim-haml",        
+  { :name=>"HAML",        
     :url=>"https://github.com/tpope/vim-haml.git",        
     :local_name=>"vim/bundle/haml"        },
-  { :name=>"nerdtree",        
+  { :name=>"NERDTree",        
     :url=>"https://github.com/scrooloose/nerdtree.git",   
     :local_name=>"vim/bundle/nerdtree"    },
-  { :name=>"snipmate",        
+  { :name=>"SnipMate",        
     :url=>"https://github.com/msanders/snipmate.vim.git", 
     :local_name=>"vim/bundle/snipmate"    },
-  { :name=>"syntastic",       
+  { :name=>"Syntastic",       
     :url=>"https://github.com/scrooloose/syntastic.git",  
     :local_name=>"vim/bundle/syntastic"   },
-  { :name=>"supertab",        
+  { :name=>"Supertab",        
     :url=>"https://github.com/ervandew/supertab.git",     
     :local_name=>"vim/bundle/supertab"    }
 ] 
@@ -115,55 +115,23 @@ namespace :vim do
   
           if( File.exist?( plugin[:local_name] ) && File.directory?( plugin[:local_name] ) )
           
-            puts "  #{plugin[:local_name]}"
+            puts "  #{plugin[:name]}"
             system( "cd #{plugin[:local_name]} && git submodule init && git submodule update" )
           end
         end
-      rescue Exception=>e
-        $stderr.puts( e.message )
-      end
-    end
-
-
-    desc "Link the vim plugins"
-    task :link do
-    
-      begin
-        vim_files = File.join( ENV['HOME'], ".vim" )
-
-        VIM_PLUGINS.each do |plugin|
-  
-          puts "Plugin: #{plugin[:name]}"
-          
-          if( File.exist?( plugin[:local_name] ) && File.directory?( plugin[:local_name] ) )
-          
-            dir_save = FileUtils.pwd
-            FileUtils.cd( plugin[:local_name] )            
-            
-            Dir.glob( "*/**" ) do |f|
-
-              tf = File.join( vim_files, f )
-              
-              if( File.directory?( tf ) && !File.exist?( tf ) )
-                
-                FileUtils.mkdir_p( File.dirname( tf ) )
-                puts( "    making directory: #{tf}" )
-              else
-                
-                FileUtils.ln_sf( f, tf )
-                puts( "    #{tf}" )
-              end
-            end
-            
-            FileUtils.cd( dir_save )
-          end
-        end
+        
+        autoload_vim_directory = File.join( ENV['HOME'], %w[.vim autoload] )
+        patogen_plugin         = File.join( ENV['MYDOTFILES'], %w[vim bundle pathogen autoload pathogen.vim] )
+        
+        FileUtils.mkdir_p( autoload_vim_directory ) unless File.exist?( autoload_vim_directory )
+        FileUtils.cp( patogen_plugin, autoload_vim_directory )
       rescue Exception=>e
         $stderr.puts( e.message )
       end
     end
   end
 end
+
 
 ##
 # Dots Files tasks
