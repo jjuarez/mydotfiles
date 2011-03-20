@@ -1,14 +1,17 @@
-= MyDotFiles: A collection of my favourite tips & tricks with my environment
+= My . Files: A collection of my favorite tips & tricks with my environment
 
 == Installing
 
 Install from GitHub the latest version:
 
-  $ mkdir -p ~/config && cd ~/config
   $ git clone https://jjuarez@github.com/jjuarez/mydotfiles.git && cd mydotfiles
-  $ rake vim:plugins:install
   $ rake dotfiles:install
+  $ rake vim:plugins:install
 
+If you need to update your vim plugins:
+  $ cd mydotfiles
+  $ rake vim:plugins:update
+  
 == License
 
 Copyright © 2007-2010 Javier Juarez, released under the MIT license.
