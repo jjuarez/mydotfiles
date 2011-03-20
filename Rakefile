@@ -9,6 +9,7 @@ end
 
 
 DOTFILES = [
+  # Shell
   { :versioned_item=>"bash/bash_profile",  
     :local_item=>".bashrc"       
     },
@@ -17,6 +18,7 @@ DOTFILES = [
     :local_item=>".bash_profile" 
     },
     
+  # Vim & MacVim
   { :versioned_item=>"vim",           
     :local_item=>".vim"          
     },
@@ -32,7 +34,8 @@ DOTFILES = [
   { :versioned_item=>"vim/bundle/pathogen/autoload/pathogen.vim", 
     :local_item=>".vim/autoload/pathogen.vim" 
     },
-    
+
+  # Ruby stuff
   { :versioned_item=>"ruby/irbrc",    
     :local_item=>".irbrc"        
     },
@@ -48,7 +51,8 @@ DOTFILES = [
   { :versioned_item=>"ssh/config",    
     :local_item=>".ssh/config"   
     },
-    
+  
+  # Git stuff  
   { :versioned_item=>"git/gitconfig", 
     :local_item=>".gitconfig"    }
 ]
@@ -131,10 +135,17 @@ namespace :dotfiles do
   end
   
   desc "Delete the links..."
-  task :delete_links do
+  task :uninstall do
 
     begin
-      DOTFILES.each { |dotfile| FileUtils.rm_f( File.join( ENV['HOME'], dotfile[:local_item] ) ) }
+      DOTFILES.each do |dotfile| 
+
+        unless( dotfile[:local_item] == ".vim" )
+          FileUtils.rm_f( File.join( ENV['HOME'], dotfile[:local_item] ) )
+        end
+      end
+      
+      FileUtils.rm_f( File.join( ENV['HOME'], ".vim" ) )
     rescue Exception
     end
   end
