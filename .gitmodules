@@ -19,3 +19,6 @@
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/bundle/ruby-runner"]
+	path = vim/bundle/ruby-runner
+	url = https://github.com/henrik/vim-ruby-runner.git
