@@ -9,29 +9,50 @@ end
 
 
 DOTFILES = [
-  { :versioned_item=>"bash_profile",  
-    :local_item=>".bashrc"       },
-  { :versioned_item=>"bash_profile",  
-    :local_item=>".bash_profile" },
+  { :versioned_item=>"bash/bash_profile",  
+    :local_item=>".bashrc"       
+    },
+    
+  { :versioned_item=>"bash/bash_profile",  
+    :local_item=>".bash_profile" 
+    },
+    
   { :versioned_item=>"vim",           
-    :local_item=>".vim"          },
+    :local_item=>".vim"          
+    },
+    
   { :versioned_item=>"vim/vimrc",     
-    :local_item=>".vimrc"        },
+    :local_item=>".vimrc"        
+    },
+    
   { :versioned_item=>"vim/gvimrc",    
-    :local_item=>".gvimrc"       },
+    :local_item=>".gvimrc"       
+    },
+    
   { :versioned_item=>"vim/bundle/pathogen/autoload/pathogen.vim", 
-    :local_item=>".vim/autoload/pathogen.vim" },
+    :local_item=>".vim/autoload/pathogen.vim" 
+    },
+    
   { :versioned_item=>"ruby/irbrc",    
-    :local_item=>".irbrc"        },
+    :local_item=>".irbrc"        
+    },
+    
   { :versioned_item=>"ruby/gemrc",    
-    :local_item=>".gemrc"        },
+    :local_item=>".gemrc"        
+    },
+    
   { :versioned_item=>"ruby/rvmrc",    
-    :local_item=>".rvmrc"        },
+    :local_item=>".rvmrc"        
+    },
+    
   { :versioned_item=>"ssh/config",    
-    :local_item=>".ssh/config"   },
+    :local_item=>".ssh/config"   
+    },
+    
   { :versioned_item=>"git/gitconfig", 
     :local_item=>".gitconfig"    }
 ]
+
 
 VIM_PLUGINS = [
   { :name=>"vim-pathogen",    :url=>"https://github.com/tpope/vim-pathogen.git",    :local_name=>"vim/bundle/pathogen"    },
@@ -52,18 +73,22 @@ VIM_PLUGINS = [
 
 namespace :vim do
   namespace :plugins do
-    
+
+    desc "Delete all my vim plugins"
+    task :delete do
+      fail( "Not implemented yet" )
+    end
+
+
     desc "Install all my vim plugins"
     task :install do
 
       begin
         VIM_PLUGINS.each do |plugin|
 
-          puts "Installing #{plugin[:name]}..."
+          puts "Downloading #{plugin[:name]}..."
           system( "git submodule add #{plugin[:url]} #{plugin[:local_name]}" )
         end
-
-        FileUtils 
       rescue Exception => e
         $stderr.puts( e.message )
       end
@@ -98,11 +123,19 @@ namespace :dotfiles do
     
       DOTFILES.each do |dotfile|
       
-        FileUtils.ln_s( File.join( MY_DOT_FILES, dotfile[:versioned_item] ), File.join( ENV['HOME'], dotfile[:local_item] ) )
+        FileUtils.ln_sf( File.join( MY_DOT_FILES, dotfile[:versioned_item] ), File.join( ENV['HOME'], dotfile[:local_item] ) )
       end
     rescue Exception => e
       $stderr.puts( e.message )
     end
   end
-end
+  
+  desc "Delete the links..."
+  task :delete_links do
 
+    begin
+      DOTFILES.each { |dotfile| FileUtils.rm_f( File.join( ENV['HOME'], dotfile[:local_item] ) ) }
+    rescue Exception
+    end
+  end
+end
