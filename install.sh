@@ -29,7 +29,7 @@ do_slink ${MYDOTFILES}/bash_profile ${HOME}/.bash_profile
 
 ##
 # Vim
-log_message "Vim..."
+log_message "Vim links..."
 do_slink ${MYDOTFILES}/vim        ${HOME}/.vim
 do_slink ${MYDOTFILES}/vim/vimrc  ${HOME}/.vimrc
 do_slink ${MYDOTFILES}/vim/gvimrc ${HOME}/.gvimrc
