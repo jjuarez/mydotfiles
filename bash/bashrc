@@ -1,17 +1,30 @@
+BASH_CONFIG_BASE=${MYDOTFILES}/bash
+
+##
+# Completions
+for c in ${BASH_CONFIG_BASE}/completion.d/*.completion; do
+  source ${c}
+done 2>/dev/null
+
+##
+# User specific profiles
+for p in ${BASH_CONFIG_BASE}/profile.d/*.profile; do 
+  source ${p}
+done 2>/dev/null
+
+## 
+# Command warppers
+for c in ${BASH_CONFIG_BASE}/command.d/*.command; do
+  source ${c}
+done 2>/dev/null
+
 ##
 # General environment
 PS1='\u@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\[\033[01;33m\]$(/usr/bin/vcprompt)\[\033[00m\]$ '
 
 ##
-# Show a host banner
-[ -n "`which figlet`" ] && {
-
-  echo -e "\033[0;34m"
-  echo -en "\033[$FG\033[$BG"
-  figlet `hostname -s`
-  echo -en "\033[0m"
-  echo
-}
+# Set of alias
+source ${BASH_CONFIG_BASE}/aliases
 
 ##
 # bash history
@@ -19,28 +32,14 @@ export HISTTIMEFORMAT="$(hostname -s) %h/%d %H:%M:%S "
 export HISTSIZE=2048
 
 ##
-# Set of alias
-for a in ${MYDOTFILES}/bash/alias.d/*.alias; do
-  source ${a}
-done 2>/dev/null
+# Show a host banner
+[ -n "`which figlet`" ] && {
 
-##
-# Completions
-for c in ${MYDOTFILES}/bash/completion.d/*.completion; do
-  source ${c}
-done 2>/dev/null
-
-##
-# User specific profiles
-for p in ${MYDOTFILES}/bash/profile.d/*.profile; do 
-  source ${p}
-done 2>/dev/null
-
-## 
-# Command warppers
-for c in ${MYDOTFILES}/bash/command.d/*.command; do
-  source ${c}
-done 2>/dev/null
+  echo -e "\033[0;34m"
+  figlet `hostname -s`
+  echo -en "\033[0m"
+  echo
+}
 
 ##
 # Other subsystems....
