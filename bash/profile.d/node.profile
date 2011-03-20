@@ -1,3 +1,3 @@
-NODE_PATH=${NODE_PATH}/usr/local/lib/node
+NODE_PATH=${NODE_PATH}:`brew --prefix`/lib/node
 
 export PATH=${PATH}:${NODE_PATH}
