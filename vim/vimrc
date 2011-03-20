@@ -67,3 +67,6 @@ if has("autocmd")
 
   filetype plugin indent on
 endif
+
+" Commands...
+command! FR set filetype=ruby
