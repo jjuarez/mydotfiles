@@ -1,0 +1,27 @@
+alias reload='source ${HOME}/.bash_profile'
+alias vim='vim -N'
+alias h?='history | grep '
+alias ..='cd ..'
+alias .='cd - 2>/dev/null'
+
+case "`uname`" in
+	
+  Darwin*)
+    alias md5sum='md5'
+    alias ls='ls -hG'
+    alias netstat='netstat -an -p tcp -f inet'
+    
+    # Alias over brew installation
+    [ "`brew --prefix`" != "" ] && {
+    
+      alias tar='`brew --prefix`/bin/gtar'
+      alias find='`brew --prefix`/bin/find'
+    }
+    ;;  
+    
+  Linux*)
+    alias ls='ls -h --color'
+    ;;
+  *)
+    ;;
+esac
