@@ -1,8 +1,6 @@
 ##
 # Rakefile 
 #
-require 'FileUtils'
-
 DOTFILES = [
   # Shell
   { :name=>".bashrc",
@@ -21,7 +19,7 @@ DOTFILES = [
   { :name=>".gvimrc",
     :git_item=>"vim/gvimrc",    
     :local_item=>".gvimrc"       },
-  # Ruby stuff
+  # Ruby stuff
   { :name=>".irbrc",
     :git_item=>"ruby/irbrc",    
     :local_item=>".irbrc"        },
@@ -34,7 +32,7 @@ DOTFILES = [
   { :name=>".ssh/config",
     :git_item=>"ssh/config",    
     :local_item=>".ssh/config"   },
-  # Git stuff  
+  # Git stuff  
   { :name=>".gitconfig",
     :git_item=>"git/gitconfig", 
     :local_item=>".gitconfig"    }
@@ -116,7 +114,8 @@ namespace :vim do
           if( File.exist?( plugin[:local_name] ) && File.directory?( plugin[:local_name] ) )
           
             puts "  #{plugin[:name]}"
-            system( "cd #{plugin[:local_name]} && git submodule init && git submodule update" )
+
+            system( "git submodule init && git submodule update #{plugin[:local_name]}" )
           end
         end
         
