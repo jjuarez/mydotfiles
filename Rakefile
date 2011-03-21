@@ -77,7 +77,10 @@ VIM_PLUGINS = [
     :local_name=>"vim/bundle/syntastic"   },
   { :name=>"Supertab",        
     :url=>"https://github.com/ervandew/supertab.git",     
-    :local_name=>"vim/bundle/supertab"    }
+    :local_name=>"vim/bundle/supertab"    },
+  { :name=>"Tabular",        
+    :url=>"https://github.com/godlygeek/tabular.git",
+    :local_name=>"vim/bundle/tabular"    }
 ] 
 
 ##
