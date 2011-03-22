@@ -46,3 +46,6 @@
 [submodule "vim/bundle/rooter"]
 	path = vim/bundle/rooter
 	url = https://github.com/airblade/vim-rooter.git
+[submodule "vim/bundle/L9"]
+	path = vim/bundle/L9
+	url = https://github.com/vim-scripts/L9.git
