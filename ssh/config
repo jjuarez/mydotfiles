@@ -216,11 +216,11 @@ Host apps.pro
 
 Host apps.pre
   HostName psi4.cti.csic.es
-  User jbosscsic
+  User jbosspre
 
 Host apps.dev
   HostName psi4.cti.csic.es
-  User jboss
+  User jbossdev
 
 Host intranet.pro
   HostName portal1.redcorp.privada.csic.es
