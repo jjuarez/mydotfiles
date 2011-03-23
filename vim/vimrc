@@ -46,7 +46,7 @@ set laststatus=2                  " Show the status line all the time
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 " ColorSchemes
-colorscheme rubyblue
+colorscheme vividchalk
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -70,4 +70,3 @@ endif
 
 " Commands...
 command! FR set filetype=ruby
-command! Status echo "All systems go!"
