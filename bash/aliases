@@ -3,6 +3,8 @@ alias vim='vim -N'
 alias h?='history | grep '
 alias ..='cd ..'
 alias .='cd - 2>/dev/null'
+[ -x /Applications/QuickSynergy.app/Contents/Resources/synergys ] && alias synergys=/Applications/QuickSynergy.app/Contents/Resources/synergys
+
 
 case "`uname`" in
 	
