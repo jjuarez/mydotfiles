@@ -1,9 +1,11 @@
-alias reload='source ${HOME}/.bash_profile'
+##
+# Alias
+#
+alias reload='source ~/.bash_profile'
 alias vim='vim -N'
-alias h?='history | grep '
+alias h?='history | grep ${1}'
 alias ..='cd ..'
 alias .='cd - 2>/dev/null'
-[ -x /Applications/QuickSynergy.app/Contents/Resources/synergys ] && alias synergys=/Applications/QuickSynergy.app/Contents/Resources/synergys
 
 
 case "`uname`" in
@@ -27,3 +29,25 @@ case "`uname`" in
   *)
     ;;
 esac
+
+
+##
+# Functions
+#
+synergys() {
+
+  synergy_server="/Applications/QuickSynergy.app/Contents/Resources/synergys"
+
+  [ -x "${synergy_server}" ] && {
+
+    case ${1} in
+      start)
+        ${synergy_server} --name `hostname -s`
+        ;;
+
+      stop)
+        /bin/kill -15 `/bin/ps -eo pid,command|/usr/bin/grep ${synergy_server}|/usr/bin/grep -v '/usr/bin/grep'|/usr/bin/awk '{ print $1 }'` 2>/dev/null
+        ;;
+    esac
+  }
+}
