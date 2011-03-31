@@ -1,12 +1,10 @@
 ##
 # LDAP Stuff
-#
 LDAP_SERVER="ldap://ldap.redcorp.privada.csic.es"
 LDAP_BASE="idnc=usuarios,dc=csic,dc=es"
 LDAP_USER="cn=admin,dc=csic,dc=es"
 LDAP_PASSWORD=`head -1 ${HOME}/.ldap.credentials`
 AUDIT_ATTRS="creatorsName createTimestamp modifiersName modifyTimestamp"
-
 
 __find() { 
 
@@ -15,12 +13,12 @@ __find() {
 
 __ldap_uid2dn() {
 
-  [ -n "${1}" ] && __find uid=${1} dn|sed -e 's/^dn: //g'|tr -d '\n'
+  [ -n "${1}" ] && __find uid=${1} dn|tr -d " \n"|sed -e 's/^dn:://g'|sed -e 's/^://g'
 }
 
 __ldap_id2dn() {
 
-  [ -n "${*}" ] && __find idinterviniente=${1} dn|sed -e 's/^dn: //g'|tr -d '\n'
+  [ -n "${1}" ] && __find idinterviniente=${1} dn|tr -d " \n"|sed -e 's/^dn://g'|sed -e 's/^://g'
 }
 
 ldap_find_user() { 
@@ -57,7 +55,6 @@ ldap_delete_id() {
   
   [ -z "${1}" ] && exit 1
 
-  # This not works with base64 DistinguisedNames
   DN=`__ldap_id2dn ${1}`
 
   [ -n "${DN}" ] && /usr/bin/ldapdelete -x -H ${LDAP_SERVER} -D ${LDAP_USER} -W "${DN}"
@@ -67,7 +64,6 @@ ldap_delete_uid() {
   
   [ -z "${1}" ] && exit 
 
-  # This not works with base64 DistinguisedNames
   DN=`__ldap_uid2dn ${1}`
 
   [ -n "${DN}" ] && /usr/bin/ldapdelete -x -H ${LDAP_SERVER} -D ${LDAP_USER} -W "${DN}"
