@@ -40,9 +40,6 @@
 [submodule "vim/bundle/ZoomWin"]
 	path = vim/bundle/ZoomWin
 	url = https://github.com/vim-scripts/ZoomWin.git
-[submodule "vim/bundle/tabular"]
-	path = vim/bundle/tabular
-	url = https://github.com/godlygeek/tabular.git
 [submodule "vim/bundle/rooter"]
 	path = vim/bundle/rooter
 	url = https://github.com/airblade/vim-rooter.git
