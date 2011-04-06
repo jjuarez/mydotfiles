@@ -206,6 +206,10 @@ Host apps2.pre
   HostName 192.168.54.24
   User jboss
 
+Host apps.dev.new
+  HostName apps.dev.gestion.privada.csic.es
+  User root
+
 Host apps2.dev
   HostName 192.168.54.40
   User jboss
@@ -222,17 +226,21 @@ Host apps.dev
   HostName psi4.cti.csic.es
   User jbossdev
 
-Host intranet.pro
+Host lr1.intranet.pro
   HostName portal1.redcorp.privada.csic.es
   User jboss
 
-Host intranet.pre
-  HostName psi3.cti.csic.es
-  User jbosscsic
-
-Host intranet.dev
-  HostName psi3.cti.csic.es
+Host lr2.intranet.pro
+  HostName portal2.redcorp.privada.csic.es
   User jboss
+
+Host lr.intranet.pre
+  HostName psi3.cti.csic.es
+  User jbosspre
+
+Host lr.intranet.dev
+  HostName psi3.cti.csic.es
+  User jbossdev
 
 Host opencms.pro
   HostName gescon.redcorp.privada.csic.es
@@ -377,7 +385,7 @@ Host registro.pre
   User root
 
 Host registro.general.pro
-  HostName 192.168.10.217
+  HostName 192.168.10.227
   User root
 
 Host registro.interno.pro
