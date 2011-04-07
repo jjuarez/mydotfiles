@@ -226,6 +226,10 @@ Host apps.dev
   HostName psi4.cti.csic.es
   User jbossdev
 
+Host intranet.pro
+  HostName portal1.redcorp.privada.csic.es
+  User jboss
+
 Host lr1.intranet.pro
   HostName portal1.redcorp.privada.csic.es
   User jboss
@@ -234,9 +238,17 @@ Host lr2.intranet.pro
   HostName portal2.redcorp.privada.csic.es
   User jboss
 
+Host intranet.pre
+  HostName psi3.cti.csic.es
+  User jbosspre
+
 Host lr.intranet.pre
   HostName psi3.cti.csic.es
   User jbosspre
+
+Host intranet.dev
+  HostName psi3.cti.csic.es
+  User jbossdev
 
 Host lr.intranet.dev
   HostName psi3.cti.csic.es
