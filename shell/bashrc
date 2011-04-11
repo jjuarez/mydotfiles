@@ -1,2 +1,0 @@
-[ -z "${MYDOTFILES}" ] && export MYDOTFILES="${HOME}/config/mydotfiles"
-[ -s "${MYDOTFILES}/shell/shell.config" ] && source "${MYDOTFILES}/shell/shell.config" 
