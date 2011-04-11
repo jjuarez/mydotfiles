@@ -1,17 +1,13 @@
 ##
 # Alias
 #
-alias reload='source ~/.bash_profile'
 alias vim='vim -N'
-alias h?='history | grep ${1}'
-alias ..='cd ..'
-alias .='cd - 2>/dev/null'
 
 
 case "`uname`" in
 	
   Darwin*)
-    alias md5sum='md5'
+    alias md5sum=gmd5sum''
     alias ls='ls -hG'
     alias netstat='netstat -an -p tcp -f inet'
     

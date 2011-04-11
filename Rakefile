@@ -3,9 +3,6 @@
 #
 DOTFILES = [
   # Shell
-  { :name=>".bashrc",
-    :git_item=>"shell/bashrc",  
-    :local_item=>".bashrc"       },
   { :name=>".bash_profile",
     :git_item=>"shell/bash_profile",  
     :local_item=>".bash_profile" },
