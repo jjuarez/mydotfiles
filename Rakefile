@@ -4,10 +4,10 @@
 DOTFILES = [
   # Shell
   { :name=>".bashrc",
-    :git_item=>"bash/bashrc",  
+    :git_item=>"shell/bashrc",  
     :local_item=>".bashrc"       },
   { :name=>".bash_profile",
-    :git_item=>"bash/bash_profile",  
+    :git_item=>"shell/bash_profile",  
     :local_item=>".bash_profile" },
   # Vim & MacVim
   { :name=>".vim",
