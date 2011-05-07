@@ -3,9 +3,8 @@ export MYDOTFILES=${HOME}/.mydotfiles
 export ZSH_THEME="arrow"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="true"
-# export DISABLE_AUTO_TITLE="true"
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=()
+
+plugins=(brew bundler cap gem git github npm osx rails3 ruby textmate vagrant)
 
 source ${ZSH}/oh-my-zsh.sh
 source ${MYDOTFILES}/shell/shell.config

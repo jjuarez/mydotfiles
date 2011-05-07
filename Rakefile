@@ -158,6 +158,8 @@ namespace :dotfiles do
       
       # vim base...
       FileUtils.rm_f( File.join( ENV['HOME'], ".vim" ) )
+
+      %x(gem uninstall ldap-shell-utils)
     rescue Exception=>e
       $sdterr.puts( e.message )
     end
@@ -172,6 +174,9 @@ namespace :dotfiles do
       FileUtils.cd( ENV['HOME'] )
     
       puts "Installing:"
+      
+      %x(gem install ldap-shell-utils)
+      
       DOTFILES.each do |df|
         
         gi = File.join( ENV['MYDOTFILES'], df[:git_item] )
