@@ -6,6 +6,9 @@ DOTFILES = [
   { :name=>".bash_profile",
     :git_item=>"shell/bash_profile",  
     :local_item=>".bash_profile" },
+  { :name=>".zshrc",
+    :git_item=>"shell/zshrc",  
+    :local_item=>".zshrc" },
   # Vim & MacVim
   { :name=>".vim",
     :git_item=>"vim",           
