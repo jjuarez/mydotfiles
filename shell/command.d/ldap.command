@@ -9,7 +9,7 @@ ldap_uid2dn() {
 
 ldap_audit_uid() {
 
-  [ -s ${LDAP_CONFIG} ] && [ -n "${1}" ] && lsu --config ${LDAP_CONFIG} --filter "(uid=${1})" --attributes creatorsname createtimestamp modifiersname modifytimestamp
+  [ -s ${LDAP_CONFIG} ] && [ -n "${1}" ] && lsu --config ${LDAP_CONFIG} --filter "(uid=${1})" --audit
 }
 
 ldap_find_user() { 

@@ -418,7 +418,8 @@ Host ov.pre
 
 Host ov.pro
   HostName oficinavirtual.redcorp.privada.csic.es
-  User jboss
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host proxy.pro
   HostName ilex.redcorp.privada.csic.es
