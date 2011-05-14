@@ -224,7 +224,8 @@ Host apps.pro
 
 Host apps.pre
   HostName psi4.cti.csic.es
-  User jbosspre
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps.dev
   HostName psi4.cti.csic.es
