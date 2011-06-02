@@ -11,27 +11,16 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa
   User git
 
-Host beanstalkapp.com
-  HostName jjuarez.beanstalkapp.com
-  IdentityFile ~/.ssh/id_dsa
-  User git
-
 Host toomanyfoobars.com
   HostName toomanyfoobars.com
   IdentityFile ~/.ssh/id_dsa
   User u62243337
-
-Host dreamhost
-  HostName portlouis.dreamhost.com
-  IdentityFile ~/.ssh/id_dsa
-  User fjjuarez
 
 #
 # Sysadmin Infrastructure
 #
 Host luci
   HostName 192.168.56.6
- 
  
 Host nagios3
   HostName nagios3.sgai.csic.es
@@ -48,12 +37,12 @@ Host builds
   HostName builds.gestion.privada.csic.es
   User builder
 
-Host git.sistemas.sgai.csic.es
+Host git
   HostName git.sistemas.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa
   User git
 
-Host git
+Host git.sistemas.sgai.csic.es
   HostName git.sistemas.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa
   User git
@@ -64,20 +53,13 @@ Host spyglass
 
 Host redmine
   HostName redmine.sistemas.sgai.csic.es
-# IdentityFile ~/.ssh/id_dsa.deployer
-# User deployer
 
 Host constellation
   HostName constellation.sistemas.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host salto
-  HostName 192.168.54.24
-  IdentityFile ~/.ssh/id_dsa
-  User jjuarez
-
-Host hudson
+Host jenkinsci
   HostName 192.168.54.25
 
 Host vpnserver
@@ -85,9 +67,6 @@ Host vpnserver
 
 Host slmirror
   HostName 192.168.56.14
-
-Host redmine
-  HostName redmine.sistemas.sgai.csic.es
 
 Host monitor
   HostName monitor.redcorp.privada.csic.es
@@ -194,24 +173,23 @@ Host php-hosting
 #
 # PRO, PRE & DEV Apps
 #
-Host apps2.pro
-  HostName apps2.redcorp.privada.csic.es
-  User deployer
-  IdentityFile ~/.ssh/id_dsa.deployer
-
 Host apps3.pro
   HostName apps3.gestion.privada.csic.es
-  User deployer
-  IdentityFile ~/.ssh/id_dsa.deployer
+  User jboss
+# User deployer
+# IdentityFile ~/.ssh/id_dsa.deployer
+
+Host apps2.pro
+  HostName apps2.redcorp.privada.csic.es
+  User jboss
+# User deployer
+# IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps2.pre
   HostName 192.168.54.24
-  User deployer
-  IdentityFile ~/.ssh/id_dsa.deployer
-
-Host apps.dev.new
-  HostName apps.dev.gestion.privada.csic.es
-  User root
+  User jboss
+# User deployer
+# IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps2.dev
   HostName 192.168.54.40
@@ -219,13 +197,15 @@ Host apps2.dev
 
 Host apps.pro
   HostName apps.redcorp.privada.csic.es
-  User deployer
-  IdentityFile ~/.ssh/id_dsa.deployer
+  User jboss
+# User deployer
+# IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps.pre
   HostName psi4.cti.csic.es
-  User deployer
-  IdentityFile ~/.ssh/id_dsa.deployer
+  User jboss
+# User deployer
+# IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps.dev
   HostName psi4.cti.csic.es
@@ -252,10 +232,6 @@ Host lr.intranet.pre
   User jbosspre
 
 Host intranet.dev
-  HostName psi3.cti.csic.es
-  User jbossdev
-
-Host lr.intranet.dev
   HostName psi3.cti.csic.es
   User jbossdev
 
@@ -362,6 +338,12 @@ Host alf2.wi.pre
 
 Host lvs1.wi.pre
   HostName lvs1.wi.gestion.pre.privada.csic.es
+
+#
+# WI/I2 DEV
+#
+Host lr.dev
+  HostName lray.cti.csic.es
 
 #
 # Alfresco Applications
