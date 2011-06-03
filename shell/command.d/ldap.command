@@ -1,6 +1,6 @@
 ##
 # LDAP Stuff
-LDAP_CONFIG=${HOME}/.ldap.config
+LDAP_CONFIG=${HOME}/.ldap.config.yml
 
 ldap_uid2dn() {
 
