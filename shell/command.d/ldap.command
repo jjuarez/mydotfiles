@@ -34,5 +34,5 @@ ldap_audit_id() {
 # Search in free form
 ldap_find_user() { 
 
-  [ -s ${LDAP_CONFIG} ] && lsu --config ${LDAP_CONFIG} "${*}"
+  [ -s ${LDAP_CONFIG} ] && lsu --config ${LDAP_CONFIG} "${@}"
 }
