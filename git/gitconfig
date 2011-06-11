@@ -1,24 +1,24 @@
 [user]
-	name = Javier Juarez
-	email = javier.juarez@gmail.com
+  name  = Javier Juarez
+  email = javier.juarez@gmail.com
 [color]
-	status = auto
-	branch = auto
+  status = auto
+  branch = auto
 [github]
-	user = jjuarez
+  user  = jjuarez
   token = 7db3e6dc7c4f9665174eff79a5f9a2bd
 [alias]
-  co = checkout
-  ci = commit
-  br = branch
-  st = status
-	last = log -1 HEAD
-	unstage = reset HEAD --
+  co      = checkout
+  ci      = commit
+  br      = branch
+  st      = status
+  last    = log -1 HEAD
+  unstage = reset HEAD --
 [difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [diff]
-	tool = Kaleidoscope
+  tool = Kaleidoscope
   st = status
   co = checkout
 [difftool]
-	prompt = false
+  prompt = false
