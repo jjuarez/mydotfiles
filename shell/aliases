@@ -1,27 +1,29 @@
 ##
 # Alias
 #
+alias vi='vim -N'
 alias vim='vim -N'
 
 
 case "`uname`" in
 	
   Darwin*)
-    alias md5sum=gmd5sum''
     alias ls='ls -hG'
     alias netstat='netstat -an -p tcp -f inet'
     
-    # Alias over brew installation
-    [ "`brew --prefix`" != "" ] && {
-    
-      alias tar='`brew --prefix`/bin/gtar'
-      alias find='`brew --prefix`/bin/find'
+    # Alias over brew installation for some GNU utils
+    [ -n "`brew --prefix 2>/dev/null`" ] && {
+
+      brew_home="`brew --prefix`"    
+
+      alias tar="${brew_home}/bin/gtar"
+      alias find="${brew_home}/bin/find"
+      alias md5sum="${brew_home}/bin/gmd5sum"
     }
     ;;  
     
   Linux*)
     alias ls='ls -h --color'
     ;;
-  *)
-    ;;
 esac
+
