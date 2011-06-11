@@ -4,7 +4,6 @@
 synergys() {
 
   synergy_server="/Applications/QuickSynergy.app/Contents/Resources/synergys"
- #synergy_server="`brew --prefix`/bin/synergys"
 
   [ -x "${synergy_server}" ] && {
 
