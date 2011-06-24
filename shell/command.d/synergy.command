@@ -1,23 +1,25 @@
 ##
 # Functions
 #
-synergys() {
+synergy_server() {
 
-  synergy_server="/Applications/QuickSynergy.app/Contents/Resources/synergys"
- #synergy_server="/usr/local/bin/synergys"
+ #synergy_daemon="/Applications/QuickSynergy.app/Contents/Resources/synergys"
+  local synergy_daemon="/usr/local/bin/synergys"
 
-  [ -x "${synergy_server}" ] && {
+  [ -x "${synergy_daemon}" ] && {
 
     case ${1} in
       dstart)
-        ${synergy_server} --no-daemon --debug DEBUG --name `hostname -s`
-
-      start)
-        ${synergy_server} --name `hostname -s`
+        ${synergy_daemon} --no-daemon --debug DEBUG --name `hostname -s`
         ;;
-
+      start)
+        ${synergy_daemon} --daemon --restart --debug ERROR --name `hostname -s`
+        ;;
       stop)
-        /bin/kill -15 `/bin/ps -eo pid,command|grep ${synergy_server}|grep -v 'grep'|awk '{ print $1 }'` 2>/dev/null
+        /bin/kill -15 `ps -eo pid,command|grep ${synergy_daemon}|grep -v 'grep'|awk '{print $1}'` 2>/dev/null
+        ;;
+      kill)
+        /bin/kill  -9 `ps -eo pid,command|grep ${synergy_daemon}|grep -v 'grep'|awk '{print $1}'` 2>/dev/null
         ;;
     esac
   }
