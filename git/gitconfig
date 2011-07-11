@@ -16,9 +16,8 @@
   unstage = reset HEAD --
 [difftool "Kaleidoscope"]
   cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+  prompt = false
 [diff]
   tool = Kaleidoscope
   st = status
   co = checkout
-[difftool]
-  prompt = false
