@@ -1,11 +1,10 @@
 export MYDOTFILES=${HOME}/.mydotfiles
 export ZSH=${HOME}/.oh-my-zsh
-#export ZSH_THEME="random"
 export ZSH_THEME="cloud"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="true"
 
-plugins=(npm osx textmate vagrant)
+plugins=(osx git git-flow)
 
 source ${ZSH}/oh-my-zsh.sh
 source ${MYDOTFILES}/shell/shell.config
