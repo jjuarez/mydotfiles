@@ -175,41 +175,44 @@ Host php-hosting
 #
 Host apps3.pro
   HostName apps3.gestion.privada.csic.es
-  User jboss
-# User deployer
-# IdentityFile ~/.ssh/id_dsa.deployer
+# User jboss
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps2.pro
   HostName apps2.redcorp.privada.csic.es
-  User jboss
-# User deployer
-# IdentityFile ~/.ssh/id_dsa.deployer
+# User jboss
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps2.pre
   HostName 192.168.54.24
-  User jboss
-# User deployer
-# IdentityFile ~/.ssh/id_dsa.deployer
+# User jboss
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps2.dev
   HostName 192.168.54.40
-  User jboss
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps.pro
   HostName apps.redcorp.privada.csic.es
-  User jboss
-# User deployer
-# IdentityFile ~/.ssh/id_dsa.deployer
+# User jboss
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps.pre
   HostName psi4.cti.csic.es
-  User jboss
-# User deployer
-# IdentityFile ~/.ssh/id_dsa.deployer
+# User jbosspre
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host apps.dev
   HostName psi4.cti.csic.es
-  User jbossdev
+# User jbossdev
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host intranet.pro
   HostName portal1.redcorp.privada.csic.es
@@ -241,7 +244,8 @@ Host opencms.pro
 
 Host gescon.pro
   HostName gescon.redcorp.privada.csic.es
-  User jboss
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host gescon.pre
   HostName psi3.cti.csic.es
@@ -393,11 +397,13 @@ Host registro.interno.pro
 
 Host ov.dev
   HostName oficinavirtual.desa.csic.es
-  User jboss
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host ov.pre
   HostName sicres.pre.csic.es
-  User jboss
+  User deployer
+  IdentityFile ~/.ssh/id_dsa.deployer
 
 Host ov.pro
   HostName oficinavirtual.redcorp.privada.csic.es
