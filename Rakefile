@@ -80,7 +80,10 @@ VIM_PLUGINS = [
     :local_name=>"vim/bundle/supertab"    },
   { :name=>"Tabular",        
     :url=>"https://github.com/godlygeek/tabular.git",
-    :local_name=>"vim/bundle/tabular"    }
+    :local_name=>"vim/bundle/tabular"    },
+  { :name=>"RbRepl",        
+    :url=>"https://github.com/Bogdanp/rbrepl.vim.git",
+    :local_name=>"vim/bundle/rbrepl"    }
 ] 
 
 ##
