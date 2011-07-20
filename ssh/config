@@ -460,6 +460,15 @@ Host cau.pro
   HostName cau.csic.es
 
 #
+# Proyecto Goobi
+#
+Host goobi1
+  HostName 161.111.132.41
+
+Host goobi2
+  HostName 161.111.132.42
+
+#
 # General
 #
 Host *
