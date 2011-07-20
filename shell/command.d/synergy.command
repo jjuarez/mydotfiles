@@ -24,3 +24,5 @@ synergy_server() {
     esac
   }
 }
+
+alias ss='synergy_server'
