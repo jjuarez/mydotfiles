@@ -1,3 +1,4 @@
 vim/bundle/vim-peepopen/**
 vim/tmp/**
+vim/.netrwhist
 *.swp

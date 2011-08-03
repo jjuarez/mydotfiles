@@ -8,5 +8,3 @@ plugins=(osx git git-flow)
 
 source ${ZSH}/oh-my-zsh.sh
 source ${MYDOTFILES}/shell/shell.config
-
-export PATH=${PATH}:/usr/X11/bin
