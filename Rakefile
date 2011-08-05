@@ -2,14 +2,21 @@
 # Rakefile 
 #
 DOTFILES = [
-  # Shell
+  ##
+  # Shell config
+  #
   { :name=>".bash_profile",
     :git_item=>"shell/bash_profile",  
     :local_item=>".bash_profile" },
   { :name=>".zshrc",
     :git_item=>"shell/zshrc",  
     :local_item=>".zshrc" },
+  { :name=>"thejtoken.zsh-theme",
+    :git_item=>"shell/zsh/themes/thejtoken.zsh-theme",  
+    :local_item=>".oh-my-zsh/themes/thejtoken.zsh-theme" },
+  ##
   # Vim & MacVim
+  #
   { :name=>".vim",
     :git_item=>"vim",           
     :local_item=>".vim"          },
@@ -19,7 +26,9 @@ DOTFILES = [
   { :name=>".gvimrc",
     :git_item=>"vim/gvimrc",    
     :local_item=>".gvimrc"       },
+  ##
   # Ruby stuff
+  #
   { :name=>".irbrc",
     :git_item=>"ruby/irbrc",    
     :local_item=>".irbrc"        },
@@ -32,7 +41,9 @@ DOTFILES = [
   { :name=>".ssh/config",
     :git_item=>"ssh/config",    
     :local_item=>".ssh/config"   },
-  # Git stuff  
+  ##
+  # Git stuff
+  #  
   { :name=>".gitconfig",
     :git_item=>"git/gitconfig", 
     :local_item=>".gitconfig"    }
@@ -80,10 +91,10 @@ VIM_PLUGINS = [
     :local_name=>"vim/bundle/supertab"    },
   { :name=>"Tabular",        
     :url=>"https://github.com/godlygeek/tabular.git",
-    :local_name=>"vim/bundle/tabular"    },
+    :local_name=>"vim/bundle/tabular"     },
   { :name=>"RbRepl",        
     :url=>"https://github.com/Bogdanp/rbrepl.vim.git",
-    :local_name=>"vim/bundle/rbrepl"    }
+    :local_name=>"vim/bundle/rbrepl"      }
 ] 
 
 ##
@@ -91,22 +102,22 @@ VIM_PLUGINS = [
 #
 namespace :vim do
   namespace :plugins do
-
     desc "Install all my vim plugins"
     task :install do
 
       begin
-        puts "Installing vim plugins:"
+        puts("Installing vim plugins:")
+        
         VIM_PLUGINS.each do |plugin|
 
-          unless( File.exist?( plugin[:local_name] ) )
+          unless(File.exist?(plugin[:local_name]))
           
-            puts "  downloading #{plugin[:name]} from #{plugin[:url]}"
-            system( "git submodule add #{plugin[:url]} #{plugin[:local_name]}" )
+            puts("* downloading plugin #{plugin[:name]} from #{plugin[:url]}")
+            system("git submodule add #{plugin[:url]} #{plugin[:local_name]}")
           end
         end
-      rescue Exception => e
-        $stderr.puts( e.message )
+      rescue =>e
+        $stderr.puts(e.message)
       end
     end
 
@@ -114,24 +125,25 @@ namespace :vim do
     task :update do
     
       begin
-        puts "Updating vim plugins:"
+        puts("Updating vim plugins:")
+        
         VIM_PLUGINS.each do |plugin|
   
-          if( File.exist?( plugin[:local_name] ) && File.directory?( plugin[:local_name] ) )
+          if(File.exist?(plugin[:local_name]) && File.directory?(plugin[:local_name]))
           
-            puts "  #{plugin[:name]}"
-
-            system( "git submodule init && git submodule update #{plugin[:local_name]}" )
+            puts("* #{plugin[:name]}")
+            system("git submodule init")
+            system("git submodule update #{plugin[:local_name]}")
           end
         end
         
-        autoload_vim_directory = File.join( ENV['HOME'], %w[.vim autoload] )
-        patogen_plugin         = File.join( ENV['MYDOTFILES'], %w[vim bundle pathogen autoload pathogen.vim] )
+        autoload_vim_directory = File.join(ENV['HOME'], %w[.vim autoload])
+        patogen_plugin_file    = File.join(ENV['MYDOTFILES'], %w[vim bundle pathogen autoload pathogen.vim])
         
-        FileUtils.mkdir_p( autoload_vim_directory ) unless File.exist?( autoload_vim_directory )
-        FileUtils.cp( patogen_plugin, autoload_vim_directory )
-      rescue Exception=>e
-        $stderr.puts( e.message )
+        FileUtils.mkdir_p(autoload_vim_directory) unless File.exist?(autoload_vim_directory)
+        FileUtils.cp_r(patogen_plugin_file, autoload_vim_directory)
+      rescue =>e
+        $stderr.puts(e.message)
       end
     end
   end
@@ -142,29 +154,28 @@ end
 # Dots Files tasks
 #
 namespace :dotfiles do
-
-  desc "Delete the dotfiles links..."
+  desc "Delete the dotfiles links"
   task :uninstall do
 
     begin
-      puts "Uninstalling:"
+      puts("Uninstalling:")
+      
       DOTFILES.each do |df| 
         
-        local_file = File.join( ENV['HOME'], df[:local_item] )
+        local_file = File.join(ENV['HOME'], df[:local_item])
         
-        if( File.symlink?( local_file ) && df[:local_item] != ".vim" )
+        if(File.symlink?(local_file) && df[:local_item] != ".vim")
         
-          puts "  #{df[:name]} in #{local_file}"
-          FileUtils.rm_f( local_file )
+          puts("* #{df[:name]} in #{local_file}")
+          FileUtils.rm_f(local_file)
         end
       end
       
-      # vim base...
-      FileUtils.rm_f( File.join( ENV['HOME'], ".vim" ) )
+      FileUtils.rm(File.join(ENV['HOME'], ".vim"))
 
-      %x(gem uninstall ldap-shell-utils)
-    rescue Exception=>e
-      $sdterr.puts( e.message )
+      system("gem uninstall -ax ldap-shell-utils")
+    rescue =>e
+      $sdterr.puts(e.message)
     end
   end
 
@@ -173,26 +184,26 @@ namespace :dotfiles do
   task :install do
 
     begin
-      fail( "MYDOTFILES environment variable is not defined" ) unless ENV['MYDOTFILES']
-      FileUtils.cd( ENV['HOME'] )
+      fail("MYDOTFILES environment variable is not defined") unless ENV['MYDOTFILES']
+      FileUtils.cd(ENV['HOME'])
     
-      puts "Installing:"
+      puts("Installing:")
       
-      %x(gem install ldap-shell-utils)
+      system("gem install ldap-shell-utils")
       
       DOTFILES.each do |df|
         
-        gi = File.join( ENV['MYDOTFILES'], df[:git_item] )
-        li = File.join( ENV['HOME'], df[:local_item] )
+        gi = File.join(ENV['MYDOTFILES'], df[:git_item])
+        li = File.join(ENV['HOME'], df[:local_item])
         
-        if( File.exist?( gi ) ) 
+        if(File.exist?(gi)) 
         
-          puts "  #{df[:name]} linking #{li} to #{gi}"
-          FileUtils.ln_sf( gi, li ) 
+          puts("* #{df[:name]} linking #{li} to #{gi}")
+          FileUtils.ln_sf(gi, li) 
         end                 
       end
-    rescue Exception => e
-      $stderr.puts( e.message )
+    rescue=>e
+      $stderr.puts(e.message)
     end
   end  
 end
