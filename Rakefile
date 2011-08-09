@@ -95,10 +95,14 @@ VIM_PLUGINS = [
   { :name=>"Tabular",        
     :url=>"https://github.com/godlygeek/tabular.git",
     :local_name=>"vim/bundle/tabular"     }
-# { :name=>"RbRepl",        
-#   :url=>"https://github.com/Bogdanp/rbrepl.vim.git",
-#   :local_name=>"vim/bundle/rbrepl"      }
-] 
+]
+
+GEM_LIST = [
+  'bundler',
+  'config_context',
+  'mini_logger',
+  'ldap-shell-utils'  
+]
 
 ##
 # Vim tasks
@@ -175,8 +179,6 @@ namespace :dotfiles do
       end
       
       FileUtils.rm(File.join(ENV['HOME'], ".vim"))
-
-      system("gem uninstall -ax ldap-shell-utils")
     rescue =>e
       $sdterr.puts(e.message)
     end
@@ -190,9 +192,7 @@ namespace :dotfiles do
       fail("MYDOTFILES environment variable is not defined") unless ENV['MYDOTFILES']
       FileUtils.cd(ENV['HOME'])
     
-      puts("Installing:")
-      
-      system("gem install ldap-shell-utils")
+      puts("Installing:")      
       
       DOTFILES.each do |df|
         
@@ -208,5 +208,24 @@ namespace :dotfiles do
     rescue=>e
       $stderr.puts(e.message)
     end
+  end
+end
+
+
+##
+# Gem environment
+#
+namespace :gems do
+  
+  desc "Install personal gemsets over actual ruby@global"
+  task :install do
+
+    GEM_LIST.each { |g| system("gem install --no-rdoc --no-ri #{g}") }
+  end  
+
+  desc "Uninstall personal gemsets"
+  task :uninstall do
+
+    GEM_LIST.each { |g| system("gem uninstall -ax #{g}") }
   end  
 end
