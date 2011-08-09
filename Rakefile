@@ -14,6 +14,9 @@ DOTFILES = [
   { :name=>"thejtoken.zsh-theme",
     :git_item=>"shell/zsh/themes/thejtoken.zsh-theme",  
     :local_item=>".oh-my-zsh/themes/thejtoken.zsh-theme" },
+  { :name=>"workspace.zsh",
+    :git_item=>"shell/zsh/custom/workspace.zsh",  
+    :local_item=>".oh-my-zsh/custom/workspace.zsh" },
   ##
   # Vim & MacVim
   #
@@ -91,10 +94,10 @@ VIM_PLUGINS = [
     :local_name=>"vim/bundle/supertab"    },
   { :name=>"Tabular",        
     :url=>"https://github.com/godlygeek/tabular.git",
-    :local_name=>"vim/bundle/tabular"     },
-  { :name=>"RbRepl",        
-    :url=>"https://github.com/Bogdanp/rbrepl.vim.git",
-    :local_name=>"vim/bundle/rbrepl"      }
+    :local_name=>"vim/bundle/tabular"     }
+# { :name=>"RbRepl",        
+#   :url=>"https://github.com/Bogdanp/rbrepl.vim.git",
+#   :local_name=>"vim/bundle/rbrepl"      }
 ] 
 
 ##
