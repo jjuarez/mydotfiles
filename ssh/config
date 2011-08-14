@@ -362,6 +362,12 @@ Host alf.apps.dev
   HostName alfrescodev.cti.csic.es
 
 #
+# Servidor Web de documentacion
+#
+Host documentacion
+  HostName documentacion.redcorp.privada.csic.es
+
+#
 # Patenta/Publica system
 #
 Host lr.patenta.pro
