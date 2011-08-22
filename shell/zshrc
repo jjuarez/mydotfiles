@@ -2,9 +2,9 @@ export MYDOTFILES=${HOME}/.mydotfiles
 export ZSH=${HOME}/.oh-my-zsh
 export ZSH_THEME="thejtoken"
 export CASE_SENSITIVE="true"
-export DISABLE_AUTO_UPDATE="false"
+export DISABLE_AUTO_UPDATE="true"
 
-plugins=(vi-mode osx brew rvm bundler gem git git-flow)
+plugins=(osx brew rvm bundler gem git git-flow)
 
 source ${ZSH}/oh-my-zsh.sh
 source ${MYDOTFILES}/shell/shell.config
