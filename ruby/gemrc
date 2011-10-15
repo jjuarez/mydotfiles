@@ -1,12 +1,13 @@
 --- 
-:backtrace: false
-:benchmark: false
 :bulk_threshold: 1000
+:update_sources: true
+gem: --no-ri --no-rdoc
+:benchmark: false
+:backtrace: false
+:verbose: false
+rdoc: --inline-source --line-numbers --format=html --template=hanna
 :sources: 
 - http://rubygems.org
 - http://gems.opscode.com
 - http://rubygems.torquebox.org
-:update_sources: true
-:verbose: false
-gem: --no-ri --no-rdoc
-rdoc: --inline-source --line-numbers --format=html --template=hanna
+- http://slmirror.csic.es/rubygems/
