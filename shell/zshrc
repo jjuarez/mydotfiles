@@ -4,7 +4,8 @@ export ZSH_THEME="thejtoken"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="true"
 
-plugins=(osx brew rvm bundler gem git git-flow)
+[ -s "${ZSH}/oh-my-zsh.sh"              ] && source "${ZSH}/oh-my-zsh.sh"
+[ -x "${MYDOTFILES}/shell/shell.config" ] && source "${MYDOTFILES}/shell/shell.config"
+[ -s "${HOME}/.rvm/scripts/rvm"         ] && source "${HOME}/.rvm/scripts/rvm"
 
-source ${ZSH}/oh-my-zsh.sh
-source ${MYDOTFILES}/shell/shell.config
+plugins=(osx brew gem git git-flow rvm bundler vagrant knife thor)
