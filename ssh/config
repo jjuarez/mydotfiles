@@ -11,27 +11,67 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa
   User git
 
-Host toomanyfoobars.com
-  HostName toomanyfoobars.com
-  IdentityFile ~/.ssh/id_dsa
-  User u62243337
+Host linode.lish
+  HostName london127.linode.com
+  IdentityFile ~/.ss/id_dsa
+  User linode139137
+
+Host linode
+  HostName 178.79.185.132
+  IdentityFile ~/.ss/id_dsa
+  User root
+
 
 #
 # Sysadmin Infrastructure
 #
+# Xen Hosts
+Host xen1
+  HostName xen1.gestion.privada.csic.es
+
+Host xen2
+  HostName xen2.gestion.privada.csic.es
+
+Host xen3
+  HostName xen3.gestion.privada.csic.es
+
+Host xen4
+  HostName xen4.gestion.privada.csic.es
+
+Host xen5
+  HostName xen5.gestion.privada.csic.es
+
+Host xen6
+  HostName xen6.gestion.privada.csic.es
+
+Host xen7
+  HostName xen7.gestion.privada.csic.es
+
+Host xen8
+  HostName xen8.gestion.privada.csic.es
+
+Host xen9
+  HostName xen9.gestion.privada.csic.es
+
+Host xen10
+  HostName xen10.gestion.privada.csic.es
+
 Host luci
   HostName 192.168.56.6
  
-Host nagios3
+Host nagios
   HostName nagios3.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa
-  User jjuarez
 
 Host mylinux
   HostName pc834.cti.csic.es
   Port 443
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
+
+Host ci
+  Hostname 192.168.54.25
+  User root
 
 Host builds
   HostName builds.gestion.privada.csic.es
@@ -77,11 +117,17 @@ Host backup
 Host scm
   HostName psi2.cti.csic.es
 
-Host chef
+Host chefserver
   HostName chef-server.gestion.privada.csic.es
 
 Host jabber
-  HostName jabber.cti.csic.es
+  HostName 192.168.56.21
+
+#
+# PAPI
+#
+Host papi
+  HostName 192.168.10.84
 
 #
 # SSO & LDAP servers
@@ -164,55 +210,113 @@ Host ldap3.sh.dev
 Host palmeras
   HostName palmera-1.redcorp.privada.csic.es
 
-#
-# Hosting PHP
-#
-Host php-hosting
-  HostName login.hosting.privada.csic.es
+Host orion
+  HostName 192.168.20.61
 
 #
-# PRO, PRE & DEV Apps
+# Hosting 
+#
+Host hosting.orion
+  HostName 192.168.20.61
+
+Host hosting.dns
+  HostName 192.168.20.46
+
+Host hosting.firewall
+  HostName 192.168.20.41
+
+Host hosting.flvstreamer
+  HostName 192.168.20.60
+
+Host hosting.httpd
+  HostName 192.168.20.29
+  Port 2200
+
+Host hosting.jsp1
+  HostName 192.168.20.35
+
+Host hosting.jsp2
+  HostName 192.168.20.36
+
+Host hosting.login
+  HostName 192.168.20.40
+
+Host hosting.mayores
+  HostName 192.168.20.62
+
+Host hosting.mysql
+  HostName 192.168.20.31
+
+Host hosting.php1
+  HostName 192.168.20.33
+
+Host hosting.php2
+  HostName 192.168.20.34
+
+Host hosting.php3
+  HostName 192.168.20.42
+
+Host hosting.php4
+  HostName 192.168.20.43
+
+Host hosting.phpx
+  HostName 192.168.20.44
+
+Host hosting.rdb
+  HostName 192.168.20.10
+
+Host hosting.relay
+  HostName 192.168.20.47
+
+Host hosting.stats
+  HostName 192.168.20.45
+
+Host hosting.syslog1
+  HostName 192.168.20.30
+
+Host hosting.syslog2
+  HostName 192.168.20.37
+
+Host hosting.wifi
+  HostName 192.168.20.17
+
+#
+# JBoss PRO, PRE & DEV Apps
 #
 Host apps3.pro
   HostName apps3.gestion.privada.csic.es
-# User jboss
-  User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host apps2.pro
   HostName apps2.redcorp.privada.csic.es
-# User jboss
-  User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host apps2.pre
   HostName 192.168.54.24
-# User jboss
-  User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host apps2.dev
   HostName 192.168.54.40
-  User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host apps.pro
   HostName apps.redcorp.privada.csic.es
-# User jboss
-  User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host apps.pre
   HostName psi4.cti.csic.es
-# User jbosspre
-  User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host apps.dev
   HostName psi4.cti.csic.es
-# User jbossdev
-  User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host intranet.pro
   HostName portal1.redcorp.privada.csic.es
@@ -469,21 +573,51 @@ Host cau.pro
 # Proyecto Goobi
 #
 Host goobi1
-  HostName 161.111.132.41
+  HostName 10.10.39.3
 
 Host goobi2
-  HostName 161.111.132.42
+  HostName 10.10.39.4
+
+#
+# Tunnels
+#
+Host workTunnel
+  HostName chef-server.gestion.privada.csic.es
+  Port 22
+  LocalForward localhost:5984 couchdb.chefserver:5984
+  LocalForward localhost:4040 webui.chefserver:4040
+
+Host couchdb.chefserver
+  HostName localhost
+  Port 5984
+
+Host webui.chefserver
+  HostName localhost
+  Port 4040
+
 
 #
 # General
 #
 Host *
+  KeepAlive              yes
   ForwardAgent           yes
   ForwardX11             no
   IdentityFile           ~/.ssh/id_dsa.sysadmin_cti
-  ServerAliveInterval    10
-  KeepAlive              yes
+  ServerAliveInterval    15
+  ServerAliveCountMax    4
   Compression            yes
   CheckHostIP            no
   User                   root
   Port                   22
+
+#
+# Added by rhc-create-app on Sun Aug 28 12:10:14 CEST 2011
+#
+Host *.rhcloud.com
+  IdentityFile ~/.ssh/libra_id_rsa
+  VerifyHostKeyDNS yes
+  StrictHostKeyChecking no
+  UserKnownHostsFile ~/.ssh/libra_known_hosts
+
+
