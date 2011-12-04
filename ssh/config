@@ -59,15 +59,14 @@ Host xen10
 Host luci
   HostName 192.168.56.6
  
-Host nagios
+Host nagios.sl
   HostName nagios3.sgai.csic.es
-  IdentityFile ~/.ssh/id_dsa
 
 Host mylinux
   HostName pc834.cti.csic.es
   Port 443
+  User javi
   IdentityFile ~/.ssh/id_dsa
-  User jjuarez
 
 Host ci
   Hostname 192.168.54.25
@@ -108,7 +107,7 @@ Host vpnserver
 Host slmirror
   HostName 192.168.56.14
 
-Host monitor
+Host nagios.sh
   HostName monitor.redcorp.privada.csic.es
   
 Host backup
@@ -375,6 +374,10 @@ Host iserver.pro
 #
 # I2 PRO 
 #
+Host dns.i2.pro
+# HostName dns.i2.gestion.privada.csic.es
+  HostName 192.168.56.3
+
 Host lr1.i2.pro
   HostName cintlife1.gestion.privada.csic.es 
 
@@ -619,5 +622,3 @@ Host *.rhcloud.com
   VerifyHostKeyDNS yes
   StrictHostKeyChecking no
   UserKnownHostsFile ~/.ssh/libra_known_hosts
-
-

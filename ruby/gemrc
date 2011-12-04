@@ -7,7 +7,7 @@ gem: --no-ri --no-rdoc
 :verbose: false
 rdoc: --inline-source --line-numbers --format=html --template=hanna
 :sources: 
-- http://rubygems.org
-- http://gems.opscode.com
-- http://rubygems.torquebox.org
-- http://slmirror.csic.es/rubygems/
+- http://rubygems.org/
+- http://gems.opscode.com/
+#- http://rubygems.torquebox.org
+#- http://slmirror.csic.es/rubygems/
