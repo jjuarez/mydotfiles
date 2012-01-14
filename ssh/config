@@ -25,7 +25,6 @@ Host linode
 #
 # Sysadmin Infrastructure
 #
-# Xen Hosts
 Host xen1
   HostName xen1.gestion.privada.csic.es
 
@@ -61,12 +60,6 @@ Host luci
  
 Host nagios.sl
   HostName nagios3.sgai.csic.es
-
-Host mylinux
-  HostName pc834.cti.csic.es
-  Port 443
-  User javi
-  IdentityFile ~/.ssh/id_dsa
 
 Host ci
   Hostname 192.168.54.25
@@ -122,6 +115,12 @@ Host chefserver
 Host jabber
   HostName 192.168.56.21
 
+Host mylinux
+  HostName pc834.cti.csic.es
+  Port 443
+  User javi
+  IdentityFile ~/.ssh/id_dsa
+
 #
 # PAPI
 #
@@ -151,6 +150,30 @@ Host cas1.i2.pre
 
 Host cas2.i2.pre
   HostName cas2.auth.gestion.pre.privada.csic.es
+
+#
+# Entorno SSO/LDAP development
+#
+Host lb1.cas.dev
+  HostName 192.168.54.69
+
+Host as1.cas.dev
+  HostName 192.168.54.64
+
+Host as2.cas.dev
+  HostName 192.168.54.65
+
+Host master.ldap.dev
+  HostName 192.168.54.66
+
+Host lb1.ldap.dev
+  Hostname 192.168.54.70
+
+Host replica1.ldap.dev
+  HostName 192.168.54.67
+
+Host replica2.ldap.dev
+  HostName 192.168.54.68
 
 #
 # LDAP Master & replicated servers
@@ -188,20 +211,20 @@ Host blanca1
 Host blanca2
   HostName blanca2.redcorp.privada.csic.es
 
-Host cas1.sh.dev
-  HostName cas1.sh.dev.gestion.privada.csic.es
-
-Host cas2.sh.dev
-  HostName cas2.sh.dev.gestion.privada.csic.es
-
-Host ldap1.sh.dev
-  HostName ldap1.sh.dev.gestion.privada.csic.es
-
-Host ldap2.sh.dev
-  HostName ldap2.sh.dev.gestion.privada.csic.es
-
-Host ldap3.sh.dev
-  HostName ldap3.sh.dev.gestion.privada.csic.es
+#Host cas1.sh.dev
+#  HostName cas1.sh.dev.gestion.privada.csic.es
+#
+#Host cas2.sh.dev
+#  HostName cas2.sh.dev.gestion.privada.csic.es
+#
+#Host ldap1.sh.dev
+#  HostName ldap1.sh.dev.gestion.privada.csic.es
+#
+#Host ldap2.sh.dev
+#  HostName ldap2.sh.dev.gestion.privada.csic.es
+#
+#Host ldap3.sh.dev
+#  HostName ldap3.sh.dev.gestion.privada.csic.es
 
 #
 # Hosting J2EE
@@ -315,7 +338,7 @@ Host apps.pre
 Host apps.dev
   HostName psi4.cti.csic.es
   IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
+  User deployerdev
 
 Host intranet.pro
   HostName portal1.redcorp.privada.csic.es
@@ -584,19 +607,9 @@ Host goobi2
 #
 # Tunnels
 #
-Host workTunnel
-  HostName chef-server.gestion.privada.csic.es
-  Port 22
-  LocalForward localhost:5984 couchdb.chefserver:5984
-  LocalForward localhost:4040 webui.chefserver:4040
-
 Host couchdb.chefserver
   HostName localhost
   Port 5984
-
-Host webui.chefserver
-  HostName localhost
-  Port 4040
 
 
 #

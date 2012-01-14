@@ -1,12 +1,11 @@
 export MYDOTFILES=~/.mydotfiles
-
 export ZSH=~/.oh-my-zsh
-export ZSH_THEME="thejtoken"
+export ZSH_THEME="random"
 export CASE_SENSITIVE="true"
-export DISABLE_AUTO_UPDATE="true"
+export DISABLE_AUTO_UPDATE="false"
 
-plugins=(brew git git-flow bundler osx vagrant)
+plugins=(terminalapp brew git git-flow bundler osx vagrant rvm)
 
-[ -s "${ZSH}/oh-my-zsh.sh"              ] && . "${ZSH}/oh-my-zsh.sh"
-[ -s "${MYDOTFILES}/shell/shell.config" ] && . "${MYDOTFILES}/shell/shell.config"
-[ -s ~/.rvm/scripts/rvm                 ] && . ~/.rvm/scripts/rvm
+[ -s "${ZSH}/oh-my-zsh.sh"          ] && . "${ZSH}/oh-my-zsh.sh"
+[ -s "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
+[ -s ~/.rvm/scripts/rvm             ] && . ~/.rvm/scripts/rvm

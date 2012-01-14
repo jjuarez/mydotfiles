@@ -1,5 +1,7 @@
 # vim:sh
 
+echo "shell.sh: BEGIN `date +%H%M%S`"
+
 ##
 # User specific profiles
 for p in ${MYDOTFILES}/shell/profile.d/*.profile; do 
@@ -32,3 +34,6 @@ done 2>/dev/null
 # General User environment
 export EDITOR='vim -N'
 export PAGER=most
+
+
+echo "shell.sh: END `date +%H%M%S`"

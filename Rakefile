@@ -14,9 +14,6 @@ DOTFILES = [
   { :name=>"thejtoken.zsh-theme",
     :git_item=>"shell/zsh/themes/thejtoken.zsh-theme",  
     :local_item=>".oh-my-zsh/themes/thejtoken.zsh-theme" },
-  { :name=>"workspace.zsh",
-    :git_item=>"shell/zsh/custom/workspace.zsh",  
-    :local_item=>".oh-my-zsh/custom/workspace.zsh" },
   ##
   # Vim & MacVim
   #
@@ -97,12 +94,9 @@ VIM_PLUGINS = [
     :local_name=>"vim/bundle/tabular"     }
 ]
 
-GEM_LIST = [
-  'bundler',
-  'config_context',
-  'mini_logger',
-  'ldap-shell-utils'  
-]
+
+GEM_LIST = []
+
 
 ##
 # Vim tasks
