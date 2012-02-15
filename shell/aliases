@@ -4,6 +4,8 @@
 alias vi='vim -N'
 alias vim='vim -N'
 alias scpresume="rsync --partial --progress --rsh=ssh"
+alias ldapsearch='ldapsearch -LLLxW'
+
 
 case "`uname`" in
 	
