@@ -55,6 +55,27 @@ Host xen9
 Host xen10
   HostName xen10.gestion.privada.csic.es
 
+Host xen11
+  HostName xen11.gestion.privada.csic.es
+
+Host xena
+  HostName xen-a.gestion.privada.csic.es
+
+Host xenb
+  HostName xen-b.gestion.privada.csic.es
+
+Host xenc
+  HostName xen-c.gestion.privada.csic.es
+
+Host xenu
+  HostName xen-u.gestion.privada.csic.es
+
+Host xenw
+  HostName xen-w.gestion.privada.csic.es
+
+Host xeny
+  HostName xen-y.gestion.privada.csic.es
+
 Host luci
   HostName 192.168.56.6
  
