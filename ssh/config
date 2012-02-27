@@ -21,45 +21,72 @@ Host linode
   IdentityFile ~/.ss/id_dsa
   User root
 
+#
+# Sysadmin Infrastructure (Xen hosts)
+#
+Host xen-0
+  HostName xen0.gestion.privada.csic.es
 
-#
-# Sysadmin Infrastructure
-#
-Host xen1
+Host xen-1
   HostName xen1.gestion.privada.csic.es
 
-Host xen2
+Host xen-2
   HostName xen2.gestion.privada.csic.es
 
-Host xen3
+Host xen-3
   HostName xen3.gestion.privada.csic.es
 
-Host xen4
+Host xen-4
   HostName xen4.gestion.privada.csic.es
 
-Host xen5
+Host xen-5
   HostName xen5.gestion.privada.csic.es
 
-Host xen6
+Host xen-6
   HostName xen6.gestion.privada.csic.es
 
-Host xen7
+Host xen-7
   HostName xen7.gestion.privada.csic.es
 
-Host xen8
+Host xen-8
   HostName xen8.gestion.privada.csic.es
 
-Host xen9
+Host xen-9
   HostName xen9.gestion.privada.csic.es
 
-Host xen10
+Host xen-10
   HostName xen10.gestion.privada.csic.es
+
+Host xen-11
+  HostName xen11.gestion.privada.csic.es
+
+Host xen-a
+  HostName xen-a.gestion.privada.csic.es
+
+Host xen-b
+  HostName xen-b.gestion.privada.csic.es
+
+Host xen-c
+  HostName xen-c.gestion.privada.csic.es
+
+Host xen-u
+  HostName xen-u.gestion.privada.csic.es
+
+Host xen-w
+  HostName xen-w.gestion.privada.csic.es
+
+Host xen-y
+  HostName xen-y.gestion.privada.csic.es
 
 Host luci
   HostName 192.168.56.6
+
+Host netappmng
+  HostName 192.168.55.247
  
 Host nagios.sl
-  HostName nagios3.sgai.csic.es
+  HostName  192.168.55.254
+  User root
 
 Host ci
   Hostname 192.168.54.25
@@ -69,11 +96,6 @@ Host builds
   HostName builds.gestion.privada.csic.es
   User builder
 
-Host git
-  HostName git.sistemas.sgai.csic.es
-  IdentityFile ~/.ssh/id_dsa
-  User git
-
 Host git.sistemas.sgai.csic.es
   HostName git.sistemas.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa
@@ -81,7 +103,6 @@ Host git.sistemas.sgai.csic.es
 
 Host spyglass
   HostName spyglass.gestion.privada.csic.es
-  User fjjuarez
 
 Host redmine
   HostName redmine.sistemas.sgai.csic.es
@@ -101,7 +122,7 @@ Host slmirror
   HostName 192.168.56.14
 
 Host nagios.sh
-  HostName monitor.redcorp.privada.csic.es
+  HostName 192.168.10.154
   
 Host backup
   HostName jacaranda.redcorp.privada.csic.es
@@ -118,7 +139,7 @@ Host jabber
 Host mylinux
   HostName pc834.cti.csic.es
   Port 443
-  User javi
+  User jjuarez
   IdentityFile ~/.ssh/id_dsa
 
 #
@@ -133,17 +154,13 @@ Host papi
 Host cas.pro
   HostName cas.redcorp.privada.csic.es
   User casuser
-
+#
+#Host cas.pre
+#  HostName psi2.cti.csic.es
+#  User caspre
+#
 Host cas.pre
-  HostName psi2.cti.csic.es
-  User caspre
-
-Host cas.dev
-  HostName psi2.cti.csic.es
-  User casdev
-
-Host cas.i2.pro
-  HostName cas2.redcorp.privada.csic.es
+  HostName cas1.auth.gestion.pre.privada.csic.es
 
 Host cas1.i2.pre
   HostName cas1.auth.gestion.pre.privada.csic.es
@@ -154,25 +171,29 @@ Host cas2.i2.pre
 #
 # Entorno SSO/LDAP development
 #
-Host lb1.cas.dev
+Host lb.cas.dev
   HostName 192.168.54.69
 
 Host as1.cas.dev
   HostName 192.168.54.64
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host as2.cas.dev
   HostName 192.168.54.65
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host master.ldap.dev
   HostName 192.168.54.66
 
-Host lb1.ldap.dev
+Host lb.ldap.dev
   Hostname 192.168.54.70
 
-Host replica1.ldap.dev
+Host r1.ldap.dev
   HostName 192.168.54.67
 
-Host replica2.ldap.dev
+Host r2.ldap.dev
   HostName 192.168.54.68
 
 #
@@ -210,21 +231,6 @@ Host blanca1
 
 Host blanca2
   HostName blanca2.redcorp.privada.csic.es
-
-#Host cas1.sh.dev
-#  HostName cas1.sh.dev.gestion.privada.csic.es
-#
-#Host cas2.sh.dev
-#  HostName cas2.sh.dev.gestion.privada.csic.es
-#
-#Host ldap1.sh.dev
-#  HostName ldap1.sh.dev.gestion.privada.csic.es
-#
-#Host ldap2.sh.dev
-#  HostName ldap2.sh.dev.gestion.privada.csic.es
-#
-#Host ldap3.sh.dev
-#  HostName ldap3.sh.dev.gestion.privada.csic.es
 
 #
 # Hosting J2EE
@@ -340,65 +346,71 @@ Host apps.dev
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployerdev
 
-Host intranet.pro
-  HostName portal1.redcorp.privada.csic.es
-  User jboss
-
-Host lr1.intranet.pro
-  HostName portal1.redcorp.privada.csic.es
-  User jboss
-
-Host lr2.intranet.pro
-  HostName portal2.redcorp.privada.csic.es
-  User jboss
-
-Host intranet.pre
-  HostName psi3.cti.csic.es
-  User jbosspre
-
-Host lr.intranet.pre
-  HostName psi3.cti.csic.es
-  User jbosspre
-
-Host intranet.dev
-  HostName psi3.cti.csic.es
-  User jbossdev
-
-Host opencms.pro
-  HostName gescon.redcorp.privada.csic.es
-  User jboss
-
-Host gescon.pro
-  HostName gescon.redcorp.privada.csic.es
-  User deployer
-  IdentityFile ~/.ssh/id_dsa.deployer
-
-Host gescon.pre
-  HostName psi3.cti.csic.es
-  User jbosscsic
-
-Host gescon.dev
-  HostName psi3.cti.csic.es
-  User jboss
+#Host intranet.pro
+#  HostName portal1.redcorp.privada.csic.es
+#  User jboss
+#
+#Host lr1.intranet.pro
+#  HostName portal1.redcorp.privada.csic.es
+#  User jboss
+#
+#Host lr2.intranet.pro
+#  HostName portal2.redcorp.privada.csic.es
+#  User jboss
+#
+#Host intranet.pre
+#  HostName psi3.cti.csic.es
+#  User jbosspre
+#
+#Host lr.intranet.pre
+#  HostName psi3.cti.csic.es
+#  User jbosspre
+#
+#Host lr.intranet.dev
+#  HostName psi3.cti.csic.es
+#  User root
+#
+#Host intranet.dev
+#  HostName psi3.cti.csic.es
+#  User jbossdev
+#
+#Host opencms.pro
+#  HostName gescon.redcorp.privada.csic.es
+#  User jboss
+#
+#Host gescon.pro
+#  HostName gescon.redcorp.privada.csic.es
+#  User deployer
+#  IdentityFile ~/.ssh/id_dsa.deployer
+#
+#Host gescon.pre
+#  HostName psi3.cti.csic.es
+#  User jbosscsic
+#
+#Host gescon.dev
+#  HostName psi3.cti.csic.es
+#  User jboss
+#
+#Host documentum.pro
+#  HostName gesnot.redcorp.privada.csic.es
+#
+#Host iserver.pro
+#  HostName iserver.redcorp.privada.csic.es
+#
+#Host ldapsync.pro
+#  HostName gesnot.redcorp.privada.csic.es
+#  User ldapsync
+#
+Host sync.pro
+  HostName 192.168.56.29
 
 Host webapp.dev
   HostName webapp-desa.cti.csic.es
-
-Host documentum.pro
-  HostName gesnot.redcorp.privada.csic.es
-
-Host ldapsync.pro
-  HostName gesnot.redcorp.privada.csic.es
-  User ldapsync
-
-Host iserver.pro
-  HostName iserver.redcorp.privada.csic.es
 
 #
 # I2 PRO 
 #
 Host dns.i2.pro
-# HostName dns.i2.gestion.privada.csic.es
   HostName 192.168.56.3
 
 Host lr1.i2.pro
@@ -571,6 +583,9 @@ Host publicaciones-tienda.pro
   HostName 192.168.54.23
   User jboss
 
+Host googlebooks.pro
+  Hostname 192.168.56.26
+
 #
 # Entorno BI Pentaho
 #
@@ -611,27 +626,34 @@ Host couchdb.chefserver
   HostName localhost
   Port 5984
 
-
 #
-# General
+# CSIC
 #
-Host *
-  KeepAlive              yes
+Host *.csic.es
   ForwardAgent           yes
-  ForwardX11             no
+  UserKnownHostsFile     ~/.ssh/csic_known_hosts
   IdentityFile           ~/.ssh/id_dsa.sysadmin_cti
-  ServerAliveInterval    15
-  ServerAliveCountMax    4
-  Compression            yes
-  CheckHostIP            no
-  User                   root
-  Port                   22
 
 #
 # Added by rhc-create-app on Sun Aug 28 12:10:14 CEST 2011
 #
 Host *.rhcloud.com
-  IdentityFile ~/.ssh/libra_id_rsa
-  VerifyHostKeyDNS yes
-  StrictHostKeyChecking no
-  UserKnownHostsFile ~/.ssh/libra_known_hosts
+  IdentityFile           ~/.ssh/libra_id_rsa
+  VerifyHostKeyDNS       yes
+  StrictHostKeyChecking  no
+  UserKnownHostsFile     ~/.ssh/libra_known_hosts
+
+#
+# General
+#
+Host *
+  IdentityFile           ~/.ssh/id_dsa.sysadmin_cti
+  KeepAlive              yes
+  ForwardX11             no
+  ServerAliveInterval    15
+  ServerAliveCountMax    4
+  Compression            yes
+  CheckHostIP            yes
+  VerifyHostKeyDNS       yes
+  User                   root
+  Port                   22
