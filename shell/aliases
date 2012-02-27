@@ -5,6 +5,14 @@ alias vi='vim -N'
 alias vim='vim -N'
 alias scpresume="rsync --partial --progress --rsh=ssh"
 
+
+##
+# OpenLDAP aliases
+alias ldapsearch='ldapsearch -LLLx'
+alias ldapdelete='ldapdelete -xc'
+alias ldapmodify='ldapmodify -xc'
+
+
 case "`uname`" in
 	
   Darwin*)
@@ -12,13 +20,13 @@ case "`uname`" in
     alias netstat='netstat -an -p tcp -f inet'
     
     # Alias over brew installation for some GNU utils
-    [ -n "`brew --prefix 2>/dev/null`" ] && {
+    brew_home="`brew --prefix 2>/dev/null`"
 
-      brew_home="`brew --prefix`"    
+    [ -n "${brew_home}" ] && {
 
-      alias tar="${brew_home}/bin/gtar"
-      alias find="${brew_home}/bin/find"
-      alias md5sum="${brew_home}/bin/gmd5sum"
+      [ -x "${brew_home}/bin/gtar"    ] && alias tar="${brew_home}/bin/gtar"
+      [ -x "${brew_home}/bin/find"    ] && alias find="${brew_home}/bin/find"
+      [ -x "${brew_home}/bin/gmd5sum" ] && alias md5sum="${brew_home}/bin/gmd5sum"
     }
     ;;  
     
