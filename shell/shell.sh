@@ -1,6 +1,6 @@
 # vim:sh
 
-echo "shell.sh: BEGIN `date +%H%M%S`"
+#echo "shell.sh: BEGIN `date +%H%M%S`"
 
 ##
 # User specific profiles
@@ -36,4 +36,4 @@ export EDITOR='vim -N'
 export PAGER=most
 
 
-echo "shell.sh: END `date +%H%M%S`"
+#echo "shell.sh: END `date +%H%M%S`"

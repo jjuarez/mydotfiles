@@ -1,6 +1,6 @@
 export MYDOTFILES=~/.mydotfiles
 export ZSH=~/.oh-my-zsh
-export ZSH_THEME="random"
+export ZSH_THEME="thejtoken"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="false"
 
@@ -9,3 +9,5 @@ plugins=(terminalapp brew git git-flow bundler osx vagrant rvm)
 [ -s "${ZSH}/oh-my-zsh.sh"          ] && . "${ZSH}/oh-my-zsh.sh"
 [ -s "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
 [ -s ~/.rvm/scripts/rvm             ] && . ~/.rvm/scripts/rvm
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
