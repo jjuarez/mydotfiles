@@ -8,7 +8,7 @@ Host heroku.com
 
 Host github.com
   HostName github.com
-  IdentityFile ~/.ssh/id_dsa
+  IdentityFile ~/.ssh/id_dsa.github
   User git
 
 Host linode.lish
@@ -128,7 +128,7 @@ Host backup
   HostName jacaranda.redcorp.privada.csic.es
 
 Host scm
-  HostName psi2.cti.csic.es
+  HostName 192.168.56.30
 
 Host chefserver
   HostName chef-server.gestion.privada.csic.es
@@ -203,19 +203,13 @@ Host ldap.pro
   HostName ldap.redcorp.privada.csic.es
 
 Host ldap.pre
-  HostName psi2.cti.csic.es
-
-Host ldap.dev
-  HostName psi2.cti.csic.es
-
+  HostName 192.168.54.32
+#
+#Host ldap.dev
+#  HostName psi2.cti.csic.es
+#
 Host master.pro
   HostName ldap.redcorp.privada.csic.es
-
-Host master.pre
-  HostName psi2.cti.csic.es
-
-Host master.dev
-  HostName psi2.cti.csic.es
 
 Host boj
   HostName boj.redcorp.privada.csic.es
