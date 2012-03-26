@@ -60,6 +60,9 @@ Host xen-10
 Host xen-11
   HostName xen11.gestion.privada.csic.es
 
+Host xen-12
+  HostName xen12.gestion.privada.csic.es
+
 Host xen-a
   HostName xen-a.gestion.privada.csic.es
 
