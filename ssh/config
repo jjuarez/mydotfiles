@@ -308,6 +308,11 @@ Host hosting.wifi
 #
 # JBoss PRO, PRE & DEV Apps
 #
+Host service1.be.pro
+  HostName service1.backend.gestion.privada.csic.es
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
 Host apps3.pro
   HostName apps3.gestion.privada.csic.es
   IdentityFile ~/.ssh/id_dsa.deployer
