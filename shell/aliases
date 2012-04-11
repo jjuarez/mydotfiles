@@ -8,9 +8,9 @@ alias scpresume="rsync --partial --progress --rsh=ssh"
 
 ##
 # OpenLDAP aliases
-alias ldapsearch='ldapsearch -LLLx'
-alias ldapdelete='ldapdelete -xc'
-alias ldapmodify='ldapmodify -xc'
+alias ldapsearch='ldapsearch -LLLx -W'
+alias ldapdelete='ldapdelete -xc -W'
+alias ldapmodify='ldapmodify -xc -W'
 
 
 case "`uname`" in
@@ -19,15 +19,11 @@ case "`uname`" in
     alias ls='ls -hG'
     alias netstat='netstat -an -p tcp -f inet'
     
-    # Alias over brew installation for some GNU utils
-    brew_home="`brew --prefix 2>/dev/null`"
+    [ -z "${BREW_HOME}" ] && BREW_HOME="`/usr/local/bin/brew --prefix 2>/dev/null`"
 
-    [ -n "${brew_home}" ] && {
-
-      [ -x "${brew_home}/bin/gtar"    ] && alias tar="${brew_home}/bin/gtar"
-      [ -x "${brew_home}/bin/find"    ] && alias find="${brew_home}/bin/find"
-      [ -x "${brew_home}/bin/gmd5sum" ] && alias md5sum="${brew_home}/bin/gmd5sum"
-    }
+    [ -x "${BREW_HOME}/bin/gtar"    ] && alias tar="${BREW_HOME}/bin/gtar"
+    [ -x "${BREW_HOME}/bin/find"    ] && alias find="${BREW_HOME}/bin/find"
+    [ -x "${BREW_HOME}/bin/gmd5sum" ] && alias md5sum="${BREW_HOME}/bin/gmd5sum"
     ;;  
     
   Linux*)
