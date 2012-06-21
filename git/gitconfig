@@ -1,6 +1,6 @@
 [user]
-	name  = Javier Juarez
-  email = javier.juarez@gmail.com
+	name = Javier Juarez
+	email = javier.juarez@gmail.com
 [color]
   status = auto
   branch = auto
@@ -14,6 +14,7 @@
   st      = status
   last    = log -1 HEAD
   unstage = reset HEAD --
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [difftool "Kaleidoscope"]
 	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
   prompt = false
@@ -23,3 +24,5 @@
   co = checkout
 [difftool]
 	prompt = false
+[mergetool]
+	keepBackup = true

@@ -6,8 +6,17 @@ export DISABLE_AUTO_UPDATE="false"
 
 plugins=(terminalapp brew git git-flow bundler osx vagrant rvm)
 
-[ -f "${ZSH}/oh-my-zsh.sh"          ] && . "${ZSH}/oh-my-zsh.sh"
-[ -f "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
-[ -f ~/.rvm/scripts/rvm             ] && . ~/.rvm/scripts/rvm
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[ -f "${ZSH}/oh-my-zsh.sh" ] && . "${ZSH}/oh-my-zsh.sh"
+
+##
+# Set this better like a plugin
+unsetopt correct_all
+
+[ -f "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
+
+[ -f ~/.rvm/scripts/rvm ] && { 
+
+  . ~/.rvm/scripts/rvm
+  PATH=${PATH}:${HOME}/.rvm/bin 
+}

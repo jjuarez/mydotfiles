@@ -24,6 +24,8 @@ case "`uname`" in
     [ -x "${BREW_HOME}/bin/gtar"    ] && alias tar="${BREW_HOME}/bin/gtar"
     [ -x "${BREW_HOME}/bin/find"    ] && alias find="${BREW_HOME}/bin/find"
     [ -x "${BREW_HOME}/bin/gmd5sum" ] && alias md5sum="${BREW_HOME}/bin/gmd5sum"
+
+    [ -x '/Applications/MacVim.app/Contents/MacOS/Vim' ] && alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
     ;;  
     
   Linux*)
