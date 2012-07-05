@@ -9,7 +9,7 @@ Host heroku.com
 Host github.com
   HostName github.com
   IdentityFile ~/.ssh/id_dsa.github
-  User git
+  User jjuarez
 
 Host linode.lish
   HostName london127.linode.com
@@ -359,6 +359,42 @@ Host sync.pro
 
 Host webapp.dev
   HostName webapp-desa.cti.csic.es
+
+#
+# I2 INT
+#
+Host lr1.i2.int
+  HostName 192.168.55.16
+
+Host lr2.i2.int
+  HostName 192.168.55.17
+
+Host lvs1.i2.int
+  HostName 192.168.55.22
+
+Host alf1.i2.int
+  HostName 192.168.55.12
+
+Host alf2.i2.int
+  HostName 192.168.55.13
+
+#
+# WI INT
+#
+Host lr1.wi.int
+  HostName 192.168.55.18
+
+Host lr2.wi.int
+  HostName 192.168.55.19
+
+Host lvs1.wi.int
+  HostName 192.168.55.23
+
+Host alf1.wi.int
+  HostName 192.168.55.14
+
+Host alf2.wi.int
+  HostName 192.168.55.15
 
 #
 # I2 PRO 
