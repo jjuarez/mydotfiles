@@ -22,7 +22,7 @@ case "`uname`" in
     [ -z "${BREW_HOME}" ] && BREW_HOME="`/usr/local/bin/brew --prefix 2>/dev/null`"
 
     [ -x "${BREW_HOME}/bin/gtar"    ] && alias tar="${BREW_HOME}/bin/gtar"
-    [ -x "${BREW_HOME}/bin/find"    ] && alias find="${BREW_HOME}/bin/find"
+    [ -x "${BREW_HOME}/bin/gfind"   ] && alias find="${BREW_HOME}/bin/gfind"
     [ -x "${BREW_HOME}/bin/gmd5sum" ] && alias md5sum="${BREW_HOME}/bin/gmd5sum"
 
     [ -x '/Applications/MacVim.app/Contents/MacOS/Vim' ] && alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
