@@ -40,3 +40,19 @@ git-that() {
   git push --tags origin master
 }
 
+##
+# Clone a repository from github and inspect them
+github-clone-and-inspect() {
+
+  [ -z "${1}" ] && {
+
+    echo "repo URL missing" >&2
+    return 126
+  } || {
+
+    local url=${1}
+    local directory=${$(echo ${1}|cut -d"/" -f5)%.*}
+
+    git clone "${1}" && cd ${directory} && mate .
+  }
+}
