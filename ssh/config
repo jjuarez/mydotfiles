@@ -182,6 +182,8 @@ Host cas2.i2.pre
 #
 Host lb.cas.dev
   HostName 192.168.54.69
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host as1.cas.dev
   HostName 192.168.54.64
@@ -365,36 +367,44 @@ Host webapp.dev
 #
 Host lr1.i2.int
   HostName 192.168.55.16
+  User liferay
 
 Host lr2.i2.int
   HostName 192.168.55.17
+  User liferay
 
 Host lvs1.i2.int
   HostName 192.168.55.22
 
 Host alf1.i2.int
   HostName 192.168.55.12
+  User alfresco
 
 Host alf2.i2.int
   HostName 192.168.55.13
+  User alfresco
 
 #
 # WI INT
 #
 Host lr1.wi.int
   HostName 192.168.55.18
+  User liferay
 
 Host lr2.wi.int
   HostName 192.168.55.19
+  User liferay
 
 Host lvs1.wi.int
   HostName 192.168.55.23
 
 Host alf1.wi.int
   HostName 192.168.55.14
+  User alfresco
 
 Host alf2.wi.int
   HostName 192.168.55.15
+  User alfresco
 
 #
 # I2 PRO 
