@@ -134,7 +134,8 @@ Host scm
   HostName 192.168.56.30
 
 Host chefserver
-  HostName chef-server.gestion.privada.csic.es
+# HostName chef-server.gestion.privada.csic.es
+  HostName 192.168.54.115
 
 Host jabber
   HostName 192.168.56.21
@@ -341,78 +342,14 @@ Host apps.dev
   User deployerdev
 
 Host sync.pro
-  HostName 192.168.56.29
+# HostName 192.168.56.29
+  HostName 192.168.55.134
 
 Host webapp.dev
   HostName webapp-desa.cti.csic.es
 
 Host ebano
   HostName ebano.sgai.csic.es
-
-#
-# I2 INT
-#
-Host lr1.i2.int
-  HostName 192.168.55.16
-  User liferay
-
-Host lr2.i2.int
-  HostName 192.168.55.17
-  User liferay
-
-Host lvs1.i2.int
-  HostName 192.168.55.22
-
-Host alf1.i2.int
-  HostName 192.168.55.12
-  User alfresco
-
-Host alf2.i2.int
-  HostName 192.168.55.13
-  User alfresco
-
-#
-# WI INT
-#
-Host lr1.wi.int
-  HostName 192.168.55.18
-  User liferay
-
-Host lr2.wi.int
-  HostName 192.168.55.19
-  User liferay
-
-Host lvs1.wi.int
-  HostName 192.168.55.23
-
-Host alf1.wi.int
-  HostName 192.168.55.14
-  User alfresco
-
-Host alf2.wi.int
-  HostName 192.168.55.15
-  User alfresco
-
-#
-# I2 PRO 
-#
-#Host dns.i2.pro
-#  HostName 192.168.56.3
-#
-#Host lr1.i2.pro
-#  HostName cintlife1.gestion.privada.csic.es 
-#
-#Host lr2.i2.pro
-#  HostName cintlife2.gestion.privada.csic.es 
-#  
-#Host alf1.i2.pro
-#  HostName cintalf1.gestion.privada.csic.es 
-#
-#Host alf2.i2.pro
-#  HostName cintalf2.gestion.privada.csic.es 
-#
-#Host lvs1.i2.pro
-#  HostName lvs1-i2-pro.gestion.privada.csic.es
 
 #
 # I2 PRE
@@ -434,24 +371,6 @@ Host alf2.i2.pre
 
 Host lvs1.i2.pre
   HostName lvs1-i2-pre.gestion.privada.csic.es
-
-#
-# WI PRO
-#
-#Host lr1.wi.pro
-#  HostName lr1.wi.gestion.privada.csic.es 
-#
-#Host lr2.wi.pro
-#  HostName lr2.wi.gestion.privada.csic.es
-#  
-#Host alf1.wi.pro
-#  HostName alf1.wi.gestion.privada.csic.es
-#
-#Host alf2.wi.pro
-#  HostName alf2.wi.gestion.privada.csic.es
-#
-#Host lvs1.wi.pro
-#  HostName lvs1.wi.gestion.privada.csic.es 
 
 #
 # WI PRE
@@ -521,7 +440,7 @@ Host lr.dev
 # Alfresco Applications
 #
 Host alf.apps.pro
-  HostName fresco1.redcorp.privada.csic.es
+  HostName 192.168.55.96
 
 Host alf.apps.pre
   HostName fresco-pre.cti.csic.es
@@ -636,16 +555,10 @@ Host goobi2
   HostName 10.10.39.4
 
 #
-# CSIC
-#
-Host *.csic.es
-  UserKnownHostsFile     ~/.ssh/csic_known_hosts
-  IdentityFile           ~/.ssh/id_dsa.sysadmin_cti
-
-#
 # General
 #
 Host *
+  IdentityFile           ~/.ssh/id_dsa.sysadmin_cti
   KeepAlive              yes
   ForwardX11             no
   ForwardAgent           yes
