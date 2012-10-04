@@ -1,6 +1,5 @@
 #
 # FL projects
-#
 Host heroku.com
   HostName heroku.com
   IdentityFile ~/.ssh/id_dsa.heroku
@@ -13,7 +12,6 @@ Host github.com
 
 #
 # Xen hosts
-#
 Host xen-0
   HostName 192.168.22.18
 
@@ -75,40 +73,31 @@ Host xen-x
   HostName 192.168.22.49
 
 #
-# Storage NetAPP
-#
-Host netappmng
-  HostName 192.168.55.247
-
-#
 # Tools
-#
 Host luci
   HostName 192.168.56.6
  
 Host nagios
-  HostName  192.168.55.254
+  HostName 192.168.55.254
 
 Host nagios-ng
-  HostName  192.168.55.249
+  HostName 192.168.55.249
 
 Host ci
   Hostname 192.168.54.25
 
 Host builds
-  HostName builds.gestion.privada.csic.es
+  HostName 192.168.54.63
   User builder
 
 Host git.sistemas.sgai.csic.es
-  HostName git.sistemas.sgai.csic.es
+  HostName 192.168.56.20 
   IdentityFile ~/.ssh/id_dsa
   User git
 
-Host spyglass
-  HostName spyglass.gestion.privada.csic.es
-
 Host redmine
-  HostName redmine.sistemas.sgai.csic.es
+  HostName 192.168.56.20
+  User root
 
 Host constellation
   HostName constellation.sistemas.sgai.csic.es
@@ -119,7 +108,7 @@ Host jenkinsci
   HostName 192.168.54.25
 
 Host vpnserver
-  HostName vpnserver.cti.csic.es
+  HostName 161.111.80.203
 
 Host slmirror
   HostName 192.168.56.14
@@ -128,13 +117,12 @@ Host monitor
   HostName 192.168.10.154
   
 Host backup
-  HostName jacaranda.redcorp.privada.csic.es
+  HostName 192.168.56.8 
 
 Host scm
   HostName 192.168.56.30
 
 Host chefserver
-# HostName chef-server.gestion.privada.csic.es
   HostName 192.168.54.115
 
 Host jabber
@@ -143,8 +131,8 @@ Host jabber
 Host mylinux
   HostName pc834.cti.csic.es
   Port 443
-  User jjuarez
   IdentityFile ~/.ssh/id_dsa
+  User jjuarez
 
 Host metalib
   HostName 161.111.10.185
@@ -157,9 +145,8 @@ Host digital
 
 #
 # SSO & LDAP servers
-#
 Host cas.pro
-  HostName cas.redcorp.privada.csic.es
+  HostName 192.168.10.152
   User casuser
 
 Host cas.pre
@@ -173,7 +160,6 @@ Host cas2.i2.pre
 
 #
 # Entorno SSO/LDAP development
-#
 Host lb.cas.dev
   HostName 192.168.54.69
   IdentityFile ~/.ssh/id_dsa.deployer
@@ -203,36 +189,29 @@ Host r2.ldap.dev
 
 #
 # LDAP Master & replicated servers
-#
 Host ldap.pro
-  HostName ldap.redcorp.privada.csic.es
+  HostName 192.168.10.152
 
 Host ldap.pre
   HostName 192.168.54.32
 
 Host master.pro
-  HostName ldap.redcorp.privada.csic.es
+  HostName 192.168.10.152
 
 Host boj
-  HostName boj.redcorp.privada.csic.es
+  HostName 192.168.10.78 
 
 Host boldo
-  HostName boldo.redcorp.privada.csic.es
+  HostName 192.168.56.31 
 
 Host bonduc
-  HostName bonduc.redcorp.privada.csic.es
+  HostName 192.168.10.144
 
 Host blanca1
-  HostName blanca1.redcorp.privada.csic.es
+  HostName 192.168.10.198 
 
 Host blanca2
-  HostName blanca2.redcorp.privada.csic.es
-
-Host palmeras
-  HostName palmera-1.redcorp.privada.csic.es
-
-Host orion
-  HostName 192.168.20.61
+  HostName 192.168.10.199 
 
 Host hosting.orion
   HostName 192.168.20.61
@@ -300,7 +279,6 @@ Host hosting.wifi
 
 #
 # JBoss PRO, PRE & DEV Apps
-#
 Host solr.be.pro
   HostName 192.168.55.125
   IdentityFile ~/.ssh/id_dsa.deployer
@@ -342,7 +320,6 @@ Host apps.dev
   User deployerdev
 
 Host sync.pro
-# HostName 192.168.56.29
   HostName 192.168.55.134
 
 Host webapp.dev
@@ -352,56 +329,32 @@ Host ebano
   HostName ebano.sgai.csic.es
 
 #
-# I2 PRE
-#
-Host lr0.i2.pre
-  HostName cpreintlife1.gestion.privada.csic.es
-
-Host lr1.i2.pre
-  HostName cpreintlife2.gestion.privada.csic.es
-
-Host lr2.i2.pre
-  HostName cpreintlife3.gestion.privada.csic.es
-
-Host alf1.i2.pre
-  HostName cpreintalf2.gestion.privada.csic.es
-
-Host alf2.i2.pre
-  HostName cpreintalf3.gestion.privada.csic.es
-
-Host lvs1.i2.pre
-  HostName lvs1-i2-pre.gestion.privada.csic.es
-
-#
 # WI PRE
-#
 Host lr1.wi.pre
-  HostName lr1.wi.gestion.pre.privada.csic.es
+  HostName 192.168.57.18
 
 Host lr2.wi.pre
-  HostName lr2.wi.gestion.pre.privada.csic.es
-
-Host alf1.wi.pre
-  HostName alf1.wi.gestion.pre.privada.csic.es
-
-Host alf2.wi.pre
-  HostName alf2.wi.gestion.pre.privada.csic.es
+  HostName 192.168.57.19
 
 Host lvs1.wi.pre
-  HostName lvs1.wi.gestion.pre.privada.csic.es
+  HostName 192.168.57.23
 
-#################################################
-# NUEVO ENTORNO
-################################################ 
+Host alf1.wi.pre
+  HostName 192.168.57.14
+
+Host alf2.wi.pre
+  HostName 192.168.57.15
 
 #
-# WI PRO NG
-#
+# WI PRO
 Host lr1.wi.pro
   HostName 192.168.55.18
 
 Host lr2.wi.pro
   HostName 192.168.55.19
+
+Host lvs1.wi.pro
+  HostName 192.168.55.23
 
 Host alf1.wi.pro
   HostName 192.168.55.14
@@ -409,12 +362,25 @@ Host alf1.wi.pro
 Host alf2.wi.pro
   HostName 192.168.55.15
 
-Host lvs1.wi.pro
-  HostName 192.168.55.23
+#
+# I2 PRE
+Host lr1.i2.pre
+  HostName 192.168.57.16
+
+Host lr2.i2.pre
+  HostName 192.168.57.17
+
+Host lvs1.i2.pre
+  HostName 192.168.57.22
+
+Host alf1.i2.pre
+  HostName 192.168.57.12
+
+Host alf2.i2.pre
+  HostName 192.168.57.13
 
 #
-# I2 PRO NG
-#
+# I2 PRO
 Host lr1.i2.pro
   HostName 192.168.55.16
 
@@ -432,13 +398,11 @@ Host lvs1.i2.pro
 
 #
 # WI/I2 DEV
-#
 Host lr.dev
   HostName lray.cti.csic.es
 
 #
 # Alfresco Applications
-#
 Host alf.apps.pro
   HostName 192.168.55.96
 
@@ -449,14 +413,7 @@ Host alf.apps.dev
   HostName alfrescodev.cti.csic.es
 
 #
-# Servidor Web de documentacion
-#
-Host documentacion
-  HostName documentacion.redcorp.privada.csic.es
-
-#
 # Patenta/Publica system
-#
 Host lr.patenta.pro
   HostName lray-patenta.redcorp.privada.csic.es
 
@@ -471,7 +428,6 @@ Host alf.patenta.pre
 
 #
 # SEDE
-#
 Host registro.dev
   HostName 161.111.16.43
 
@@ -486,50 +442,29 @@ Host registro.interno.pro
 
 Host ov.dev
   HostName oficinavirtual.desa.csic.es
-  User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host ov.pre
   HostName sicres.pre.csic.es
-  User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
 Host ov.pro
   HostName 192.168.55.105
-  User deployer
   IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
 
-Host proxy.pro
-  HostName ilex.redcorp.privada.csic.es
-
-Host proxy.pre
-  HostName proxy-firma.pre.gestion.privada.csic.es 
- 
 #
-# Publicaciones
-#
-Host publicaciones-bo.pre
-  HostName pol-pre.cti.csic.es
-  User jboss
-
-Host publicaciones-tienda.pre
-  HostName pol-pre.cti.csic.es
-  User jbosstienda
-
-Host publicaciones-bo.pro
-  HostName publicaciones-bo.gestion.privada.csic.es
-  User jboss
-
-Host publicaciones-tienda.pro
-  HostName 192.168.54.23
-  User jboss
+# Departamento de Publicaciones
+Host editorial
+  Hostname 192.168.55.140 
 
 Host googlebooks.pro
   Hostname 192.168.56.26
 
 #
 # BI Pentaho
-#
 Host pentaho.dev
   HostName 161.111.83.44
 
@@ -541,13 +476,11 @@ Host pentaho.pro
 
 #
 # CAU
-#
 Host cau.pro
   HostName cau.csic.es
 
 #
 # Goobi
-#
 Host goobi1
   HostName 10.10.39.3
 
@@ -555,17 +488,28 @@ Host goobi2
   HostName 10.10.39.4
 
 #
-# General
+# Storage NetAPP
+Host netappmng
+  HostName 192.168.55.247
+
+Host napro3
+  HostName 192.168.23.27
+
+Host napro4
+  HostName 192.168.23.28
+
 #
+# General
 Host *
-  IdentityFile           ~/.ssh/id_dsa.sysadmin_cti
-  KeepAlive              yes
-  ForwardX11             no
-  ForwardAgent           yes
-  ServerAliveInterval    15
-  ServerAliveCountMax    4
-  Compression            no
-  CheckHostIP            yes
-  VerifyHostKeyDNS       yes
-  User                   root
-  Port                   22
+  IdentityFile        ~/.ssh/id_dsa.sysadmin_cti
+  KeepAlive           yes
+  ForwardX11          no
+  ForwardAgent        yes
+  ServerAliveInterval 15
+  ServerAliveCountMax 4
+  Compression         no
+  CheckHostIP         yes
+  VerifyHostKeyDNS    yes
+  User                root
+  Port                22
+
