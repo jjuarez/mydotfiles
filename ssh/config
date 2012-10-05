@@ -304,6 +304,12 @@ Host apps2.dev
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
+# Alias para scripts
+Host apps1.pro
+  HostName 192.168.55.100
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
 Host apps.pro
   HostName 192.168.55.100
   IdentityFile ~/.ssh/id_dsa.deployer
