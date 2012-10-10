@@ -9,6 +9,13 @@ Host github.com
   HostName github.com
   IdentityFile ~/.ssh/id_dsa.github
   User jjuarez
+#
+# Testing
+#
+Host localhost
+  HostName 127.0.0.1
+  IdentityFile ~/.ssh/id_dsa
+  User jjuarez
 
 #
 # Xen hosts
