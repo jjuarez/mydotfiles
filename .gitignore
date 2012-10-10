@@ -1,5 +1,6 @@
 vim/bundle/vim-peepopen/**
 vim/tmp/**
 vim/.netrwhist
+git/gitconfig
 *.swp
 *.rbc
