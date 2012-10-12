@@ -15,18 +15,6 @@ DOTFILES = [
     :git_item=>"shell/zsh/themes/thejtoken.zsh-theme",  
     :local_item=>".oh-my-zsh/themes/thejtoken.zsh-theme" },
   ##
-  # Vim & MacVim
-  #
-  { :name=>".vim",
-    :git_item=>"vim",           
-    :local_item=>".vim"          },
-  { :name=>".vimrc",
-    :git_item=>"vim/vimrc",     
-    :local_item=>".vimrc"        },
-  { :name=>".gvimrc",
-    :git_item=>"vim/gvimrc",    
-    :local_item=>".gvimrc"       },
-  ##
   # Ruby stuff
   #
   { :name=>".irbrc",
@@ -49,100 +37,7 @@ DOTFILES = [
     :local_item=>".gitconfig"    }
 ]
 
-VIM_PLUGINS = [
-  { :name=>"Pathogen",    
-    :url=>"https://github.com/tpope/vim-pathogen.git",    
-    :local_name=>"vim/bundle/pathogen"    },
-  { :name=>"Rake",        
-    :url=>"https://github.com/tpope/vim-rake.git",        
-    :local_name=>"vim/bundle/rake"        },
-  { :name=>"Rails",       
-    :url=>"https://github.com/tpope/vim-rails.git",       
-    :local_name=>"vim/bundle/rails"       },
-  { :name=>"ENDwise",     
-    :url=>"https://github.com/tpope/vim-endwise.git",     
-    :local_name=>"vim/bundle/endwise"     },
-  { :name=>"Surround",    
-    :url=>"https://github.com/tpope/vim-surround.git",    
-    :local_name=>"vim/bundle/surround"    },
-  { :name=>"Unimpaired",  
-    :url=>"https://github.com/tpope/vim-unimpaired.git",  
-    :local_name=>"vim/bundle/unimpaired"  },
-  { :name=>"HAML",        
-    :url=>"https://github.com/tpope/vim-haml.git",        
-    :local_name=>"vim/bundle/haml"        },
-  { :name=>"NERDTree",        
-    :url=>"https://github.com/scrooloose/nerdtree.git",   
-    :local_name=>"vim/bundle/nerdtree"    },
-  { :name=>"SnipMate",        
-    :url=>"https://github.com/msanders/snipmate.vim.git", 
-    :local_name=>"vim/bundle/snipmate"    },
-  { :name=>"Syntastic",       
-    :url=>"https://github.com/scrooloose/syntastic.git",  
-    :local_name=>"vim/bundle/syntastic"   },
-  { :name=>"Supertab",        
-    :url=>"https://github.com/ervandew/supertab.git",     
-    :local_name=>"vim/bundle/supertab"    },
-  { :name=>"Tabular",        
-    :url=>"https://github.com/godlygeek/tabular.git",
-    :local_name=>"vim/bundle/tabular"     }
-]
-
-
 GEM_LIST = []
-
-
-##
-# Vim tasks
-#
-namespace :vim do
-  namespace :plugins do
-    desc "Install all my vim plugins"
-    task :install do
-
-      begin
-        puts("Installing vim plugins:")
-        
-        VIM_PLUGINS.each do |plugin|
-
-          unless(File.exist?(plugin[:local_name]))
-          
-            puts("* downloading plugin #{plugin[:name]} from #{plugin[:url]}")
-            system("git submodule add #{plugin[:url]} #{plugin[:local_name]}")
-          end
-        end
-      rescue =>e
-        $stderr.puts(e.message)
-      end
-    end
-
-    desc "Update all vim plugins"
-    task :update do
-    
-      begin
-        puts("Updating vim plugins:")
-        
-        VIM_PLUGINS.each do |plugin|
-  
-          if(File.exist?(plugin[:local_name]) && File.directory?(plugin[:local_name]))
-          
-            puts("* #{plugin[:name]}")
-            system("git submodule init")
-            system("git submodule update #{plugin[:local_name]}")
-          end
-        end
-        
-        autoload_vim_directory = File.join(ENV['HOME'], %w[.vim autoload])
-        patogen_plugin_file    = File.join(ENV['MYDOTFILES'], %w[vim bundle pathogen autoload pathogen.vim])
-        
-        FileUtils.mkdir_p(autoload_vim_directory) unless File.exist?(autoload_vim_directory)
-        FileUtils.cp_r(patogen_plugin_file, autoload_vim_directory)
-      rescue =>e
-        $stderr.puts(e.message)
-      end
-    end
-  end
-end
 
 
 ##
@@ -179,19 +74,19 @@ namespace :dotfiles do
     begin
       fail("MYDOTFILES environment variable is not defined") unless ENV['MYDOTFILES']
       FileUtils.cd(ENV['HOME'])
-    
+
       puts("Installing:")      
-      
+
       DOTFILES.each do |df|
-        
+
         gi = File.join(ENV['MYDOTFILES'], df[:git_item])
         li = File.join(ENV['HOME'], df[:local_item])
-        
+
         if(File.exist?(gi)) 
-        
+
           puts("* #{df[:name]} linking #{li} to #{gi}")
           FileUtils.ln_sf(gi, li) 
-        end                 
+        end
       end
     rescue=>e
       $stderr.puts(e.message)
