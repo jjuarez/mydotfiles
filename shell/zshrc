@@ -4,7 +4,7 @@ export ZSH_THEME="thejtoken"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="false"
 
-plugins=(terminalapp brew git git-flow bundler osx vagrant rvm)
+plugins=(brew git git-flow bundler osx vagrant knife rvm)
 
 
 [ -f "${ZSH}/oh-my-zsh.sh" ] && . "${ZSH}/oh-my-zsh.sh"
