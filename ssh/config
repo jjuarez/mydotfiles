@@ -1,4 +1,4 @@
-#
+##
 # FL projects
 Host heroku.com
   HostName heroku.com
@@ -9,15 +9,15 @@ Host github.com
   HostName github.com
   IdentityFile ~/.ssh/id_dsa.github
   User jjuarez
-#
+
+##
 # Testing
-#
 Host localhost
   HostName 127.0.0.1
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
-#
+##
 # Xen hosts
 Host xen-0
   HostName 192.168.22.18
@@ -58,8 +58,8 @@ Host xen-11
 Host xen-12
   HostName 192.168.22.47
 
-Host xen-a
-  HostName 192.168.22.33
+#Host xen-a
+#  HostName 192.168.22.33
 
 Host xen-b
   HostName 192.168.22.34
@@ -67,11 +67,11 @@ Host xen-b
 Host xen-c
   HostName 192.168.22.37
 
-Host xen-u
-  HostName 192.168.22.16
+#Host xen-u
+#  HostName 192.168.22.16
 
-Host xen-w
-  HostName 192.168.22.17
+#Host xen-w
+#  HostName 192.168.22.17
 
 Host xen-y
   HostName 192.168.22.15
@@ -79,11 +79,77 @@ Host xen-y
 Host xen-x
   HostName 192.168.22.49
 
-#
+Host xen-corp1
+  HostName 192.168.23.55
+
+Host xen-corp2
+  HostName 192.168.23.69
+
+Host xen-corp3
+  HostName 192.168.23.63
+
+Host xen-corp4
+  HostName 192.168.23.77
+
+Host xen-db1
+  HostName 192.168.23.39
+
+Host xen-db2
+  HostName 192.168.23.40
+
+Host xen-db3
+  HostName 192.168.23.41
+
+Host xen-db4
+  HostName 192.168.23.42
+
+Host xen-balan1
+  HostName 192.168.23.37
+
+Host xen-balan2
+  HostName 192.168.23.38
+
+Host xen-gestion2
+  HostName 192.168.23.64
+
+Host xen-gestion3
+  HostName 192.168.23.65
+
+Host xen-gestion4
+  HostName 192.168.23.78
+
+Host xen-hosting1
+  HostName 192.168.23.60
+
+Host xen-hosting2
+  HostName 192.168.23.67
+
+Host xen-nocorp1
+  HostName 192.168.23.53
+
+Host xen-nocorp2
+  HostName 192.168.23.64
+
+Host xen-oas1
+  HostName 192.168.23.54
+
+Host xen-oas2
+  HostName 192.168.23.68
+
+Host xen-correo1
+  HostName 192.168.23.62
+
+Host xen-correo2
+  HostName 192.168.23.56
+
+Host xen-correo3
+  HostName 192.168.23.75
+
+##
 # Tools
 Host luci
   HostName 192.168.56.6
- 
+
 Host nagios
   HostName 192.168.55.254
 
@@ -246,7 +312,7 @@ Host hosting.login
   HostName 192.168.20.40
 
 Host hosting.mayores
-  HostName 192.168.20.62
+  HostName 192.168.55.122
 
 Host hosting.mysql
   HostName 192.168.20.31
