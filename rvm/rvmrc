@@ -1,3 +1,2 @@
 export rvm_path="/Users/jjuarez/.rvm"
 export rvm_archflags="-arch x86_64"
-export rvm_pretty_print_flag=1
