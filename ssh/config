@@ -69,12 +69,12 @@ Host xen-c
 
 #Host xen-u
 #  HostName 192.168.22.16
-
+#
 #Host xen-w
 #  HostName 192.168.22.17
-
-Host xen-y
-  HostName 192.168.22.15
+#
+#Host xen-y
+#  HostName 192.168.22.15
 
 Host xen-x
   HostName 192.168.22.49
@@ -198,6 +198,10 @@ Host scm
 Host chefserver
   HostName 192.168.54.115
 
+Host chefcouchdb
+  HostName 192.168.54.115
+  LocalForward 5984 localhost:5984
+
 Host jabber
   HostName 192.168.56.21
 
@@ -285,6 +289,12 @@ Host blanca1
 
 Host blanca2
   HostName 192.168.10.199 
+
+Host ldap.master-ng
+  HostName 192.168.55.160
+
+Host ldap.slave-ng
+  HostName 192.168.55.161
 
 Host hosting.orion
   HostName 192.168.20.61
