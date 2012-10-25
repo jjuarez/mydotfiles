@@ -25,3 +25,5 @@
   keepBackup = true
 [github]
 	user = jjuarez
+[push]
+	default = matching
