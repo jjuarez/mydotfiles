@@ -496,7 +496,7 @@ Host alf.apps.pro
   HostName 192.168.55.96
 
 Host alf.apps.pre
-  HostName fresco-pre.cti.csic.es
+  HostName 192.168.54.27
 
 Host alf.apps.dev
   HostName alfrescodev.cti.csic.es
