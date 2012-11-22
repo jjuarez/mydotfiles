@@ -17,13 +17,11 @@
   prompt = false
 [diff]
   tool = Kaleidoscope
-  st = status
-  co = checkout
-[difftool]
-  prompt = false
-[mergetool]
-  keepBackup = true
+  st   = status
+  co   = checkout
 [github]
-	user = jjuarez
+  user = jjuarez
 [push]
-	default = matching
+  default = matching
+[core]
+  excludesfile = /Users/jjuarez/.gitignore_global
