@@ -218,8 +218,7 @@ Host papi
   HostName 192.168.10.84
 
 Host digital
-  HostName digital.csic.es
-
+  HostName 192.168.55.76
 #
 # SSO & LDAP servers
 Host cas.pro
@@ -496,7 +495,7 @@ Host alf.apps.pro
   HostName 192.168.55.96
 
 Host alf.apps.pre
-  HostName 192.168.57.96
+  HostName 192.168.54.27
 
 Host alf.apps.dev
   HostName alfrescodev.cti.csic.es
