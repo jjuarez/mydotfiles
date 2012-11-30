@@ -13,10 +13,10 @@
   unstage = reset HEAD --
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [difftool "Kaleidoscope"]
-  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
   prompt = false
 [diff]
-  tool = Kaleidoscope
+	tool = Kaleidoscope
   st   = status
   co   = checkout
 [github]
@@ -25,3 +25,11 @@
   default = matching
 [core]
   excludesfile = /Users/jjuarez/.gitignore_global
+[difftool]
+	prompt = false
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+[mergetool]
+	prompt = false
+[merge]
+	tool = Kaleidoscope
