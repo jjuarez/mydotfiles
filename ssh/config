@@ -1,5 +1,3 @@
-##
-# FL projects
 Host heroku.com
   HostName heroku.com
   IdentityFile ~/.ssh/id_dsa.heroku
@@ -58,23 +56,11 @@ Host xen-11
 Host xen-12
   HostName 192.168.22.47
 
-#Host xen-a
-#  HostName 192.168.22.33
-
 Host xen-b
   HostName 192.168.22.34
 
 Host xen-c
   HostName 192.168.22.37
-
-#Host xen-u
-#  HostName 192.168.22.16
-#
-#Host xen-w
-#  HostName 192.168.22.17
-#
-#Host xen-y
-#  HostName 192.168.22.15
 
 Host xen-x
   HostName 192.168.22.49
@@ -145,6 +131,12 @@ Host xen-correo2
 Host xen-correo3
   HostName 192.168.23.75
 
+Host xen-gxa1
+  HostName 192.168.22.56
+
+Host xen-gxa2
+  HostName 192.168.22.57
+
 ##
 # Tools
 Host luci
@@ -167,13 +159,31 @@ Host softcorp
   Hostname 192.168.10.147
 
 Host git.sistemas.sgai.csic.es
-  HostName 192.168.56.20 
+  HostName 192.168.56.20
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
+Host git-ng
+  HostName 192.168.55.229
+  IdentityFile ~/.ssh/id_dsa.sysadmin_cti
+  User root
+
+Host git-ng.sistemas.sgai.csic.es
+  HostName 192.168.56.229
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
+Host git
+  HostName 192.168.56.20
   IdentityFile ~/.ssh/id_dsa
   User git
 
 Host redmine
   HostName 192.168.56.20
   User root
+
+Host redmine-ng
+  HostName 192.168.55.235
 
 Host constellation
   HostName constellation.sistemas.sgai.csic.es
@@ -201,6 +211,9 @@ Host scm
 Host chefserver
   HostName 192.168.54.115
 
+Host chefserver-ng
+  HostName 192.168.55.230
+
 Host chefcouchdb
   HostName 192.168.54.115
   LocalForward 5984 localhost:5984
@@ -220,10 +233,15 @@ Host metalib
 Host papi
   HostName 192.168.10.84
 
-Host digital
-  HostName 192.168.55.76
+#Host digital.dev
+#  HostName 
 #
-# SSO & LDAP servers
+#Host digital.pre
+#  HostName 
+#
+Host digital.pro
+  HostName digital.gestion.privada.csic.es
+
 Host cas.pro
   HostName 192.168.10.152
   User casuser
@@ -237,8 +255,6 @@ Host cas1.i2.pre
 Host cas2.i2.pre
   HostName cas2.auth.gestion.pre.privada.csic.es
 
-#
-# Entorno SSO/LDAP development
 Host lb.cas.dev
   HostName 192.168.54.69
   IdentityFile ~/.ssh/id_dsa.deployer
@@ -266,8 +282,6 @@ Host r1.ldap.dev
 Host r2.ldap.dev
   HostName 192.168.54.68
 
-#
-# LDAP Master & replicated servers
 Host ldap.pro
   HostName 192.168.10.152
 
@@ -292,11 +306,20 @@ Host blanca1
 Host blanca2
   HostName 192.168.10.199 
 
-Host ldap.master-ng
+Host ldap-ng.master
   HostName 192.168.55.160
 
-Host ldap.slave-ng
+Host ldap-ng.slave1
   HostName 192.168.55.161
+
+Host ldap-ng.slave2
+  HostName 192.168.55.216
+
+Host ldap-ng.slave3
+  HostName 192.168.55.217
+
+Host ldap-ng.slave4
+  HostName 192.168.55.218
 
 Host hosting.orion
   HostName 192.168.20.61
@@ -362,8 +385,6 @@ Host hosting.syslog2
 Host hosting.wifi
   HostName 192.168.20.17
 
-#
-# JBoss PRO, PRE & DEV Apps
 Host solr.be.pro
   HostName 192.168.55.125
   IdentityFile ~/.ssh/id_dsa.deployer
@@ -546,8 +567,6 @@ Host ov.pro
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-#
-# Departamento de Publicaciones
 Host editorial
   Hostname 192.168.55.140 
 
