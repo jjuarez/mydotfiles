@@ -4,9 +4,7 @@ gem: --no-ri --no-rdoc
 :update_sources: true
 :benchmark: false
 :backtrace: false
-:verbose: false
+:verbose: true
 rdoc: --inline-source --line-numbers --format=html --template=hanna
 :sources: 
-  - http://rubygems.org/
-  - http://gems.opscode.com/
-  - http://slmirror.csic.es/rubygems/
+  - https://rubygems.org/
