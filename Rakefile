@@ -4,19 +4,20 @@
 DOTFILES = [
   ##
   # Shell config
-  #
-  { :name=>".bash_profile",
-    :git_item=>"shell/bash_profile",  
-    :local_item=>".bash_profile" },
+  { :name=>".vimrc",
+    :git_item=>"vim/.vimrc",  
+    :local_item=>".vimrc" },
   { :name=>".zshrc",
     :git_item=>"shell/zshrc",  
     :local_item=>".zshrc" },
   { :name=>"thejtoken.zsh-theme",
     :git_item=>"shell/zsh/themes/thejtoken.zsh-theme",  
     :local_item=>".oh-my-zsh/themes/thejtoken.zsh-theme" },
+  { :name=>".ssh/config",
+    :git_item=>"ssh/config",    
+    :local_item=>".ssh/config"   },
   ##
   # Ruby stuff
-  #
   { :name=>".irbrc",
     :git_item=>"ruby/irbrc",    
     :local_item=>".irbrc"        },
@@ -26,12 +27,8 @@ DOTFILES = [
   { :name=>".rvmrc",
     :git_item=>"ruby/rvmrc",    
     :local_item=>".rvmrc"        },
-  { :name=>".ssh/config",
-    :git_item=>"ssh/config",    
-    :local_item=>".ssh/config"   },
   ##
   # Git stuff
-  #  
   { :name=>".gitconfig",
     :git_item=>"git/gitconfig", 
     :local_item=>".gitconfig"    }
@@ -42,7 +39,6 @@ GEM_LIST = []
 
 ##
 # Dots Files tasks
-#
 namespace :dotfiles do
   desc "Delete the dotfiles links"
   task :uninstall do
@@ -97,7 +93,6 @@ end
 
 ##
 # Gem environment
-#
 namespace :gems do
   
   desc "Install personal gemsets over actual ruby@global"
