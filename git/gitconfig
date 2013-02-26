@@ -1,6 +1,6 @@
 [user]
-  name = Javier Juarez
-  email = javier.juarez@gmail.com
+	name = Javier Juarez
+	email = javier.juarez@gmail.com
 [color]
   status = auto
   branch = auto
@@ -24,7 +24,7 @@
 [push]
   default = matching
 [core]
-  excludesfile = /Users/jjuarez/.gitignore_global
+	excludesfile = /Users/jjuarez/.gitignore_global
 [difftool]
 	prompt = false
 [mergetool "Kaleidoscope"]
