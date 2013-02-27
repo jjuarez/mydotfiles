@@ -190,6 +190,7 @@ set nrformats-=octal
 " ----------------------------------------------------------------------------
 set smarttab              " <TAB> in front of line inserts 'shiftwidth' blanks
 set shiftround            " round to 'shiftwidth' for "<<" and ">>" 
+set tabstop=2
 
 " ----------------------------------------------------------------------------
 "  folding
