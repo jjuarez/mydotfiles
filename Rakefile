@@ -1,6 +1,5 @@
 ##
 # Rakefile 
-#
 DOTFILES = [
   ##
   # Shell config
@@ -63,9 +62,21 @@ namespace :dotfiles do
     end
   end
 
+	desc "Install vim vundle"
+	taks :vundle do
+ 
+    vim_directory = File.join(ENV['HOME'], '.vim')
+
+    unless File.directory?(vim_directory)
+    
+			FileUtils.mk_dir(vim_directory)
+			system("git clone https://github.com/gmarik/vundle.git #{File.join(vim_directory, 'vundle')}")
+			vim +BundleInstall! +q!
+		end
+	end
 
   desc "Install mydotfiles"
-  task :install do
+  task :install => [:vundle] do
 
     begin
       fail("MYDOTFILES environment variable is not defined") unless ENV['MYDOTFILES']
