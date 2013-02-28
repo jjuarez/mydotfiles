@@ -1,49 +1,66 @@
 ##
 # Rakefile 
 DOTFILES = [
-  ##
   # Shell config
-  { :name=>".vimrc",
-    :git_item=>"vim/.vimrc",  
-    :local_item=>".vimrc" },
-  { :name=>".zshrc",
-    :git_item=>"shell/zshrc",  
-    :local_item=>".zshrc" },
-  { :name=>"thejtoken.zsh-theme",
-    :git_item=>"shell/zsh/themes/thejtoken.zsh-theme",  
-    :local_item=>".oh-my-zsh/themes/thejtoken.zsh-theme" },
-  { :name=>".ssh/config",
-    :git_item=>"ssh/config",    
-    :local_item=>".ssh/config"   },
-  ##
+  { :name       =>".vimrc",
+    :git_item   =>"vim/.vimrc",  
+    :local_item =>".vimrc" 
+  },
+  { :name       =>".zshrc",
+    :git_item   =>"shell/.zshrc",  
+    :local_item =>".zshrc" 
+  },
+  { :name       =>"thejtoken.zsh-theme",
+    :git_item   =>"shell/zsh/themes/thejtoken.zsh-theme",  
+    :local_item =>".oh-my-zsh/themes/thejtoken.zsh-theme" 
+  },
+  { :name       =>".ssh/config",
+    :git_item   =>"ssh/config",    
+    :local_item =>".ssh/config" 
+  },
   # Ruby stuff
-  { :name=>".irbrc",
-    :git_item=>"ruby/irbrc",    
-    :local_item=>".irbrc"        },
-  { :name=>".gemrc",
-    :git_item=>"ruby/gemrc",    
-    :local_item=>".gemrc"        },
-  { :name=>".rvmrc",
-    :git_item=>"ruby/rvmrc",    
-    :local_item=>".rvmrc"        },
-  ##
+  { :name       =>".irbrc",
+    :git_item   =>"ruby/.irbrc",    
+    :local_item =>".irbrc"        
+  },
+  { :name       =>".gemrc",
+    :git_item   =>"ruby/.gemrc",    
+    :local_item =>".gemrc"        
+  },
+  { :name       =>".rvmrc",
+    :git_item   =>"ruby/.rvmrc",    
+    :local_item =>".rvmrc"        
+  },
   # Git stuff
-  { :name=>".gitconfig",
-    :git_item=>"git/gitconfig", 
-    :local_item=>".gitconfig"    }
+  { :name       =>".gitconfig",
+    :git_item   =>"git/.gitconfig", 
+    :local_item =>".gitconfig"    
+  }
 ]
 
-GEM_LIST = []
+GEM_LIST = ["irbtools"]
 
+namespace :vim do
+  
+  desc "Install vim vundle"
+  task :vundle do
+ 
+    vundle_directory = File.join(ENV['HOME'], '.vim', 'bundle')
 
-##
-# Dots Files tasks
+    unless File.directory?(vundle_directory)
+       
+      FileUtils.mkdir_p(vundle_directory)
+      system("git clone https://github.com/gmarik/vundle.git #{File.join(vundle_directory, 'vundle')}")
+    end
+  end
+end
+
 namespace :dotfiles do
   desc "Delete the dotfiles links"
   task :uninstall do
 
     begin
-      puts("Uninstalling:")
+      puts "Uninstalling:"
       
       DOTFILES.each do |df| 
         
@@ -51,38 +68,25 @@ namespace :dotfiles do
         
         if(File.symlink?(local_file) && df[:local_item] != ".vim")
         
-          puts("* #{df[:name]} in #{local_file}")
+          puts "* #{df[:name]} in #{local_file}"
           FileUtils.rm_f(local_file)
         end
       end
       
       FileUtils.rm(File.join(ENV['HOME'], ".vim"))
     rescue =>e
-      $sdterr.puts(e.message)
+      puts e.message
     end
   end
 
-	desc "Install vim vundle"
-	taks :vundle do
- 
-    vim_directory = File.join(ENV['HOME'], '.vim')
-
-    unless File.directory?(vim_directory)
-    
-			FileUtils.mk_dir(vim_directory)
-			system("git clone https://github.com/gmarik/vundle.git #{File.join(vim_directory, 'vundle')}")
-			vim +BundleInstall! +q!
-		end
-	end
-
   desc "Install mydotfiles"
-  task :install => [:vundle] do
+  task :install do
 
     begin
       fail("MYDOTFILES environment variable is not defined") unless ENV['MYDOTFILES']
       FileUtils.cd(ENV['HOME'])
 
-      puts("Installing:")      
+      puts "Installing:"
 
       DOTFILES.each do |df|
 
@@ -91,30 +95,27 @@ namespace :dotfiles do
 
         if(File.exist?(gi)) 
 
-          puts("* #{df[:name]} linking #{li} to #{gi}")
+          puts "* #{df[:name]} linking #{li} to #{gi}"
           FileUtils.ln_sf(gi, li) 
         end
       end
-    rescue=>e
-      $stderr.puts(e.message)
+    rescue =>e
+      puts e.message
     end
   end
 end
 
-
-##
-# Gem environment
 namespace :gems do
   
-  desc "Install personal gemsets over actual ruby@global"
+  desc "Install personal gemsets over actual rvm environment ruby@global"
   task :install do
 
-    GEM_LIST.each { |g| system("gem install --no-rdoc --no-ri #{g}") }
+    GEM_LIST.each { |gem| system("gem install --no-rdoc --no-ri #{gem}") }
   end  
 
   desc "Uninstall personal gemsets"
   task :uninstall do
 
-    GEM_LIST.each { |g| system("gem uninstall -ax #{g}") }
+    GEM_LIST.each { |gem| system("gem uninstall -ax #{gem}") }
   end  
 end
