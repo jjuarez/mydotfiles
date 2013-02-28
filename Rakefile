@@ -35,6 +35,10 @@ DOTFILES = [
   { :name       =>".gitconfig",
     :git_item   =>"git/.gitconfig", 
     :local_item =>".gitconfig"    
+  },
+  { :name       =>".gitignore_global",
+    :git_item   =>"git/.gitignore_global", 
+    :local_item =>".gitignore_global"    
   }
 ]
 
