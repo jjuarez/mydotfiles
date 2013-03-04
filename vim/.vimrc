@@ -40,7 +40,6 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'nelstrom/vim-visual-star-search'
-Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-endwise'
 Bundle 'godlygeek/tabular'
 
@@ -190,6 +189,7 @@ set nrformats-=octal
 " ----------------------------------------------------------------------------
 set smarttab              " <TAB> in front of line inserts 'shiftwidth' blanks
 set shiftround            " round to 'shiftwidth' for "<<" and ">>" 
+set expandtab
 set tabstop=2
 
 " ----------------------------------------------------------------------------
