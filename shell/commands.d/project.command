@@ -10,12 +10,14 @@ function generate_project() {
   local project="${1}"
   mkdir -p "${project}/"{bin,lib,test,config}
 
+  # Generate .rvm file
   cat>"${project}/.rvmrc"<<EOF
 # Warning! You need to define this ruby alias i.e:
 # rvm alias create 1.9 ruby-1.9.3-p392
 rvm use 1.9@${1} --create
 EOF
 
+  # Generate Gemfile for project dependencies
   cat>"${project}/Gemfile"<<EOF
 source 'https://rubygems.org/'
 
@@ -31,6 +33,20 @@ group :development do
 end
 EOF
 
+  # Generate a basic Rakefile
+  cat>"${project}/Rakefile"<<EOF
+require 'rubygems'
+
+##
+# An example of task
+desc "This is a simple task"
+task :simple do
+
+  puts "Yeah!, this si a very simple task"
+end
+EOF
+
+  # Startup the project skell
   cd "${project}"
   bundle install
 }
