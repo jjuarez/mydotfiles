@@ -4,7 +4,8 @@ export ZSH_THEME="thejtoken"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="false"
 
-plugins=(brew gitfast git-flow bundler osx vagrant rvm bundler npm)
+#plugins=(brew gitfast git-flow bundler bundler)
+plugins=(gitfast git-flow bundler)
 
 
 [ -f "${ZSH}/oh-my-zsh.sh" ] && . "${ZSH}/oh-my-zsh.sh"
