@@ -246,6 +246,15 @@ Host cas.pro
   HostName 192.168.10.152
   User casuser
 
+Host lb.cas.pro
+  HostName 192.168.55.237
+
+Host as1.cas.pro
+  HostName 192.168.55.238
+
+Host as2.cas.pro
+  HostName 192.168.55.239
+
 Host cas.pre
   HostName 192.168.54.32
 
