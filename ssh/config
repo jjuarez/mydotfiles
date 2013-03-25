@@ -514,6 +514,9 @@ Host alf1.i2.pro
 Host alf2.i2.pro
   HostName 192.168.55.13
 
+Host alf3.i2.pro
+  HostName 192.168.55.24
+
 Host lvs1.i2.pro
   HostName 192.168.55.22
 
