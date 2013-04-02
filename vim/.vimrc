@@ -102,9 +102,10 @@ set number
 " ----------------------------------------------------------------------------
 "  syntax, highlighting and spelling
 " ----------------------------------------------------------------------------
-colorscheme solarized
-set background=dark
-set colorcolumn=80
+colorscheme darkblue
+" colorscheme solarized
+" set background=dark
+" set colorcolumn=132
 
 " ----------------------------------------------------------------------------
 "  multiple windows
