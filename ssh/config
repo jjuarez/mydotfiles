@@ -17,27 +17,6 @@ Host localhost
 
 ##
 # Xen hosts
-Host xen-0
-  HostName 192.168.22.18
-
-Host xen-1
-  HostName 192.168.22.19
-
-Host xen-2
-  HostName 192.168.22.20
-
-Host xen-3
-  HostName 192.168.22.21
-
-Host xen-4
-  HostName 192.168.22.22
-
-Host xen-5
-  HostName 192.168.22.23
-
-Host xen-6
-  HostName 192.168.22.24
-
 Host xen-7
   HostName 192.168.22.25
 
@@ -56,23 +35,26 @@ Host xen-11
 Host xen-12
   HostName 192.168.22.47
 
-Host xen-b
-  HostName 192.168.22.34
-
-Host xen-c
-  HostName 192.168.22.37
-
 Host xen-x
   HostName 192.168.22.49
 
 Host xen-corp1
   HostName 192.168.23.55
 
+Host xen-corp1-pre
+  HostName 192.168.22.34
+
 Host xen-corp2
   HostName 192.168.23.69
 
+Host xen-corp2-pre
+  HostName 192.168.22.37
+
 Host xen-corp3
   HostName 192.168.23.63
+
+Host xen-corp3-pre
+  HostName 192.168.22.105
 
 Host xen-corp4
   HostName 192.168.23.77
@@ -394,6 +376,15 @@ Host hosting.syslog2
 Host hosting.wifi
   HostName 192.168.20.17
 
+#
+# Nuevo entorno de apps (JBoss)
+#
+#Host lb1.apps
+#  HostName 192.168.55.240
+
+Host jboss1.apps
+  HostName 192.168.55.240
+
 Host solr.be.pro
   HostName 192.168.55.125
   IdentityFile ~/.ssh/id_dsa.deployer
@@ -570,7 +561,7 @@ Host ov.dev
   User deployer
 
 Host ov.pre
-  HostName sicres.pre.csic.es
+  HostName 192.168.57.105
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
