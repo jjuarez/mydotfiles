@@ -5,7 +5,7 @@ export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="false"
 
 #plugins=(brew gitfast git-flow bundler bundler)
-plugins=(osx brew textmate sublime git-flow rvm bundler capistrano vagrant gem knife)
+plugins=(osx tmux brew textmate sublime git-flow rvm bundler capistrano vagrant gem knife)
 
 
 [ -f "${ZSH}/oh-my-zsh.sh" ] && . "${ZSH}/oh-my-zsh.sh"
