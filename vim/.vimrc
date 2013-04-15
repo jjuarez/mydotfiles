@@ -176,9 +176,9 @@ set clipboard=unnamed	" Yank to the system clipboard by default
 " ----------------------------------------------------------------------------
 set backspace=indent,eol,start  "backspace over everything
 
-if v:version > 7.03 || v:version == 7.03 && has("patch541")
-  set formatoptions+=j
-endif
+" if v:version > 7.03 || v:version == 7.03 && has("patch541")
+"   set formatoptions+=j
+" endif
 
 set showmatch 
 set nojoinspaces
