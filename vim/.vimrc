@@ -18,6 +18,8 @@ Bundle 'tpope/vim-rails'
 Bundle 'dougireton/vim-ps1'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'elzr/vim-json'
+" rpec
+Bundle 'thoughtbot/vim-rspec'
 
 " Comment plugin
 Bundle 'tpope/vim-commentary'
