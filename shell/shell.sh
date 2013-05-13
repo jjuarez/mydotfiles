@@ -22,4 +22,4 @@ done 2>/dev/null
 ##
 # General User environment
 export EDITOR='vim'
-export PAGER=most
+export PAGER='most'

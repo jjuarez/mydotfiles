@@ -193,6 +193,9 @@ Host scm
 Host chefserver
   HostName 192.168.54.115
 
+Host kanban
+  HostName 192.168.55.116
+
 Host chefserver-ng
   HostName 192.168.55.230
 
@@ -297,19 +300,19 @@ Host blanca1
 Host blanca2
   HostName 192.168.10.199 
 
-Host ldap-ng.master
+Host ldap.master
   HostName 192.168.55.160
 
-Host ldap-ng.slave1
+Host ldap.slave1
   HostName 192.168.55.161
 
-Host ldap-ng.slave2
+Host ldap.slave2
   HostName 192.168.55.216
 
-Host ldap-ng.slave3
+Host ldap.slave3
   HostName 192.168.55.217
 
-Host ldap-ng.slave4
+Host ldap.slave4
   HostName 192.168.55.218
 
 Host hosting.orion
@@ -386,6 +389,11 @@ Host jboss1.apps
   HostName 192.168.55.240
 
 Host solr.be.pro
+  HostName 192.168.55.125
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host solr.pro
   HostName 192.168.55.125
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
@@ -570,7 +578,7 @@ Host ov.pro
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host editorial
+Host editorial.pro
   Hostname 192.168.55.140 
 
 Host googlebooks.pro
