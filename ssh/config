@@ -276,43 +276,49 @@ Host r1.ldap.dev
 Host r2.ldap.dev
   HostName 192.168.54.68
 
-Host ldap.pro
-  HostName 192.168.10.152
-
 Host ldap.pre
   HostName 192.168.54.32
+#
+#Host ldap.pro
+#  HostName 192.168.10.152
+#
+#Host master.pro
+#  HostName 192.168.10.152
+#
+#Host boj
+#  HostName 192.168.10.78 
+#
+#Host boldo
+#  HostName 192.168.56.31 
+#
+#Host bonduc
+#  HostName 192.168.10.144
+#
+#Host blanca1
+#  HostName 192.168.10.198 
+#
+#Host blanca2
+#  HostName 192.168.10.199 
+#
+Host blanca1-ng
+  HostName 192.168.55.58 
 
-Host master.pro
-  HostName 192.168.10.152
+Host blanca2-ng
+  HostName 192.168.55.59 
 
-Host boj
-  HostName 192.168.10.78 
-
-Host boldo
-  HostName 192.168.56.31 
-
-Host bonduc
-  HostName 192.168.10.144
-
-Host blanca1
-  HostName 192.168.10.198 
-
-Host blanca2
-  HostName 192.168.10.199 
-
-Host ldap.master
+Host ldap.master.pro
   HostName 192.168.55.160
 
-Host ldap.slave1
+Host ldap.slave1.pro
   HostName 192.168.55.161
 
-Host ldap.slave2
+Host ldap.slave2.pro
   HostName 192.168.55.216
 
-Host ldap.slave3
+Host ldap.slave3.pro
   HostName 192.168.55.217
 
-Host ldap.slave4
+Host ldap.slave4.pro
   HostName 192.168.55.218
 
 Host hosting.orion
@@ -378,13 +384,9 @@ Host hosting.syslog2
 
 Host hosting.wifi
   HostName 192.168.20.17
-
 #
 # Nuevo entorno de apps (JBoss)
 #
-#Host lb1.apps
-#  HostName 192.168.55.240
-
 Host jboss1.apps
   HostName 192.168.55.240
 
@@ -418,7 +420,6 @@ Host apps2.dev
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-# Alias para scripts
 Host apps1.pro
   HostName 192.168.55.100
   IdentityFile ~/.ssh/id_dsa.deployer
@@ -447,9 +448,9 @@ Host webapp.dev
 
 Host ebano
   HostName ebano.sgai.csic.es
-
 #
 # WI PRE
+#
 Host lr1.wi.pre
   HostName 192.168.57.18
 
@@ -464,9 +465,9 @@ Host alf1.wi.pre
 
 Host alf2.wi.pre
   HostName 192.168.57.15
-
 #
 # WI PRO
+#
 Host lr1.wi.pro
   HostName 192.168.55.18
 
@@ -481,9 +482,9 @@ Host alf1.wi.pro
 
 Host alf2.wi.pro
   HostName 192.168.55.15
-
 #
 # I2 PRE
+#
 Host lr1.i2.pre
   HostName 192.168.57.16
 
@@ -498,9 +499,9 @@ Host alf1.i2.pre
 
 Host alf2.i2.pre
   HostName 192.168.57.13
-
 #
 # I2 PRO
+#
 Host lr1.i2.pro
   HostName 192.168.55.16
 
@@ -518,14 +519,14 @@ Host alf3.i2.pro
 
 Host lvs1.i2.pro
   HostName 192.168.55.22
-
 #
 # WI/I2 DEV
+#
 Host lr.dev
   HostName lray.cti.csic.es
-
 #
 # Alfresco Applications
+#
 Host alf.apps.pro
   HostName 192.168.55.96
 
@@ -534,9 +535,9 @@ Host alf.apps.pre
 
 Host alf.apps.dev
   HostName alfrescodev.cti.csic.es
-
 #
 # Patenta/Publica system
+# 
 Host lr.patenta.pro
   HostName lray-patenta.redcorp.privada.csic.es
 
@@ -548,9 +549,9 @@ Host lr.patenta.pre
 
 Host alf.patenta.pre
   HostName 192.168.54.36
-
 #
 # SEDE
+#
 Host registro.dev
   HostName 161.111.16.43
 
@@ -583,9 +584,9 @@ Host editorial.pro
 
 Host googlebooks.pro
   Hostname 192.168.56.26
-
 #
 # BI Pentaho
+#
 Host pentaho.dev
   HostName 161.111.83.44
 
@@ -594,12 +595,11 @@ Host pentaho.pre
 
 Host pentaho.pro
   HostName 192.168.10.221
-
 #
 # CAU
+#
 Host cau.pro
   HostName cau.csic.es
-
 #
 # Goobi
 Host goobi1
@@ -607,9 +607,9 @@ Host goobi1
 
 Host goobi2
   HostName 10.10.39.4
-
 #
 # Storage NetAPP
+#
 Host netappmng
   HostName 192.168.55.247
 
@@ -618,9 +618,9 @@ Host napro3
 
 Host napro4
   HostName 192.168.23.28
-
 #
 # General
+#
 Host *
   IdentityFile        ~/.ssh/id_dsa.sysadmin_cti
   KeepAlive           yes
@@ -633,4 +633,3 @@ Host *
   VerifyHostKeyDNS    yes
   User                root
   Port                22
-
