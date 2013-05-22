@@ -222,7 +222,7 @@ Host digital.dev
   HostName 192.168.54.18
 #
 #Host digital.pre
-#  HostName 
+#  HostName 192.168.55.X
 
 Host digital.pro
   HostName digital.gestion.privada.csic.es
@@ -231,13 +231,13 @@ Host cas.pro
   HostName 192.168.10.152
   User casuser
 
-Host lb.cas.pro
+Host cas.lb.pro
   HostName 192.168.55.237
 
-Host as1.cas.pro
+Host cas.as1.pro
   HostName 192.168.55.238
 
-Host as2.cas.pro
+Host cas.as2.pro
   HostName 192.168.55.239
 
 Host cas.pre
@@ -249,31 +249,31 @@ Host cas1.i2.pre
 Host cas2.i2.pre
   HostName cas2.auth.gestion.pre.privada.csic.es
 
-Host lb.cas.dev
+Host cas.lb.dev
   HostName 192.168.54.69
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host as1.cas.dev
+Host cas.as1.dev
   HostName 192.168.54.64
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host as2.cas.dev
+Host cas.as2.dev
   HostName 192.168.54.65
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host master.ldap.dev
+Host ldap.master.dev
   HostName 192.168.54.66
 
-Host lb.ldap.dev
+Host ldap.lb.dev
   Hostname 192.168.54.70
 
-Host r1.ldap.dev
+Host ldap.r1.dev
   HostName 192.168.54.67
 
-Host r2.ldap.dev
+Host ldap.r2.dev
   HostName 192.168.54.68
 
 Host ldap.pre
