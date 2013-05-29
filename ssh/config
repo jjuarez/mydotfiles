@@ -1,12 +1,22 @@
+##
+# Heroku 
 Host heroku.com
   HostName heroku.com
   IdentityFile ~/.ssh/id_dsa.heroku
   User git
 
+##
+# github
 Host github.com
   HostName github.com
-  IdentityFile ~/.ssh/id_dsa.github
+  IdentityFile ~/.ssh/id_dsa
   User jjuarez
+
+##
+# OpenShift
+Host *.rhcloud.com
+  IdentityFile ~/.ssh/id_rsa
+  User javier.juarez@gmail.com
 
 ##
 # Testing
