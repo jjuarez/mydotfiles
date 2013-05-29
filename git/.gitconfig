@@ -1,5 +1,5 @@
 [user]
-	name = Javier Juarez
+	name  = Javier Juarez
 	email = javier.juarez@gmail.com
 [color]
   status = auto
@@ -11,7 +11,7 @@
   st      = status
   last    = log -1 HEAD
   unstage = reset HEAD --
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg      = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
   prompt = false
