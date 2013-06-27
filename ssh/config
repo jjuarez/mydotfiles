@@ -1,9 +1,9 @@
 ##
-# Heroku 
-Host heroku.com
-  HostName heroku.com
-  IdentityFile ~/.ssh/id_dsa.heroku
-  User git
+# DigitalOcean
+Host lms1
+  HostName 198.199.64.92
+  IdentityFile ~/.ssh/id_dsa.digitalocean
+  User root
 
 ##
 # github
@@ -249,7 +249,7 @@ Host backup
   HostName 192.168.56.8 
 
 Host scm
-  HostName 192.168.56.30
+  HostName 192.168.54.30
 
 Host chefserver
   HostName 192.168.54.115
@@ -448,7 +448,7 @@ Host hosting.wifi
 #
 # Nuevo entorno de apps (JBoss)
 #
-Host jboss1.apps
+Host as1.apps
   HostName 192.168.55.240
 
 Host solr.be.pro
