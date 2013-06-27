@@ -4,8 +4,7 @@ export ZSH_THEME="thejtoken"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="false"
 
-#plugins=(brew gitfast git-flow bundler bundler)
-plugins=(osx tmux brew textmate sublime git-flow rvm bundler capistrano vagrant gem knife)
+plugins=(tmux brew git-flow rvm bundler vagrant gem knife)
 
 
 [ -f "${ZSH}/oh-my-zsh.sh" ] && . "${ZSH}/oh-my-zsh.sh"
@@ -16,10 +15,5 @@ unsetopt correct_all
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
 
-[ -f ~/.rvm/scripts/rvm ] && { 
-
-  . ~/.rvm/scripts/rvm
-  PATH=${PATH}:${HOME}/.rvm/bin 
-}
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[ -s "${HOME}/.rvm/scripts/rvm"     ] && source "${HOME}/.rvm/scripts/rvm" 
+export PATH=${HOME}/.rvm/bin:${PATH}
