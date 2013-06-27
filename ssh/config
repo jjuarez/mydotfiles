@@ -19,6 +19,13 @@ Host *.rhcloud.com
   User javier.juarez@gmail.com
 
 ##
+# digitalocean
+Host lms1
+  HostName 198.199.64.92
+  IdentityFile ~/.ssh/id_dsa
+  User root
+
+##
 # Testing
 Host localhost
   HostName 127.0.0.1
