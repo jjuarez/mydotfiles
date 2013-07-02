@@ -15,5 +15,8 @@ unsetopt correct_all
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
 
-[ -s "${HOME}/.rvm/scripts/rvm"     ] && source "${HOME}/.rvm/scripts/rvm" 
+[ -s "${HOME}/.rvm/scripts/rvm"     ] && . "${HOME}/.rvm/scripts/rvm" 
+
 export PATH=${HOME}/.rvm/bin:${PATH}
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
