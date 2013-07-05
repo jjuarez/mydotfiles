@@ -3,7 +3,7 @@
 Host lms1
   HostName 198.199.64.92
   IdentityFile ~/.ssh/id_dsa.digitalocean
-  User root
+  User javi
 
 ##
 # github
@@ -17,13 +17,6 @@ Host github.com
 Host *.rhcloud.com
   IdentityFile ~/.ssh/id_rsa
   User javier.juarez@gmail.com
-
-##
-# digitalocean
-Host lms1
-  HostName 198.199.64.92
-  IdentityFile ~/.ssh/id_dsa
-  User root
 
 ##
 # Testing
@@ -346,28 +339,7 @@ Host ldap.r2.dev
 
 Host ldap.pre
   HostName 192.168.54.32
-#
-#Host ldap.pro
-#  HostName 192.168.10.152
-#
-#Host master.pro
-#  HostName 192.168.10.152
-#
-#Host boj
-#  HostName 192.168.10.78 
-#
-#Host boldo
-#  HostName 192.168.56.31 
-#
-#Host bonduc
-#  HostName 192.168.10.144
-#
-#Host blanca1
-#  HostName 192.168.10.198 
-#
-#Host blanca2
-#  HostName 192.168.10.199 
-#
+
 Host blanca1-ng
   HostName 192.168.55.58 
 
@@ -389,69 +361,6 @@ Host ldap.slave3.pro
 Host ldap.slave4.pro
   HostName 192.168.55.218
 
-Host hosting.orion
-  HostName 192.168.20.61
-
-Host hosting.dns
-  HostName 192.168.20.46
-
-Host hosting.firewall
-  HostName 192.168.20.41
-
-Host hosting.flvstreamer
-  HostName 192.168.20.60
-
-Host hosting.httpd
-  HostName 192.168.20.29
-  Port 2200
-
-Host hosting.jsp1
-  HostName 192.168.20.35
-
-Host hosting.jsp2
-  HostName 192.168.20.36
-
-Host hosting.login
-  HostName 192.168.20.40
-
-Host hosting.mayores
-  HostName 192.168.55.122
-
-Host hosting.mysql
-  HostName 192.168.20.31
-
-Host hosting.php1
-  HostName 192.168.20.33
-
-Host hosting.php2
-  HostName 192.168.20.34
-
-Host hosting.php3
-  HostName 192.168.20.42
-
-Host hosting.php4
-  HostName 192.168.20.43
-
-Host hosting.phpx
-  HostName 192.168.20.44
-
-Host hosting.rdb
-  HostName 192.168.20.10
-
-Host hosting.relay
-  HostName 192.168.20.47
-
-Host hosting.stats
-  HostName 192.168.20.45
-
-Host hosting.syslog1
-  HostName 192.168.20.30
-
-Host hosting.syslog2
-  HostName 192.168.20.37
-
-Host hosting.wifi
-  HostName 192.168.20.17
 #
 # Nuevo entorno de apps (JBoss)
 #
