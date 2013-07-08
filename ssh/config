@@ -1,9 +1,9 @@
 ##
-# DigitalOcean
-Host lms1
-  HostName 198.199.64.92
+# DigitalOcean (LMS)
+Host fe1-lms
+  HostName 192.241.205.168
   IdentityFile ~/.ssh/id_dsa.digitalocean
-  User javi
+  User root
 
 ##
 # github
