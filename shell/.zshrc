@@ -4,7 +4,7 @@ export ZSH_THEME="thejtoken"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="false"
 
-plugins=(tmux brew git-flow rvm bundler vagrant gem knife)
+plugins=(brew git-flow rvm bundler vagrant gem knife)
 
 
 [ -f "${ZSH}/oh-my-zsh.sh" ] && . "${ZSH}/oh-my-zsh.sh"
