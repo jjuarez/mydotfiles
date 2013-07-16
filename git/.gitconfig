@@ -1,5 +1,5 @@
 [user]
-	name  = Javier Juarez
+	name = Javier Juarez
 	email = javier.juarez@gmail.com
 [color]
   status = auto
@@ -32,8 +32,6 @@
 	trustExitCode = true
 [mergetool]
 	prompt = false
+	keepBackup = true
 [merge]
 	tool = Kaleidoscope
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
