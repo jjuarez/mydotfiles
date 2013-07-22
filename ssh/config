@@ -280,7 +280,7 @@ Host digital.dev
   HostName 192.168.54.18
 
 Host digital.pro
-  HostName digital.gestion.privada.csic.es
+  HostName 192.168.55.76 
 
 Host cas.pro
   HostName 192.168.10.152
