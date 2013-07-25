@@ -1,6 +1,11 @@
 ##
 # DigitalOcean (LMS)
-Host fe1-lms
+Host fe1-lms-ams1
+  HostName 37.139.10.163
+  IdentityFile ~/.ssh/id_dsa
+  User root
+
+Host fe1-lms-sfo1
   HostName 192.241.205.168
   IdentityFile ~/.ssh/id_dsa
   User root
