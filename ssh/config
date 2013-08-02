@@ -243,6 +243,9 @@ Host vpnserver
 Host slmirror
   HostName 192.168.56.14
 
+Host slmirror2
+  HostName 192.168.55.35
+
 Host monitor
   HostName 192.168.10.154
   
