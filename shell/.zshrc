@@ -4,7 +4,7 @@ export ZSH_THEME="thejtoken"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="false"
 
-plugins=(brew git-flow rvm bundler vagrant gem knife)
+plugins=(brew git-flow rvm bundler vagrant gem knife heroku)
 
 
 [ -f "${ZSH}/oh-my-zsh.sh" ] && . "${ZSH}/oh-my-zsh.sh"
@@ -20,3 +20,6 @@ unsetopt correct_all
 export PATH=${HOME}/.rvm/bin:${PATH}
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
