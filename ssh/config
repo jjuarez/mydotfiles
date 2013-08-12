@@ -5,9 +5,8 @@ Host fe1-lms-ams1
   IdentityFile ~/.ssh/id_dsa
   User root
 
-Host fe1-lms-sfo1
-  HostName 192.241.205.168
-  IdentityFile ~/.ssh/id_dsa
+Host *.heroku.com
+  IdentityFile ~/.ssh/id_dsa.heroku
   User root
 
 ##
