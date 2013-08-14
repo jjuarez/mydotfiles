@@ -52,13 +52,12 @@ Bundle 'scrooloose/nerdtree'
 
 " Colorschemes
 Bundle 'altercation/vim-colors-solarized'
-
-" RailsCasts themes
+Bundle 'tomasr/molokai'
 Bundle 'jpo/vim-railscasts-theme'
+Bundle 'nanotech/jellybeans.vim'
 
 "Air-line
 Bundle 'bling/vim-airline'
-let g:airline_powerline_fonts=1
 let g:airline_enable_syntastic=1
 let g:airline_theme='solarized'
 
@@ -114,10 +113,10 @@ set number
 " ----------------------------------------------------------------------------
 "  syntax, highlighting and spelling
 " ----------------------------------------------------------------------------
-"colorscheme railscasts
-colorscheme solarized
-set background=dark
-set colorcolumn=132
+colorscheme railscasts
+"colorscheme solarized
+"set background=dark
+"set colorcolumn=132
 
 " ----------------------------------------------------------------------------
 "  multiple windows
