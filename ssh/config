@@ -302,6 +302,9 @@ Host digital.dev
 Host digital.pro
   HostName 192.168.55.76 
 
+Host handle.pro
+  HostName 192.168.55.77
+
 Host cas.pro
   HostName 192.168.10.152
   User casuser
