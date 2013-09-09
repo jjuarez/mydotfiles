@@ -11,13 +11,11 @@ Host fe1-lms-monit
     LocalForward 2812 127.0.0.1:2812
     User javi
 
-
 ##
 # Heroku
 Host *.heroku.com
   IdentityFile ~/.ssh/id_dsa.heroku
   User root
-
 
 ##
 # github
@@ -110,8 +108,8 @@ Host xen-test2
 Host xen-test3
   HostName 192.168.22.108
 
-Host xen-corp1
-  HostName 192.168.23.51
+#Host xen-corp1
+#  HostName 192.168.23.51
 
 Host xen-corp2
   HostName 192.168.23.55
@@ -152,6 +150,9 @@ Host xen-balan1
 Host xen-balan2
   HostName 192.168.23.38
 
+Host xen-gestion1
+  HostName 192.168.23.51
+
 Host xen-gestion2
   HostName 192.168.23.64
 
@@ -171,7 +172,7 @@ Host xen-nocorp1
   HostName 192.168.23.53
 
 Host xen-nocorp2
-  HostName 192.168.23.64
+  HostName 192.168.23.74
 
 Host xen-oas1
   HostName 192.168.23.54
@@ -215,6 +216,11 @@ Host builds
 Host softcorp
   Hostname 192.168.10.147
 
+Host git
+  HostName 192.168.56.20
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
 Host git.sistemas.sgai.csic.es
   HostName 192.168.56.20
   IdentityFile ~/.ssh/id_dsa
@@ -227,11 +233,6 @@ Host git-ng
 
 Host git-ng.sistemas.sgai.csic.es
   HostName 192.168.56.229
-  IdentityFile ~/.ssh/id_dsa
-  User git
-
-Host git
-  HostName 192.168.56.20
   IdentityFile ~/.ssh/id_dsa
   User git
 
