@@ -52,6 +52,15 @@ Bundle 'scrooloose/nerdtree'
 
 " Colorschemes
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'tomasr/molokai'
+Bundle 'jpo/vim-railscasts-theme'
+Bundle 'nanotech/jellybeans.vim'
+
+"Air-line
+Bundle 'bling/vim-airline'
+let g:airline_enable_syntastic=1
+let g:airline_theme='solarized'
+
 
 if has('autocmd')
   filetype plugin indent on
@@ -104,10 +113,10 @@ set number
 " ----------------------------------------------------------------------------
 "  syntax, highlighting and spelling
 " ----------------------------------------------------------------------------
-colorscheme darkblue
-" colorscheme solarized
-" set background=dark
-" set colorcolumn=132
+colorscheme railscasts
+"colorscheme solarized
+"set background=dark
+"set colorcolumn=132
 
 " ----------------------------------------------------------------------------
 "  multiple windows
@@ -120,22 +129,22 @@ set switchbuf=usetab " Jump to the 1st open window which contains
                       " TODO: Add 'split' if you want to split the
                       " current window for a quickfix error window.
 
-set statusline=
-set statusline+=buffer%-1.3n\ >
-set statusline+=\ %{fugitive#statusline()}:
-set statusline+=\ %F
-set statusline+=\ %M
-set statusline+=%R
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%=
-set statusline+=\ %Y
-set statusline+=\ <\ %{&fenc}
-set statusline+=\ <\ %{&ff}
-set statusline+=\ <\ %p%%
-set statusline+=\ %l:
-set statusline+=%02.3c 
+"set statusline=
+"set statusline+=buffer%-1.3n\ >
+"set statusline+=\ %{fugitive#statusline()}:
+"set statusline+=\ %F
+"set statusline+=\ %M
+"set statusline+=%R
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"set statusline+=%=
+"set statusline+=\ %Y
+"set statusline+=\ <\ %{&fenc}
+"set statusline+=\ <\ %{&ff}
+"set statusline+=\ <\ %p%%
+"set statusline+=\ %l:
+"set statusline+=%02.3c 
 
 set helpheight=30   
 

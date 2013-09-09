@@ -1,14 +1,23 @@
 ##
-# DigitalOcean (LMS)
-Host fe1-lms-ams1
+# LMS
+Host fe1-lms
   HostName 37.139.10.163
   IdentityFile ~/.ssh/id_dsa
+  User javi
+
+Host fe1-lms-monit
+    HostName 37.139.10.163
+    IdentityFile ~/.ssh/id_dsa
+    LocalForward 2812 127.0.0.1:2812
+    User javi
+
+
+##
+# Heroku
+Host *.heroku.com
+  IdentityFile ~/.ssh/id_dsa.heroku
   User root
 
-Host fe1-lms-sfo1
-  HostName 192.241.205.168
-  IdentityFile ~/.ssh/id_dsa
-  User root
 
 ##
 # github
@@ -248,6 +257,9 @@ Host vpnserver
 Host slmirror
   HostName 192.168.56.14
 
+Host slmirror2
+  HostName 192.168.55.35
+
 Host monitor
   HostName 192.168.10.154
   
@@ -275,6 +287,9 @@ Host mylinux
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
+Host softcorp
+  HostName 192.168.10.147
+
 Host metalib
   HostName 161.111.10.185
 
@@ -286,6 +301,9 @@ Host digital.dev
 
 Host digital.pro
   HostName 192.168.55.76 
+
+Host handle.pro
+  HostName 192.168.55.77 
 
 Host cas.pro
   HostName 192.168.10.152
