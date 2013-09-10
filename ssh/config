@@ -1,0 +1,603 @@
+##
+# LMS
+Host fe1-lms
+  HostName 37.139.10.163
+  IdentityFile ~/.ssh/id_dsa
+  User javi
+
+Host fe1-lms-monit
+    HostName 37.139.10.163
+    IdentityFile ~/.ssh/id_dsa
+    LocalForward 2812 127.0.0.1:2812
+    User javi
+
+##
+# Heroku
+Host *.heroku.com
+  IdentityFile ~/.ssh/id_dsa.heroku
+  User root
+
+##
+# github
+Host github.com
+  HostName github.com
+  IdentityFile ~/.ssh/id_dsa
+  User jjuarez
+
+##
+# OpenShift
+Host *.rhcloud.com
+  IdentityFile ~/.ssh/id_rsa
+  User javier.juarez@gmail.com
+
+##
+# Testing
+Host localhost
+  HostName 127.0.0.1
+  IdentityFile ~/.ssh/id_dsa
+  User jjuarez
+
+##
+# Xen hosts
+Host xen-0
+  HostName 192.168.22.18
+
+Host xen-1
+  HostName 192.168.22.19
+
+Host xen-2
+  HostName 192.168.22.20
+
+Host xen-3
+  HostName 192.168.22.21
+
+Host xen-4
+  HostName 192.168.22.22
+
+Host xen-5
+  HostName 192.168.22.23
+
+Host xen-6
+  HostName 192.168.22.24
+
+Host xen-7
+  HostName 192.168.22.25
+
+Host xen-8
+  HostName 192.168.22.26
+
+Host xen-9
+  HostName 192.168.22.27
+
+Host xen-10
+  HostName 192.168.22.32
+
+Host xen-11
+  HostName 192.168.22.46
+
+Host xen-12
+  HostName 192.168.22.47
+
+Host xen-x
+  HostName 192.168.22.49
+
+Host xen-dev1
+  HostName 192.168.22.50
+
+Host xen-dev2
+  HostName 192.168.22.51
+
+Host xen-dev3
+  HostName 192.168.22.52
+
+Host xen-dev4
+  HostName 192.168.22.53
+
+Host xen-dev5
+  HostName 192.168.22.54
+
+Host xen-dev6
+  HostName 192.168.22.55
+
+Host xen-test1
+  HostName 192.168.22.106
+
+Host xen-test2
+  HostName 192.168.22.107
+
+Host xen-test3
+  HostName 192.168.22.108
+
+#Host xen-corp1
+#  HostName 192.168.23.51
+
+Host xen-corp2
+  HostName 192.168.23.55
+
+Host xen-corp1-pre
+  HostName 192.168.22.34
+
+Host xen-corp2
+  HostName 192.168.23.69
+
+Host xen-corp2-pre
+  HostName 192.168.22.37
+
+Host xen-corp3
+  HostName 192.168.23.63
+
+Host xen-corp3-pre
+  HostName 192.168.22.105
+
+Host xen-corp4
+  HostName 192.168.23.77
+
+Host xen-db1
+  HostName 192.168.23.39
+
+Host xen-db2
+  HostName 192.168.23.40
+
+Host xen-db3
+  HostName 192.168.23.41
+
+Host xen-db4
+  HostName 192.168.23.42
+
+Host xen-balan1
+  HostName 192.168.23.37
+
+Host xen-balan2
+  HostName 192.168.23.38
+
+Host xen-gestion1
+  HostName 192.168.23.51
+
+Host xen-gestion2
+  HostName 192.168.23.64
+
+Host xen-gestion3
+  HostName 192.168.23.65
+
+Host xen-gestion4
+  HostName 192.168.23.78
+
+Host xen-hosting1
+  HostName 192.168.23.60
+
+Host xen-hosting2
+  HostName 192.168.23.67
+
+Host xen-nocorp1
+  HostName 192.168.23.53
+
+Host xen-nocorp2
+  HostName 192.168.23.74
+
+Host xen-oas1
+  HostName 192.168.23.54
+
+Host xen-oas2
+  HostName 192.168.23.68
+
+Host xen-correo1
+  HostName 192.168.23.62
+
+Host xen-correo2
+  HostName 192.168.23.56
+
+Host xen-correo3
+  HostName 192.168.23.75
+
+Host xen-gxa1
+  HostName 192.168.22.56
+
+Host xen-gxa2
+  HostName 192.168.22.57
+
+##
+# Tools
+Host luci
+  HostName 192.168.56.6
+
+Host nagios
+  HostName 192.168.55.254
+
+Host nagios-ng
+  HostName 192.168.55.249
+
+Host ci
+  Hostname 192.168.54.25
+
+Host builds
+  HostName 192.168.54.63
+  User builder
+
+Host softcorp
+  Hostname 192.168.10.147
+
+Host git
+  HostName 192.168.56.20
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
+Host git.sistemas.sgai.csic.es
+  HostName 192.168.56.20
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
+Host git-ng
+  HostName 192.168.55.229
+  IdentityFile ~/.ssh/id_dsa
+  User root
+
+Host git-ng.sistemas.sgai.csic.es
+  HostName 192.168.56.229
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
+Host redmine
+  HostName 192.168.56.20
+  User root
+
+Host redmine-ng
+  HostName 192.168.55.235
+  User root
+
+Host constellation
+  HostName constellation.sistemas.sgai.csic.es
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host jenkinsci
+  HostName 192.168.54.25
+
+Host vpnserver
+  HostName 161.111.80.203
+
+Host slmirror
+  HostName 192.168.56.14
+
+Host slmirror2
+  HostName 192.168.55.35
+
+Host monitor
+  HostName 192.168.10.154
+  
+Host backup
+  HostName 192.168.56.8 
+
+Host scm
+  HostName 192.168.54.30
+
+Host chefserver
+  HostName 192.168.54.115
+
+Host kanban
+  HostName 192.168.55.116
+
+Host chefserver-ng
+  HostName 192.168.55.230
+
+Host jabber
+  HostName 192.168.56.21
+
+Host mylinux
+  HostName pc834.cti.csic.es
+  Port 443
+  IdentityFile ~/.ssh/id_dsa
+  User jjuarez
+
+Host softcorp
+  HostName 192.168.10.147
+
+Host metalib
+  HostName 161.111.10.185
+
+Host papi
+  HostName 192.168.10.84
+
+Host digital.dev
+  HostName 192.168.54.18
+
+Host digital.pro
+  HostName 192.168.55.76 
+
+Host handle.pro
+  HostName 192.168.55.77 
+
+Host cas.pro
+  HostName 192.168.10.152
+  User casuser
+
+Host cas.lb.pro
+  HostName 192.168.55.237
+
+Host cas.as1.pro
+  HostName 192.168.55.238
+
+Host cas.as2.pro
+  HostName 192.168.55.239
+
+Host cas.pre
+  HostName 192.168.54.32
+
+Host cas1.i2.pre
+  HostName cas1.auth.gestion.pre.privada.csic.es
+
+Host cas2.i2.pre
+  HostName cas2.auth.gestion.pre.privada.csic.es
+
+Host cas.lb.dev
+  HostName 192.168.54.69
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host cas.as1.dev
+  HostName 192.168.54.64
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host cas.as2.dev
+  HostName 192.168.54.65
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host ldap.master.dev
+  HostName 192.168.54.66
+
+Host ldap.lb.dev
+  Hostname 192.168.54.70
+
+Host ldap.r1.dev
+  HostName 192.168.54.67
+
+Host ldap.r2.dev
+  HostName 192.168.54.68
+
+Host ldap.pre
+  HostName 192.168.54.32
+
+Host blanca1-ng
+  HostName 192.168.55.58 
+
+Host blanca2-ng
+  HostName 192.168.55.59 
+
+Host ldap.master.pro
+  HostName 192.168.55.160
+
+Host ldap.slave1.pro
+  HostName 192.168.55.161
+
+Host ldap.slave2.pro
+  HostName 192.168.55.216
+
+Host ldap.slave3.pro
+  HostName 192.168.55.217
+
+Host ldap.slave4.pro
+  HostName 192.168.55.218
+
+Host as1.apps
+  HostName 192.168.55.240
+
+Host solr.be.pro
+  HostName 192.168.55.125
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host solr.pro
+  HostName 192.168.55.125
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host apps3.pro
+  HostName 192.168.55.106
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host apps2.pro
+  HostName 192.168.55.101
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host apps2.pre
+  HostName 192.168.54.24
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host apps2.dev
+  HostName 192.168.54.40
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host apps1.pro
+  HostName 192.168.55.100
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host apps.pro
+  HostName 192.168.55.100
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host apps.pre
+  HostName psi4.cti.csic.es
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host apps.dev
+  HostName psi4.cti.csic.es
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployerdev
+
+Host sync.pro
+  HostName 192.168.55.134
+
+Host webapp.dev
+  HostName webapp-desa.cti.csic.es
+
+Host ebano
+  HostName ebano.sgai.csic.es
+
+Host lr1.wi.pre
+  HostName 192.168.57.18
+
+Host lr2.wi.pre
+  HostName 192.168.57.19
+
+Host lvs1.wi.pre
+  HostName 192.168.57.23
+
+Host alf1.wi.pre
+  HostName 192.168.57.14
+
+Host alf2.wi.pre
+  HostName 192.168.57.15
+
+Host lr1.wi.pro
+  HostName 192.168.55.18
+
+Host lr2.wi.pro
+  HostName 192.168.55.19
+
+Host lvs1.wi.pro
+  HostName 192.168.55.23
+
+Host alf1.wi.pro
+  HostName 192.168.55.14
+
+Host alf2.wi.pro
+  HostName 192.168.55.15
+
+Host lr1.i2.pre
+  HostName 192.168.57.16
+
+Host lr2.i2.pre
+  HostName 192.168.57.17
+
+Host lvs1.i2.pre
+  HostName 192.168.57.22
+
+Host alf1.i2.pre
+  HostName 192.168.57.12
+
+Host alf2.i2.pre
+  HostName 192.168.57.13
+
+Host lr1.i2.pro
+  HostName 192.168.55.16
+
+Host lr2.i2.pro
+  HostName 192.168.55.17
+
+Host alf1.i2.pro
+  HostName 192.168.55.12
+
+Host alf2.i2.pro
+  HostName 192.168.55.13
+
+Host alf3.i2.pro
+  HostName 192.168.55.24
+
+Host lvs1.i2.pro
+  HostName 192.168.55.22
+
+Host lr.dev
+  HostName lray.cti.csic.es
+
+Host alf.apps.pro
+  HostName 192.168.55.96
+
+Host alf.apps.pre
+  HostName 192.168.57.96
+
+Host alf.apps.dev
+  HostName alfrescodev.cti.csic.es
+
+Host lr.patenta.pro
+  HostName lray-patenta.redcorp.privada.csic.es
+
+Host alf.patenta.pro
+  HostName alfresco-patenta.redcorp.privada.csic.es
+
+Host lr.patenta.pre
+  HostName 192.168.54.34
+
+Host alf.patenta.pre
+  HostName 192.168.54.36
+
+Host registro.dev
+  HostName 161.111.16.43
+
+Host registro.pre
+  HostName 192.168.54.19
+
+Host registro.general.pro
+  HostName 192.168.10.227
+
+Host registro.interno.pro
+  HostName 192.168.10.65
+
+Host ov.dev
+  HostName oficinavirtual.desa.csic.es
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host ov.pre
+  HostName 192.168.57.105
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host ov.pro
+  HostName 192.168.55.105
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host editorial.pro
+  Hostname 192.168.55.140 
+
+Host googlebooks.pro
+  Hostname 192.168.56.26
+
+Host pentaho.dev
+  HostName 161.111.83.44
+
+Host pentaho.pre
+  HostName 161.111.83.52
+
+Host pentaho.pro
+  HostName 192.168.10.221
+
+Host cau.pro
+  HostName cau.csic.es
+
+Host goobi1
+  HostName 10.10.39.3
+
+Host goobi2
+  HostName 10.10.39.4
+
+Host netappmng
+  HostName 192.168.55.247
+
+Host napro3
+  HostName 192.168.23.27
+
+Host napro4
+  HostName 192.168.23.28
+
+Host *
+  IdentityFile        ~/.ssh/id_dsa.sysadmin
+  KeepAlive           yes
+  ForwardX11          no
+  ForwardAgent        yes
+  ServerAliveInterval 15
+  ServerAliveCountMax 4
+  Compression         no
+  CheckHostIP         yes
+  VerifyHostKeyDNS    yes
+  User                root
+  Port                22
+
