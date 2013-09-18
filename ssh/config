@@ -108,29 +108,38 @@ Host xen-test2
 Host xen-test3
   HostName 192.168.22.108
 
-#Host xen-corp1
-#  HostName 192.168.23.51
-
-Host xen-corp2
+Host xen-corp1
   HostName 192.168.23.55
-
-Host xen-corp1-pre
-  HostName 192.168.22.34
 
 Host xen-corp2
   HostName 192.168.23.69
 
-Host xen-corp2-pre
-  HostName 192.168.22.37
-
 Host xen-corp3
   HostName 192.168.23.63
 
-Host xen-corp3-pre
-  HostName 192.168.22.105
-
 Host xen-corp4
   HostName 192.168.23.77
+
+Host xen-corp5
+  HostName 192.168.23.58
+
+Host xen-corp6
+  HostName 192.168.23.61
+
+Host xen-corp7
+  HostName 192.168.23.70
+
+Host xen-corp8
+  HostName 192.168.23.76
+
+Host xen-corp1-pre
+  HostName 192.168.22.34
+
+Host xen-corp2-pre
+  HostName 192.168.22.37
+
+Host xen-corp3-pre
+  HostName 192.168.22.105
 
 Host xen-db1
   HostName 192.168.23.39
@@ -143,6 +152,9 @@ Host xen-db3
 
 Host xen-db4
   HostName 192.168.23.42
+
+Host xen-db5
+  HostName 192.168.23.43
 
 Host xen-balan1
   HostName 192.168.23.37
@@ -197,9 +209,9 @@ Host xen-gxa2
 
 ##
 # Tools
-Host luci
-  HostName 192.168.56.6
-
+#Host luci
+#  HostName 192.168.56.6
+#
 Host nagios
   HostName 192.168.55.254
 
