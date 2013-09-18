@@ -4,14 +4,11 @@ export ZSH_THEME="thejtoken"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="false"
 
-plugins=(brew git-flow rvm bundler vagrant gem knife heroku)
-
+alias rvm-prompt=$HOME/.rvm/bin/rvm-prompt
 
 [ -f "${ZSH}/oh-my-zsh.sh" ] && . "${ZSH}/oh-my-zsh.sh"
 
-##
-# Set this better like a plugin
-unsetopt correct_all
+plugins=(brew git-flow rvm bundler vagrant gem knife heroku)
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
 
