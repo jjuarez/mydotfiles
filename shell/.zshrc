@@ -6,17 +6,21 @@ export DISABLE_AUTO_UPDATE="false"
 
 alias rvm-prompt=$HOME/.rvm/bin/rvm-prompt
 
-[ -f "${ZSH}/oh-my-zsh.sh" ] && . "${ZSH}/oh-my-zsh.sh"
+
+[ -f ${ZSH}/oh-my-zsh.sh ] && . ${ZSH}/oh-my-zsh.sh
 
 plugins=(brew git-flow rvm bundler vagrant gem knife heroku)
 
-[ -f "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
+[ -f ${MYDOTFILES}/shell/shell.sh ] && . ${MYDOTFILES}/shell/shell.sh
 
-[ -s "${HOME}/.rvm/scripts/rvm"     ] && . "${HOME}/.rvm/scripts/rvm" 
+[ -d /usr/local/heroku ] && PATH="/usr/local/heroku/bin:${PATH}"
 
-export PATH=${HOME}/.rvm/bin:${PATH}
+[ -f ${HOME}/.rvm/scripts/rvm ] && {
+
+  . ${HOME}/.rvm/scripts/rvm
+  PATH=${HOME}/.rvm/bin:${PATH}
+}
+
+export PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
