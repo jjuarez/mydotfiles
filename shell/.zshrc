@@ -1,26 +1,18 @@
 export MYDOTFILES=~/.mydotfiles
 export ZSH=~/.oh-my-zsh
-export ZSH_THEME="thejtoken"
+export ZSH_THEME="clean"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="false"
-
-alias rvm-prompt=$HOME/.rvm/bin/rvm-prompt
 
 
 [ -f ${ZSH}/oh-my-zsh.sh ] && . ${ZSH}/oh-my-zsh.sh
 
-plugins=(brew git-flow rvm bundler vagrant gem knife heroku)
+plugins=(brew git-flow bundler vagrant knife heroku)
 
-[ -f ${MYDOTFILES}/shell/shell.sh ] && . ${MYDOTFILES}/shell/shell.sh
+[[ -f ${MYDOTFILES}/shell/shell.sh ]] && source ${MYDOTFILES}/shell/shell.sh
 
-[ -d /usr/local/heroku ] && PATH="/usr/local/heroku/bin:${PATH}"
+[[ -d /usr/local/heroku ]] && PATH="/usr/local/heroku/bin:${PATH}"
 
-[ -f ${HOME}/.rvm/scripts/rvm ] && {
-
-  . ${HOME}/.rvm/scripts/rvm
-  PATH=${HOME}/.rvm/bin:${PATH}
-}
+[[ -s ${HOME}/.rvm/scripts/rvm ]] && source ${HOME}/.rvm/scripts/rvm 
 
 export PATH
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
