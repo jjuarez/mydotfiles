@@ -6,10 +6,10 @@ Host fe1-lms
   User javi
 
 Host fe1-lms-monit
-    HostName 37.139.10.163
-    IdentityFile ~/.ssh/id_dsa
-    LocalForward 2812 127.0.0.1:2812
-    User javi
+  HostName 37.139.10.163
+  IdentityFile ~/.ssh/id_dsa
+  LocalForward 2812 127.0.0.1:2812
+  User javi
 
 ##
 # Heroku
@@ -601,15 +601,15 @@ Host napro4
   HostName 192.168.23.28
 
 Host *
-  IdentityFile        ~/.ssh/id_dsa.sysadmin
-  KeepAlive           yes
-  ForwardX11          no
-  ForwardAgent        yes
-  ServerAliveInterval 15
-  ServerAliveCountMax 4
-  Compression         no
-  CheckHostIP         yes
-  VerifyHostKeyDNS    yes
-  User                root
-  Port                22
-
+  IdentityFile          ~/.ssh/id_dsa.sysadmin
+  KeepAlive             yes
+  ForwardX11            no
+  ForwardAgent          yes
+  ServerAliveInterval   15
+  ServerAliveCountMax   4
+  Compression           yes
+  CheckHostIP           yes
+  VerifyHostKeyDNS      no
+  StrictHostKeyChecking no
+  User                  root
+  Port                  22
