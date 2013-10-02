@@ -207,11 +207,11 @@ Host xen-gxa1
 Host xen-gxa2
   HostName 192.168.22.57
 
+Host opennebula-fe
+  HostName 192.168.22.102
+
 ##
 # Tools
-#Host luci
-#  HostName 192.168.56.6
-#
 Host nagios
   HostName 192.168.55.254
 
