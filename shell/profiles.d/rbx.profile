@@ -1,3 +1,0 @@
-RBXOPT="-X19"
-
-export RBXOPT

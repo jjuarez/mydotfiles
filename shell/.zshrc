@@ -7,12 +7,12 @@ export DISABLE_AUTO_UPDATE="false"
 
 [ -f ${ZSH}/oh-my-zsh.sh ] && . ${ZSH}/oh-my-zsh.sh
 
-plugins=(brew git-flow bundler vagrant knife heroku)
+plugins=(git-flow heroku)
 
-[[ -f ${MYDOTFILES}/shell/shell.sh ]] && source ${MYDOTFILES}/shell/shell.sh
+[ -f ${MYDOTFILES}/shell/shell.sh ] && source ${MYDOTFILES}/shell/shell.sh
 
-[[ -d /usr/local/heroku ]] && PATH="/usr/local/heroku/bin:${PATH}"
+[ -d /usr/local/heroku ] && PATH="/usr/local/heroku/bin:${PATH}"
 
-[[ -s ${HOME}/.rvm/scripts/rvm ]] && source ${HOME}/.rvm/scripts/rvm 
+[ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm 
 
 export PATH
