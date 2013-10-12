@@ -1,8 +1,7 @@
 ##
 # Alias
 #
-alias vi='vim -N'
-alias vim='vim -N'
+alias vi='vim'
 alias scpresume="rsync --partial --progress --rsh=ssh"
 
 
@@ -24,12 +23,10 @@ case "`uname`" in
     [ -x "${BREW_HOME}/bin/gtar"    ] && alias tar="${BREW_HOME}/bin/gtar"
     [ -x "${BREW_HOME}/bin/gfind"   ] && alias find="${BREW_HOME}/bin/gfind"
     [ -x "${BREW_HOME}/bin/gmd5sum" ] && alias md5sum="${BREW_HOME}/bin/gmd5sum"
-
-    [ -x '/Applications/MacVim.app/Contents/MacOS/Vim' ] && alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-    ;;  
+  ;;  
     
   Linux*)
     alias ls='ls -h --color'
-    ;;
+  ;;
 esac
 

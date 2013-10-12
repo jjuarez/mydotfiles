@@ -1,65 +1,44 @@
+set nocompatible " like -N parameter remember to suppres the shell alias
 " ----------------------------------------------------------------------------
 "  Vundle setup
-" ----------------------------------------------------------------------------
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Let Vundle manage Vundle. Required!
 Bundle 'gmarik/vundle'
-
-" Language-specific syntax files
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rvm'
+Bundle 'tpope/vim-bundler'
 Bundle 'dougireton/vim-ps1'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'elzr/vim-json'
-" rpec
 Bundle 'thoughtbot/vim-rspec'
-
-" Comment plugin
-Bundle 'tpope/vim-commentary'
-
-" Syntax check on buffer save
+Bundle 'mattboehm/vim-unstack'
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-
-" Git plugins
 Bundle 'tpope/vim-fugitive'
-Bundle 'gregsexton/gitv'
-
-" Lightweight support for Ruby's Bundler
-Bundle 'tpope/vim-bundler'
-
-" RVM
-Bundle 'tpope/vim-rvm'
-
-" Various editing plugins
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
 Bundle 'nelstrom/vim-visual-star-search'
-Bundle 'tpope/vim-endwise'
 Bundle 'godlygeek/tabular'
-
-" File managers/explorers
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdtree'
-
-" Colorschemes
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'tomasr/molokai'
 Bundle 'jpo/vim-railscasts-theme'
 Bundle 'nanotech/jellybeans.vim'
-
-"Air-line
 Bundle 'bling/vim-airline'
-let g:airline_enable_syntastic=1
-let g:airline_theme='solarized'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'slim-template/vim-slim'
 
 
 if has('autocmd')
@@ -70,172 +49,92 @@ if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
 
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
 
-" load the man plugin for a nice man viewer
-runtime! ftplugin/man.vim
+let mapleader=","
 
 " ----------------------------------------------------------------------------
-"  moving around, searching and patterns
+" syntax, highlighting and spelling
+colorscheme jellybeans
+"colorscheme railscasts
+
+
 " ----------------------------------------------------------------------------
+" moving around, searching and patterns
 set nostartofline
 set incsearch	
 set ignorecase
 set smartcase
 
-" ----------------------------------------------------------------------------
-"  tags
-" ----------------------------------------------------------------------------
 
 " ----------------------------------------------------------------------------
-"  displaying text
-" ----------------------------------------------------------------------------
+" displaying text
 set scrolloff=3
 set linebreak
 set showbreak=?\ \
 set sidescrolloff=2
 set display+=lastline
 set cmdheight=2
-
-" Define characters to show when you show formatting
-" stolen from https://github.com/tpope/vim-sensible
-if &listchars ==# 'eol:$'
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-  if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
-    let &listchars = "tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
-  endif
-endif
-
+set nowrap
 set number
 
-" ----------------------------------------------------------------------------
-"  syntax, highlighting and spelling
-" ----------------------------------------------------------------------------
-colorscheme railscasts
-"colorscheme solarized
-"set background=dark
-"set colorcolumn=132
+
+
 
 " ----------------------------------------------------------------------------
-"  multiple windows
-" ----------------------------------------------------------------------------
+" multiple windows
 set laststatus=2
 set hidden
-set switchbuf=usetab " Jump to the 1st open window which contains
-                      " specified buffer, even if the buffer is in
-                      " another tab.
-                      " TODO: Add 'split' if you want to split the
-                      " current window for a quickfix error window.
-
-"set statusline=
-"set statusline+=buffer%-1.3n\ >
-"set statusline+=\ %{fugitive#statusline()}:
-"set statusline+=\ %F
-"set statusline+=\ %M
-"set statusline+=%R
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"set statusline+=%=
-"set statusline+=\ %Y
-"set statusline+=\ <\ %{&fenc}
-"set statusline+=\ <\ %{&ff}
-"set statusline+=\ <\ %p%%
-"set statusline+=\ %l:
-"set statusline+=%02.3c 
-
+set switchbuf=usetab
 set helpheight=30   
 
-" ----------------------------------------------------------------------------
-"  multiple tab pages
-" ----------------------------------------------------------------------------
 
 " ----------------------------------------------------------------------------
-"  terminal
-" ----------------------------------------------------------------------------
+" terminal
 set ttyfast			      " this is the 21st century, people
 
-" ----------------------------------------------------------------------------
-"  using the mouse
-" ----------------------------------------------------------------------------
 
 " ----------------------------------------------------------------------------
-"  GUI				      " Set these options in .gvimrc
-" See help for 'setting-guifont' for tips on how to set guifont on Mac vs Windows
-" ----------------------------------------------------------------------------
-
-" ----------------------------------------------------------------------------
-"  printing
-" ----------------------------------------------------------------------------
-
-" ----------------------------------------------------------------------------
-"  messages and info
-" ----------------------------------------------------------------------------
+" messages and info
 set showcmd
 set ruler
 set confirm
 
+
 " ----------------------------------------------------------------------------
-"  selecting text
-" ----------------------------------------------------------------------------
+" selecting text
 set clipboard=unnamed	" Yank to the system clipboard by default
 
+
 " ----------------------------------------------------------------------------
-"  editing text			" TODO: look at these options
-" ----------------------------------------------------------------------------
+" editing text			" TODO: look at these options
 set backspace=indent,eol,start  "backspace over everything
-
-" if v:version > 7.03 || v:version == 7.03 && has("patch541")
-"   set formatoptions+=j
-" endif
-
 set showmatch 
 set nojoinspaces
 set completeopt+=longest 
 set nrformats-=octal    
 
+
 " ----------------------------------------------------------------------------
-"  tabs and indenting
-" ----------------------------------------------------------------------------
+" tabs and indenting
 set smarttab              " <TAB> in front of line inserts 'shiftwidth' blanks
 set shiftround            " round to 'shiftwidth' for "<<" and ">>" 
 set expandtab
-set tabstop=2
+set tabstop=2 shiftwidth=2 softtabstop=2
+set autoindent
+
 
 " ----------------------------------------------------------------------------
-"  folding
-" ----------------------------------------------------------------------------
+" folding
 set nofoldenable 		  " When opening files, all folds open by default
 
-" ----------------------------------------------------------------------------
-"  diff mode
-" ----------------------------------------------------------------------------
 
 " ----------------------------------------------------------------------------
-"  mapping
-" ----------------------------------------------------------------------------
-
-" ----------------------------------------------------------------------------
-"  reading and writing files
-" ----------------------------------------------------------------------------
+" reading and writing files
 set autoread
 
 
 " ----------------------------------------------------------------------------
-"  the swap file
-" ----------------------------------------------------------------------------
-if has("win32") || has("win64")
-  set directory=$TEMP
-else
-  " Vim will try this ordered list of directories for .swp files
-  set directory=~/tmp,.,/var/tmp,/tmp
-endif
-
-" ----------------------------------------------------------------------------
-"  command line editing
-" ----------------------------------------------------------------------------
+" command line editing
 set history=200
 set wildmode=list:longest,full
 
@@ -248,53 +147,54 @@ if exists('&wildignorecase')
   set wildignorecase
 endif
 
-" ----------------------------------------------------------------------------
-"  executing external commands
-" ----------------------------------------------------------------------------
-
-if has("win32") || has("gui_win32")
-  if executable("PowerShell")
-    " Set PowerShell as the shell for running external ! commands
-    " http://stackoverflow.com/questions/7605917/system-with-powershell-in-vim
-    set shell=PowerShell
-    set shellcmdflag=-ExecutionPolicy\ RemoteSigned\ -Command
-    set shellquote=\"
-    " TODO: shellxquote must be a literal space character.
-    " Fix my trim trailing whitespace command to not run automatically on save
-    set shellxquote= 
-  endif
-endif
 
 " ----------------------------------------------------------------------------
-"  running make and jumping to errors
-" ----------------------------------------------------------------------------
-
-" ----------------------------------------------------------------------------
-"  language specific
-" ----------------------------------------------------------------------------
-
-" ----------------------------------------------------------------------------
-"  multi-byte characters
-" ----------------------------------------------------------------------------
+" multi-byte characters
 set encoding=utf-8
 
-" ----------------------------------------------------------------------------
-"  various
-" ----------------------------------------------------------------------------
-set gdefault                    " For :substitute, use the /g flag by default
 
 " ----------------------------------------------------------------------------
 " Autocmds
-" ----------------------------------------------------------------------------
+autocmd BufWritePre *.rb :%s/\s\+$//e
+autocmd BufWritePre *.haml :%s/\s\+$//e
+autocmd BufWritePre *.html :%s/\s\+$//e
+autocmd BufWritePre *.scss :%s/\s\+$//e
+autocmd BufWritePre *.slim :%s/\s\+$//e
+autocmd BufNewFile  * set noeol
+autocmd BufRead,BufNewFile *.go set filetype=go
 
-" Make gf work on Chef include_recipe lines
-" Add all cookbooks/*/recipe dirs to Vim's path variable
-autocmd BufRead,BufNewFile */cookbooks/*/recipes/*.rb setlocal path+=recipes;/cookbooks/**1
+
+" ----------------------------------------------------------------------------
+" Airline 
+let g:airline_enable_syntastic=1
+let g:airline_theme='jellybeans'
+
+
+" ----------------------------------------------------------------------------
+" NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg' ]
+
+
+" ----------------------------------------------------------------------------
+" Syntastic
+let g:syntastic_mode_map = { 'mode' : 'passive' }
+let g:syntastic_ruby_exec = '~/.rvm/rubies/default/bin/ruby'
+
+
+" ----------------------------------------------------------------------------
+" CtrlP
+nnoremap <silent> t :CtrlP<CR>
+let g:ctrlp_working_path_mode=2
+let g:ctrlp_by_filename=1
+let g:ctrlp_max_files=400
+let g:ctrlp_max_depth=5
 
 
 " ----------------------------------------------------------------------------
 " Allow overriding these settings
-" ----------------------------------------------------------------------------
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
