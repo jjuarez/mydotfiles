@@ -4,7 +4,6 @@ export ZSH_THEME="clean"
 export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="false"
 
-
 [ -f ${ZSH}/oh-my-zsh.sh ] && . ${ZSH}/oh-my-zsh.sh
 
 plugins=(git-flow heroku)
