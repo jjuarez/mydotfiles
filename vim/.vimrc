@@ -168,6 +168,8 @@ autocmd BufRead,BufNewFile *.go set filetype=go
 " Airline 
 let g:airline_enable_syntastic=1
 let g:airline_theme='jellybeans'
+" let g:airline_powerline_fonts=1
+" let g:airline#extensions#tabline#enabled=1
 
 
 " ----------------------------------------------------------------------------
