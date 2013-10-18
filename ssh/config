@@ -273,9 +273,6 @@ Host slmirror
 Host slmirror2
   HostName 192.168.55.35
 
-Host monitor
-  HostName 192.168.10.154
-  
 Host backup
   HostName 192.168.56.8 
 
@@ -300,9 +297,6 @@ Host mylinux
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
-Host softcorp
-  HostName 192.168.10.147
-
 Host metalib
   HostName 161.111.10.185
 
@@ -317,10 +311,6 @@ Host digital.pro
 
 Host handle.pro
   HostName 192.168.55.77 
-
-Host cas.pro
-  HostName 192.168.10.152
-  User casuser
 
 Host cas.lb.pro
   HostName 192.168.55.237
@@ -447,9 +437,6 @@ Host apps.dev
 Host sync.pro
   HostName 192.168.55.134
 
-Host webapp.dev
-  HostName webapp-desa.cti.csic.es
-
 Host ebano
   HostName ebano.sgai.csic.es
 
@@ -516,8 +503,35 @@ Host alf3.i2.pro
 Host lvs1.i2.pro
   HostName 192.168.55.22
 
-Host lr.dev
-  HostName lray.cti.csic.es
+Host lr1.wcentros.pro
+  HostName 192.168.55.20
+
+Host lr2.wcentros.pro
+  HostName 192.168.54.37
+
+Host alf1.wcentros.pro
+  HostName 192.168.55.109
+
+Host alf2.wcentros.pro
+  HostName 192.168.55.79
+
+Host lvs1.wcentros.pro
+  HostName 192.168.55.78
+
+Host lr1.wcentros.pre
+  HostName 192.168.57.20
+
+Host lr2.wcentros.pre
+  HostName 192.168.56.37
+
+Host alf1.wcentros.pre
+  HostName 192.168.57.109
+
+Host alf2.wcentros.pre
+  HostName 192.168.57.79
+
+Host lvs1.wcentros.pre
+  HostName 192.168.57.78
 
 Host alf.apps.pro
   HostName 192.168.55.96
@@ -528,18 +542,6 @@ Host alf.apps.pre
 Host alf.apps.dev
   HostName alfrescodev.cti.csic.es
 
-Host lr.patenta.pro
-  HostName lray-patenta.redcorp.privada.csic.es
-
-Host alf.patenta.pro
-  HostName alfresco-patenta.redcorp.privada.csic.es
-
-Host lr.patenta.pre
-  HostName 192.168.54.34
-
-Host alf.patenta.pre
-  HostName 192.168.54.36
-
 Host registro.dev
   HostName 161.111.16.43
 
@@ -547,10 +549,10 @@ Host registro.pre
   HostName 192.168.54.19
 
 Host registro.general.pro
-  HostName 192.168.10.227
+  HostName 192.168.54.41
 
 Host registro.interno.pro
-  HostName 192.168.10.65
+  HostName 192.168.55.104
 
 Host ov.dev
   HostName oficinavirtual.desa.csic.es
@@ -572,15 +574,6 @@ Host editorial.pro
 
 Host googlebooks.pro
   Hostname 192.168.56.26
-
-Host pentaho.dev
-  HostName 161.111.83.44
-
-Host pentaho.pre
-  HostName 161.111.83.52
-
-Host pentaho.pro
-  HostName 192.168.10.221
 
 Host cau.pro
   HostName cau.csic.es
