@@ -225,23 +225,10 @@ Host builds
   HostName 192.168.54.63
   User builder
 
-Host softcorp
-  Hostname 192.168.10.147
-
-Host git
-  HostName 192.168.56.20
-  IdentityFile ~/.ssh/id_dsa
-  User git
-
 Host git.sistemas.sgai.csic.es
   HostName 192.168.56.20
   IdentityFile ~/.ssh/id_dsa
   User git
-
-Host git-ng
-  HostName 192.168.55.229
-  IdentityFile ~/.ssh/id_dsa
-  User root
 
 Host git-ng.sistemas.sgai.csic.es
   HostName 192.168.56.229
@@ -297,9 +284,6 @@ Host mylinux
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
-Host metalib
-  HostName 161.111.10.185
-
 Host papi
   HostName 192.168.10.84
 
@@ -323,12 +307,6 @@ Host cas.as2.pro
 
 Host cas.pre
   HostName 192.168.54.32
-
-Host cas1.i2.pre
-  HostName cas1.auth.gestion.pre.privada.csic.es
-
-Host cas2.i2.pre
-  HostName cas2.auth.gestion.pre.privada.csic.es
 
 Host cas.lb.dev
   HostName 192.168.54.69
@@ -404,28 +382,23 @@ Host apps2.pro
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host apps2.pre
-  HostName 192.168.54.24
-  IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
-
-Host apps2.dev
-  HostName 192.168.54.40
-  IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
-
 Host apps1.pro
   HostName 192.168.55.100
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host apps.pro
-  HostName 192.168.55.100
+Host apps2.pre
+  HostName 192.168.54.24
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
 Host apps.pre
   HostName psi4.cti.csic.es
+  IdentityFile ~/.ssh/id_dsa.deployer
+  User deployer
+
+Host apps2.dev
+  HostName 192.168.54.40
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
@@ -446,7 +419,7 @@ Host lr1.wi.pre
 Host lr2.wi.pre
   HostName 192.168.57.19
 
-Host lvs1.wi.pre
+Host lb1.wi.pre
   HostName 192.168.57.23
 
 Host alf1.wi.pre
@@ -461,7 +434,7 @@ Host lr1.wi.pro
 Host lr2.wi.pro
   HostName 192.168.55.19
 
-Host lvs1.wi.pro
+Host lb1.wi.pro
   HostName 192.168.55.23
 
 Host alf1.wi.pro
@@ -476,7 +449,7 @@ Host lr1.i2.pre
 Host lr2.i2.pre
   HostName 192.168.57.17
 
-Host lvs1.i2.pre
+Host lb1.i2.pre
   HostName 192.168.57.22
 
 Host alf1.i2.pre
@@ -500,7 +473,7 @@ Host alf2.i2.pro
 Host alf3.i2.pro
   HostName 192.168.55.24
 
-Host lvs1.i2.pro
+Host lb1.i2.pro
   HostName 192.168.55.22
 
 Host lr1.wcentros.pro
@@ -515,7 +488,7 @@ Host alf1.wcentros.pro
 Host alf2.wcentros.pro
   HostName 192.168.55.79
 
-Host lvs1.wcentros.pro
+Host lb1.wcentros.pro
   HostName 192.168.55.78
 
 Host lr1.wcentros.pre
@@ -530,7 +503,7 @@ Host alf1.wcentros.pre
 Host alf2.wcentros.pre
   HostName 192.168.57.79
 
-Host lvs1.wcentros.pre
+Host lb1.wcentros.pre
   HostName 192.168.57.78
 
 Host alf.apps.pro
@@ -538,6 +511,15 @@ Host alf.apps.pro
 
 Host alf.apps.pre
   HostName 192.168.57.96
+
+Host lr1.i2.dev
+  HostName 161.111.16.195
+
+#Host lb1.i2.dev
+#  HostName 161.111.16.XXX
+
+Host alf1.i2.dev
+  HostName 161.11.16.196
 
 Host alf.apps.dev
   HostName alfrescodev.cti.csic.es
@@ -575,9 +557,6 @@ Host editorial.pro
 Host googlebooks.pro
   Hostname 192.168.56.26
 
-Host cau.pro
-  HostName cau.csic.es
-
 Host goobi1
   HostName 10.10.39.3
 
@@ -606,3 +585,4 @@ Host *
   StrictHostKeyChecking no
   User                  root
   Port                  22
+
