@@ -11,11 +11,13 @@ Host fe1-lms-monit
   LocalForward 2812 127.0.0.1:2812
   User javi
 
+
 ##
 # Heroku
 Host *.heroku.com
   IdentityFile ~/.ssh/id_dsa.heroku
   User root
+
 
 ##
 # github
@@ -24,11 +26,13 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
+
 ##
 # OpenShift
 Host *.rhcloud.com
   IdentityFile ~/.ssh/id_rsa
   User javier.juarez@gmail.com
+
 
 ##
 # Testing
@@ -36,6 +40,7 @@ Host localhost
   HostName 127.0.0.1
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
+
 
 ##
 # Xen hosts
@@ -207,8 +212,12 @@ Host xen-gxa1
 Host xen-gxa2
   HostName 192.168.22.57
 
+
+##
+# OpenNebula
 Host opennebula-fe
   HostName 192.168.22.102
+
 
 ##
 # Tools
@@ -284,6 +293,9 @@ Host mylinux
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
+
+##
+# Bibliotecas
 Host papi
   HostName 192.168.10.84
 
@@ -296,6 +308,15 @@ Host digital.pro
 Host handle.pro
   HostName 192.168.55.77 
 
+Host goobi1
+  HostName 10.10.39.3
+
+Host goobi2
+  HostName 10.10.39.4
+
+
+##
+# CAS
 Host cas.lb.pro
   HostName 192.168.55.237
 
@@ -323,27 +344,9 @@ Host cas.as2.dev
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host ldap.master.dev
-  HostName 192.168.54.66
 
-Host ldap.lb.dev
-  Hostname 192.168.54.70
-
-Host ldap.r1.dev
-  HostName 192.168.54.67
-
-Host ldap.r2.dev
-  HostName 192.168.54.68
-
-Host ldap.pre
-  HostName 192.168.54.32
-
-Host blanca1-ng
-  HostName 192.168.55.58 
-
-Host blanca2-ng
-  HostName 192.168.55.59 
-
+##
+# LDAP
 Host ldap.master.pro
   HostName 192.168.55.160
 
@@ -359,13 +362,35 @@ Host ldap.slave3.pro
 Host ldap.slave4.pro
   HostName 192.168.55.218
 
+Host blanca1-ng
+  HostName 192.168.55.58 
+
+Host blanca2-ng
+  HostName 192.168.55.59 
+
+Host ldap.pre
+  HostName 192.168.54.32
+
+Host ldap.master.dev
+  HostName 192.168.54.66
+
+Host ldap.lb.dev
+  Hostname 192.168.54.70
+
+Host ldap.r1.dev
+  HostName 192.168.54.67
+
+Host ldap.r2.dev
+  HostName 192.168.54.68
+
+
+##
+# Apps
 Host as1.apps
   HostName 192.168.55.240
 
-Host solr.be.pro
-  HostName 192.168.55.125
-  IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
+Host sync.pro
+  HostName 192.168.55.134
 
 Host solr.pro
   HostName 192.168.55.125
@@ -413,80 +438,97 @@ Host apps.dev
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployerdev
 
-Host sync.pro
-  HostName 192.168.55.134
+Host alf.apps.pro
+  HostName 192.168.55.96
 
-Host ebano
-  HostName ebano.sgai.csic.es
+Host alf.apps.pre
+  HostName 192.168.57.96
 
-Host lr1.wi.pre
-  HostName 192.168.57.18
+Host alf.apps.dev
+  HostName alfrescodev.cti.csic.es
 
-Host lr2.wi.pre
-  HostName 192.168.57.19
 
-Host lb1.wi.pre
-  HostName 192.168.57.23
+##
+# Web
+Host lr1.wcsic.pro
+  HostName 192.168.54.57
 
-Host alf1.wi.pre
-  HostName 192.168.57.14
+Host lr2.wcsic.pro
+  HostName 192.168.54.58
 
-Host alf2.wi.pre
-  HostName 192.168.57.15
+Host lb1.wcsic.pro
+  HostName 192.168.54.59
 
-Host lr1.wi.pro
-  HostName 192.168.55.18
+Host alf1.wcsic.pro
+  HostName 192.168.54.55
 
-Host lr2.wi.pro
-  HostName 192.168.55.19
+Host alf2.wcsic.pro
+  HostName 192.168.54.56
 
-Host lb1.wi.pro
-  HostName 192.168.55.23
+Host lr1.wcsic.pre
+  HostName 192.168.56.57
 
-Host alf1.wi.pro
-  HostName 192.168.55.14
+Host lr2.wcsic.pre
+  HostName 192.168.56.58
 
-Host alf2.wi.pro
-  HostName 192.168.55.15
+Host lb1.wcsic.pre
+  HostName 192.168.56.59
 
-Host lr1.i2.pre
-  HostName 192.168.57.16
+Host alf1.wcsic.pre
+  HostName 192.168.56.55
 
-Host lr2.i2.pre
-  HostName 192.168.57.17
+Host alf2.wcsic.pre
+  HostName 192.168.56.56
 
-Host lb1.i2.pre
-  HostName 192.168.57.22
+##
+# Intranet
+Host lr1.intranet.pro
+  HostName 192.168.54.48
 
-Host alf1.i2.pre
-  HostName 192.168.57.12
+Host lr2.intranet.pro
+  HostName 192.168.54.49
 
-Host alf2.i2.pre
-  HostName 192.168.57.13
+Host lb1.intranet.pro
+  HostName 192.168.54.54
 
-Host lr1.i2.pro
-  HostName 192.168.55.16
+Host alf1.intranet.pro
+  HostName 192.168.54.43
 
-Host lr2.i2.pro
-  HostName 192.168.55.17
+Host alf2.intranet.pro
+  HostName 192.168.54.46
 
-Host alf1.i2.pro
-  HostName 192.168.55.12
+Host lr1.intranet.pre
+  HostName 192.168.56.48
 
-Host alf2.i2.pro
-  HostName 192.168.55.13
+Host lr2.intranet.pre
+  HostName 192.168.56.49
 
-Host alf3.i2.pro
-  HostName 192.168.55.24
+Host lb1.intranet.pre
+  HostName 192.168.56.54
 
-Host lb1.i2.pro
-  HostName 192.168.55.22
+Host alf1.intranet.pre
+  HostName 192.168.56.43
 
+Host alf2.intranet.pre
+  HostName 192.168.56.46
+
+Host lr1.intranet.dev
+  HostName 161.111.16.195
+
+Host alf1.intranet.dev
+  HostName 161.11.16.196
+
+
+##
+# Centros
 Host lr1.wcentros.pro
   HostName 192.168.55.20
 
 Host lr2.wcentros.pro
   HostName 192.168.54.37
+
+Host lb1.wcentros.pro
+  HostName 192.168.55.78
 
 Host alf1.wcentros.pro
   HostName 192.168.55.109
@@ -494,14 +536,14 @@ Host alf1.wcentros.pro
 Host alf2.wcentros.pro
   HostName 192.168.55.79
 
-Host lb1.wcentros.pro
-  HostName 192.168.55.78
-
 Host lr1.wcentros.pre
   HostName 192.168.57.20
 
 Host lr2.wcentros.pre
   HostName 192.168.56.37
+
+Host lb1.wcentros.pre
+  HostName 192.168.57.78
 
 Host alf1.wcentros.pre
   HostName 192.168.57.109
@@ -509,41 +551,26 @@ Host alf1.wcentros.pre
 Host alf2.wcentros.pre
   HostName 192.168.57.79
 
-Host lb1.wcentros.pre
-  HostName 192.168.57.78
 
-Host alf.apps.pro
-  HostName 192.168.55.96
-
-Host alf.apps.pre
-  HostName 192.168.57.96
-
-Host lr1.i2.dev
-  HostName 161.111.16.195
-
-#Host lb1.i2.dev
-#  HostName 161.111.16.XXX
-
-Host alf1.i2.dev
-  HostName 161.11.16.196
-
-Host alf.apps.dev
-  HostName alfrescodev.cti.csic.es
-
-Host registro.dev
-  HostName 161.111.16.43
-
-Host registro.pre
-  HostName 192.168.54.19
-
+##
+# Registro
 Host registro.general.pro
   HostName 192.168.54.41
 
 Host registro.interno.pro
   HostName 192.168.55.104
 
-Host ov.dev
-  HostName oficinavirtual.desa.csic.es
+Host registro.pre
+  HostName 192.168.54.19
+
+Host registro.dev
+  HostName 161.111.16.43
+
+
+##
+# Oficina Virtual
+Host ov.pro
+  HostName 192.168.55.105
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
@@ -552,31 +579,35 @@ Host ov.pre
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host ov.pro
-  HostName 192.168.55.105
+Host ov.dev
+  HostName oficinavirtual.desa.csic.es
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
+
+##
+# Publicaciones
 Host editorial.pro
   Hostname 192.168.55.140 
 
 Host googlebooks.pro
   Hostname 192.168.56.26
 
-Host goobi1
-  HostName 10.10.39.3
 
-Host goobi2
-  HostName 10.10.39.4
+##
+# Ebano
+Host ebano
+  HostName ebano.sgai.csic.es
 
-Host netappmng
-  HostName 192.168.55.247
 
+##
+# Storage
 Host napro3
   HostName 192.168.23.27
 
 Host napro4
   HostName 192.168.23.28
+
 
 Host *
   IdentityFile          ~/.ssh/id_dsa.sysadmin
@@ -591,4 +622,3 @@ Host *
   StrictHostKeyChecking no
   User                  root
   Port                  22
-
