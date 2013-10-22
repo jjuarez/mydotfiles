@@ -1,19 +1,19 @@
 export MYDOTFILES=~/.mydotfiles
-export ZSH=~/.oh-my-zsh
-export ZSH_THEME="clean"
-
-source ${ZSH}/oh-my-zsh.sh
-
-plugins=(rvm bundler gem brew git git-flow heroku)
+ZSH=~/.oh-my-zsh
+ZSH_THEME="clean"
 
 CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-[ -f ${MYDOTFILES}/shell/shell.sh ] && source ${MYDOTFILES}/shell/shell.sh
+plugins=(vim brew bundler rvm svn git)
+source ${ZSH}/oh-my-zsh.sh
 
-[ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm 
+[ -f ${MYDOTFILES}/shell/shell.sh ] && source ${MYDOTFILES}/shell/shell.sh
 
 [ -d /usr/local/heroku ] && export PATH="/usr/local/heroku/bin:${PATH}"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=${HOME}/.rvm/bin:${PATH}
+
+[ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm
+
