@@ -6,7 +6,7 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(vim brew bundler rvm svn git)
+plugins=(vim brew rvm svn git)
 source ${ZSH}/oh-my-zsh.sh
 
 [ -f ${MYDOTFILES}/shell/shell.sh ] && source ${MYDOTFILES}/shell/shell.sh
