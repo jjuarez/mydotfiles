@@ -54,8 +54,8 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-colorscheme jellybeans
-"colorscheme railscasts
+"colorscheme jellybeans
+colorscheme railscasts
 
 
 " ----------------------------------------------------------------------------
