@@ -510,7 +510,8 @@ Host lb1.intranet.pre
   HostName 192.168.56.54
 
 Host alf1.intranet.pre
-  HostName 192.168.56.43
+# HostName 192.168.56.43
+  HostName 192.168.57.12
 
 Host alf2.intranet.pre
   HostName 192.168.56.46
@@ -612,10 +613,31 @@ Host napro4
   HostName 192.168.23.28
 
 
+##
+# OpenNebula
+Host on1.cloud.pre
+  HostName 192.168.56.62
+
+Host db1.cloud.pre
+  HostName 192.168.56.71
+
+Host mp1.cloud.pre
+  HostName 192.168.56.82
+
+Host xen1.cloud.pre
+  HostName 192.168.22.117
+
+Host xen2.cloud.pre
+  HostName 192.168.22.118
+
+#Host xen3.cloud.pre
+#  HostName 192.168.22.119
+
+
 Host *
   ControlMaster         auto
   ControlPath           /tmp/ssh_mux_%h_%p_%r
-  ControlPersist        4h
+  ControlPersist        8h
   IdentityFile          ~/.ssh/id_dsa.sysadmin
   KeepAlive             yes
   ForwardX11            no
@@ -628,3 +650,4 @@ Host *
   StrictHostKeyChecking no
   User                  root
   Port                  22
+
