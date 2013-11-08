@@ -2,6 +2,10 @@
 # Rakefile 
 DOTFILES = [
   # Shell config
+  { :name       =>".ldaprc",
+    :git_item   =>"shell/.ldaprc",  
+    :local_item =>".ldaprc" 
+  },
   { :name       =>".vimrc",
     :git_item   =>"vim/.vimrc",  
     :local_item =>".vimrc" 
