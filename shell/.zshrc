@@ -13,7 +13,6 @@ source ${ZSH}/oh-my-zsh.sh
 
 [ -d /usr/local/heroku ] && export PATH="/usr/local/heroku/bin:${PATH}"
 
-PATH=${HOME}/.rvm/bin:${PATH}
-
 [ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm
 
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
