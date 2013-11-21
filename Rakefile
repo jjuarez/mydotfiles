@@ -1,14 +1,15 @@
 ##
 # Rakefile 
 DOTFILES = [
+  # vim config
+  { :name       =>".vimrc",
+    :git_item   =>"vim/.vimrc",  
+    :local_item =>".vimrc" 
+  },
   # Shell config
   { :name       =>".ldaprc",
     :git_item   =>"shell/.ldaprc",  
     :local_item =>".ldaprc" 
-  },
-  { :name       =>".vimrc",
-    :git_item   =>"vim/.vimrc",  
-    :local_item =>".vimrc" 
   },
   { :name       =>".zprofile",
     :git_item   =>"shell/.zprofile",  
@@ -17,10 +18,6 @@ DOTFILES = [
   { :name       =>".zshrc",
     :git_item   =>"shell/.zshrc",  
     :local_item =>".zshrc" 
-  },
-  { :name       =>"thejtoken.zsh-theme",
-    :git_item   =>"shell/zsh/themes/thejtoken.zsh-theme",  
-    :local_item =>".oh-my-zsh/themes/thejtoken.zsh-theme" 
   },
   { :name       =>".ssh/config",
     :git_item   =>"ssh/config",    
@@ -34,10 +31,6 @@ DOTFILES = [
   { :name       =>".gemrc",
     :git_item   =>"ruby/.gemrc",    
     :local_item =>".gemrc"        
-  },
-  { :name       =>".rvmrc",
-    :git_item   =>"ruby/.rvmrc",    
-    :local_item =>".rvmrc"        
   },
   # Git stuff
   { :name       =>".gitconfig",
@@ -67,7 +60,61 @@ namespace :vim do
   end
 end
 
+
+namespace :rvm do
+
+  desc "Install rvm"
+  task :install do
+    begin
+      rvm_directory = File.join(ENV['HOME'], '.rvm') 
+
+      system("curl -sL https://get.rvm.io|bash") unless File.directory?(rvm_directory)
+    rescue =>e
+      $stderr.puts e.message
+    end
+  end
+
+  desc "Uninstall rvm"
+  task :uninstall do
+    begin
+      rvm_directory = File.join(ENV['HOME'], '.rvm')
+
+      system("rvm uninstall")  
+    rescue =>e
+      $stderr.puts e.message
+    end
+  end
+end
+
+
+namespace :ohmyzsh do
+
+  desc "Install oh-my-zsh"
+  task :install do
+    begin
+      oh_my_zsh_directory = File.join(ENV['HOME'], '.oh-my-zsh')
+
+      system("git clone https://github.com/robbyrussell/oh-my-zsh.git #{oh_my_zsh_directory}") unless File.directory?(oh_my_zsh_directory)
+    rescue =>e
+      $stderr.puts e.message
+    end
+  end
+
+  desc "Uninstall oh-my-zsh"
+  task :uninstall do
+    begin
+      oh_my_zsh_directory = File.join(ENV['HOME'], '.oh-my-zsh')
+
+      FileUtils.rm_rf(oh_my_zsh_directory) if File.directory?(oh_my_zsh_directory)
+    rescue =>e
+      $stderr.puts e.message
+    end
+  end
+end
+
+
 namespace :dotfiles do
+ 
   desc "Delete the dotfiles links"
   task :uninstall do
 
@@ -78,7 +125,7 @@ namespace :dotfiles do
         
         local_file = File.join(ENV['HOME'], df[:local_item])
         
-        if(File.symlink?(local_file) && df[:local_item] != ".vim")
+        if File.symlink?(local_file) && df[:local_item] != ".vim"
         
           puts "* #{df[:name]} in #{local_file}"
           FileUtils.rm_f(local_file)
@@ -87,7 +134,7 @@ namespace :dotfiles do
       
       FileUtils.rm(File.join(ENV['HOME'], ".vim"))
     rescue =>e
-      puts e.message
+      $stderr.puts e.message
     end
   end
 
@@ -105,29 +152,32 @@ namespace :dotfiles do
         gi = File.join(ENV['MYDOTFILES'], df[:git_item])
         li = File.join(ENV['HOME'], df[:local_item])
 
-        if(File.exist?(gi)) 
+        if File.exist?(gi) 
 
           puts "* #{df[:name]} linking #{li} to #{gi}"
           FileUtils.ln_sf(gi, li) 
         end
       end
     rescue =>e
-      puts e.message
+      $stderr.puts e.message
     end
   end
 end
 
+
+##
+# Rubygems
 namespace :gems do
   
   desc "Install personal gemsets over actual rvm environment ruby@global"
   task :install do
 
-    GEM_LIST.each { |gem| system("gem install --no-rdoc --no-ri #{gem}") }
+    GEM_LIST.each { |g| system("gem install --no-rdoc --no-ri #{g}") }
   end  
 
   desc "Uninstall personal gemsets"
   task :uninstall do
 
-    GEM_LIST.each { |gem| system("gem uninstall -ax #{gem}") }
+    GEM_LIST.each { |g| system("gem uninstall -ax #{g}") }
   end  
 end
