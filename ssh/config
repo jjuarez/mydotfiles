@@ -297,7 +297,7 @@ Host mylinux
   HostName pc834.cti.csic.es
   Port 443
   IdentityFile ~/.ssh/id_dsa
-  User jjuarez
+  User javi
 
 
 ##
