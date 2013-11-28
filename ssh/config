@@ -41,6 +41,12 @@ Host localhost
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
+##
+# Remote command test
+#Host logs.apps1.pro
+#  HostName 192.168.55.100
+#  IdentityFile ~/.ssh/id_dsa.loguser
+#  User loguser
 
 ##
 # Xen hosts
@@ -630,9 +636,6 @@ Host xen1.cloud.pre
 Host xen2.cloud.pre
   HostName 192.168.22.118
 
-#Host xen3.cloud.pre
-#  HostName 192.168.22.119
-
 
 Host *
   ControlMaster         auto
@@ -650,4 +653,3 @@ Host *
   StrictHostKeyChecking no
   User                  root
   Port                  22
-
