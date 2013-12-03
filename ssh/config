@@ -152,6 +152,9 @@ Host xen-corp2-pre
 Host xen-corp3-pre
   HostName 192.168.22.105
 
+Host xen-corp4-pre
+  HostName 192.168.22.49
+
 Host xen-db1
   HostName 192.168.23.39
 
