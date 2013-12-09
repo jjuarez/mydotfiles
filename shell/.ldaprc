@@ -1,4 +1,4 @@
-URI ldap://ldap.master.mngmt.csic.es
+URI ldap://ldap.master.mgmt.csic.es
 BASE idnc=usuarios,dc=csic,dc=es
 BINDDN cn=admin,dc=csic,dc=es
 TLS_REQCERT none
