@@ -102,13 +102,13 @@ Host xen-dev3
   HostName 192.168.22.52
 
 Host xen-dev4
-  HostName 192.168.22.53
+  HostName 192.168.22.15
 
 Host xen-dev5
-  HostName 192.168.22.54
+  HostName 192.168.22.16
 
 Host xen-dev6
-  HostName 192.168.22.55
+  HostName 192.168.22.17
 
 Host xen-test1
   HostName 192.168.22.106
@@ -301,6 +301,12 @@ Host mylinux
   Port 443
   IdentityFile ~/.ssh/id_dsa
   User javi
+
+Host rm1.ds.pro
+  HostName 192.168.54.96
+
+Host rmdb1.ds.pro
+  HostName 192.168.54.101
 
 
 ##
