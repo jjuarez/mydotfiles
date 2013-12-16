@@ -302,6 +302,8 @@ Host mylinux
   IdentityFile ~/.ssh/id_dsa
   User javi
 
+Host rm1.ds.pro
+  HostName 192.168.54.96
 
 ##
 # Bibliotecas
