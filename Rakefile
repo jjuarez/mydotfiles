@@ -19,6 +19,10 @@ DOTFILES = [
     :git_item   =>"shell/.zshrc",  
     :local_item =>".zshrc" 
   },
+  { :name       =>".zlogin",
+    :git_item   =>"shell/.zlogin",  
+    :local_item =>".zlogin" 
+  },
   { :name       =>".ssh/config",
     :git_item   =>"ssh/config",    
     :local_item =>".ssh/config" 
