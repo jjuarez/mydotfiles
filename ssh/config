@@ -50,18 +50,6 @@ Host localhost
 
 ##
 # Xen hosts
-Host xen-0
-  HostName 192.168.22.18
-
-Host xen-1
-  HostName 192.168.22.19
-
-Host xen-2
-  HostName 192.168.22.20
-
-Host xen-3
-  HostName 192.168.22.21
-
 Host xen-4
   HostName 192.168.22.22
 
@@ -221,6 +209,11 @@ Host xen-gxa1
 Host xen-gxa2
   HostName 192.168.22.57
 
+Host xen-cloud-pre1
+  HostName 192.168.22.117
+
+Host xen-cloud-pre2
+  HostName 192.168.22.118
 
 ##
 # OpenNebula
@@ -637,12 +630,6 @@ Host db1.cloud.pre
 
 Host mp1.cloud.pre
   HostName 192.168.56.82
-
-Host xen1.cloud.pre
-  HostName 192.168.22.117
-
-Host xen2.cloud.pre
-  HostName 192.168.22.118
 
 
 Host *
