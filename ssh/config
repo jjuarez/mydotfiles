@@ -323,7 +323,7 @@ Host digital.pre
   HostName 192.168.57.76
 
 Host digital.dev
-  HostName 192.168.54.18
+  HostName 161.111.16.194
 
 Host goobi1
   HostName 10.10.39.3
