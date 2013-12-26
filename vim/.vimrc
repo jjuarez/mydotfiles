@@ -39,6 +39,7 @@ Bundle 'bling/vim-airline'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'slim-template/vim-slim'
+Bundle 'Blackrush/vim-gocode'
 
 
 if has('autocmd')
