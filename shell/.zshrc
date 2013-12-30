@@ -12,4 +12,4 @@ plugins=(osx vim brew rvm svn git bundler vagrant)
 
 [ -f ${MYDOTFILES}/shell/shell.sh ] && . ${MYDOTFILES}/shell/shell.sh
 
-[ -d "${HOME}/.rvm/bin" ] && export PATH=${HOME}/.rvm/bin:${PATH}
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
