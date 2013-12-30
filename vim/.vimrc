@@ -40,6 +40,7 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'slim-template/vim-slim'
 Bundle 'Blackrush/vim-gocode'
+Bundle 'dougireton/vim-chef'
 
 
 if has('autocmd')
