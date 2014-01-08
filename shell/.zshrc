@@ -6,7 +6,7 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(osx vim brew rvm svn git bundler vagrant)
+plugins=(osx vim sublime tmux brew rvm gem svn git git-flow docker go go-lang bundler thor vagrant knife redis-cli emoji-clock)
 . "${ZSH}/oh-my-zsh.sh"
 . "${HOME}/.zprofile"
 
