@@ -387,6 +387,10 @@ Host ldap.master.dev
 Host ldap.lb.dev
   Hostname 192.168.54.70
 
+Host ldap.lb.dev-stats
+  Hostname 192.168.54.70
+  LocalForward 19636 127.0.0.1:19636
+
 Host ldap.r1.dev
   HostName 192.168.54.67
 
