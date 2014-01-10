@@ -41,7 +41,7 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'slim-template/vim-slim'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'dougireton/vim-chef'
-
+Bundle 'itchyny/calendar.vim'
 
 if has('autocmd')
   filetype plugin indent on
