@@ -636,6 +636,14 @@ Host mp1.cloud.pre
   HostName 192.168.56.82
 
 
+##
+# FWs
+Host fw.905-1.pro
+  HostName 192.168.55.97
+
+Host fw.905-2.pro
+  HostName 192.168.55.98
+
 Host *
   ControlMaster         auto
   ControlPath           /tmp/ssh_mux_%h_%p_%r
