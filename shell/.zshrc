@@ -13,3 +13,5 @@ plugins=(osx vim docker sublime tmux brew rvm gem svn git git-flow docker go go-
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
 
 PATH=${HOME}/.rvm/bin:${PATH} # Add RVM to PATH for scripting
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
