@@ -644,6 +644,12 @@ Host fw.905-1.pro
 Host fw.905-2.pro
   HostName 192.168.55.98
 
+##
+# BI Pentaho
+Host pentahodb.bi.pro
+  HostName 192.168.55.85
+
+
 Host *
   ControlMaster         auto
   ControlPath           /tmp/ssh_mux_%h_%p_%r

@@ -6,11 +6,11 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(osx vim docker sublime tmux brew rvm gem svn git git-flow docker go go-lang bundler thor vagrant knife redis-cli emoji-clock)
-. "${ZSH}/oh-my-zsh.sh"
-. "${HOME}/.zprofile"
+plugins=(osx vim docker sublime tmux brew rvm gem svn git git-flow docker go go-lang thor vagrant knife redis-cli emoji-clock)
+source "${ZSH}/oh-my-zsh.sh"
+source "${HOME}/.zprofile"
 
-[ -f "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
+[ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 
 PATH=${HOME}/.rvm/bin:${PATH} # Add RVM to PATH for scripting
 
