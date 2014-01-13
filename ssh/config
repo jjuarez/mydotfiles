@@ -336,8 +336,14 @@ Host cas.as1.pro
 Host cas.as2.pro
   HostName 192.168.55.239
 
-Host cas.pre
-  HostName 192.168.54.32
+Host cas.lb.pre
+  HostName 192.168.57.237
+
+Host cas.as1.pre
+  HostName 192.168.57.238
+
+Host cas.as2.pre
+  HostName 192.168.57.239
 
 Host cas.lb.dev
   HostName 192.168.54.69
@@ -405,6 +411,9 @@ Host as1.apps
 
 Host sync.pro
   HostName 192.168.55.134
+
+Host sync.pre
+  HostName 192.168.57.134
 
 Host solr.pro
   HostName 192.168.55.125
