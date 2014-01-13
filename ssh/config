@@ -451,6 +451,9 @@ Host as1.apps.pre
 Host as2.apps.pre
   HostName 192.168.57.101
 
+Host as3.apps.pre
+  HostName 192.168.57.106
+
 Host apps2.dev
   HostName 192.168.54.40
   IdentityFile ~/.ssh/id_dsa.deployer
