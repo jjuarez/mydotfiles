@@ -12,4 +12,5 @@ source "${HOME}/.zprofile"
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=${PATH}:${HOME}/.rvm/bin # Add RVM to PATH for scripting
+eval "$(direnv hook ${SHELL})"
