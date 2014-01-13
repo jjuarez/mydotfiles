@@ -12,5 +12,5 @@ source "${HOME}/.zprofile"
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 
-export PATH=${PATH}:${HOME}/.rvm/bin
+PATH=${HOME}/.rvm/bin:${PATH}
 eval "$(direnv hook ${SHELL})"
