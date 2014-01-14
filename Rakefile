@@ -47,7 +47,13 @@ DOTFILES = [
   }
 ]
 
-GEM_LIST = ["irbtools"]
+OHMYZSH_CUSTOM_PLUGINS=[
+  {
+    :name       => "oh-my-zsh-bootstrap",
+    :repository => "git://github.com/mbauhardt/oh-my-zsh-bootstrap.git"
+  }
+]
+
 
 namespace :vim do
   
@@ -99,6 +105,20 @@ namespace :ohmyzsh do
       oh_my_zsh_directory = File.join(ENV['HOME'], '.oh-my-zsh')
 
       system("git clone https://github.com/robbyrussell/oh-my-zsh.git #{oh_my_zsh_directory}") unless File.directory?(oh_my_zsh_directory)
+    rescue =>e
+      $stderr.puts e.message
+    end
+  end
+
+  desc "Install oh-my-zsh custom plugins"
+  task :custom_plugins do
+    begin
+      oh_my_zsh_custom_plugins_directory = File.join(ENV['HOME'], '.oh-my-zsh', 'custom', 'plugins')
+
+      OHMYZSH_CUSTOM_PLUGINS.each do |plugin|
+      
+        system("git clone #{plugin[:repository]} #{oh_my_zsh_custom_plugins_directory}/custom/plugins/#{plugin[:name]}") unless File.directory?(oh_my_zsh_custom_plugins_directory)
+      end
     rescue =>e
       $stderr.puts e.message
     end
@@ -166,22 +186,4 @@ namespace :dotfiles do
       $stderr.puts e.message
     end
   end
-end
-
-
-##
-# Rubygems
-namespace :gems do
-  
-  desc "Install personal gemsets over actual rvm environment ruby@global"
-  task :install do
-
-    GEM_LIST.each { |g| system("gem install --no-rdoc --no-ri #{g}") }
-  end  
-
-  desc "Uninstall personal gemsets"
-  task :uninstall do
-
-    GEM_LIST.each { |g| system("gem uninstall -ax #{g}") }
-  end  
 end
