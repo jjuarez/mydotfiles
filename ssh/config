@@ -11,13 +11,11 @@ Host fe1-lms-monit
   LocalForward 2812 127.0.0.1:2812
   User javi
 
-
 ##
 # Heroku
 Host *.heroku.com
   IdentityFile ~/.ssh/id_dsa.heroku
   User root
-
 
 ##
 # github
@@ -26,13 +24,11 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
-
 ##
 # OpenShift
 Host *.rhcloud.com
   IdentityFile ~/.ssh/id_rsa
   User javier.juarez@gmail.com
-
 
 ##
 # Testing
@@ -215,6 +211,7 @@ Host xen-cloud-pre1
 Host xen-cloud-pre2
   HostName 192.168.22.118
 
+
 ##
 # OpenNebula
 Host opennebula-fe
@@ -378,14 +375,26 @@ Host ldap.slave3.pro
 Host ldap.slave4.pro
   HostName 192.168.55.218
 
-Host blanca1-ng
+Host ldap.pb1.pro
   HostName 192.168.55.58 
 
-Host blanca2-ng
+Host ldap.pb2.pro
   HostName 192.168.55.59 
 
-Host ldap.pre
-  HostName 192.168.54.32
+Host ldap.master.pre
+  HostName 192.168.57.160
+
+Host ldap.slave1.pre
+  HostName 192.168.57.161
+
+Host ldap.slave2.pre
+  HostName 192.168.57.216
+
+Host ldap.slave3.pre
+  HostName 192.168.57.217
+
+Host ldap.slave4.pre
+  HostName 192.168.57.218
 
 Host ldap.master.dev
   HostName 192.168.54.66
@@ -393,14 +402,10 @@ Host ldap.master.dev
 Host ldap.lb.dev
   Hostname 192.168.54.70
 
-Host ldap.lb.dev-stats
-  Hostname 192.168.54.70
-  LocalForward 19636 127.0.0.1:19636
-
-Host ldap.r1.dev
+Host ldap.slave1.dev
   HostName 192.168.54.67
 
-Host ldap.r2.dev
+Host ldap.slave2.dev
   HostName 192.168.54.68
 
 
@@ -440,7 +445,7 @@ Host apps2.pre
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host apps.pre
+Host apps1.pre
   HostName psi4.cti.csic.es
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
@@ -453,6 +458,9 @@ Host as2.apps.pre
 
 Host as3.apps.pre
   HostName 192.168.57.106
+
+Host as1.apps.int
+  HostName 192.168.55.240
 
 Host apps2.dev
   HostName 192.168.54.40
