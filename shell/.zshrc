@@ -6,7 +6,7 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(osx tmux brew oh-my-zsh-bootstrap git git-flow sublime thor vagrant knife redis-cli docker go)
+plugins=(tmux brew oh-my-zsh-bootstrap git git-flow sublime thor vagrant redis-cli docker go)
 source "${ZSH}/oh-my-zsh.sh"
 source "${HOME}/.zprofile"
 
