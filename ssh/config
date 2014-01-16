@@ -5,18 +5,6 @@ Host fe1-lms
   IdentityFile ~/.ssh/id_dsa
   User javi
 
-Host fe1-lms-monit
-  HostName 95.85.18.207
-  IdentityFile ~/.ssh/id_dsa
-  LocalForward 2812 127.0.0.1:2812
-  User javi
-
-##
-# Heroku
-Host *.heroku.com
-  IdentityFile ~/.ssh/id_dsa.heroku
-  User root
-
 ##
 # github
 Host github.com
@@ -217,7 +205,6 @@ Host xen-cloud-pre2
 Host opennebula-fe
   HostName 192.168.22.102
 
-
 ##
 # Tools
 Host nagios
@@ -233,8 +220,18 @@ Host builds
   HostName 192.168.54.63
   User builder
 
+Host git
+  HostName 192.168.56.20
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
 Host git.sistemas.sgai.csic.es
   HostName 192.168.56.20
+  IdentityFile ~/.ssh/id_dsa
+  User git
+
+Host git-ng
+  HostName 192.168.56.229
   IdentityFile ~/.ssh/id_dsa
   User git
 
@@ -288,10 +285,12 @@ Host jabber
 
 Host mylinux
   HostName pc834.cti.csic.es
-  Port 443
   IdentityFile ~/.ssh/id_dsa
+  Port 443
   User javi
 
+##
+# Artifactory
 Host rm1.ds.pro
   HostName 192.168.54.96
 
@@ -411,31 +410,28 @@ Host ldap.slave2.dev
 
 ##
 # Apps
-Host as1.apps
-  HostName 192.168.55.240
-
-Host sync.pro
+Host sync.apps.pro
   HostName 192.168.55.134
 
-Host sync.pre
+Host sync.apps.pre
   HostName 192.168.57.134
 
-Host solr.pro
+Host solr1.apps.pro
   HostName 192.168.55.125
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host apps3.pro
+Host as3.apps.pro
   HostName 192.168.55.106
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host apps2.pro
+Host as2.apps.pro
   HostName 192.168.55.101
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host apps1.pro
+Host as1.apps.pro
   HostName 192.168.55.100
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
@@ -462,13 +458,13 @@ Host as3.apps.pre
 Host as1.apps.int
   HostName 192.168.55.240
 
-Host apps2.dev
+Host as2.apps.dev
   HostName 192.168.54.40
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployer
 
-Host apps.dev
-  HostName psi4.cti.csic.es
+Host as1.apps.dev
+  HostName 161.111.83.62
   IdentityFile ~/.ssh/id_dsa.deployer
   User deployerdev
 
@@ -479,7 +475,7 @@ Host alf.apps.pre
   HostName 192.168.57.96
 
 Host alf.apps.dev
-  HostName alfrescodev.cti.csic.es
+  HostName 161.111.83.47 
 
 
 ##
