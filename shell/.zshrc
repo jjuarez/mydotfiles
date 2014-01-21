@@ -1,4 +1,3 @@
-export MYDOTFILES="${HOME}/.mydotfiles"
 ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="clean"
 
@@ -6,11 +5,11 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(tmux brew oh-my-zsh-bootstrap git git-flow sublime thor vagrant redis-cli docker go)
+plugins=(tmux rvm brew oh-my-zsh-bootstrap git git-flow sublime thor vagrant redis-cli docker go)
 source "${ZSH}/oh-my-zsh.sh"
-source "${HOME}/.zprofile"
+
+MYDOTFILES="${HOME}/.mydotfiles"
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 
-PATH=${HOME}/.rvm/bin:${PATH}
 eval "$(direnv hook ${SHELL})"
