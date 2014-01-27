@@ -380,10 +380,10 @@ Host ldap.master1.pre
 
 Host ldap.slave1.pre
   HostName 192.168.57.161
-#
-#Host ldap.slave2.pre
-#  HostName 192.168.57.216
-#
+
+Host ldap.slave2.pre
+  HostName 192.168.57.216
+
 #Host ldap.slave3.pre
 #  HostName 192.168.57.217
 #
@@ -630,6 +630,12 @@ Host fe1.googlebooks.pro
 # Ebano
 Host fe1.ebano.pro
   HostName ebano.sgai.csic.es
+
+
+##
+# Documentacion...
+Host doc.web.pro
+  HostName 192.168.56.28
 
 
 ##
