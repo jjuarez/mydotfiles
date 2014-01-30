@@ -639,6 +639,11 @@ Host doc.web.pro
 
 
 ##
+# Servicios Web de la WiFi
+Host wifi.hosting.pro
+  HostName 192.168.20.17
+
+##
 # Storage
 Host napro3.storage.pro
   HostName 192.168.23.27

@@ -1,4 +1,4 @@
-echo ">>> .zshrc"
+#echo ">>> .zshrc"
 
 ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="clean"
@@ -17,3 +17,4 @@ MYDOTFILES="${HOME}/.mydotfiles"
 [ -f "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
 
 eval "$(direnv hook ${SHELL})"
+

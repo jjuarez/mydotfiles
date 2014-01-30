@@ -1,4 +1,4 @@
-echo ">>> .zprofile"
+#echo ">>> .zprofile"
 
 [[ -s "${HOME}/.rvm/scripts/rvm" ]] && {
 
