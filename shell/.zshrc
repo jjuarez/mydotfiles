@@ -12,8 +12,8 @@ source "${ZSH}/oh-my-zsh.sh"
 
 MYDOTFILES="${HOME}/.mydotfiles"
 
-[ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
+[[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
 
-[ -f "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
+[[ -f "${HOME}/.zprofile" ]] && source "${HOME}/.zprofile"
 
-[ -n "${BREW_HOME}" ] && eval "$(direnv hook ${SHELL})"
+[[ -n "${BREW_HOME}" -a -x "${BREW_HOME}/bin/direnv" ]] && eval "$(direnv hook ${SHELL})"
