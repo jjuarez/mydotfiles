@@ -16,5 +16,4 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [ -f "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
 
-eval "$(direnv hook ${SHELL})"
-
+[ -n "${BREW_HOME}" ] && eval "$(direnv hook ${SHELL})"
