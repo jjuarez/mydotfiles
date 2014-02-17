@@ -1,4 +1,17 @@
 ##
+# Raspberry Pi
+Host raspberry-wifi
+  HostName 192.168.1.2
+  IdentityFile ~/.ssh/id_dsa
+  User xbian
+
+Host raspberry-ethernet
+  HostName 192.168.1.3
+  IdentityFile ~/.ssh/id_dsa
+  User xbian
+  
+
+##
 # LMS
 Host fe1-lms
   HostName 95.85.18.207
@@ -676,7 +689,7 @@ Host fw.905-2.pro
 Host *
   ControlMaster         auto
   ControlPath           /tmp/ssh_mux_%h_%p_%r
-  ControlPersist        8h
+  ControlPersist        2h
   IdentityFile          ~/.ssh/id_dsa.sysadmin
   KeepAlive             yes
   ForwardX11            no
