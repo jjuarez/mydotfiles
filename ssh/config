@@ -3,7 +3,12 @@
 Host raspberrypi
   HostName raspberrypi.local
   IdentityFile ~/.ssh/id_dsa.raspberrypi
-  User root
+  User pi
+
+Host raspberrypi-ethernet.local
+  HostName raspberrypi-ethernet.local
+  IdentityFile ~/.ssh/id_dsa.raspberrypi
+  User pi
 
 ##
 # LMS
