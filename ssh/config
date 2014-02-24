@@ -5,6 +5,11 @@ Host raspberrypi
   IdentityFile ~/.ssh/id_dsa.raspberrypi
   User pi
 
+Host raspberrypi.remote
+  HostName raspberrypi.remote
+  IdentityFile ~/.ssh/id_dsa.raspberrypi
+  User pi
+
 Host raspberrypi-ethernet.local
   HostName raspberrypi-ethernet.local
   IdentityFile ~/.ssh/id_dsa.raspberrypi
