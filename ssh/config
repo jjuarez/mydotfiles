@@ -1,17 +1,17 @@
 ##
 # Raspberry Pi
 Host raspberrypi
-  HostName raspberrypi.local
+  HostName 192.168.1.2
   IdentityFile ~/.ssh/id_dsa.raspberrypi
   User pi
 
 Host raspberrypi.remote
-  HostName raspberrypi.remote
+  HostName 62.83.16.26
   IdentityFile ~/.ssh/id_dsa.raspberrypi
   User pi
 
-Host raspberrypi-ethernet.local
-  HostName raspberrypi-ethernet.local
+Host raspberrypi.ethernet
+  HostName 192.168.1.3
   IdentityFile ~/.ssh/id_dsa.raspberrypi
   User pi
 
