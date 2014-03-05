@@ -439,17 +439,14 @@ Host solr1.apps.pro
 Host as3.apps.pro
   HostName 192.168.55.106
   IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
 
 Host as2.apps.pro
   HostName 192.168.55.101
   IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
 
 Host as1.apps.pro
   HostName 192.168.55.100
   IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
 
 Host as1.apps.pre
   HostName 192.168.57.100
