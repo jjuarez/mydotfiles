@@ -358,18 +358,12 @@ Host cas.as2.pre
 
 Host cas.lb1.dev
   HostName 192.168.54.69
-  IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
 
 Host cas.as1.dev
   HostName 192.168.54.64
-  IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
 
 Host cas.as2.dev
   HostName 192.168.54.65
-  IdentityFile ~/.ssh/id_dsa.deployer
-  User deployer
 
 
 ##
@@ -517,6 +511,9 @@ Host alf1.web.pre
 Host alf2.web.pre
   HostName 192.168.56.56
 
+Host alf3.web.pre
+  HostName 192.168.56.84
+
 ##
 # Intranet
 Host lr1.intranet.pro
@@ -547,10 +544,13 @@ Host lb1.intranet.pre
   HostName 192.168.56.54
 
 Host alf1.intranet.pre
-  HostName 192.168.57.12
+  HostName 192.168.56.43
 
 Host alf2.intranet.pre
   HostName 192.168.56.46
+
+Host alf3.intranet.pre
+  HostName 192.168.56.85
 
 Host lr1.intranet.dev
   HostName 161.111.16.195
