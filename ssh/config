@@ -357,13 +357,13 @@ Host cas.as2.pre
   HostName 192.168.57.239
 
 Host cas.lb1.dev
-  HostName 192.168.54.69
+  HostName 172.19.1.144
 
 Host cas.as1.dev
-  HostName 192.168.54.64
+  HostName 172.19.1.142
 
 Host cas.as2.dev
-  HostName 192.168.54.65
+  HostName 172.19.1.143
 
 
 ##
@@ -398,23 +398,17 @@ Host ldap.slave1.pre
 Host ldap.slave2.pre
   HostName 192.168.57.216
 
-#Host ldap.slave3.pre
-#  HostName 192.168.57.217
-#
-#Host ldap.slave4.pre
-#  HostName 192.168.57.218
-#
 Host ldap.master1.dev
-  HostName 192.168.54.66
+  HostName 172.19.1.148
 
 Host ldap.lb1.dev
-  Hostname 192.168.54.70
+  Hostname 172.19.1.145
 
 Host ldap.slave1.dev
-  HostName 192.168.54.67
+  HostName 172.19.1.146
 
 Host ldap.slave2.dev
-  HostName 192.168.54.68
+  HostName 172.19.1.147
 
 
 ##
@@ -458,14 +452,10 @@ Host as1.apps.int
   HostName 192.168.55.240
 
 Host as2.apps.dev
-  HostName 192.168.54.40
- #IdentityFile ~/.ssh/id_dsa.deployer
- #User deployer
+  HostName 172.19.1.149
 
 Host as1.apps.dev
-  HostName 161.111.83.62
- #IdentityFile ~/.ssh/id_dsa.deployer
- #User deployerdev
+  HostName 172.19.1.150
 
 Host alf1.apps.pro
   HostName 192.168.55.96
