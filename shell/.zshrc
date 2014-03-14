@@ -7,7 +7,7 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(tmux rvm brew git git-flow thor vagrant redis-cli docker go)
+plugins=(tmux brew git git-flow thor vagrant redis-cli docker go)
 source "${ZSH}/oh-my-zsh.sh"
 
 MYDOTFILES="${HOME}/.mydotfiles"
