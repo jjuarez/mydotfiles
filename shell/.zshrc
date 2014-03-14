@@ -18,4 +18,3 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [[ -x "${BREW_HOME}/bin/direnv" ]] && eval "$(direnv hook ${SHELL})"
 
-PATH=${PATH}:${HOME}/.rvm/bin 
