@@ -7,7 +7,7 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(tmux rvm brew oh-my-zsh-bootstrap git git-flow sublime thor vagrant redis-cli docker go)
+plugins=(tmux rvm brew git git-flow thor vagrant redis-cli docker go)
 source "${ZSH}/oh-my-zsh.sh"
 
 MYDOTFILES="${HOME}/.mydotfiles"
@@ -17,3 +17,5 @@ MYDOTFILES="${HOME}/.mydotfiles"
 [[ -f "${HOME}/.zprofile" ]] && source "${HOME}/.zprofile"
 
 [[ -x "${BREW_HOME}/bin/direnv" ]] && eval "$(direnv hook ${SHELL})"
+
+PATH=${PATH}:${HOME}/.rvm/bin 
