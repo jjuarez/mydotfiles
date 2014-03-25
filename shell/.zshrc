@@ -1,5 +1,3 @@
-#echo ">>> .zshrc"
-
 ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="clean"
 
@@ -12,9 +10,10 @@ source "${ZSH}/oh-my-zsh.sh"
 
 MYDOTFILES="${HOME}/.mydotfiles"
 
-[[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
+[ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 
-[[ -f "${HOME}/.zprofile" ]] && source "${HOME}/.zprofile"
+[ -f "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
 
-[[ -x "${BREW_HOME}/bin/direnv" ]] && eval "$(direnv hook ${SHELL})"
+[ -x "${BREW_HOME}/bin/direnv" ] && eval "$(direnv hook ${SHELL})"
 
+[ -f "${HOME}/.ssh/id_dsa.sysadmin" ] && ssh-add "${HOME}/.ssh/id_dsa.sysadmin" &>/dev/null
