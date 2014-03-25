@@ -8,7 +8,7 @@ COMPLETION_WAITING_DOTS="true"
 [[ -z "${BREW_HOME}" ]] && {
 
   BREW_HOME="/usr/local"
-  PATH=${PATH}:${BREW_HOME}/bin:${BREW_HOME}/sbi
+  PATH=${PATH}:${BREW_HOME}/bin:${BREW_HOME}/sbin
 }
 
 plugins=(ssh-agent tmux brew git git-flow thor vagrant redis-cli docker rvm)
