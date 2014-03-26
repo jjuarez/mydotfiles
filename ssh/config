@@ -460,13 +460,13 @@ Host interno1.registro.pro
 
 ##
 # Oficina Virtual
-Host ov.as1.pro
+Host sede.as1.pro
   HostName 192.168.55.105
 
-Host ov.as1.pre
+Host sede.as1.pre
   HostName 192.168.57.105
 
-Host ov.as1.dev
+Host sede.as1.dev
   HostName oficinavirtual.desa.csic.es
 
 
