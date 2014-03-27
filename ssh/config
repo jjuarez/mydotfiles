@@ -18,8 +18,13 @@ Host raspberrypi.remote
 
 ##
 # LMS
-Host fe1-lms
+Host lms.fe1.pro
   HostName 95.85.18.207
+  IdentityFile ~/.ssh/id_dsa
+  User javi
+
+Host lms.be1.pro
+  HostName 188.226.207.112
   IdentityFile ~/.ssh/id_dsa
   User javi
 
