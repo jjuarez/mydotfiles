@@ -230,17 +230,32 @@ Host ldap.slave1.pre
 Host ldap.slave2.pre
   HostName 192.168.57.216
 
+#Host ldap.master1.dev
+#  HostName 172.19.1.148
+
 Host ldap.master1.dev
-  HostName 172.19.1.148
+  HostName 172.19.1.136
+
+#Host ldap.lb1.dev
+#  HostName 172.19.1.145
 
 Host ldap.lb1.dev
-  Hostname 172.19.1.145
+  HostName 172.19.1.165
+
+#Host ldap.slave1.dev
+#  HostName 172.19.1.146
 
 Host ldap.slave1.dev
-  HostName 172.19.1.146
+  HostName 172.19.1.137
+
+#Host ldap.slave2.dev
+#  HostName 172.19.1.147
 
 Host ldap.slave2.dev
-  HostName 172.19.1.147
+  HostName 172.19.1.138
+
+Host ldap.sync1.dev
+  HostName 172.19.1.166
 
 ##
 # Apps
@@ -654,7 +669,8 @@ Host *
   ControlMaster         auto
   ControlPath           /tmp/ssh_mux_%h_%p_%r
   ControlPersist        2h
-  IdentityFile          ~/.ssh/id_dsa.sysadmin
+ # Cambio al agente SSH
+ #IdentityFile          ~/.ssh/id_dsa.sysadmin
   KeepAlive             yes
   ForwardX11            no
   ForwardAgent          yes
