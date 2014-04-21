@@ -23,3 +23,5 @@ MYDOTFILES="${HOME}/.mydotfiles"
 [ -x "${BREW_HOME}/bin/direnv" ] && eval "$(direnv hook ${SHELL})"
 
 [ -f "${HOME}/.ssh/id_dsa.sysadmin" ] && ssh-add "${HOME}/.ssh/id_dsa.sysadmin" &>/dev/null
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
