@@ -18,8 +18,6 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 
-[ -f "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
-
 [ -x "${BREW_HOME}/bin/direnv" ] && eval "$(direnv hook ${SHELL})"
 
 [ -f "${HOME}/.ssh/id_dsa.sysadmin" ] && ssh-add "${HOME}/.ssh/id_dsa.sysadmin" &>/dev/null
