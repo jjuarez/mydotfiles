@@ -10,11 +10,6 @@ Host raspberrypi.ethernet
   IdentityFile ~/.ssh/id_dsa.raspberrypi
   User pi
 
-Host raspberrypi.remote
-  HostName 62.83.16.26
-  IdentityFile ~/.ssh/id_dsa.raspberrypi
-  User pi
-
 
 ##
 # LMS
@@ -61,18 +56,13 @@ Host mylinux
   User javi
 
 
-
 ##
 # Git access
 Host git.sistemas.sgai.csic.es
-  HostName 192.168.56.20
+ #HostName 192.168.56.20
+  HostName git.sistemas.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa
   User git
-
-#Host git-ng.sistemas.sgai.csic.es
-#  HostName 192.168.56.229
-#  IdentityFile ~/.ssh/id_dsa
-#  User git
 
 
 ##
@@ -83,44 +73,29 @@ Host tools.nagios.pro
 Host tools.nagios-ng.pro
   HostName 192.168.55.249
 
-#Host tools.ci
-#  Hostname 192.168.54.25
-
 Host tools.builds
   HostName 192.168.54.63
 
 Host tools.redmine.pro
-  HostName 192.168.56.20
+  HostName 192.168.54.20
 
 Host tools.constellation.pro
-  HostName 192.168.56.20
-
-#Host tools.redmine-ng.pro
-#  HostName 192.168.55.235
+  HostName 192.168.54.20
 
 Host tools.chefserver.pro
   HostName 192.168.54.115
 
-#Host tools.chefserver-ng.pro
-#  HostName 192.168.55.230
-
 Host tools.git.pro
   HostName 192.168.56.20
-
-#Host tools.git-ng.pro
-#  HostName 192.168.56.229
 
 Host tools.kanban.pro
   HostName 192.168.55.116
 
-#Host tools.vpnserver.pro
-#  HostName 161.111.80.203
-
 Host tools.jabber.pro
   HostName 192.168.56.21
 
-Host tools.slmirror0.pro
-  HostName 192.168.56.14
+#Host tools.slmirror0.pro
+#  HostName 192.168.56.14
 
 Host tools.slmirror1.pro
   HostName 192.168.55.34
@@ -179,27 +154,24 @@ Host cas.as1.pro
 Host cas.as2.pro
   HostName 192.168.55.239
 
-Host cas.lb1.pre
-  HostName 192.168.57.237
+#Host cas.lb1.pre
+#  HostName 192.168.57.237
 
 Host cas.as1.pre
   HostName 192.168.57.238
 
-Host cas.as2.pre
-  HostName 192.168.57.239
-
-Host cas.lb1.dev
-  HostName 172.19.1.144
+#Host cas.as2.pre
+#  HostName 192.168.57.239
 
 Host cas.as1.dev
   HostName 172.19.1.142
 
-Host cas.as2.dev
-  HostName 172.19.1.143
-
 
 ##
 # LDAP
+Host ldap.sync1.pro
+  HostName 192.168.55.134
+
 Host ldap.master1.pro
   HostName 192.168.55.160
 
@@ -230,26 +202,17 @@ Host ldap.slave1.pre
 Host ldap.slave2.pre
   HostName 192.168.57.216
 
-#Host ldap.master1.dev
-#  HostName 172.19.1.148
-
 Host ldap.master1.dev
   HostName 172.19.1.136
 
-#Host ldap.lb1.dev
-#  HostName 172.19.1.145
+Host ldap.sync1.pre
+  HostName 192.168.57.134
 
 Host ldap.lb1.dev
   HostName 172.19.1.165
 
-#Host ldap.slave1.dev
-#  HostName 172.19.1.146
-
 Host ldap.slave1.dev
   HostName 172.19.1.137
-
-#Host ldap.slave2.dev
-#  HostName 172.19.1.147
 
 Host ldap.slave2.dev
   HostName 172.19.1.138
@@ -265,11 +228,7 @@ Host ldap.sync1.dev
 #  HostName 192.168.55.100
 #  IdentityFile ~/.ssh/id_dsa.loguser
 #  User loguser
-Host apps.sync1.pro
-  HostName 192.168.55.134
 
-Host apps.sync1.pre
-  HostName 192.168.57.134
 
 Host apps.solr1.pro
   HostName 192.168.55.125
@@ -310,9 +269,6 @@ Host apps.alf1.pre
 Host apps.alf1.dev
   HostName 161.111.83.47 
 
-#Host apps.as1.int
-#  HostName 192.168.55.240
-
 
 ##
 # Apps NA DEV
@@ -339,6 +295,7 @@ Host apps.be2.dev
 
 Host apps.be3.dev
   HostName 172.19.1.159
+
 
 ##
 # Web
@@ -375,9 +332,6 @@ Host web.alf1.pre
 Host web.alf2.pre
   HostName 192.168.56.56
 
-#Host web.alf3.pre
-#  HostName 192.168.56.84
-
 
 ##
 # Intranet
@@ -413,15 +367,6 @@ Host intranet.alf1.pre
 
 Host intranet.alf2.pre
   HostName 192.168.56.46
-
-#Host intranet.alf3.pre
-#  HostName 192.168.56.85
-
-#Host intranet.lr1.dev
-#  HostName 161.111.16.195
-
-#Host intranet.alf1.dev
-#  HostName 161.11.16.196
 
 
 ##
@@ -527,84 +472,51 @@ Host storage.napro4.pro
 
 
 ##
-# OpenNebula
-Host cloud.on1.pre
-  HostName 192.168.56.62
+# XEN
+##
 
-Host cloud.db1.pre
-  HostName 192.168.56.71
 
-Host cloud.mp1.pre
-  HostName 192.168.56.82
+#Host xen.4
+#  HostName 192.168.22.22
+
+#Host xen.5
+#  HostName 192.168.22.23
+
+#Host xen.6
+#  HostName 192.168.22.24
 
 
 ##
-# Xen hosts
-Host xen.4
-  HostName 192.168.22.22
-
-Host xen.5
-  HostName 192.168.22.23
-
-Host xen.6
-  HostName 192.168.22.24
-
-Host xen.7
-  HostName 192.168.22.25
-
-Host xen.8
+# Xen PRO
+Host xen.8.pro
   HostName 192.168.22.26
 
-Host xen.9
-  HostName 192.168.22.27
+Host xen.balan1.pro
+  HostName 192.168.23.37
 
-Host xen.10
-  HostName 192.168.22.32
+Host xen.balan2.pro
+  HostName 192.168.23.38
 
-Host xen.11
-  HostName 192.168.22.46
+Host xen.db1.pro
+  HostName 192.168.23.39
 
-Host xen.12
-  HostName 192.168.22.47
+Host xen.db2.pro
+  HostName 192.168.23.40
 
-Host xen.x
-  HostName 192.168.22.49
+Host xen.db3.pro
+  HostName 192.168.23.41
 
-Host xen.host1.dev
-  HostName 172.19.2.40
+Host xen.db4.pro
+  HostName 192.168.23.42
 
-Host xen.host2.dev
-  HostName 172.19.2.41
+Host xen.db5.pro
+  HostName 192.168.23.43
 
-Host xen.host3.dev
-  HostName 172.19.2.42
+Host xen.balan2.pro
+  HostName 192.168.23.38
 
-Host xen.host4.dev
-  HostName 172.19.2.43
-
-Host xen.1.dev
-  HostName 192.168.22.50
-
-Host xen.2.dev
-  HostName 192.168.22.51
-
-Host xen.3.dev
-  HostName 192.168.22.52
-
-Host xen.4.dev
-  HostName 192.168.22.15
-
-Host xen.5.dev
-  HostName 192.168.22.16
-
-Host xen.6.dev
-  HostName 192.168.22.17
-
-Host xen.corp1.pro
-  HostName 192.168.23.55
-
-Host xen.corp2.pro
-  HostName 192.168.23.69
+Host xen.corp5.pro
+  HostName 192.168.23.58
 
 Host xen.corp6.pro
   HostName 192.168.23.61
@@ -614,21 +526,6 @@ Host xen.corp7.pro
 
 Host xen.corp8.pro
   HostName 192.168.23.76
-
-Host xen.corp1.pre
-  HostName 192.168.22.34
-
-Host xen.corp2.pre
-  HostName 192.168.22.37
-
-Host xen.corp3.pre
-  HostName 192.168.22.105
-
-Host xen.corp4.pre
-  HostName 192.168.22.49
-
-#Host xen.gestion1.pro
-#  HostName 192.168.23.51
 
 Host xen.gestion2.pro
   HostName 192.168.23.64
@@ -651,11 +548,47 @@ Host xen.nocorp1.pro
 Host xen.nocorp2.pro
   HostName 192.168.23.74
 
+Host xen.oas1.pro
+  HostName 192.168.23.54
+
+Host xen.oas2.pro
+  HostName 192.168.23.68
+
 Host xen.gxa1.pro
   HostName 192.168.22.56
 
 Host xen.gxa2.pro
   HostName 192.168.22.57
+
+
+##
+# Xen PRE
+Host xen.10.pre
+  HostName 192.168.22.32
+
+Host xen.corp1.pre
+  HostName 192.168.22.34
+
+Host xen.corp2.pre
+  HostName 192.168.22.110
+
+Host xen.corp3.pre
+  HostName 192.168.22.105
+
+Host xen.corp4.pre
+  HostName 192.168.22.49
+
+Host xen.gestion1.pre
+  HostName 192.168.22.25
+
+Host xen.gestion2.pre
+  HostName 192.168.22.27
+
+Host xen.gestion11.pro
+  HostName 192.168.22.46
+
+Host xen.gestion12.pro
+  HostName 192.168.22.47
 
 Host xen.cloud1.pre
   HostName 192.168.22.117
@@ -663,14 +596,41 @@ Host xen.cloud1.pre
 Host xen.cloud2.pre
   HostName 192.168.22.118
 
+Host cloud.on1.pre
+  HostName 192.168.56.62
+
+Host cloud.db1.pre
+  HostName 192.168.56.71
+
+Host cloud.mp1.pre
+  HostName 192.168.56.82
+
+
+##
+# Xen DEV
+Host xen.1.dev
+  HostName 172.19.2.40
+
+Host xen.2.dev
+  HostName 172.19.2.41
+
+Host xen.3.dev
+  HostName 172.19.2.42
+
+Host xen.4.dev
+  HostName 172.19.2.43
+
+Host xen.5.dev
+  HostName 172.19.2.44
+
+
 ##
 # Common config
 Host *
   ControlMaster         auto
   ControlPath           /tmp/ssh_mux_%h_%p_%r
-  ControlPersist        2h
- # Cambio al agente SSH
- #IdentityFile          ~/.ssh/id_dsa.sysadmin
+  ControlPersist        1h
+  IdentityFile          ~/.ssh/id_dsa.sysadmin
   KeepAlive             yes
   ForwardX11            no
   ForwardAgent          yes
