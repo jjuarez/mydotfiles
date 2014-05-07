@@ -145,14 +145,14 @@ Host goobi2.urici.pro
 
 ##
 # CAS
-Host cas.lb1.pro
-  HostName 192.168.55.237
+#Host cas.lb1.pro
+# HostName 192.168.55.237
 
 Host cas.as1.pro
   HostName 192.168.55.238
 
-Host cas.as2.pro
-  HostName 192.168.55.239
+#Host cas.as2.pro
+#  HostName 192.168.55.239
 
 #Host cas.lb1.pre
 #  HostName 192.168.57.237
