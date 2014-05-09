@@ -121,25 +121,25 @@ Host ds.rmdb1.pro
 
 ##
 # URICI
-Host fe1.papi.pro
+Host papi.fe1.pro
   HostName 192.168.10.84
 
-Host digital.dspace.pro
+Host digital.dspace1.pro
   HostName 192.168.55.76 
 
-Host digital.handle.pro
+Host digital.handle1.pro
   HostName 192.168.55.77 
 
-Host digital.dspace.pre
+Host digital.dspace1.pre
   HostName 192.168.57.76
 
-Host digital.dspace.dev
+Host digital.dspace1.dev
   HostName 161.111.16.194
 
-Host goobi1.urici.pro
+Host urici.goobi1.pro
   HostName 10.10.39.3
 
-Host goobi2.urici.pro
+Host urici.goobi2.pro
   HostName 10.10.39.4
 
 
@@ -440,9 +440,8 @@ Host sede.as1.dev
 Host editorial.as1.pro
   Hostname 192.168.55.140 
 
-Host googlebooks.fe1.pro
-  Hostname 192.168.56.26
-
+Host publicaciones.gb1.pro
+  HostName 192.168.54.26
 
 ##
 # Ebano
