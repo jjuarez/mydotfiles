@@ -27,6 +27,11 @@ DOTFILES = [
     :git_item   =>"ssh/config",    
     :local_item =>".ssh/config" 
   },
+  # ZSH theme
+  { :name       =>".oh-my-zsh/themes/thejtoken.zsh-theme",
+    :git_item   =>"shell/zsh/themes/thejtoken.zsh-theme",    
+    :local_item =>".oh-my-zsh/themes/thejtoken.zsh-theme" 
+  },
   # Ruby stuff
   { :name       =>".irbrc",
     :git_item   =>"ruby/.irbrc",    
@@ -56,16 +61,18 @@ OHMYZSH_CUSTOM_PLUGINS=[
 
 
 namespace :vim do
+  namespace :vundle do
   
-  desc "Install vim vundle"
-  task :vundle do
+    desc "Install vim vundle"
+    task :install do
  
-    vundle_directory = File.join(ENV['HOME'], '.vim', 'bundle')
+      vundle_directory = File.join(ENV['HOME'], '.vim', 'bundle')
 
-    unless File.directory?(vundle_directory)
+      unless File.directory?(vundle_directory)
        
-      FileUtils.mkdir_p(vundle_directory)
-      system("git clone https://github.com/gmarik/vundle.git #{File.join(vundle_directory, 'vundle')}")
+        FileUtils.mkdir_p(vundle_directory)
+        system("git clone https://github.com/gmarik/vundle.git #{File.join(vundle_directory, 'vundle')}")
+      end
     end
   end
 end

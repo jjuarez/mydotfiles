@@ -1,5 +1,5 @@
 ZSH="${HOME}/.oh-my-zsh"
-ZSH_THEME="clean"
+ZSH_THEME="thejtoken"
 
 CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
