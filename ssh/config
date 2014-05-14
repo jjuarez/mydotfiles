@@ -59,7 +59,6 @@ Host mylinux
 ##
 # Git access
 Host git.sistemas.sgai.csic.es
- #HostName 192.168.56.20
   HostName git.sistemas.sgai.csic.es
   IdentityFile ~/.ssh/id_dsa
   User git
