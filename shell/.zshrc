@@ -16,10 +16,11 @@ source "${ZSH}/oh-my-zsh.sh"
 
 MYDOTFILES="${HOME}/.mydotfiles"
 
-[ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
+[[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
 
-[ -x "${BREW_HOME}/bin/direnv" ] && eval "$(direnv hook ${SHELL})"
+[[ -x "${BREW_HOME}/bin/direnv"      ]] && eval "$(direnv hook ${SHELL})"
 
-[ -f "${HOME}/.ssh/id_dsa.sysadmin" ] && ssh-add "${HOME}/.ssh/id_dsa.sysadmin" &>/dev/null
+[[ -f "${HOME}/.ssh/id_dsa.sysadmin" ]] && ssh-add "${HOME}/.ssh/id_dsa.sysadmin" &>/dev/null
 
+[[ -s "${HOME}/.zprofile"            ]] && source "${HOME}/.zprofile"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
