@@ -594,8 +594,14 @@ Host xen.cloud1.pre
 Host xen.cloud2.pre
   HostName 192.168.22.118
 
+Host xen.cloud3.pre
+  HostName 192.168.22.119
+
+##
+# Cloud
 Host cloud.on1.pre
   HostName 192.168.56.62
+ #User oneadmin
 
 Host cloud.db1.pre
   HostName 192.168.56.71
@@ -603,6 +609,18 @@ Host cloud.db1.pre
 Host cloud.mp1.pre
   HostName 192.168.56.82
 
+# Alias
+Host cloud.host1.pre
+  HostName 192.168.22.117
+
+Host cloud.host2.pre
+  HostName 192.168.22.118
+
+Host cloud.host3.pre
+  HostName 192.168.22.119
+
+Host cloud.svm.pre
+  HostName 192.168.56.72
 
 ##
 # Xen DEV
