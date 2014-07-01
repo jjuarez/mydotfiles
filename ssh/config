@@ -121,7 +121,8 @@ Host ds.rmdb1.pro
 ##
 # URICI
 Host papi.fe1.pro
-  HostName 192.168.10.84
+  HostName 10.10.39.39
+# HostName 192.168.10.84
 
 Host digital.dspace1.pro
   HostName 192.168.55.76 
@@ -476,8 +477,8 @@ Host storage.napro4.pro
 
 ##
 # Xen PRO
-Host xen.8.pro
-  HostName 192.168.22.26
+#Host xen.8.pro
+#  HostName 192.168.22.26
 
 Host xen.balan1.pro
   HostName 192.168.23.37
@@ -499,9 +500,6 @@ Host xen.db4.pro
 
 Host xen.db5.pro
   HostName 192.168.23.43
-
-Host xen.balan2.pro
-  HostName 192.168.23.38
 
 Host xen.corp5.pro
   HostName 192.168.23.58
