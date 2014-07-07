@@ -35,11 +35,11 @@ Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'jpo/vim-railscasts-theme'
-Bundle 'nanotech/jellybeans.vim'
 Bundle 'bling/vim-airline'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'dougireton/vim-chef'
 Bundle 'evanmiller/nginx-vim-syntax'
+Bundle 'tomtom/tcomment_vim'
 
 if has('autocmd')
   filetype plugin indent on
@@ -199,4 +199,3 @@ let g:ctrlp_max_depth=5
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
-
