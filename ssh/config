@@ -594,7 +594,7 @@ Host cloud.on1.pre
 Host cloud.db1.pre
   HostName 192.168.56.71
 
-Host cloud.mp1.pre
+Host cloud.am1.pre
   HostName 192.168.56.82
 
 # Alias
