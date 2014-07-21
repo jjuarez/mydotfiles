@@ -193,8 +193,12 @@ Host ldap.pb1.pro
 Host ldap.pb2.pro
   HostName 192.168.55.59 
 
+
 Host ldap.master1.pre
   HostName 192.168.57.160
+
+Host ldap.lb1.pre
+  HostName 192.168.56.123
 
 Host ldap.slave1.pre
   HostName 192.168.57.161
@@ -202,11 +206,12 @@ Host ldap.slave1.pre
 Host ldap.slave2.pre
   HostName 192.168.57.216
 
-Host ldap.master1.dev
-  HostName 172.19.1.136
-
 Host ldap.sync1.pre
   HostName 192.168.57.134
+
+
+Host ldap.master1.dev
+  HostName 172.19.1.136
 
 Host ldap.lb1.dev
   HostName 172.19.1.165
