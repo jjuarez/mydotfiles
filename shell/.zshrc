@@ -5,13 +5,7 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-[[ -z "${BREW_HOME}" ]] && {
-
-  BREW_HOME="/usr/local"
-  PATH=${PATH}:${BREW_HOME}/bin:${BREW_HOME}/sbin
-}
-
-plugins=(ssh-agent tmux brew git git-flow thor vagrant redis-cli docker rvm)
+plugins=(ssh-agent tmux brew git git-flow thor vagrant redis-cli docker rbenv ruby knife knife_ssh)
 source "${ZSH}/oh-my-zsh.sh"
 
 MYDOTFILES="${HOME}/.mydotfiles"
