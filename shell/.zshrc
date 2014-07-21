@@ -23,4 +23,3 @@ MYDOTFILES="${HOME}/.mydotfiles"
 [[ -f "${HOME}/.ssh/id_dsa.sysadmin" ]] && ssh-add "${HOME}/.ssh/id_dsa.sysadmin" &>/dev/null
 
 [[ -s "${HOME}/.zprofile"            ]] && source "${HOME}/.zprofile"
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
