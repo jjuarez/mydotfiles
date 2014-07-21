@@ -1,4 +1,4 @@
-[ -z "${BREW_HOME}" ] && 
+[[ -z "${BREW_HOME}" ]] && 
 
   BREW_HOME=/usr/local
   PATH=${BREW_HOME}/bin:${BREW_HOME}/sbin:${PATH}
