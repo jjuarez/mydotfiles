@@ -1,1 +1,2 @@
-[[ -d "${HOME}/.rbenv/shims" ]] && export PATH="${HOME}/.rbenv/shims":${PATH}
+[[ -d "${HOME}/.rbenv/bin"   ]] && export PATH="${HOME}/.rbenv/bin:${PATH}"
+eval "$(rbenv init -)"
