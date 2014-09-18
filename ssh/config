@@ -13,11 +13,6 @@ Host raspberrypi.ethernet
 
 ##
 # LMS
-Host lms.fe2.pro
-  HostName 178.62.137.117
-  IdentityFile ~/.ssh/id_dsa
-  User javi
-
 Host lms.fe0
   HostName 178.62.250.169
   IdentityFile ~/.ssh/id_dsa
