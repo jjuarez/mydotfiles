@@ -68,6 +68,7 @@ Host tools.nagios-ng.pro
 
 Host tools.builds
   HostName 192.168.54.63
+  User builder
 
 Host tools.redmine.pro
   HostName 192.168.54.20
