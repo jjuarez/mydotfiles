@@ -1,6 +1,6 @@
 ##
 # Tartify the parameter directory
-backup-that(){
+backup-that( ) {
 
   local date_format="%Y%m%d%H%M"
   local backup_pattern="backup-`date +${date_format}`"

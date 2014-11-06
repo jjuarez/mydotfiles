@@ -10,5 +10,5 @@ tar-that(){
   # If exist GNU tar version...    
   [ -n "${BREW_HOME}" -a -x "${BREW_HOME}/bin/gtar" ] && tar="${HOME_BREW}/bin/gtar" 
 
-  ${tar} -cjf ${directory}{.tar.bz2,} 
+  ${tar} -czf ${directory}{.tar.gz,} 
 }
