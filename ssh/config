@@ -27,16 +27,14 @@ Host github.com
   User jjuarez
 
 
-##
-# OpenShift
-Host *.rhcloud.com
-  IdentityFile ~/.ssh/id_rsa
-  User javier.juarez@gmail.com
+Host gen01
+  Hostname gen01.tuenti.int
+  User root
 
 
 ##
 # Common config tuenti.int
-Host *.tuenti.int
+Host *
   UserKnownHostsFile    /dev/null
   ControlMaster         auto
   ControlPath           /tmp/ssh_mux_%h_%p_%r
@@ -54,20 +52,3 @@ Host *.tuenti.int
   User                  root
   Port                  22
 
-Host *.tuenti.local
-  UserKnownHostsFile    /dev/null
-  ControlMaster         auto
-  ControlPath           /tmp/ssh_mux_%h_%p_%r
-  ControlPersist        1h
-  IdentityFile          ~/.ssh/id_dsa.tuenti
-  KeepAlive             yes
-  ForwardX11            no
-  ForwardAgent          yes
-  ServerAliveInterval   15
-  ServerAliveCountMax   4
-  Compression           yes
-  CheckHostIP           yes
-  VerifyHostKeyDNS      no
-  StrictHostKeyChecking no
-  User                  root
-  Port                  22

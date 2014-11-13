@@ -15,31 +15,30 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rvm'
 Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-fugitive'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'hallison/vim-ruby-sinatra'
 Bundle 'slim-template/vim-slim'
+Bundle 'tpope/vim-haml'
+Bundle 'thoughtbot/vim-rspec'
 Bundle 'ervandew/supertab'
 Bundle 'dougireton/vim-ps1'
-Bundle 'vim-ruby/vim-ruby'
 Bundle 'elzr/vim-json'
-Bundle 'thoughtbot/vim-rspec'
 Bundle 'mattboehm/vim-unstack'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'godlygeek/tabular'
-Bundle 'kien/ctrlp.vim'
+" Bundle 'kien/ctrlp.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'jpo/vim-railscasts-theme'
 Bundle 'bling/vim-airline'
 Bundle 'Blackrush/vim-gocode'
-Bundle 'dougireton/vim-chef'
 Bundle 'evanmiller/nginx-vim-syntax'
 Bundle 'tomtom/tcomment_vim'
+Bundle 'dougireton/vim-chef'
+Bundle 'rodjek/vim-puppet'
 
 if has('autocmd')
   filetype plugin indent on
@@ -54,7 +53,6 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-"colorscheme jellybeans
 colorscheme railscasts
 
 
@@ -76,8 +74,6 @@ set display+=lastline
 set cmdheight=2
 set nowrap
 set number
-
-
 
 
 " ----------------------------------------------------------------------------
@@ -182,7 +178,7 @@ let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg' ]
 " ----------------------------------------------------------------------------
 " Syntastic
 let g:syntastic_mode_map = { 'mode' : 'passive' }
-let g:syntastic_ruby_exec = '~/.rvm/rubies/default/bin/ruby'
+let g:syntastic_ruby_exec = '/usr/local/opt/rbenv/shims/ruby'
 
 
 " ----------------------------------------------------------------------------
