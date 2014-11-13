@@ -74,32 +74,6 @@ namespace :vim do
 end
 
 
-namespace :rvm do
-
-  desc "Install rvm"
-  task :install do
-    begin
-      rvm_directory = File.join(ENV['HOME'], '.rvm') 
-
-      system("curl -sL https://get.rvm.io|bash") unless File.directory?(rvm_directory)
-    rescue =>e
-      $stderr.puts e.message
-    end
-  end
-
-  desc "Uninstall rvm"
-  task :uninstall do
-    begin
-      rvm_directory = File.join(ENV['HOME'], '.rvm')
-
-      system("rvm uninstall")  
-    rescue =>e
-      $stderr.puts e.message
-    end
-  end
-end
-
-
 namespace :ohmyzsh do
 
   desc "Install oh-my-zsh"
