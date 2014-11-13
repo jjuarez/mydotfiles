@@ -14,6 +14,6 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [[ -x "${BREW_HOME}/bin/direnv"      ]] && eval "$(direnv hook ${SHELL})"
 
-[[ -f "${HOME}/.ssh/id_dsa.sysadmin" ]] && ssh-add "${HOME}/.ssh/id_dsa.sysadmin" &>/dev/null
+[[ -f "${HOME}/.ssh/id_dsa.tuenti"   ]] && ssh-add "${HOME}/.ssh/id_dsa.tuenti" &>/dev/null
 
 [[ -s "${HOME}/.zprofile"            ]] && source "${HOME}/.zprofile"
