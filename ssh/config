@@ -10,14 +10,12 @@ Host raspberrypi.ethernet
   IdentityFile ~/.ssh/id_dsa.raspberrypi
   User root
 
-
 ##
 # LMS
 Host lms.fe0
   HostName 178.62.250.169
   IdentityFile ~/.ssh/id_dsa
   User javi
-
 
 ##
 # github
@@ -26,11 +24,18 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
-
 Host gen01
   Hostname gen01.tuenti.int
+  IdentityFile ~/.ssh/id_rsa.tuenti
   User jjuarez
 
+Host gen02
+  Hostname gen02.tuenti.int
+  IdentityFile ~/.ssh/id_rsa.tuenti
+  User jjuarez
+
+
+Host 
 
 ##
 # Common config tuenti.int
@@ -38,8 +43,8 @@ Host *
   UserKnownHostsFile    /dev/null
   ControlMaster         auto
   ControlPath           /tmp/ssh_mux_%h_%p_%r
-  ControlPersist        1h
-  IdentityFile          ~/.ssh/id_dsa.tuenti
+# ControlPersist        1h
+  IdentityFile          ~/.ssh/id_dsa.root
   KeepAlive             yes
   ForwardX11            no
   ForwardAgent          yes
