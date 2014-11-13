@@ -7,10 +7,6 @@ DOTFILES = [
     :local_item =>".vimrc" 
   },
   # Shell config
-  { :name       =>".ldaprc",
-    :git_item   =>"shell/.ldaprc",  
-    :local_item =>".ldaprc" 
-  },
   { :name       =>".zprofile",
     :git_item   =>"shell/.zprofile",  
     :local_item =>".zprofile" 

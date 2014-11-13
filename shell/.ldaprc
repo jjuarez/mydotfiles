@@ -1,4 +1,0 @@
-URI ldap://ldap.master.example.org
-BASE idnc=usuarios,dc=example,dc=org
-BINDDN cn=admin,dc=example,dc=org
-TLS_REQCERT none
