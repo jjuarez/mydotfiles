@@ -127,16 +127,6 @@ namespace :ohmyzsh do
     end
   end
 
-  desc "Update oh-my-zsh"
-  task :update do
-    begin
-      oh_my_zsh_directory = File.join(ENV['HOME'], '.oh-my-zsh')
-      system("cd #{oh_my_zsh_directory} && git pull") 
-    rescue =>e
-      $stderr.puts e.message
-    end
-  end
-
   desc "Uninstall oh-my-zsh"
   task :uninstall do
     begin
