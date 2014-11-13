@@ -29,7 +29,7 @@ Host github.com
 
 Host gen01
   Hostname gen01.tuenti.int
-  User root
+  User jjuarez
 
 
 ##
