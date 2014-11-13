@@ -39,6 +39,7 @@ Bundle 'evanmiller/nginx-vim-syntax'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'dougireton/vim-chef'
 Bundle 'rodjek/vim-puppet'
+Bundle 'ekalinin/Dockerfile.vim'
 
 if has('autocmd')
   filetype plugin indent on
