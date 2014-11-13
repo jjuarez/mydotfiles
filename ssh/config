@@ -35,8 +35,6 @@ Host gen02
   User jjuarez
 
 
-Host 
-
 ##
 # Common config tuenti.int
 Host *
