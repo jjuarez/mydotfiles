@@ -1,5 +1,6 @@
 # .zshrc
 ZSH="${HOME}/.oh-my-zsh"
+ZSH_CUSTOM=${HOME}/.customizations
 ZSH_THEME="thejtoken"
 
 CASE_SENSITIVE="true"
