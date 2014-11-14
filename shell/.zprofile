@@ -1,2 +1,0 @@
-# .zprofile
-eval "$(rbenv init -)"
