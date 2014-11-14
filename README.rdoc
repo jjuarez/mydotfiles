@@ -5,6 +5,7 @@
 Install from GitHub the latest version:
 
   $ git clone https://jjuarez@github.com/jjuarez/mydotfiles.git && cd mydotfiles
+  $ export MYDOTFILES=$(pwd)
   $ rake dotfiles:install
   $ rake vim:plugins:install
 
