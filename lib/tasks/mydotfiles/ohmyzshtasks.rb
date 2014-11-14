@@ -1,7 +1,7 @@
 namespace :ohmyzsh do
 
   desc "Install oh-my-zsh"
-  task :install do
+  task :install =>:load do
     begin
       omzd = File.join(ENV['HOME'], '.oh-my-zsh')
 
@@ -12,11 +12,11 @@ namespace :ohmyzsh do
   end
 
   desc "Install oh-my-zsh custom plugins"
-  task :custom_plugins do
+  task :custom_plugins =>:load do
     begin
       omzcpd = File.join(ENV['HOME'], '.oh-my-zsh', 'custom', 'plugins')
 
-      $ohmyzsh_remote_custom_plugins.each do |p|
+      $ohmyzsh_rcp.each do |p|
 
         system("git clone #{p[:repository]} #{omzcpd}/#{p[:name]}") unless File.directory?(omzcpd)
       end
