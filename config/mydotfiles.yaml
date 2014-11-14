@@ -4,6 +4,8 @@
       :ohmyzsh: https://github.com/robbyrussell/oh-my-zsh.git
 
   :dotfiles:
+    ##
+    # ZSH
     - :name: .zprofile
       :git_item: shell/.zprofile
       :local_item: .zprofile
@@ -16,18 +18,26 @@
     - :name: .customizations
       :git_item: shell/zsh/customizations
       :local_item: .customizations
+    ##
+    # SSH
     - :name: .ssh/config
       :git_item: ssh/config
       :local_item: .ssh/config
+    ##
+    # vim
     - :name: .vimrc
       :git_item: vim/.vimrc
       :local_item: .vimrc
+    ##
+    # ruby environment
     - :name: .irbrc
       :git_item: ruby/.irbrc
       :local_item: .irbrc
     - :name: .gemrc
       :git_item: ruby/.gemrc
       :local_item: .gemrc
+    ##
+    # git config
     - :name: .gitconfig
       :git_item: git/.gitconfig
       :local_item: .gitconfig
@@ -35,6 +45,6 @@
       :git_item: git/.gitignore_global
       :local_item: .gitignore_global
 
-  :ohmyzsh_remote_custom_plugins:
+  :ohmyzsh_rcp:
     - :name: oh-my-zsh-bootstrap
       :repository: git://github.com/mbauhardt/oh-my-zsh-bootstrap.git
