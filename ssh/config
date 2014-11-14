@@ -24,16 +24,6 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
-Host gen01
-  Hostname gen01.tuenti.int
-  IdentityFile ~/.ssh/id_rsa.tuenti
-  User jjuarez
-
-Host gen02
-  Hostname gen02.tuenti.int
-  IdentityFile ~/.ssh/id_rsa.tuenti
-  User jjuarez
-
 
 ##
 # Common config tuenti.int
@@ -41,8 +31,8 @@ Host *
   UserKnownHostsFile    /dev/null
   ControlMaster         auto
   ControlPath           /tmp/ssh_mux_%h_%p_%r
-# ControlPersist        1h
-  IdentityFile          ~/.ssh/id_dsa.root
+  ControlPersist        1h
+  IdentityFile          ~/.ssh/id_dsa
   KeepAlive             yes
   ForwardX11            no
   ForwardAgent          yes
