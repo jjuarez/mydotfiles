@@ -2,6 +2,7 @@
   :urls:
       :vundle: https://github.com/gmarik/vundle.git
       :ohmyzsh: https://github.com/robbyrussell/oh-my-zsh.git
+
   :dotfiles:
     - :name: .zprofile
       :git_item: shell/.zprofile
@@ -12,12 +13,12 @@
     - :name: .zlogin
       :git_item: shell/.zlogin
       :local_item: .zlogin
+    - :name: .customiztions
+      :git_item: shell/zsh/customizations
+      :local_item: .customizations
     - :name: .ssh/config
       :git_item: ssh/config
       :local_item: .ssh/config
-    - :name: .oh-my-zsh/themes/thejtoken.zsh-theme
-      :git_item: shell/zsh/themes/thejtoken.zsh-theme
-      :local_item: .oh-my-zsh/themes/thejtoken.zsh-theme
     - :name: .vimrc
       :git_item: vim/.vimrc
       :local_item: .vimrc
