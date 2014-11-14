@@ -31,7 +31,7 @@ namespace :dotfiles do
 
       puts "Installing:"
 
-      DOTFILES.each do |df|
+      $dotfiles.each do |df|
 
         gi = File.join(ENV['MYDOTFILES'], df[:git_item])
         li = File.join(ENV['HOME'], df[:local_item])
