@@ -1,3 +1,4 @@
+# .zshrc
 ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="thejtoken"
 
@@ -14,6 +15,6 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [[ -x "${BREW_HOME}/bin/direnv"      ]] && eval "$(direnv hook ${SHELL})"
 
-[[ -f "${HOME}/.ssh/id_dsa.tuenti"   ]] && ssh-add "${HOME}/.ssh/id_dsa.tuenti" &>/dev/null
+[[ -f "${HOME}/.ssh/id_dsa"          ]] && ssh-add "${HOME}/.ssh/id_dsa" &>/dev/null
 
 [[ -s "${HOME}/.zprofile"            ]] && source "${HOME}/.zprofile"
