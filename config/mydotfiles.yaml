@@ -7,13 +7,13 @@
     ##
     # ZSH
     - :name: .zprofile
-      :git_item: shell/.zprofile
+      :git_item: shell/zsh/.zprofile
       :local_item: .zprofile
     - :name: .zshrc
-      :git_item: shell/.zshrc
+      :git_item: shell/zsh/.zshrc
       :local_item: .zshrc
     - :name: .zlogin
-      :git_item: shell/.zlogin
+      :git_item: shell/zsh/.zlogin
       :local_item: .zlogin
     - :name: .customizations
       :git_item: shell/zsh/customizations
