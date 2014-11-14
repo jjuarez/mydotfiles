@@ -25,6 +25,29 @@ Host github.com
   User jjuarez
 
 ##
+# tuenti jump-hosts
+Host gen01.tuenti.int
+  HostName gen01.tuenti.int
+  IdentityFile ~/.ssh/id_dsa.tuenti
+  User jjuarez
+
+Host gen02.tuenti.int
+  HostName gen02.tuenti.int
+  IdentityFile ~/.ssh/id_dsa.tuenti
+  User jjuarez
+
+##
+# tuenti services hosts
+Host cdrdb1.pro
+  HostName mvnecdrdb-prod-1
+  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
+
+Host cdrdb2.pro
+  HostName mvnecdrdb-prod-2
+  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
+  
+
+##
 # Common config tuenti.int
 Host *
   UserKnownHostsFile    /dev/null
