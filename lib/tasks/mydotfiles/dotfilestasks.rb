@@ -12,7 +12,7 @@ namespace :dotfiles do
 
         if File.symlink?(local_file) && df[:local_item] != ".vim"
 
-          puts "* #{df[:name]} in #{local_file}"
+          puts " * #{df[:name]} in #{local_file}"
           FileUtils.rm_f(local_file)
         end
       end
@@ -38,7 +38,7 @@ namespace :dotfiles do
 
         if File.exist?(gi)
 
-          puts "* #{df[:name]} linking #{li} to #{gi}"
+          puts " * #{df[:name]} linking #{li} to #{gi}"
           FileUtils.ln_sf(gi, li)
         end
       end

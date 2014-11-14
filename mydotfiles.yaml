@@ -13,7 +13,7 @@
     - :name: .zlogin
       :git_item: shell/.zlogin
       :local_item: .zlogin
-    - :name: .customiztions
+    - :name: .customizations
       :git_item: shell/zsh/customizations
       :local_item: .customizations
     - :name: .ssh/config
