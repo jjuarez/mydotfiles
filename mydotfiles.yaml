@@ -1,0 +1,39 @@
+---
+  :urls:
+      :vundle: https://github.com/gmarik/vundle.git
+      :ohmyzsh: https://github.com/robbyrussell/oh-my-zsh.git
+  :dotfiles:
+    - :name: .zprofile
+      :git_item: shell/.zprofile
+      :local_item: .zprofile
+    - :name: .zshrc
+      :git_item: shell/.zshrc
+      :local_item: .zshrc
+    - :name: .zlogin
+      :git_item: shell/.zlogin
+      :local_item: .zlogin
+    - :name: .ssh/config
+      :git_item: ssh/config
+      :local_item: .ssh/config
+    - :name: .oh-my-zsh/themes/thejtoken.zsh-theme
+      :git_item: shell/zsh/themes/thejtoken.zsh-theme
+      :local_item: .oh-my-zsh/themes/thejtoken.zsh-theme
+    - :name: .vimrc
+      :git_item: vim/.vimrc
+      :local_item: .vimrc
+    - :name: .irbrc
+      :git_item: ruby/.irbrc
+      :local_item: .irbrc
+    - :name: .gemrc
+      :git_item: ruby/.gemrc
+      :local_item: .gemrc
+    - :name: .gitconfig
+      :git_item: git/.gitconfig
+      :local_item: .gitconfig
+    - :name: .gitignore_global
+      :git_item: git/.gitignore_global
+      :local_item: .gitignore_global
+
+  :ohmyzsh_remote_custom_plugins:
+    - :name: oh-my-zsh-bootstrap
+      :repository: git://github.com/mbauhardt/oh-my-zsh-bootstrap.git
