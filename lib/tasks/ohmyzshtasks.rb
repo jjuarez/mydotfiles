@@ -12,14 +12,24 @@ namespace :ohmyzsh do
   end
 
   desc "Install oh-my-zsh custom plugins"
-  task :custom_plugins =>:load do
+  task :plugins =>:load do
     begin
-      omzcpd = File.join(ENV['HOME'], '.oh-my-zsh', 'custom', 'plugins')
+      lpd    = File.join(ENV['MYDOTFILES'], "shell", "zsh", "plugins")
+      omzcpd = File.join(ENV['HOME'], ".oh-my-zsh", "custom")
 
-      $ohmyzsh_rcp.each do |p|
+      FileUtils.cp_r(lpd, omzcpd, :verbose =>true)
+    rescue Exception =>e
+      $stderr.puts e.message
+    end
+  end
 
-        system("git clone #{p[:repository]} #{omzcpd}/#{p[:name]}") unless File.directory?(omzcpd)
-      end
+  desc "Install oh-my-zsh custom themes"
+  task :themes =>:load do
+    begin
+      ltd    = File.join(ENV['MYDOTFILES'], "shell", "zsh", "themes")
+      omzctd = File.join(ENV['HOME'], ".oh-my-zsh")
+
+      FileUtils.cp_r(ltd, omzctd)
     rescue Exception =>e
       $stderr.puts e.message
     end
@@ -28,7 +38,7 @@ namespace :ohmyzsh do
   desc "Uninstall oh-my-zsh"
   task :uninstall do
     begin
-      omzd = File.join(ENV['HOME'], '.oh-my-zsh')
+      omzd = File.join(ENV['HOME'], ".oh-my-zsh")
 
       FileUtils.rm_rf(omzd) if File.directory?(omzd)
     rescue Exception =>e

@@ -1,7 +1,7 @@
 namespace :dotfiles do
 
   desc "Delete the dotfiles links"
-  task :uninstall do
+  task :uninstall =>:load do
 
     begin
       puts "Uninstalling:"
