@@ -25,7 +25,6 @@ Host github.com
   User jjuarez
 
 ##
-<<<<<<< HEAD
 # Jump hosts
 Host gen01
   HostName gen01.tuenti.int
