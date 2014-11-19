@@ -44,3 +44,10 @@
     - :name: .gitignore_global
       :git_item: git/.gitignore_global
       :local_item: .gitignore_global
+  ##
+  # Brews
+  :brews:
+    - md5sha1sum
+    - gnu-tar
+    - findutils
+
