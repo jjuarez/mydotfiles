@@ -4,14 +4,6 @@
 alias vi='vim'
 alias scpresume="rsync --partial --progress --rsh=ssh"
 
-
-##
-# OpenLDAP aliases
-alias ldapsearch='ldapsearch -LLLx -W'
-alias ldapdelete='ldapdelete -xc -W'
-alias ldapmodify='ldapmodify -xc -W'
-
-
 case "`uname`" in
 	
   Darwin*)

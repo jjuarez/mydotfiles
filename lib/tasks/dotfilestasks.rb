@@ -1,7 +1,7 @@
 namespace :dotfiles do
 
   desc "Delete the dotfiles links"
-  task :uninstall do
+  task :uninstall =>:load do
 
     begin
       puts "Uninstalling:"
@@ -18,13 +18,13 @@ namespace :dotfiles do
       end
 
       FileUtils.rm(File.join(ENV['HOME'], ".vim"))
-    rescue =>e
+    rescue Exception =>e
       $stderr.puts e.message
     end
   end
 
   desc "Install mydotfiles"
-  task :install do
+  task :install =>:load do
 
     begin
       FileUtils.cd(ENV['HOME'])
@@ -42,7 +42,7 @@ namespace :dotfiles do
           FileUtils.ln_sf(gi, li)
         end
       end
-    rescue =>e
+    rescue Exception =>e
       $stderr.puts e.message
     end
   end

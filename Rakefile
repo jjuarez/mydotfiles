@@ -1,21 +1,18 @@
 ##
 # Rakefile 
-$:.push File.expand_path("../lib/tasks", __FILE__)
 require "yaml"
-require "mydotfiles/vimtasks"
-require "mydotfiles/ohmyzshtasks"
-require "mydotfiles/dotfilestasks"
 
+Dir.glob("./lib/tasks/*.rb").each { |tasks| require tasks }
 
 ##
 # Pre-conditions
 fail("Environment variable MYDOTFILES undefined") unless ENV['MYDOTFILES']
 
-
 ##
-# Global variables for the configuration
-$config_file = File.join(ENV['MYDOTFILES'], "mydotfiles.yaml")
-$config = YAML.load_file($config_file)
-$dotfiles = $config[:dotfiles]
-$ohmyzsh_remote_custom_plugins = $config[:ohmyzsh_remote_custom_plugins]
-$urls = $config[:urls]
+# Init task load the configuration
+task :load do
+
+  $config   = YAML.load_file(File.join(ENV['MYDOTFILES'], "config", "mydotfiles.yaml"))
+  $dotfiles = $config[:dotfiles]
+  $urls     = $config[:urls]
+end

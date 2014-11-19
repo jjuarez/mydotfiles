@@ -1,13 +1,12 @@
 # .zshrc
 ZSH="${HOME}/.oh-my-zsh"
-ZSH_CUSTOM=${HOME}/.customizations
 ZSH_THEME="thejtoken"
 
 CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(ssh-agent screen tmux brew git git-flow vagrant redis-cli docker rbenv sublime tuenti)
+plugins=(ssh-agent screen tmux brew git git-flow thor vagrant redis-cli docker rbenv sublime tuenti)
 source "${ZSH}/oh-my-zsh.sh"
 
 MYDOTFILES="${HOME}/.mydotfiles"
