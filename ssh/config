@@ -21,7 +21,7 @@ Host lms.fe0
 # github
 Host github.com
   HostName github.com
-  IdentityFile ~/.ssh/id_dsa
+  IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
 ##
