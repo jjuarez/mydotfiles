@@ -52,11 +52,11 @@ Host gen02.tuenti.int
 
 ##
 # CDRStats & Homer
-Host cdrdb1.pro
+Host mvne.cdrdb1.pro
   HostName mvnecdrdb-prod-1
   IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
 
-Host cdrdb2.pro
+Host mvne.cdrdb2.pro
   HostName mvnecdrdb-prod-2
   IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
   
