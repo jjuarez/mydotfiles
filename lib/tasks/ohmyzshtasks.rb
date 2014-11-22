@@ -17,7 +17,7 @@ namespace :ohmyzsh do
       lpd    = File.join(ENV['MYDOTFILES'], "shell", "zsh", "plugins")
       omzcpd = File.join(ENV['HOME'], ".oh-my-zsh", "custom")
 
-      FileUtils.cp_r(lpd, omzcpd, :verbose =>true)
+      FileUtils.cp_r(lpd, omzcpd, :verbose =>false)
     rescue Exception =>e
       $stderr.puts e.message
     end
@@ -29,7 +29,7 @@ namespace :ohmyzsh do
       ltd    = File.join(ENV['MYDOTFILES'], "shell", "zsh", "themes")
       omzctd = File.join(ENV['HOME'], ".oh-my-zsh")
 
-      FileUtils.cp_r(ltd, omzctd)
+      FileUtils.cp_r(ltd, omzctd, :verbose =>false)
     rescue Exception =>e
       $stderr.puts e.message
     end
