@@ -1,20 +1,32 @@
 # .zshrc
 ZSH="${HOME}/.oh-my-zsh"
-ZSH_THEME="powerline"
 
+##
+# Theme customization
+ZSH_THEME="powerline"
+POWERLINE_DISABLE_RPROMPT="true"
+POWERLINE_DETECT_SSH="true"
+
+##
+# ZSH Options
 CASE_SENSITIVE="true"
-DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="false"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(ssh-agent screen tmux brew git git-flow thor vagrant redis-cli docker rbenv sublime tuenti)
-source "${ZSH}/oh-my-zsh.sh"
+##
+# Plugins
+plugins=(ssh-agent tmux brew git docker rbenv sublime tuenti)
 
+. "${ZSH}/oh-my-zsh.sh"
+
+##
+# My own stuffs
 MYDOTFILES="${HOME}/.mydotfiles"
 
-[[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
+[ -f "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
 
-[[ -x "${BREW_HOME}/bin/direnv"      ]] && eval "$(direnv hook ${SHELL})"
+[ -x "${BREW_HOME}/bin/direnv" ] && eval "$(direnv hook ${SHELL})"
 
-[[ -f "${HOME}/.ssh/id_dsa"          ]] && ssh-add "${HOME}/.ssh/id_dsa" &>/dev/null
+[ -f "${HOME}/.ssh/id_dsa" ] && ssh-add "${HOME}/.ssh/id_dsa" &>/dev/null
 
-[[ -s "${HOME}/.zprofile"            ]] && source "${HOME}/.zprofile"
+[ -s "${HOME}/.zprofile" ] && . "${HOME}/.zprofile"
