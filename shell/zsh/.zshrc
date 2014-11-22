@@ -1,6 +1,6 @@
 # .zshrc
 ZSH="${HOME}/.oh-my-zsh"
-ZSH_THEME="thejtoken"
+ZSH_THEME="powerline"
 
 CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
