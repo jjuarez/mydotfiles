@@ -25,16 +25,6 @@ Host github.com
   User jjuarez
 
 ##
-# Jump hosts
-Host gen01
-  HostName gen01.tuenti.int
-  User jjuarez
-  
-Host gen02
-  HostName gen02.tuenti.int
-  User jjuarez
-
-##
 # Jump hosts 
 Host gen01.tuenti.int
   HostName gen01.tuenti.int
@@ -59,6 +49,11 @@ Host mvne.cdrdb1.pro
 Host mvne.cdrdb2.pro
   HostName mvnecdrdb-prod-2
   IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
+
+Host mvne.homer2.pro
+  Hostname mvnehomer-prod-2
+  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
+
   
 ##
 # Common config tuenti.int
@@ -67,7 +62,7 @@ Host *
   ControlMaster         auto
   ControlPath           /tmp/ssh_mux_%h_%p_%r
 # ControlPersist        1h
-  IdentityFile          ~/.ssh/id_dsa.tuenti
+  IdentityFile          ~/.ssh/id_dsa.tuenti.sysadmin
   KeepAlive             yes
   ForwardX11            no
   ForwardAgent          yes
