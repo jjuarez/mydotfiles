@@ -6,7 +6,7 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(ssh-agent screen git tuenti)
+plugins=(ssh-agent tuenti)
 source "${ZSH}/oh-my-zsh.sh"
 
 MYDOTFILES="${HOME}/.mydotfiles"
