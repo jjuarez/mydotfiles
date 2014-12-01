@@ -3,7 +3,7 @@ ZSH="${HOME}/.oh-my-zsh"
 
 ##
 # Theme customization
-ZSH_THEME="powerline"
+ZSH_THEME="clean"
 POWERLINE_DISABLE_RPROMPT="true"
 POWERLINE_DETECT_SSH="true"
 
