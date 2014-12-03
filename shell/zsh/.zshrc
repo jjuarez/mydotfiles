@@ -27,3 +27,5 @@ MYDOTFILES="${HOME}/.mydotfiles"
 [ -f "${HOME}/.ssh/id_dsa" ] && ssh-add "${HOME}/.ssh/id_dsa" &>/dev/null
 
 [ -s "${HOME}/.zprofile" ] && . "${HOME}/.zprofile"
+
+[ -s "${HOME}/.rbenv" ] && eval "$(rbenv init -)"
