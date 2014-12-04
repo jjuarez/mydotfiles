@@ -3,7 +3,7 @@ ZSH="${HOME}/.oh-my-zsh"
 
 ##
 # Theme customization
-ZSH_THEME="clean"
+ZSH_THEME="thejtoken"
 
 ##
 # ZSH Options
@@ -28,4 +28,4 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [ -s "${HOME}/.zprofile" ] && . "${HOME}/.zprofile"
 
-[ -s "${HOME}/.rbenv" ] && eval "$(rbenv init -)"
+[ -d "${HOME}/.rbenv" ] && eval "$(rbenv init -)"
