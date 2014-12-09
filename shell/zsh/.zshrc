@@ -28,4 +28,4 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [ -s "${HOME}/.zprofile" ] && . "${HOME}/.zprofile"
 
-[ -s "${HOME}/.rbenv" ] && eval "$(rbenv init -)"
+[ -d "${HOME}/.rbenv" ] && eval "$(rbenv init -)"
