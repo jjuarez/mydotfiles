@@ -1,4 +1,5 @@
 set nocompatible " like -N parameter remember to suppres the shell alias
+
 " ----------------------------------------------------------------------------
 "  Vundle setup
 filetype off
@@ -40,6 +41,7 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'dougireton/vim-chef'
 Bundle 'rodjek/vim-puppet'
 Bundle 'ekalinin/Dockerfile.vim'
+" Bundle 'klen/python-mode'
 
 if has('autocmd')
   filetype plugin indent on
