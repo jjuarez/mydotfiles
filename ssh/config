@@ -36,6 +36,37 @@ Host dev01.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
   User release
 
+##
+# MVNE Project
+Host mvne.cdrdb1.pro
+  HostName mvnecdrdb-prod-1
+
+Host mvne.cdrdb2.pro
+  HostName mvnecdrdb-prod-2
+
+Host mvne.homer1.pro
+  HostName mvnehomer-prod-1
+
+Host mvne.homer2.pro
+  HostName mvnehomer-prod-2
+
+Host mvne.sip1.pro
+  HostName mvnesip-prod-1
+
+Host mvne.sip2.pro
+  HostName mvnesip-prod-2
+
+Host mvne.trans1.pro
+  HostName mvnetrans-prod-1
+
+Host mvne.trans2.pro
+  HostName mvnetrans-prod-2
+
+Host mvne.trans3.pro
+  HostName mvnetrans-prod-3
+
+Host mvne.trans4.pro
+  HostName mvnetrans-prod-4
 
 ##
 # Common config tuenti.int
