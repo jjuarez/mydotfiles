@@ -1,4 +1,8 @@
-alias foo='echo "Foo"'
+alias tuenti='echo "Yeah! your favourite plugin has loaded"'
+
+##
+# Extra path
+PATH=${PATH}:/srv/scripts/tools
 
 ##
 # Make a VNC tunnel with the guest vm through gen01 host
@@ -9,3 +13,4 @@ vnc_tunnel( ) {
 
   ssh -L ${vnc_port}:localhost:${vnc_port} ${jump_host}
 }
+
