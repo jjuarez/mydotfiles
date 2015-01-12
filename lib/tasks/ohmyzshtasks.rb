@@ -27,7 +27,7 @@ namespace :ohmyzsh do
   task :themes =>:load do
     begin
       ltd    = File.join(ENV['MYDOTFILES'], "shell", "zsh", "themes")
-      omzctd = File.join(ENV['HOME'], ".oh-my-zsh")
+      omzctd = File.join(ENV['HOME'], ".oh-my-zsh", "custom")
 
       FileUtils.cp_r(ltd, omzctd, :verbose =>false)
     rescue Exception =>e

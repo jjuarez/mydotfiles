@@ -1,3 +1,5 @@
+alias tuenti='echo "Tuenti"'
+
 ##
 # Make a VNC tunnel with the guest vm through gen01 host
 function vnc_tunnel {
