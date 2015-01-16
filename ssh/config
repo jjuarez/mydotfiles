@@ -31,11 +31,6 @@ Host gen01.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
-Host dev01.tuenti.int
-  HostName dev01.tuenti.int
-  IdentityFile ~/.ssh/id_dsa.tuenti
-  User release
-
 ##
 # MVNE Project
 Host mvne.cdrdb1.pro
