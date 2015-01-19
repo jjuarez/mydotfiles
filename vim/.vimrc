@@ -8,13 +8,11 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-bundler'
@@ -27,21 +25,15 @@ Bundle 'ervandew/supertab'
 Bundle 'dougireton/vim-ps1'
 Bundle 'elzr/vim-json'
 Bundle 'mattboehm/vim-unstack'
-Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'godlygeek/tabular'
-" Bundle 'kien/ctrlp.vim'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'jpo/vim-railscasts-theme'
 Bundle 'bling/vim-airline'
 Bundle 'Blackrush/vim-gocode'
-Bundle 'evanmiller/nginx-vim-syntax'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'dougireton/vim-chef'
 Bundle 'rodjek/vim-puppet'
 Bundle 'ekalinin/Dockerfile.vim'
-" Bundle 'klen/python-mode'
 
 if has('autocmd')
   filetype plugin indent on
