@@ -20,12 +20,13 @@ function kvm_tunnel {
   local kvm_base_port=15440
   local kvm_remote_port=15443
   local jump_host="gen01.tuenti.int"
+  local jump_user="root"
 
   case ${kvm_instance} in
     1|2|3)
       let "kvm_port=${kvm_base_port}+${kvm_instance}"
       kvm_host="kvm${kvm_instance}"
-      ssh -L ${kvm_port}:"${kvm_host}.tuenti.mgm":${kvm_remote_port} ${jump_host}
+      ssh -L ${kvm_port}:"${kvm_host}.tuenti.mgm":${kvm_remote_port} "${jump_user}@${jump_host}"
     ;;
   esac
 }
