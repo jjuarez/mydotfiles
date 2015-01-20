@@ -9,25 +9,17 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-haml'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'hallison/vim-ruby-sinatra'
-Bundle 'slim-template/vim-slim'
-Bundle 'tpope/vim-haml'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'ervandew/supertab'
-Bundle 'dougireton/vim-ps1'
 Bundle 'elzr/vim-json'
 Bundle 'mattboehm/vim-unstack'
 Bundle 'scrooloose/syntastic'
 Bundle 'nelstrom/vim-visual-star-search'
-Bundle 'godlygeek/tabular'
 Bundle 'jpo/vim-railscasts-theme'
 Bundle 'bling/vim-airline'
 Bundle 'Blackrush/vim-gocode'
@@ -130,7 +122,7 @@ set history=200
 set wildmode=list:longest,full
 
 " File tab completion ignores these file patterns
-set wildignore+=*.exe,*.swp,.DS_Store
+set wildignore+=*.exe,*.swp,.DS_Store,.git,.svn
 set wildmenu
 
 " Add guard around 'wildignorecase' to prevent terminal vim error
@@ -164,25 +156,16 @@ let g:airline_theme='jellybeans'
 
 
 " ----------------------------------------------------------------------------
-" NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg' ]
-
-
-" ----------------------------------------------------------------------------
 " Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list =1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode' : 'passive' }
 let g:syntastic_ruby_exec = '/usr/local/opt/rbenv/shims/ruby'
-
-
-" ----------------------------------------------------------------------------
-" CtrlP
-nnoremap <silent> t :CtrlP<CR>
-let g:ctrlp_working_path_mode=2
-let g:ctrlp_by_filename=1
-let g:ctrlp_max_files=400
-let g:ctrlp_max_depth=5
 
 
 " ----------------------------------------------------------------------------
