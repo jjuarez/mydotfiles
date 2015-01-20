@@ -1,20 +1,28 @@
 [user]
-	name  = Javier Juarez
+	name  = jjuarez
 	email = javier.juarez@tuenti.com
 [color]
   status = auto
   branch = auto
 [alias]
-  co      = checkout
-  ci      = commit
-  br      = branch
-  st      = status
-  last    = log -1 HEAD
-  unstage = reset HEAD --
-	lg      = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  co         = checkout
+  ci         = commit
+  br         = branch
+  st         = status -sb
+  p          = push 
+  t          = tag -l
+  branches   = branch -a
+  remotes    = remote -v
+  last       = log -1 HEAD
+  unstage    = reset HEAD --
+  lg         = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [github]
   user = jjuarez
 [push]
   default = matching
 [core]
 	excludesfile = /Users/jjuarez/.gitignore_global
+[help]
+	autocorrect = 1
+[colour]
+	ui = 1
