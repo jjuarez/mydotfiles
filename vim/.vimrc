@@ -22,8 +22,9 @@ Bundle 'scrooloose/syntastic'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'rodjek/vim-puppet'
 Bundle 'klen/python-mode'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
+Bundle 'kien/ctrlp.vim'
+Bundle 'jpo/vim-railscasts-theme'
 
 if has('autocmd')
   filetype plugin indent on
@@ -38,9 +39,7 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-" colorscheme railscasts
-set background=dark
-colorscheme solarized
+colorscheme railscasts
 
 
 " ----------------------------------------------------------------------------
