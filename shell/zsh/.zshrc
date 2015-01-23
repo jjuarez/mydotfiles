@@ -13,7 +13,7 @@ COMPLETION_WAITING_DOTS="true"
 
 ##
 # Plugins
-plugins=(ssh-agent git rbenv tuenti)
+plugins=(ssh-agent git rbenv tuenti sublime)
 . "${ZSH}/oh-my-zsh.sh"
 
 ##

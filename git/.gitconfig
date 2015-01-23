@@ -23,6 +23,6 @@
 [core]
 	excludesfile = /Users/jjuarez/.gitignore_global
 [help]
-	autocorrect = 1
+	autocorrect = 0
 [colour]
 	ui = 1
