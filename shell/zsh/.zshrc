@@ -20,12 +20,12 @@ plugins=(ssh-agent git rbenv tuenti sublime)
 # My own stuffs
 MYDOTFILES="${HOME}/.mydotfiles"
 
-[ -f "${MYDOTFILES}/shell/shell.sh" ] && . "${MYDOTFILES}/shell/shell.sh"
+[ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 
 [ -x "${BREW_HOME}/bin/direnv" ] && eval "$(direnv hook ${SHELL})"
 
 [ -f "${HOME}/.ssh/id_dsa" ] && ssh-add "${HOME}/.ssh/id_dsa" &>/dev/null
 
-[ -s "${HOME}/.zprofile" ] && . "${HOME}/.zprofile"
+[ -s "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
 
 [ -d "${HOME}/.rbenv" ] && eval "$(rbenv init -)"
