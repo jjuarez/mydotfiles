@@ -9,18 +9,22 @@ call vundle#rc()
 
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'tpope/vim-surround'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'thoughtbot/vim-rspec'
+Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-surround'
+Plugin 'tomtom/tcomment_vim'
 Plugin 'elzr/vim-json'
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'thoughtbot/vim-rspec'
 Plugin 'rodjek/vim-puppet'
 Plugin 'klen/python-mode'
+Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
 
 if has('autocmd')
   filetype plugin indent on
@@ -138,10 +142,10 @@ set encoding=utf-8
 
 " ----------------------------------------------------------------------------
 " Airline 
-let g:airline_enable_syntastic=1
-let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts=1
-" let g:airline#extensions#tabline#enabled=1
+let g:airline_enable_syntastic=1
+let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled=1
 
 
 " ----------------------------------------------------------------------------
