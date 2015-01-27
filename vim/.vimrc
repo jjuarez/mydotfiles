@@ -21,10 +21,10 @@ Bundle 'klen/python-mode'
 Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'honza/vim-snippets'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
+" Bundle 'honza/vim-snippets'
+" Bundle "MarcWeber/vim-addon-mw-utils"
+" Bundle "tomtom/tlib_vim"
+" Bundle "garbas/vim-snipmate"
 Bundle 'jpo/vim-railscasts-theme'
 
 if has('autocmd')
