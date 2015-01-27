@@ -2,7 +2,7 @@
 # Rakefile 
 require "yaml"
 
-Dir.glob("./lib/tasks/*.rb").each { |t| require t }
+Dir.glob("#{ENV['MYDORFILES']}/lib/tasks/*.rb").each { |t| require t }
 
 ##
 # Pre-conditions

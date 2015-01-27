@@ -4,28 +4,24 @@ set nocompatible " like -N parameter remember to suppres the shell alias
 "  Vundle setup
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-haml'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'ervandew/supertab'
-Bundle 'elzr/vim-json'
-Bundle 'scrooloose/syntastic'
-Bundle 'rodjek/vim-puppet'
-Bundle 'klen/python-mode'
-Bundle 'bling/vim-airline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-" Bundle 'honza/vim-snippets'
-" Bundle "MarcWeber/vim-addon-mw-utils"
-" Bundle "tomtom/tlib_vim"
-" Bundle "garbas/vim-snipmate"
-Bundle 'jpo/vim-railscasts-theme'
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'tpope/vim-surround'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'ervandew/supertab'
+Plugin 'elzr/vim-json'
+Plugin 'scrooloose/syntastic'
+Plugin 'rodjek/vim-puppet'
+Plugin 'klen/python-mode'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'jpo/vim-railscasts-theme'
 
 if has('autocmd')
   filetype plugin indent on
@@ -40,7 +36,8 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-colorscheme railscasts
+set background=dark
+colorscheme solarized
 
 
 " ----------------------------------------------------------------------------
@@ -138,13 +135,6 @@ set encoding=utf-8
 
 " ----------------------------------------------------------------------------
 " Autocmds
-autocmd BufWritePre *.rb :%s/\s\+$//e
-autocmd BufWritePre *.haml :%s/\s\+$//e
-autocmd BufWritePre *.html :%s/\s\+$//e
-autocmd BufWritePre *.scss :%s/\s\+$//e
-autocmd BufWritePre *.slim :%s/\s\+$//e
-autocmd BufNewFile  * set noeol
-autocmd BufRead,BufNewFile *.go set filetype=go
 
 
 " ----------------------------------------------------------------------------
@@ -152,13 +142,13 @@ autocmd BufRead,BufNewFile *.go set filetype=go
 let g:airline_enable_syntastic=1
 let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+" let g:airline#extensions#tabline#enabled=1
 
 
 " ----------------------------------------------------------------------------
 " Syntastic
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list =1
 let g:syntastic_auto_loc_list = 1
