@@ -4,8 +4,8 @@ set nocompatible " like -N parameter remember to suppres the shell alias
 "  Vundle setup
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#rc()
 
 Plugin 'gmarik/Vundle.vim'
 
@@ -35,8 +35,8 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-" set background=dark
-" colorscheme solarized
+set background=dark
+colorscheme solarized
 
 
 " ----------------------------------------------------------------------------
