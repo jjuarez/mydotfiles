@@ -21,7 +21,6 @@ Plugin 'klen/python-mode'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'jpo/vim-railscasts-theme'
 
 if has('autocmd')
   filetype plugin indent on
@@ -36,8 +35,8 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-set background=dark
-colorscheme solarized
+" set background=dark
+" colorscheme solarized
 
 
 " ----------------------------------------------------------------------------
