@@ -24,6 +24,8 @@ Bundle 'rodjek/vim-puppet'
 Bundle 'klen/python-mode'
 Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'honza/vim-snippets'
 Bundle 'jpo/vim-railscasts-theme'
 
 if has('autocmd')
