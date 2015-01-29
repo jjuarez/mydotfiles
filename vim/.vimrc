@@ -12,6 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'elzr/vim-json'
 Plugin 'vim-ruby/vim-ruby'
@@ -152,7 +153,7 @@ let g:airline#extensions#tabline#enabled=1
 " ----------------------------------------------------------------------------
 " Syntastic
 set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list =1
 let g:syntastic_auto_loc_list = 1
