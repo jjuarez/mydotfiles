@@ -29,6 +29,7 @@ Host github.com
 Host gen01.tuenti.int
   HostName gen01.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
+  User jjuarez
 
 ##
 # Common config tuenti.int
