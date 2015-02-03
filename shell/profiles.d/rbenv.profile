@@ -1,1 +1,1 @@
-[ -d "${HOME}/.rbenv" ] && export PATH=${HOMER}/.rbenv/bin:${PATH}
+[ -d /usr/local/var/rbenv ] && export RBENV_ROOT=/usr/local/var/rbenv
