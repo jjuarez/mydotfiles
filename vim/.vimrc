@@ -41,8 +41,9 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-set background=dark
-colorscheme solarized
+" set background=dark
+" colorscheme solarized
+colorscheme railscasts
 
 
 " ----------------------------------------------------------------------------
