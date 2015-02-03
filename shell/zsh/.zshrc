@@ -22,10 +22,8 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 
-[ -x "${BREW_HOME}/bin/direnv" ] && eval "$(direnv hook ${SHELL})"
-
 [ -f "${HOME}/.ssh/id_dsa" ] && ssh-add "${HOME}/.ssh/id_dsa" &>/dev/null
 
 [ -s "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
 
-[ -n "`which rbenv > /dev/null`" ] && eval "$(rbenv init -)"
+[ -z "`which rbenv > /dev/null`" ] && { eval "$(rbenv init -)"; echo "Fuck!"; }
