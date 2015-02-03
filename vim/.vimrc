@@ -19,14 +19,15 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'rodjek/vim-puppet'
 Plugin 'klen/python-mode'
+Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'jpo/vim-railscasts-theme'
 Plugin 'honza/vim-snippets'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+Plugin 'edkolev/tmuxline.vim'
 
 if has('autocmd')
   filetype plugin indent on
@@ -41,8 +42,6 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-" set background=dark
-" colorscheme solarized
 colorscheme railscasts
 
 
@@ -147,7 +146,7 @@ set encoding=utf-8
 " Airline 
 let g:airline_powerline_fonts=1
 let g:airline_enable_syntastic=1
-let g:airline_theme='solarized'
+let g:airline_theme='tomorrow'
 let g:airline#extensions#tabline#enabled=1
 
 
