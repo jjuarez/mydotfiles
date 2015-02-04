@@ -26,4 +26,4 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [ -s "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
 
-[ -z "`which rbenv > /dev/null`" ] && { eval "$(rbenv init -)"; echo "Fuck!"; }
+[ -z "`which rbenv > /dev/null`" ] && eval "$(rbenv init -)"
