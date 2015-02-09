@@ -35,9 +35,9 @@ Host gen01.tuenti.int
 # Common config tuenti.int
 Host *
   UserKnownHostsFile    /dev/null
-  ControlMaster         auto
-  ControlPath           /tmp/ssh_mux_%h_%p_%r
-  ControlPersist        1h
+# ControlMaster         auto
+# ControlPath           /tmp/ssh_mux_%h_%p_%r
+# ControlPersist        1h
   IdentityFile          ~/.ssh/id_dsa
   KeepAlive             yes
   ForwardX11            no
