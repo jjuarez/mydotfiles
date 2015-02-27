@@ -21,7 +21,7 @@
 [push]
   default = matching
 [core]
-	excludesfile = /Users/jjuarez/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [help]
 	autocorrect = 0
 [colour]
