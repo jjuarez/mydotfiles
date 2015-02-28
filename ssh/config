@@ -15,13 +15,11 @@ Host github.com
 
 Host gen01.tuenti.int
   HostName gen01.tuenti.int
-  Port 22
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
 Host bastion
   HostName gen01.tuenti.int
-  Port 22
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
