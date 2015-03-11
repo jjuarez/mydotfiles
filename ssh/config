@@ -1,43 +1,41 @@
-##
-# Raspberry Pi
 Host raspberrypi
   HostName 192.168.1.2
   IdentityFile ~/.ssh/id_dsa.raspberrypi
   User root
 
-Host raspberrypi.ethernet
-  HostName 192.168.1.3
-  IdentityFile ~/.ssh/id_dsa.raspberrypi
-  User root
-
-##
-# LMS
 Host lms.fe0
   HostName 178.62.250.169
   IdentityFile ~/.ssh/id_dsa
   User javi
 
-##
-# github
 Host github.com
   HostName github.com
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
-##
-# tuenti jump hosts
 Host gen01.tuenti.int
   HostName gen01.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
+Host bastion
+  HostName gen01.tuenti.int
+  IdentityFile ~/.ssh/id_dsa
+  User jjuarez
+
+Host *.tuenti.int
+  ProxyCommand ssh -t -q -A bastion ssh %h %p
+  IdentityFile ~/.ssh/id_dsa
+  LogLevel DEBUG
+  User root
+
 ##
 # Common config tuenti.int
 Host *
   UserKnownHostsFile    /dev/null
-# ControlMaster         auto
-# ControlPath           /tmp/ssh_mux_%h_%p_%r
-# ControlPersist        1h
+  ControlMaster         auto
+  ControlPath           ~/.ssh/ssh_control_%h_%p_%r
+  ControlPersist        1h
   IdentityFile          ~/.ssh/id_dsa
   KeepAlive             yes
   ForwardX11            no
@@ -50,3 +48,4 @@ Host *
   StrictHostKeyChecking no
   User                  root
   Port                  22
+
