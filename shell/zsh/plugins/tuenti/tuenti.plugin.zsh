@@ -31,6 +31,7 @@ kvm_tunnel( ) {
   esac
 }
 
+
 ##
 # Check if we have some CDR spool
 any_spools( ) {
@@ -40,3 +41,14 @@ any_spools( ) {
     ssh root@${trans_server} '[ -s /var/log/freeswitch/cdr-spool.sql ] && echo "$(hostname) has spool"'
   done
 }
+
+
+##
+## Function to consume fabolous tuenti lists of hosts
+load_list( ) {
+
+  local list_file=${1}
+
+  [ -s ${list_file} ] && grep -Ev "^(\s*)#" ${list_file}
+}
+
