@@ -18,19 +18,6 @@ Host gen01.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
-Host bastion
-  HostName gen01.tuenti.int
-  IdentityFile ~/.ssh/id_dsa
-  User jjuarez
-
-Host *.tuenti.int
-  ProxyCommand ssh -t -q -A bastion ssh %h %p
-  IdentityFile ~/.ssh/id_dsa
-  LogLevel DEBUG
-  User root
-
-##
-# Common config tuenti.int
 Host *
   UserKnownHostsFile    /dev/null
   ControlMaster         auto
