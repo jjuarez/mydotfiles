@@ -1,6 +1,6 @@
 ##
 # Make a VNC tunnel with the guest vm through gen01 host
-vnc_tunnel( ) {
+vnc_tunnel() {
 
   local vnc_base_port=5900
   local vm_host=${1:-"vm1"}
@@ -14,7 +14,7 @@ vnc_tunnel( ) {
 
 ##
 # make a SSH tunnet with the KVM DC
-kvm_tunnel( ) {
+kvm_tunnel() {
 
   local kvm_instance=${1}
   local kvm_base_port=15440
@@ -34,7 +34,7 @@ kvm_tunnel( ) {
 
 ##
 # Check if we have some CDR spool
-any_spools( ) {
+any_spools() {
 
   for trans_server in $(cat /srv/config/mvnetrans_prod_server_list 2>/dev/null); do
 
@@ -45,10 +45,9 @@ any_spools( ) {
 
 ##
 ## Function to consume fabolous tuenti lists of hosts
-load_list( ) {
+load_list() {
 
   local list_file=${1}
 
   [ -s ${list_file} ] && grep -Ev "^(\s*)#" ${list_file}
 }
-
