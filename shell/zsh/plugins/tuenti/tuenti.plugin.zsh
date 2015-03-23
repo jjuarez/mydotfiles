@@ -1,6 +1,6 @@
 ##
 # Make a VNC tunnel with the guest vm through gen01 host
-function vnc_tunnel {
+vnc_tunnel() {
 
   local vnc_base_port=5900
   local vm_host=${1:-"vm1"}
@@ -14,7 +14,7 @@ function vnc_tunnel {
 
 ##
 # make a SSH tunnet with the KVM DC
-function kvm_tunnel {
+kvm_tunnel() {
 
   local kvm_instance=${1}
   local kvm_base_port=15440
@@ -29,4 +29,25 @@ function kvm_tunnel {
       ssh -L ${kvm_port}:"${kvm_host}.tuenti.mgm":${kvm_remote_port} "${jump_user}@${jump_host}"
     ;;
   esac
+}
+
+
+##
+# Check if we have some CDR spool
+any_spools() {
+
+  for trans_server in $(cat /srv/config/mvnetrans_prod_server_list 2>/dev/null); do
+
+    ssh root@${trans_server} '[ -s /var/log/freeswitch/cdr-spool.sql ] && echo "$(hostname) has spool"'
+  done
+}
+
+
+##
+## Function to consume fabolous tuenti lists of hosts
+load_list() {
+
+  local list_file=${1}
+
+  [ -s ${list_file} ] && grep -Ev "^(\s*)#" ${list_file}
 }
