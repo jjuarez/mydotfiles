@@ -18,7 +18,6 @@ Host bastion
   IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
 
 Host *
-# ProxyCommand          ssh -q gen01 nc -q0 %h %p
   UserKnownHostsFile    /dev/null
   ControlMaster         auto
   ControlPath           ~/.ssh/ssh_control_%h_%p_%r
