@@ -23,7 +23,6 @@ Host gen01
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
-<<<<<<< HEAD
 #Host *.proxy
 # ProxyCommand          ssh -q gen01 nc -q0 %h %p
 
