@@ -17,14 +17,14 @@ Host bastion
   HostName gen01.tuenti.int
   IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
 
-Host *.proxy
-  ProxyCommand          ssh -q gen01 nc -q0 %h %p
+#Host *.proxy
+# ProxyCommand          ssh -q gen01 nc -q0 %h %p
 
 Host *
   UserKnownHostsFile    /dev/null
   ControlMaster         auto
   ControlPath           ~/.ssh/ssh_control_%h_%p_%r
-# ControlPersist        1h
+  ControlPersist        1h
   IdentityFile          ~/.ssh/id_dsa
   KeepAlive             yes
   ForwardX11            no
