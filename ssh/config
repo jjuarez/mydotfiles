@@ -16,6 +16,12 @@ Host github.com
 Host bastion
   HostName gen01.tuenti.int
   IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
+  User jjuarez
+
+Host gen01
+  HostName gen01.tuenti.int
+  IdentityFile ~/.ssh/id_dsa
+  User jjuarez
 
 Host *
   UserKnownHostsFile    /dev/null
