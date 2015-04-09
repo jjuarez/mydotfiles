@@ -22,8 +22,6 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 
-[ -f "${HOME}/.ssh/id_dsa" ] && ssh-add "${HOME}/.ssh/id_dsa" &>/dev/null
-
 [ -s "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
 
 [ -z "`which rbenv > /dev/null`" ] && eval "$(rbenv init -)"
