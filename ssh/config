@@ -13,18 +13,10 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
-Host bastion
-  HostName gen01.tuenti.int
-  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
-  User jjuarez
-
 Host gen01
   HostName gen01.tuenti.int
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
-
-#Host *.proxy
-# ProxyCommand          ssh -q gen01 nc -q0 %h %p
 
 Host gen01.tuenti.int
   HostName gen01.tuenti.int
