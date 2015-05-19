@@ -13,11 +13,6 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
-Host bastion
-  HostName gen01.tuenti.int
-  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
-  User jjuarez
-
 Host gen01
   HostName gen01.tuenti.int
   IdentityFile ~/.ssh/id_dsa
@@ -31,9 +26,6 @@ Host gen01.tuenti.int
 
 Host *
   UserKnownHostsFile    /dev/null
-  ControlMaster         auto
-  ControlPath           ~/.ssh/ssh_control_%h_%p_%r
-  ControlPersist        1h
   IdentityFile          ~/.ssh/id_dsa
   KeepAlive             yes
   ForwardX11            no
