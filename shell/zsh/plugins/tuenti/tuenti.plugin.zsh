@@ -31,23 +31,11 @@ kvm_tunnel() {
   esac
 }
 
+ssh() {
 
-##
-# Check if we have some CDR spool
-any_spools() {
+  local bastion_host="gen01.tuenti.int"
+  local target_host=${1}
 
-  for trans_server in $(cat /srv/config/mvnetrans_prod_server_list 2>/dev/null); do
-
-    ssh root@${trans_server} '[ -s /var/log/freeswitch/cdr-spool.sql ] && echo "$(hostname) has spool"'
-  done
+  [ -n "${target_host}" ] && /usr/bin/ssh -t ${bastion_host} ssh ${target_host}
 }
 
-
-##
-## Function to consume fabolous tuenti lists of hosts
-load_list() {
-
-  local list_file=${1}
-
-  [ -s ${list_file} ] && grep -Ev "^(\s*)#" ${list_file}
-}
