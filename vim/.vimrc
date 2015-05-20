@@ -28,6 +28,8 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'edkolev/tmuxline.vim'
+Plugin 'altercation/vim-colors-solarized'
+
 
 if has('autocmd')
   filetype plugin indent on
@@ -42,7 +44,10 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-colorscheme railscasts
+colorscheme solarized
+set background=dark
+" colorscheme railscasts
+
 
 
 " ----------------------------------------------------------------------------
