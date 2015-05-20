@@ -31,7 +31,7 @@ kvm_tunnel() {
   esac
 }
 
-ssh() {
+ssh_to() {
 
   local bastion_host="gen01.tuenti.int"
   local target_host=${1}
