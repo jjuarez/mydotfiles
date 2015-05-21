@@ -19,6 +19,12 @@ Host gen01.tuenti.int
   IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
+Host bastion
+  HostName gen01.tuenti.in
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_dsa
+  User root
+
 Host *
   UserKnownHostsFile    /dev/null
   IdentityFile          ~/.ssh/id_dsa
