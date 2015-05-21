@@ -22,13 +22,12 @@ Plugin 'klen/python-mode'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
-Plugin 'jpo/vim-railscasts-theme'
 Plugin 'honza/vim-snippets'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'edkolev/tmuxline.vim'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'justincampbell/vim-railscasts'
 
 
 if has('autocmd')
@@ -44,10 +43,7 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-"colorscheme solarized
-"set background=dark
 colorscheme railscasts
-
 
 
 " ----------------------------------------------------------------------------
