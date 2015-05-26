@@ -3,7 +3,6 @@ ZSH="${HOME}/.oh-my-zsh"
 
 ##
 # Theme customization
-#ZSH_THEME="thejtoken"
 ZSH_THEME="powerline"
 
 ##
@@ -14,7 +13,7 @@ COMPLETION_WAITING_DOTS="true"
 
 ##
 # Plugins
-plugins=(ssh-agent git rbenv tuenti sublime tmux)
+plugins=(ssh-agent brew git rbenv tuenti sublime tmux)
 . "${ZSH}/oh-my-zsh.sh"
 
 ##
