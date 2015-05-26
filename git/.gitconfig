@@ -1,9 +1,13 @@
 [user]
-	name  = jjuarez
+	name  = Javier Juarez
 	email = javier.juarez@tuenti.com
 [color]
-  status = auto
-  branch = auto
+  diff        = auto
+  status      = auto
+  branch      = auto
+  interactive = auto
+  ui          = true
+  pager       = true
 [alias]
   co         = checkout
   ci         = commit
@@ -21,7 +25,7 @@
 [push]
   default = matching
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/jjuarez/.gitignore_global
 [help]
 	autocorrect = 0
 [colour]
@@ -33,10 +37,10 @@
 [diff]
   tool = Kaleidoscope
 [mergetool "Kaleidoscope"]
-  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
 [mergetool]
   prompt = false
 	keepBackup = true
 [merge]
   tool = Kaleidoscope
-
