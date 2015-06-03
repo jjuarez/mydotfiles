@@ -31,6 +31,7 @@ kvm_tunnel() {
   esac
 }
 
+
 ##
 # ssh -t bastion_host ssh destination_host
 ssh2() {
