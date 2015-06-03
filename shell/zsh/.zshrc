@@ -3,8 +3,7 @@ ZSH="${HOME}/.oh-my-zsh"
 
 ##
 # Theme customization
-#ZSH_THEME="thejtoken"
-ZSH_THEME="powerline"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 ##
 # ZSH Options
