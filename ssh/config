@@ -13,10 +13,13 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
+Host dbbackup1
+  HostName dbbackup1.tuenti.int
+  IdentitiesOnly yes
+
 Host gen01.tuenti.int
   HostName gen01.tuenti.int
   IdentitiesOnly yes
-  IdentityFile ~/.ssh/id_dsa
   User jjuarez
 
 Host bastion
