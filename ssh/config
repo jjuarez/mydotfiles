@@ -3,11 +3,6 @@ Host raspberrypi
   IdentityFile ~/.ssh/id_dsa.raspberrypi
   User root
 
-Host lms.fe0
-  HostName 178.62.250.169
-  IdentityFile ~/.ssh/id_dsa
-  User javi
-
 Host github.com
   HostName github.com
   IdentityFile ~/.ssh/id_dsa.tuenti
@@ -29,6 +24,8 @@ Host bastion
   User root
 
 Host *
+  ControlMaster         auto
+  ControlPath           ~/.ssh/%r@%h:%p
   UserKnownHostsFile    /dev/null
   IdentityFile          ~/.ssh/id_dsa
   KeepAlive             yes
