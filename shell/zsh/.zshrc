@@ -21,7 +21,6 @@ plugins=(ssh-agent brew git rbenv tuenti sublime tmux)
 MYDOTFILES="${HOME}/.mydotfiles"
 TUENTI_PATHS=( /srv/scripts/tools /srv/scripts/monitoring /home/configcopy/configcopy/bin )
 
-[ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
-
-[ -z "`which rbenv > /dev/null`" ] && eval "$(rbenv init -)"
-[ -z "`which pyenv > /dev/null`" ] && eval "$(pyenv init -)"
+[[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
+[[ -z "`which rbenv 2>/dev/null`"    ]] && eval "$(rbenv init -)"
+[[ -z "`which pyenv 2>/dev/null`"    ]] && eval "$(pyenv init -)"
