@@ -19,6 +19,7 @@ plugins=(ssh-agent brew git rbenv tuenti sublime tmux)
 ##
 # My own stuffs
 MYDOTFILES="${HOME}/.mydotfiles"
+TUENTI_PATHS=( /srv/scripts/tools /srv/scripts/monitoring /home/configcopy/configcopy/bin )
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 

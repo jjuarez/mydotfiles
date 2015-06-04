@@ -7,12 +7,6 @@ for prfl in ${MYDOTFILES}/shell/profiles.d/*.profile; do
 done 2>/dev/null
 
 ##
-# User specific commands
-for cmd in ${MYDOTFILES}/shell/commands.d/*.command; do
-  source ${cmd}
-done 2>/dev/null
-
-##
 # Set of alias
 [ -f "${MYDOTFILES}/shell/aliases" ] && source ${MYDOTFILES}/shell/aliases
 

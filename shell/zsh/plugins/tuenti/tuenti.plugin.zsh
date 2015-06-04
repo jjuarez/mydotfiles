@@ -11,7 +11,6 @@ vnc_tunnel() {
   ssh -L ${vnc_port}:"${vm_host}.tuenti.int":${vnc_port} ${jump_host}
 }
 
-
 ##
 # make a SSH tunnet with the KVM DC
 kvm_tunnel() {
@@ -31,14 +30,35 @@ kvm_tunnel() {
   esac
 }
 
-
 ##
 # ssh -t bastion_host ssh destination_host
-ssh2() {
+ssh_to() {
 
   local bastion_host="gen01.tuenti.int"
   local target_host=${1}
 
   [ -n "${target_host}" ] && /usr/bin/ssh -t ${bastion_host} ssh ${target_host}
+}
+
+##
+# Make a dir and change to it
+mcd() { 
+
+  local directory=${1}
+
+  [ -n "${directory}" ] || exit 1 
+
+  mkdir -p "${directory}" && cd "${directory}"
+}
+
+##
+# Make an archive and deletes a folder
+archive() {
+
+  local directory=${1}
+
+  [ -d "${directory}" ] || exit 1
+
+  tar -czvf "${directory}"{.tar.gz,} && rm -fr "${directory}" &>/dev/null
 }
 
