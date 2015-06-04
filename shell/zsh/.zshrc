@@ -23,7 +23,5 @@ TUENTI_PATHS=( /srv/scripts/tools /srv/scripts/monitoring /home/configcopy/confi
 
 [ -f "${MYDOTFILES}/shell/shell.sh" ] && source "${MYDOTFILES}/shell/shell.sh"
 
-[ -s "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
-
 [ -z "`which rbenv > /dev/null`" ] && eval "$(rbenv init -)"
 [ -z "`which pyenv > /dev/null`" ] && eval "$(pyenv init -)"
