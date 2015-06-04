@@ -12,12 +12,6 @@
     - :name: .zshrc
       :git_item: shell/zsh/.zshrc
       :local_item: .zshrc
-    - :name: .zlogin
-      :git_item: shell/zsh/.zlogin
-      :local_item: .zlogin
-    - :name: .customizations
-      :git_item: shell/zsh/customizations
-      :local_item: .customizations
     ##
     # SSH
     - :name: .ssh/config
@@ -50,4 +44,3 @@
     - md5sha1sum
     - gnu-tar
     - findutils
-

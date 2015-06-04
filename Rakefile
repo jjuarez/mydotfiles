@@ -2,11 +2,12 @@
 # Rakefile 
 require "yaml"
 
-Dir.glob("#{ENV['MYDOTFILES']}/lib/tasks/*.rb").each { |t| require t }
-
 ##
 # Pre-conditions
 fail("Environment variable MYDOTFILES undefined") unless ENV['MYDOTFILES']
+
+Dir.glob(File.join(ENV['MYDOTFILES'], 'lib', 'tasks', "*.rake")).each { |tf| load tf }
+
 
 ##
 # Init task load the configuration
