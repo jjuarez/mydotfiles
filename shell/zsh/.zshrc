@@ -25,3 +25,4 @@ MYDOTFILES="${HOME}/.mydotfiles"
 [ -s "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
 
 [ -z "`which rbenv > /dev/null`" ] && eval "$(rbenv init -)"
+[ -z "`which pyenv > /dev/null`" ] && eval "$(pyenv init -)"
