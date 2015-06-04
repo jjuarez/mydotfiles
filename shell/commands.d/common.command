@@ -4,7 +4,7 @@ mcd() {
 
   local directory=${1}
 
-  [ -d "${directory}" ] || exit 1 
+  [ -n "${directory}" ] || exit 1 
 
   mkdir -p "${directory}" && cd "${directory}"
 }
