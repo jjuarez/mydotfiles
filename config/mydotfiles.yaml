@@ -8,6 +8,14 @@
     - :name: .zshrc
       :git_item: shell/zsh/.zshrc
       :local_item: .zshrc
+    # ldap
+    - :name: .ldaprc
+      :git_item: shell/ldap/.ldaprc
+      :local_item: .ldaprc
+    # tmux
+    - :name: .tmux.conf
+      :git_item: shell/tmux/.tmux-osx.conf
+      :local_item: .tmux.conf
     # ssh
     - :name: .ssh/config
       :git_item: ssh/config
