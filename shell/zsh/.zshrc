@@ -13,7 +13,7 @@ COMPLETION_WAITING_DOTS="true"
 
 ##
 # Plugins
-plugins=(ssh-agent git rbenv tmux tuenti)
+plugins=(ssh-agent git rbenv tmux go tuenti)
 . "${ZSH}/oh-my-zsh.sh"
 
 ##
