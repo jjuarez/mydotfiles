@@ -27,6 +27,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'justincampbell/vim-railscasts'
+Plugin 'fatih/vim-go'
 
 
 if has('autocmd')
