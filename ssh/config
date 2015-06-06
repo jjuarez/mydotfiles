@@ -22,16 +22,22 @@ Host gen01.tuenti.int
   IdentitiesOnly yes
   User jjuarez
 
+Host gen01
+  HostName gen01.tuenti.int
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
+  User root
+
 Host bastion
   HostName gen01.tuenti.int
   IdentitiesOnly yes
-  IdentityFile ~/.ssh/id_dsa.tuenti
+  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
   User root
 
 Host *
-  ControlMaster         auto
-  ControlPath           ~/.ssh/%r@%h:%p
   UserKnownHostsFile    /dev/null
+  StrictHostKeyChecking no
+  VerifyHostKeyDNS      no
   IdentityFile          ~/.ssh/id_dsa
   KeepAlive             yes
   ForwardX11            no
@@ -40,8 +46,6 @@ Host *
   ServerAliveCountMax   4
   Compression           yes
   CheckHostIP           yes
-  VerifyHostKeyDNS      no
-  StrictHostKeyChecking no
   User                  root
   Port                  22
 
