@@ -1,8 +1,3 @@
-Host raspberrypi
-  HostName 192.168.1.2
-  IdentityFile ~/.ssh/id_dsa.raspberrypi
-  User root
-
 Host github.com
   HostName github.com
   IdentityFile ~/.ssh/id_dsa.tuenti
@@ -12,26 +7,28 @@ Host dbbackup1
   HostName dbbackup1.tuenti.int
   IdentitiesOnly yes
 
-Host dev?
+Host dev1 dev2 dev3 dev4 dev5 dev6
+  HostName %h.tuenti.int
   IdentitiesOnly yes
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
+Host hg3 hg4
+  Hostname %h.tuenti.int
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_dsa.tuenti
+  User root
+
 Host gen01.tuenti.int
   HostName gen01.tuenti.int
   IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
-
-Host gen01
-  HostName gen01.tuenti.int
-  IdentitiesOnly yes
-  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
-  User root
 
 Host bastion
   HostName gen01.tuenti.int
   IdentitiesOnly yes
-  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
+  IdentityFile ~/.ssh/id_dsa.tuenti
   User root
 
 Host *
