@@ -3,12 +3,6 @@ Host github.com
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
-Host dbbackup1
-  HostName dbbackup1.tuenti.int
-
-Host dbbackup2
-  HostName dbbackup2.tuenti.int
-
 Host dev1 dev2 dev3 dev4 dev5 dev6
   HostName %h.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
