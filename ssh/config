@@ -5,31 +5,30 @@ Host github.com
 
 Host dbbackup1
   HostName dbbackup1.tuenti.int
-  IdentitiesOnly yes
+
+Host dbbackup2
+  HostName dbbackup2.tuenti.int
 
 Host dev1 dev2 dev3 dev4 dev5 dev6
   HostName %h.tuenti.int
-  IdentitiesOnly yes
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
 Host hg3 hg4
   Hostname %h.tuenti.int
-  IdentitiesOnly yes
   IdentityFile ~/.ssh/id_dsa.tuenti
 
-Host gen01.tuenti.int
-  HostName gen01.tuenti.int
-  IdentitiesOnly yes
+Host bastion
+  HostName gen02.tuenti.int
+  IdentityFile ~/.ssh/id_dsa.tuenti
+
+Host gen01 gen02
+  HostName %h.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
-Host bastion
-  HostName gen01.tuenti.int
-  IdentitiesOnly yes
-  IdentityFile ~/.ssh/id_dsa.tuenti
-
 Host *
+  IdentitiesOnly yes
   UserKnownHostsFile    /dev/null
   StrictHostKeyChecking no
   VerifyHostKeyDNS      no
