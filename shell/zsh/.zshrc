@@ -13,7 +13,7 @@ COMPLETION_WAITING_DOTS="true"
 
 ##
 # Plugins
-plugins=( ssh-agent brew git rbenv tmux go docker sublime tuenti )
+plugins=( ssh-agent brew git tmux go docker sublime tuenti )
 . "${ZSH}/oh-my-zsh.sh"
 
 ##
@@ -22,5 +22,7 @@ MYDOTFILES="${HOME}/.mydotfiles"
 TUENTI_PATHS=( /srv/scripts/tools /srv/scripts/monitoring /home/configcopy/configcopy/bin )
 
 [[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
-[[ -z "`which rbenv 2>/dev/null`"    ]] && eval "$(rbenv init -)"
-[[ -z "`which pyenv 2>/dev/null`"    ]] && eval "$(pyenv init -)"
+
+export PATH="${HOME}/.rbenv/bin:${PATH}"
+
+eval "$(rbenv init -)"
