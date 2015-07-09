@@ -2,7 +2,7 @@ set nocompatible " like -N parameter remember to suppres the shell alias
 
 " ----------------------------------------------------------------------------
 "  Vundle setup
-filetype off
+filetype on
 
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
@@ -26,9 +26,9 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'edkolev/tmuxline.vim'
-Plugin 'justincampbell/vim-railscasts'
 Plugin 'fatih/vim-go'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'justincampbell/vim-railscasts'
 
 
 if has('autocmd')
@@ -45,6 +45,7 @@ let mapleader=","
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
 colorscheme railscasts
+let base16colorspace=256  " Access colors present in 256 colorspace
 
 
 " ----------------------------------------------------------------------------
