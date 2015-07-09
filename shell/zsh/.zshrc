@@ -13,7 +13,7 @@ COMPLETION_WAITING_DOTS="true"
 
 ##
 # Plugins
-plugins=( ssh-agent brew git tmux go docker sublime tuenti )
+plugins=( ssh-agent brew git tmux go boot2docker sublime jira tuenti )
 . "${ZSH}/oh-my-zsh.sh"
 
 ##
