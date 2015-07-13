@@ -27,8 +27,8 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'fatih/vim-go'
-Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'justincampbell/vim-railscasts'
+Plugin 'ekalinin/Dockerfile.vim'
 
 
 if has('autocmd')
