@@ -54,3 +54,5 @@ archive() {
   tar -czvf "${directory}"{.tar.gz,} && rm -fr "${directory}" &>/dev/null
 }
 
+alias sshto='ssh_to'
+alias ssh2='ssh_to'
