@@ -56,3 +56,6 @@ archive() {
 
 alias sshto='ssh_to'
 alias ssh2='ssh_to'
+alias gen01='ssh gen01'
+alias gen02='ssh gen02'
+alias puppet1='ssh_to puppet1'
