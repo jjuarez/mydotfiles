@@ -32,15 +32,16 @@ ssh_to() {
 
   local bastion_host="bastion"
   local target_host=${1}
+  local remote_command=${2:-""}
 
-  [ -n "${target_host}" ] && /usr/bin/ssh -t ${bastion_host} /usr/bin/ssh ${target_host} 
+  [[ -n "${target_host}" ]] && /usr/bin/ssh -t ${bastion_host} /usr/bin/ssh ${target_host} "${remote_command}"
 }
 
 mcd() { 
 
   local directory=${1}
 
-  [ -n "${directory}" ] || exit 1 
+ [[ -n "${directory}" ]] || exit 1 
 
   mkdir -p "${directory}" && cd "${directory}"
 }
@@ -49,7 +50,7 @@ archive() {
 
   local directory=${1}
 
-  [ -d "${directory}" ] || exit 1
+  [[ -d "${directory}" ]] || exit 1
 
   tar -czvf "${directory}"{.tar.gz,} && rm -fr "${directory}" &>/dev/null
 }
@@ -58,4 +59,4 @@ alias sshto='ssh_to'
 alias ssh2='ssh_to'
 alias gen01='ssh gen01'
 alias gen02='ssh gen02'
-alias puppet1='ssh_to puppet1'
+
