@@ -21,6 +21,10 @@ Host gen01 gen02
   IdentityFile ~/.ssh/id_dsa.tuenti
   User jjuarez
 
+Host tbox
+	HostName 127.0.0.1
+	Port 2222
+
 Host *
   IdentitiesOnly yes
   UserKnownHostsFile    /dev/null
