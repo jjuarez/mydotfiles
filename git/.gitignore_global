@@ -2,3 +2,5 @@
 **/**/.DS_Store
 .ruby-version
 .ruby-gems
+push_environment.sh
+
