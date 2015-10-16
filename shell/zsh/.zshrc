@@ -11,9 +11,11 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="false"
 COMPLETION_WAITING_DOTS="true"
 
+PATH=${PATH}:/usr/local/bin
+
 ##
 # Plugins
-plugins=( ssh-agent brew git mercurial tmux go docker sublime jira tuenti )
+plugins=( ssh-agent brew git mercurial go docker sublime jira tmux tuenti )
 . "${ZSH}/oh-my-zsh.sh"
 
 ##
