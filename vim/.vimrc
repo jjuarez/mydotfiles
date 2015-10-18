@@ -28,6 +28,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'fatih/vim-go'
 Plugin 'justincampbell/vim-railscasts'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'ekalinin/Dockerfile.vim'
 
 
@@ -44,8 +45,10 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-colorscheme railscasts
-let base16colorspace=256  " Access colors present in 256 colorspace
+" colorscheme railscasts
+set background=dark
+colorscheme solarized
+" let base16colorspace=256  " Access colors present in 256 colorspace
 
 
 " ----------------------------------------------------------------------------
@@ -163,7 +166,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode' : 'passive' }
-let g:syntastic_ruby_exec = '/usr/local/opt/rbenv/shims/ruby'
+let g:syntastic_ruby_exec = '~/.rbenv/shims/ruby'
 
 
 " ----------------------------------------------------------------------------
