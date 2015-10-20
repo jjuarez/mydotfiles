@@ -1,3 +1,21 @@
+##
+# Data
+wildcards=( '*' '.' '?' '|' ']' '[' )
+
+##
+# Functions
+contains_wildcards() {
+
+  local str=${1}
+
+  for w in "${wildcards[@]}"; do
+    [[ ${str} == *"${w}"* ]] || return 0
+  done
+
+  return 1
+}
+
+
 is_alive() {
 
   local target_host=${1}
@@ -41,7 +59,7 @@ mcd() {
 
   local directory=${1}
 
- [[ -n "${directory}" ]] || exit 1 
+  [[ -n "${directory}" ]] || return 1 
 
   mkdir -p "${directory}" && cd "${directory}"
 }
@@ -50,13 +68,41 @@ archive() {
 
   local directory=${1}
 
-  [[ -d "${directory}" ]] || exit 1
+  [[ -d "${directory}" ]] || return 1
 
   tar -czvf "${directory}"{.tar.gz,} && rm -fr "${directory}" &>/dev/null
 }
 
+find_vm() {
+
+  local vm=${1}
+  local kvm_hosts_list=${2:-'/srv/config/virt_server_list'}
+  local user=${3:-'root'}
+  local return_value=1
+
+  [[ -z "${vm}" ]] && return ${return_value}
+
+  [[ -f "${kvm_hosts_list}" ]] || return ${return_value}
+
+  if contains_wildcards "${vm}"; then
+    for kvm in $(cat ${kvm_hosts_list}); do
+
+      echo -n "Looking for virtual machine: ${vm} in kvm host: ${kvm}..."
+      ssh_to ${user}@${kvm} "/usr/bin/virsh list | /bin/grep -E ${vm}" &>/dev/null && { echo " Found it!"; return_value=0 } || { echo }
+    done
+  else
+    for kvm in $(cat ${kvm_hosts_list}); do
+
+      echo -n "Looking for virtual machine: ${vm} in kvm host: ${kvm}..."
+      ssh_to ${user}@${kvm} "/usr/bin/virsh list | /bin/grep -E ${vm}" &>/dev/null && { echo " Found it!"; return_value=0; break } || { echo }
+    done
+  fi
+
+  return ${return_value}
+}
+
+
+##
+# Aliases
 alias sshto='ssh_to'
-alias ssh2='ssh_to'
-alias gen01='ssh gen01'
-alias gen02='ssh gen02'
 
