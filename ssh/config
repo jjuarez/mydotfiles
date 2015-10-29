@@ -1,31 +1,36 @@
 Host github.com
-  HostName github.com
+  HostName     github.com
   IdentityFile ~/.ssh/id_dsa.tuenti
-  User jjuarez
+  User         jjuarez
 
 Host dev1 dev2 dev3 dev4 dev5 dev6
-  HostName %h.tuenti.int
+  HostName     %h.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
-  User jjuarez
+  User         jjuarez
 
 Host hg3 hg4
-  Hostname %h.tuenti.int
+  Hostname    %h.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
 
 Host bastion
- #HostName gen01.tuenti.int
-  HostName gen02.tuenti.int
+ #HostName g   en01.tuenti.int
+  HostName     gen02.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
-  User jjuarez
+  User         jjuarez
 
 Host gen01 gen02
-  HostName %h.tuenti.int
+  HostName     %h.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
-  User jjuarez
+  User         jjuarez
 
 Host tbox
-	HostName 127.0.0.1
-	Port 2222
+  HostName 127.0.0.1
+  Port     2222
+
+Host vertica1 vertica2 vertica3 vertica4
+  Hostname     %h.bi.0x14.net
+  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
+  User         admin
 
 Host *
   IdentitiesOnly yes
