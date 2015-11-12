@@ -27,6 +27,11 @@ Host tbox
   HostName 127.0.0.1
   Port     2222
 
+Host osx1 osx2
+  HostName     %h.tuenti.local
+  IdentityFile ~/.ssh/id_dsa.tuenti
+  User         tools
+
 Host vertica1 vertica2 vertica3 vertica4
   Hostname     %h.bi.0x14.net
   IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
