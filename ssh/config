@@ -48,6 +48,7 @@ Host *
   ForwardAgent          yes
   ServerAliveInterval   15
   ServerAliveCountMax   4
+  LogLevel              quiet
   Compression           yes
   CheckHostIP           yes
   User                  root
