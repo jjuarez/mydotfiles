@@ -48,9 +48,9 @@ Host *
   ForwardAgent          yes
   ServerAliveInterval   15
   ServerAliveCountMax   4
-  LogLevel              quiet
   Compression           yes
   CheckHostIP           yes
+  LogLevel              quiet
   User                  root
   Port                  22
 
