@@ -52,7 +52,7 @@ ssh_to() {
   local target_host=${1}
   local remote_command=${2:-""}
 
-  [[ -n "${target_host}" ]] && /usr/bin/ssh -t ${bastion_host} /usr/bin/ssh ${target_host} "${remote_command}"
+  [[ -n "${target_host}" ]] && env LC_ALL=C /usr/bin/ssh -t ${bastion_host} /usr/bin/ssh ${target_host} "${remote_command}"
 }
 
 mcd() { 
