@@ -50,6 +50,7 @@ Host *
   ServerAliveCountMax   4
   Compression           yes
   CheckHostIP           yes
+  LogLevel              quiet
   User                  root
   Port                  22
 
