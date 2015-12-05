@@ -32,11 +32,6 @@ Host osx1 osx2
   IdentityFile ~/.ssh/id_dsa.tuenti
   User         tools
 
-Host vertica1 vertica2 vertica3 vertica4
-  Hostname     %h.bi.0x14.net
-  IdentityFile ~/.ssh/id_rsa.tuenti.sysadmin
-  User         admin
-
 Host *
   IdentitiesOnly yes
   UserKnownHostsFile    /dev/null
