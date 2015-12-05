@@ -16,20 +16,17 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'elzr/vim-json'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'thoughtbot/vim-rspec'
-Plugin 'rodjek/vim-puppet'
+Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'klen/python-mode'
-Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
-Plugin 'honza/vim-snippets'
-Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
 Plugin 'fatih/vim-go'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'DataWraith/auto_mkdir'
+Plugin 'scrooloose/syntastic'
+Plugin 'honza/vim-snippets'
 Plugin 'justincampbell/vim-railscasts'
 Plugin 'altercation/vim-colors-solarized'
-" Plugin 'flazz/vim-colorschemes'
 
 
 if has('autocmd')
@@ -45,10 +42,9 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-" colorscheme railscasts
-set background=dark
-colorscheme solarized
-" let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme railscasts
+"set background=dark
+"colorscheme solarized
 
 
 " ----------------------------------------------------------------------------
@@ -107,9 +103,12 @@ set nrformats-=octal
 
 " ----------------------------------------------------------------------------
 " tabs and indenting
+set smartindent
 set smarttab              " <TAB> in front of line inserts 'shiftwidth' blanks
 set shiftround            " round to 'shiftwidth' for "<<" and ">>" 
 set expandtab
+set backspace=2
+set scrolloff=2
 set tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
 
@@ -145,10 +144,6 @@ set encoding=utf-8
 
 
 " ----------------------------------------------------------------------------
-" Autocmds
-
-
-" ----------------------------------------------------------------------------
 " Airline 
 let g:airline_powerline_fonts=1
 let g:airline_theme='tomorrow'
@@ -166,7 +161,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode' : 'passive' }
-let g:syntastic_ruby_exec = '~/.rbenv/shims/ruby'
 
 
 " ----------------------------------------------------------------------------
