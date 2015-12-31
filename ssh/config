@@ -33,7 +33,9 @@ Host osx1 osx2
   User         tools
 
 Host *
-  IdentitiesOnly yes
+  ControlMaster         auto
+  ControlPath           /tmp/ssh_mux_%h_%p_%r
+  IdentitiesOnly        yes
   UserKnownHostsFile    /dev/null
   StrictHostKeyChecking no
   VerifyHostKeyDNS      no
