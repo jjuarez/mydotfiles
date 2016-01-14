@@ -35,6 +35,7 @@ Host osx1 osx2
 Host *
 # ControlMaster         auto
 # ControlPath           /tmp/ssh_mux_%h_%p_%r
+  UseRoaming            no
   IdentitiesOnly        yes
   UserKnownHostsFile    /dev/null
   StrictHostKeyChecking no
