@@ -27,6 +27,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'honza/vim-snippets'
 Plugin 'justincampbell/vim-railscasts'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'evanmiller/nginx-vim-syntax'
 
 
 if has('autocmd')
