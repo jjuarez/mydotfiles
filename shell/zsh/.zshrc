@@ -3,6 +3,11 @@ ZSH="${HOME}/.oh-my-zsh"
 
 ##
 # Theme customization
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_SHOW_CHANGESET=true
+POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 ##
@@ -15,7 +20,7 @@ PATH=${PATH}:/usr/local/bin
 
 ##
 # Plugins
-plugins=( ssh-agent brew git mercurial go docker sublime jira tmux tuenti )
+plugins=(ssh-agent brew git mercurial go docker sublime jira tmux tuenti)
 . "${ZSH}/oh-my-zsh.sh"
 
 ##
