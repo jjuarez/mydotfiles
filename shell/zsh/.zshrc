@@ -31,6 +31,6 @@ TUENTI_PATHS=( /srv/scripts/tools /srv/scripts/monitoring /home/configcopy/confi
 
 [[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
 
-export PATH="${HOME}/.rbenv/bin:${PATH}"
-
+# Setup for rbenv
+export PATH=${HOME}/.rbenv/bin:${PATH}
 eval "$(rbenv init -)"

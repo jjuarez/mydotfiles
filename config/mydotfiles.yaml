@@ -44,3 +44,19 @@
     - gnu-tar
     - findutils
     - tmux
+  :rbenv:
+    :url: https://github.com/rbenv/rbenv.git
+    :plugins:
+      - :name: ruby-build
+        :git: https://github.com/rbenv/ruby-build.git
+      - :name: rbenv-aliases
+        :git: https://github.com/tpope/rbenv-aliases.git
+      - :name: rbenv-ctags
+        :git: https://github.com/tpope/rbenv-ctags.git
+      - :name: rbenv-gemset
+        :git: https://github.com/jf/rbenv-gemset.git
+      - :name: rbenv-update
+        :git: https://github.com/rkh/rbenv-update.git
+      - :name: rbenv-whatis
+        :git: https://github.com/rkh/rbenv-whatis.git
+
