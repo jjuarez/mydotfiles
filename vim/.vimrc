@@ -26,7 +26,8 @@ Plugin 'DataWraith/auto_mkdir'
 Plugin 'scrooloose/syntastic'
 Plugin 'honza/vim-snippets'
 Plugin 'justincampbell/vim-railscasts'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'evanmiller/nginx-vim-syntax'
 
 
@@ -44,8 +45,7 @@ let mapleader=","
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
 colorscheme railscasts
-"set background=dark
-"colorscheme solarized
+colorscheme molokai
 
 
 " ----------------------------------------------------------------------------
@@ -147,21 +147,21 @@ set encoding=utf-8
 " ----------------------------------------------------------------------------
 " Airline 
 let g:airline_powerline_fonts=1
-let g:airline_theme='tomorrow'
+let g:airline_theme='molokai'
 let g:airline#extensions#syntastic#enabled=1
 let g:airline#extensions#tabline#enabled=1
 
 
 " ----------------------------------------------------------------------------
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list =1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode' : 'passive' }
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list =1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_mode_map = { 'mode' : 'passive' }
 
 
 " ----------------------------------------------------------------------------
