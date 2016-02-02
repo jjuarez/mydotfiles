@@ -44,7 +44,7 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-colorscheme railscasts
+" colorscheme railscasts
 colorscheme molokai
 
 
