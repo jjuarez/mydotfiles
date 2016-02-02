@@ -3,6 +3,12 @@ ZSH="${HOME}/.oh-my-zsh"
 
 ##
 # Theme customization
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time)
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S %d/%m/%Y}"
+POWERLEVEL9K_NODE_VERSION_BACKGROUND='022'
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 ##
@@ -15,7 +21,7 @@ PATH=${PATH}:/usr/local/bin
 
 ##
 # Plugins
-plugins=( ssh-agent brew git mercurial go docker sublime jira tmux tuenti )
+plugins=(ssh-agent brew git mercurial go docker sublime jira tmux tuenti)
 . "${ZSH}/oh-my-zsh.sh"
 
 ##
@@ -25,6 +31,6 @@ TUENTI_PATHS=( /srv/scripts/tools /srv/scripts/monitoring /home/configcopy/confi
 
 [[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
 
-export PATH="${HOME}/.rbenv/bin:${PATH}"
-
+# Setup for rbenv
+export PATH=${HOME}/.rbenv/bin:${PATH}
 eval "$(rbenv init -)"

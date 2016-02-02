@@ -4,7 +4,11 @@ require "yaml"
 
 ##
 # Pre-conditions
-fail("Environment variable MYDOTFILES undefined") unless ENV['MYDOTFILES']
+unless ENV['MYDOTFILES']
+
+  warn("* Environment variable MYDOTFILES undefined, setting #{Dir.pwd}") unless ENV['MYDOTFILES']
+  ENV['MYDOTFILES']=Dir.pwd
+end
 
 Dir.glob(File.join(ENV['MYDOTFILES'], 'lib', 'tasks', "*.rake")).each { |tf| load tf }
 
@@ -19,4 +23,5 @@ task :load do
   $dotfiles = config[:dotfiles]
   $brews    = config[:brews]
   $urls     = config[:urls]
+  $rbenv    = config[:rbenv]
 end
