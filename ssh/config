@@ -13,15 +13,18 @@ Host hg3 hg4
   IdentityFile ~/.ssh/id_dsa.tuenti
 
 Host bastion
- #HostName g   en01.tuenti.int
+ #HostName     gen01.tuenti.int
   HostName     gen02.tuenti.int
   IdentityFile ~/.ssh/id_dsa.tuenti
   User         jjuarez
 
+Host collective1 collective2
+  HostName %h.tuenti.int
+  User     jjuarez
+
 Host gen01 gen02
-  HostName     %h.tuenti.int
-  IdentityFile ~/.ssh/id_dsa.tuenti
-  User         jjuarez
+  HostName %h.tuenti.int
+  User     jjuarez
 
 Host tbox mytbox TBox T-Box
   HostName 127.0.0.1
