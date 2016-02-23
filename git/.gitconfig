@@ -46,3 +46,5 @@
   tool = Kaleidoscope
 [credential]
   helper = cache
+[format]
+  pretty = oneline
