@@ -4,3 +4,5 @@ for p in "${TUENTI_PATHS[@]}"; do
 done
 
 export PATH
+
+export JIRA_URL="http://jira.tuenti.int/jira"
