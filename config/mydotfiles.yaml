@@ -8,6 +8,9 @@
     - :name: .zshrc
       :git_item: shell/zsh/.zshrc
       :local_item: .zshrc
+    - :name: .zlogin
+      :git_item: shell/zsh/.zlogin
+      :local_item: .zlogin
     # ldap
     - :name: .ldaprc
       :git_item: shell/ldap/.ldaprc
@@ -44,6 +47,7 @@
     - gnu-tar
     - findutils
     - tmux
+    - fortune
   :rbenv:
     :url: https://github.com/rbenv/rbenv.git
     :plugins:
