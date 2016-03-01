@@ -21,7 +21,7 @@ PATH=${PATH}:/usr/local/bin
 
 ##
 # Plugins
-plugins=(ssh-agent brew git mercurial gradle go docker sublime jira tmux tuenti)
+plugins=(ssh-agent brew git mercurial gradle go docker sublime jira tmux tuenti virtualenv pyenv)
 . "${ZSH}/oh-my-zsh.sh"
 
 ##
@@ -34,3 +34,5 @@ TUENTI_PATHS=( /srv/scripts/tools /srv/scripts/monitoring /home/configcopy/confi
 # Setup for rbenv
 export PATH=${HOME}/.rbenv/bin:${PATH}
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
