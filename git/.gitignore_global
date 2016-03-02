@@ -1,6 +1,7 @@
 .DS_Store
 **/**/.DS_Store
 .ruby-version
+.python-version
 .rbenv-gemset
 .ropeproject/**
 push_environment.sh

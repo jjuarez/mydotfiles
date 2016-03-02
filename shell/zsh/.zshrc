@@ -21,7 +21,7 @@ PATH=${PATH}:/usr/local/bin
 
 ##
 # Plugins
-plugins=(ssh-agent brew git mercurial gradle go docker sublime jira tmux tuenti virtualenv pyenv)
+plugins=(ssh-agent brew git mercurial gradle go docker sublime jira tmux tuenti pyenv virtualenv)
 . "${ZSH}/oh-my-zsh.sh"
 
 ##
