@@ -1,6 +1,6 @@
 ##
 # Rakefile 
-require "yaml"
+require 'yaml'
 
 ##
 # Pre-conditions
@@ -24,4 +24,5 @@ task :load do
   $brews    = config[:brews]
   $urls     = config[:urls]
   $rbenv    = config[:rbenv]
+  $pyenv    = config[:pyenv]
 end

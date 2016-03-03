@@ -63,4 +63,23 @@
         :git: https://github.com/rkh/rbenv-update.git
       - :name: rbenv-whatis
         :git: https://github.com/rkh/rbenv-whatis.git
+  :pyenv:
+    :url: https://github.com/yyuu/pyenv
+    :plugins:
+      - :name: pyenv-alias
+        :git: https://github.com/s1341/pyenv-alias.git
+      - :name: pyenv-doctor
+        :git: https://github.com/yyuu/pyenv-doctor.git
+      - :name: pyenv-pip-migrate
+        :git: https://github.com/yyuu/pyenv-pip-migrate.git
+      - :name: pyenv-pip-rehash
+        :git: https://github.com/yyuu/pyenv-pip-rehash.git
+      - :name: pyenv-update
+        :git: https://github.com/yyuu/pyenv-update.git
+      - :name: pyenv-virtualenv
+        :git: https://github.com/yyuu/pyenv-virtualenv.git
+      - :name: pyenv-virtualenvwrapper
+        :git: https://github.com/yyuu/pyenv-virtualenvwrapper.git
+      - :name: pyenv-pyenv
+        :git: https://github.com/yyuu/pyenv.git
 
