@@ -1,9 +1,10 @@
 .DS_Store
 **/**/.DS_Store
+*.pyc
+**.swp
 .ruby-version
 .python-version
 .rbenv-gemset
 .python-version
 .ropeproject/**
 push_environment.sh
-**.swp
