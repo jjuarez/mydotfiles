@@ -17,11 +17,13 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="false"
 COMPLETION_WAITING_DOTS="true"
 
+unsetopt share_history
+
 PATH=${PATH}:/usr/local/bin
 
 ##
 # Plugins
-plugins=(ssh-agent brew git mercurial gradle go docker sublime jira tmux tuenti pyenv virtualenv)
+plugins=(ssh-agent brew git mercurial go docker sublime jira tmux pyenv tuenti)
 . "${ZSH}/oh-my-zsh.sh"
 
 ##
@@ -39,4 +41,5 @@ eval "$(rbenv init -)"
 export PATH=${HOME}/.pyenv/bin:${PATH}
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
 
