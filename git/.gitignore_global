@@ -3,6 +3,7 @@
 *.pyc
 **.swp
 .ruby-version
+.rubocop.yaml
 .python-version
 .rbenv-gemset
 .python-version
