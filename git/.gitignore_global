@@ -5,7 +5,7 @@
 .ruby-version
 .rubocop.yaml
 .python-version
-.rbenv-gemset
+.rbenv-gemsets
 .python-version
 .ropeproject/**
 push_environment.sh
