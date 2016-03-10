@@ -1,7 +1,26 @@
-require 'rubygems'
+#!/usr/bin/env ruby
 
-begin
-  require 'irbtools' if RUBY_DESCRIPTION !~ /MacRuby/ && RUBY_DESCRIPTION !~ /1.8.7/
-  require 'terminal-notifier' if RUBY_DESCRIPTION !~ /MacRuby/ && RUBY_DESCRIPTION !~ /1.8.7/
-rescue LoadError => e
+require 'irb/completion'
+require 'irb/ext/save-history'
+
+%w[looksee awesome_print wirble].each do |gem|
+  begin
+    require gem
+  rescue LoadError =>le
+    warn("Can't load gem: #{gem} (#{le.message})")
+  end
 end
+
+IRB.conf[:SAVE_HISTORY] = 1000
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
+IRB.conf[:PROMPT_MODE]  = :SIMPLE
+
+
+
+class Object
+  # list methods which aren't in superclass
+  def local_methods(obj = self)
+    (obj.methods - obj.class.superclass.instance_methods).sort
+  end
+end
+
