@@ -30,6 +30,7 @@ Plugin 'justincampbell/vim-railscasts'
 Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'scrooloose/nerdtree'
 
 
 if has('autocmd')
