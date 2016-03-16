@@ -31,6 +31,7 @@ Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'scrooloose/nerdtree'
+Plugin 'ngmy/vim-rubocop'
 
 
 if has('autocmd')
