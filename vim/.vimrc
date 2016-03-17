@@ -20,6 +20,7 @@ Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'klen/python-mode'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tomtom/tlib_vim'
 Plugin 'fatih/vim-go'
 Plugin 'ekalinin/Dockerfile.vim'
@@ -28,7 +29,6 @@ Plugin 'scrooloose/syntastic'
 Plugin 'honza/vim-snippets'
 Plugin 'justincampbell/vim-railscasts'
 Plugin 'tomasr/molokai'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ngmy/vim-rubocop'
@@ -45,6 +45,7 @@ endif
 
 let mapleader=","
 
+
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
 " colorscheme railscasts
@@ -57,6 +58,7 @@ set nostartofline
 set incsearch	
 set ignorecase
 set smartcase
+set hlsearch
 
 
 " ----------------------------------------------------------------------------
@@ -150,21 +152,24 @@ set encoding=utf-8
 " ----------------------------------------------------------------------------
 " Airline 
 let g:airline_powerline_fonts=1
-let g:airline_theme='molokai'
-let g:airline#extensions#syntastic#enabled=1
+let g:airline_detect_paste=1
 let g:airline#extensions#tabline#enabled=1
+
+" ----------------------------------------------------------------------------
+" Syntastic 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 
 
 " ----------------------------------------------------------------------------
-" Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_always_populate_loc_list =1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_mode_map = { 'mode' : 'passive' }
+" Rubocop
+let g:vimrubocop_keymap = 0
+nmap <Leader>r :RuboCop<CR>
 
 
 " ----------------------------------------------------------------------------
@@ -172,3 +177,4 @@ let g:airline#extensions#tabline#enabled=1
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
