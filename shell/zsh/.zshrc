@@ -3,13 +3,7 @@ ZSH="${HOME}/.oh-my-zsh"
 
 ##
 # Theme customization
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time)
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S %d/%m/%Y}"
-POWERLEVEL9K_NODE_VERSION_BACKGROUND='022'
-ZSH_THEME="powerline"
+ZSH_THEME="oh-my-zsh-powerline/powerline"
 
 ##
 # ZSH Options
