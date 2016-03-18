@@ -173,6 +173,14 @@ nmap <Leader>r :RuboCop<CR>
 
 
 " ----------------------------------------------------------------------------
+" Mappings
+" toggle the paste mode
+map <Leader>pp :setlocal paste!<CR>
+" toggle the search highlight mode
+map <Leader>/ :nohlsearch<CR>
+
+
+" ----------------------------------------------------------------------------
 " Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
