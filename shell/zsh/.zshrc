@@ -3,6 +3,9 @@ ZSH="${HOME}/.oh-my-zsh"
 
 ##
 # Theme customization
+POWERLINE_SHORT_HOST_NAME="true"
+POWERLINE_PATH="short"
+POWERLINE_GIT_DIRTY="💩"
 ZSH_THEME="powerline"
 
 ##
