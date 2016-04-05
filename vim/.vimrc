@@ -12,7 +12,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
-Plugin 'tomtom/tcomment_vim'
 Plugin 'elzr/vim-json'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'thoughtbot/vim-rspec'
@@ -31,7 +30,10 @@ Plugin 'justincampbell/vim-railscasts'
 Plugin 'tomasr/molokai'
 Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tomtom/tcomment_vim'
 Plugin 'ngmy/vim-rubocop'
+Plugin 'tpope/vim-fugitive'
+Plugin 'altercation/vim-colors-solarized'
 
 
 if has('autocmd')
