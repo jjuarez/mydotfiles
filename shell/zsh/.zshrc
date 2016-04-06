@@ -3,10 +3,11 @@ ZSH="${HOME}/.oh-my-zsh"
 
 ##
 # Theme customization
-POWERLINE_SHORT_HOST_NAME="true"
-POWERLINE_PATH="short"
-POWERLINE_GIT_DIRTY="💩"
-ZSH_THEME="powerline"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+ZSH_THEME="powerlevel9k"
 
 ##
 # ZSH Options
@@ -37,6 +38,4 @@ eval "$(rbenv init -)"
 # Setup for pyenv
 export PATH=${HOME}/.pyenv/bin:${PATH}
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 
