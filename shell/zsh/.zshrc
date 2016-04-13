@@ -21,8 +21,9 @@ PATH=${PATH}:/usr/local/bin
 # Plugins
 plugins=(ssh-agent brew git mercurial go docker sublime jira tmux pyenv tuenti)
 . "${ZSH}/oh-my-zsh.sh"
+
 # To avoid shared history
-unsetopt share_history
+unsetopt share_history Off
 
 # To avoid shared history
 #unsetopt share_history Off
