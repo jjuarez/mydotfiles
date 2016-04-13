@@ -15,14 +15,14 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="false"
 COMPLETION_WAITING_DOTS="true"
 
-unsetopt share_history
-
 PATH=${PATH}:/usr/local/bin
 
 ##
 # Plugins
 plugins=(ssh-agent brew git mercurial go docker sublime jira tmux pyenv tuenti)
 . "${ZSH}/oh-my-zsh.sh"
+# To avoid shared history
+unsetopt share_history
 
 ##
 # My own stuffs
