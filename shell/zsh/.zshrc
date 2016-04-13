@@ -23,7 +23,7 @@ plugins=(ssh-agent brew git mercurial go docker sublime jira tmux pyenv tuenti)
 . "${ZSH}/oh-my-zsh.sh"
 
 # To avoid shared history
-unsetopt share_history Off
+#unsetopt share_history Off
 
 ##
 # My own stuffs
