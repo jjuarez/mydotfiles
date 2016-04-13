@@ -25,7 +25,7 @@ plugins=(ssh-agent brew git mercurial go docker sublime jira tmux pyenv tuenti)
 unsetopt share_history
 
 # To avoid shared history
-unsetopt share_history Off
+#unsetopt share_history Off
 
 ##
 # My own stuffs
