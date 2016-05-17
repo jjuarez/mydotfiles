@@ -1,6 +1,7 @@
 [user]
-  name  = Javier Juarez
-  email = jjuarez@tuenti.com
+  name       = Javier Juarez
+  email      = javier.juarez@gmail.com
+  signingkey = 2ED23857
 [color]
   diff        = auto
   status      = auto
