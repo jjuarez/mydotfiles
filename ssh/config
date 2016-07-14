@@ -26,19 +26,18 @@ Host gen01 gen02
   HostName %h.tuenti.int
   User     jjuarez
 
-Host tbox mytbox TBox T-Box
+Host tbox
   HostName 127.0.0.1
   Port     2222
   User     vagrant
 
-Host osx1 osx2
+Host osx1 osx2 osx3 osx4
   HostName     %h.tuenti.local
-  IdentityFile ~/.ssh/id_dsa.tuenti
   User         tools
 
 Host *
-  ControlMaster         auto
-  ControlPath           /tmp/ssh_mux_%h_%p_%r
+# ControlMaster         auto
+# ControlPath           /tmp/ssh_mux_%h_%p_%r
   UseRoaming            no
   IdentitiesOnly        yes
   UserKnownHostsFile    /dev/null

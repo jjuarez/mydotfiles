@@ -2,9 +2,9 @@
 
 ##
 # User specific profiles
-for prfl in ${MYDOTFILES}/shell/profiles.d/*.profile; do 
-  source ${prfl}
-done 2>/dev/null
+for p in ${MYDOTFILES}/shell/profiles.d/*.profile; do 
+  source ${p}
+done
 
 ##
 # Set of alias
