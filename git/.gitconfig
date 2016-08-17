@@ -2,6 +2,7 @@
   name       = Javier Juarez
   email      = javier.juarez@gmail.com
   signingkey = 2ED23857
+
 [color]
   diff        = auto
   status      = auto
@@ -9,6 +10,7 @@
   interactive = auto
   ui          = true
   pager       = true
+
 [alias]
   co         = checkout
   ci         = commit
@@ -21,31 +23,32 @@
   last       = log -1 HEAD
   unstage    = reset HEAD --
   lg         = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  d          = difftool
+
 [github]
   user = jjuarez
+
 [push]
   default = matching
+
 [core]
-  excludesfile = /Users/jjuarez/.gitignore_global
+  excludesfile = ~/.gitignore_global
+
 [help]
   autocorrect = 0
+
 [colour]
   ui = 1
-[difftool "Kaleidoscope"]
-  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[diff]
+  tool = vimdiff
+
 [difftool]
   prompt = false
-[diff]
-  tool = Kaleidoscope
-[mergetool "Kaleidoscope"]
-  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-  trustexitcode = true
-[mergetool]
-  prompt = false
-  keepBackup = true
-[merge]
-  tool = Kaleidoscope
+
 [credential]
   helper = cache
+
 [format]
   pretty = oneline
+
