@@ -36,22 +36,22 @@ Host osx1 osx2 osx3 osx4
   User         tools
 
 Host *
-# ControlMaster         auto
-# ControlPath           /tmp/ssh_mux_%h_%p_%r
-  UseRoaming            no
-  IdentitiesOnly        yes
-  UserKnownHostsFile    /dev/null
-  StrictHostKeyChecking no
-  VerifyHostKeyDNS      no
-  IdentityFile          ~/.ssh/id_dsa
-  KeepAlive             yes
-  ForwardX11            no
-  ForwardAgent          yes
-  ServerAliveInterval   15
-  ServerAliveCountMax   4
-  Compression           yes
-  CheckHostIP           yes
-  LogLevel              quiet
-  User                  root
-  Port                  22
+# ControlMaster          auto
+# ControlPath            /tmp/ssh_mux_%h_%p_%r
+  IdentitiesOnly         yes
+  PubkeyAcceptedKeyTypes +ssh-dss
+  IdentityFile           ~/.ssh/id_dsa
+  UserKnownHostsFile     /dev/null
+  StrictHostKeyChecking  no
+  VerifyHostKeyDNS       no
+  KeepAlive              yes
+  ForwardX11             no
+  ForwardAgent           yes
+  ServerAliveInterval    15
+  ServerAliveCountMax    4
+  Compression            yes
+  CheckHostIP            yes
+  LogLevel               quiet
+  User                   root
+  Port                   22
 
