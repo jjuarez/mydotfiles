@@ -35,6 +35,8 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'tpope/vim-fugitive'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'Townk/vim-autoclose'
+Plugin 'sjl/gundo.vim'
 
 
 if has('autocmd')
