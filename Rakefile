@@ -24,5 +24,4 @@ task :load do
   $brews    = config[:brews]
   $urls     = config[:urls]
   $rbenv    = config[:rbenv]
-  $pyenv    = config[:pyenv]
 end
