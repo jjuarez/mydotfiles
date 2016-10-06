@@ -36,7 +36,3 @@ TUENTI_PATHS=(/srv/scripts/tools /srv/scripts/monitoring /home/configcopy/config
 export PATH=${HOME}/.rbenv/bin:${PATH}
 eval "$(rbenv init -)"
 
-# Setup for pyenv
-export PATH=${HOME}/.pyenv/bin:${PATH}
-eval "$(pyenv init -)"
-
