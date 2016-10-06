@@ -1,5 +1,5 @@
 BASE        dc=tuenti,dc=com
-URI         ldap://it01.tuenti.local
-BINDDN      cn=admin,dc=tuenti,dc=com
+URI         ldaps://ldap.4iq.com
+BINDDN      cn=admin,dc=4iq,dc=com
 TIMELIMIT   15
 TLS_REQCERT never
