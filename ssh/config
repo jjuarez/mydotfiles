@@ -8,22 +8,12 @@ Host raspberrypi
   IdentityFile ~/.ssh/id_dsa.raspberrypi
   User         root
 
-Host dev1 dev2 dev3 dev4 dev5 dev6
-  HostName     %h.tuenti.int
-  IdentityFile ~/.ssh/id_dsa.tuenti
-  User         jjuarez
-
-Host hg3 hg4
-  Hostname    %h.tuenti.int
-  IdentityFile ~/.ssh/id_dsa.tuenti
-
-
 Host *
 # ControlMaster          auto
 # ControlPath            /tmp/ssh_mux_%h_%p_%r
   IdentitiesOnly         yes
   PubkeyAcceptedKeyTypes +ssh-dss
-  IdentityFile           ~/.ssh/id_dsa
+  IdentityFile           ~/.ssh/id_rsa
   UserKnownHostsFile     /dev/null
   StrictHostKeyChecking  no
   VerifyHostKeyDNS       no
