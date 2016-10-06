@@ -1,6 +1,6 @@
 Host github.com
   HostName     github.com
-  IdentityFile ~/.ssh/id_dsa.tuenti
+  IdentityFile ~/.ssh/id_rsa.github
   User         jjuarez
 
 Host raspberrypi
