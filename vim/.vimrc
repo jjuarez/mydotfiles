@@ -2,13 +2,12 @@ set nocompatible " like -N parameter remember to suppres the shell alias
 
 " ----------------------------------------------------------------------------
 "  Vundle setup
-filetype on
+filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 Plugin 'gmarik/Vundle.vim'
-
 Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
@@ -21,6 +20,7 @@ Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'burnettk/vim-angular'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'fatih/vim-go'
 Plugin 'ekalinin/Dockerfile.vim'
@@ -35,8 +35,10 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'tpope/vim-fugitive'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'Townk/vim-autoclose'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'sjl/gundo.vim'
+Plugin 'wincent/ferret'
+Plugin 'tpope/vim-dispatch'
 
 
 if has('autocmd')
@@ -53,8 +55,15 @@ let mapleader=","
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
-" colorscheme railscasts
+set background=dark  
+let g:molokai_original=1  
+let g:rehash256=1  
+set t_Co=256  
 colorscheme molokai
+
+" Show trailing whitespace and spaces before a tab:
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/
 
 
 " ----------------------------------------------------------------------------
@@ -76,7 +85,9 @@ set display+=lastline
 set cmdheight=2
 set nowrap
 set number
-
+" Hihglight the current line and column
+set cursorline
+set cuc cul"
 
 " ----------------------------------------------------------------------------
 " multiple windows
@@ -140,8 +151,9 @@ set history=200
 set wildmode=list:longest,full
 
 " File tab completion ignores these file patterns
-set wildignore+=*.exe,*.swp,.DS_Store,.git,.svn
+set wildignore+=*.exe,*.o,*.obj,*.pyc,*.rbc,*.class,vendor/gems/*,*.swp,.DS_Store,.git,.svn
 set wildmenu
+set wildmode=list:longest,list:full
 
 " Add guard around 'wildignorecase' to prevent terminal vim error
 if exists('&wildignorecase')
@@ -153,12 +165,17 @@ endif
 " multi-byte characters
 set encoding=utf-8
 
+" ----------------------------------------------------------------------------
+" viminfo sessions
+set viminfo+=n~/.vim/viminfo
+
 
 " ----------------------------------------------------------------------------
 " Airline 
 let g:airline_powerline_fonts=1
 let g:airline_detect_paste=1
 let g:airline#extensions#tabline#enabled=1
+
 
 " ----------------------------------------------------------------------------
 " Syntastic 
@@ -174,15 +191,17 @@ let g:syntastic_check_on_wq = 1
 " ----------------------------------------------------------------------------
 " Rubocop
 let g:vimrubocop_keymap = 0
-nmap <Leader>r :RuboCop<CR>
+nmap <leader>r :RuboCop<CR>
 
 
 " ----------------------------------------------------------------------------
 " Mappings
 " toggle the paste mode
-map <Leader>pp :setlocal paste!<CR>
+map <leader>pp :setlocal paste!<CR>
 " toggle the search highlight mode
-map <Leader>/ :nohlsearch<CR>
+map <leader>/ :nohlsearch<CR>
+" Open NERDTree
+map <leader>q :NERDTreeToggle<CR>
 
 
 " ----------------------------------------------------------------------------
