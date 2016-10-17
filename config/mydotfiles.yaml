@@ -53,7 +53,7 @@
     - git-flow
     - gnu-sed
     - gnu-tar
-    - htop-osx
+    - htop
     - ack
     - amazon-ecs-cli
     - coreutils
@@ -65,6 +65,8 @@
     - terraform
     - wget
     - unrar
+    - nmap
+    - vim
   # Casks
   :casks:
     - 1password
