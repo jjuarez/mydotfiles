@@ -83,6 +83,7 @@
     - virtualbox
     - vagrant
     - whatsapp
+    - things
   :rbenv:
     :url: https://github.com/rbenv/rbenv.git
     :plugins:
