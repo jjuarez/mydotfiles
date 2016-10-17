@@ -49,6 +49,23 @@
     - findutils
     - tmux
     - fortune
+    - tree
+    - git-flow
+    - gnu-sed
+    - gnu-tar
+    - htop-osx
+    - ack
+    - amazon-ecs-cli
+    - coreutils
+    - moreutils
+    - socat
+    - packer
+    - psgrep
+    - pv
+    - terraform
+    - wget
+    - unrar
+  # Casks
   :casks:
     - 1password
     - dropbox
@@ -65,7 +82,7 @@
     - telegram
     - virtualbox
     - vagrant
-    - whatsappdesktop
+    - whatsapp
   :rbenv:
     :url: https://github.com/rbenv/rbenv.git
     :plugins:
