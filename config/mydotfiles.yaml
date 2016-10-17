@@ -84,6 +84,7 @@
     - vagrant
     - whatsapp
     - things
+    - caffeine
   :rbenv:
     :url: https://github.com/rbenv/rbenv.git
     :plugins:
