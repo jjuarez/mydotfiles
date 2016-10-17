@@ -5,8 +5,7 @@ require 'yaml'
 ##
 # Pre-conditions
 unless ENV['MYDOTFILES']
-
-  warn("* Environment variable MYDOTFILES undefined, setting #{Dir.pwd}") unless ENV['MYDOTFILES']
+  warn("* Environment variable MYDOTFILES undefined, setting #{Dir.pwd}")
   ENV['MYDOTFILES']=Dir.pwd
 end
 
