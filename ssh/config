@@ -3,6 +3,11 @@ Host github.com
   IdentityFile ~/.ssh/id_rsa.github
   User         jjuarez
 
+Host bitbucket.org
+  HostName     bitbucket.org
+  IdentityFile ~/.ssh/id_rsa.4iq.mbp.bitbucket
+  User         javier_juarez
+
 Host raspberrypi
   HostName     192.168.0.3
   IdentityFile ~/.ssh/id_dsa.raspberrypi
