@@ -2,6 +2,7 @@
   :urls:
       :vundle: https://github.com/gmarik/vundle.git
       :ohmyzsh: https://github.com/robbyrussell/oh-my-zsh.git
+      :homebrew: https://raw.githubusercontent.com/Homebrew/install/master/install
 
   :dotfiles:
     # zsh
@@ -48,6 +49,23 @@
     - findutils
     - tmux
     - fortune
+  :casks:
+    - 1password
+    - dropbox
+    - istat-menus
+    - launchbar
+    - rubymine
+    - sublime-text
+    - viscosity
+    - docker
+    - google-chrome
+    - iterm2
+    - macdown
+    - slack
+    - telegram
+    - virtualbox
+    - vagrant
+    - whatsappdesktop
   :rbenv:
     :url: https://github.com/rbenv/rbenv.git
     :plugins:

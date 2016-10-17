@@ -1,7 +1,15 @@
 namespace :homebrew do
 
+  task :install_base => :load do
+    begin
+      system("[ -x /usr/local/bin/brew ] || /usr/bin/ruby -e $(curl -fsSL $urls[:homebrew])")
+    rescue Exception =>e
+      $stderr.puts e.message
+    end
+  end
+
   desc "Install brews"
-  task :install =>:load do
+  task :install =>:install_base do
 
     begin
       $brews.each { |b| system("brew install #{b}") }

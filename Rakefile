@@ -22,6 +22,7 @@ task :load do
 
   $dotfiles = config[:dotfiles]
   $brews    = config[:brews]
+  $casks    = config[:casks]
   $urls     = config[:urls]
   $rbenv    = config[:rbenv]
 end
