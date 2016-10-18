@@ -5,7 +5,7 @@ require 'yaml'
 ##
 # Pre-conditions
 unless ENV['MYDOTFILES']
-  warn("* Environment variable MYDOTFILES undefined, setting #{Dir.pwd}")
+  warn("* Environment variable MYDOTFILES undefined, setting it to: #{Dir.pwd}")
   ENV['MYDOTFILES']=Dir.pwd
 end
 
@@ -20,8 +20,8 @@ task :load do
   config      = YAML.load_file(config_file)
 
   $dotfiles = config[:dotfiles]
-  $brews    = config[:brews]
+  $formulas = config[:formulas]
   $casks    = config[:casks]
-  $urls     = config[:urls]
   $rbenv    = config[:rbenv]
+  $urls     = config[:urls]
 end

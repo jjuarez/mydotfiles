@@ -1,30 +1,49 @@
 namespace :homebrew do
+  namespace :formula do
+    desc "Install formulas"
+    task :install =>:load do
+      begin
+        $formulas.each { |f| system("[ -x /usr/local/bin/brew ] && /usr/local/bin/brew install #{f}") }
+      rescue Exception =>e
+        $stderr.puts e.message
+      end
+    end
 
-  task :install_base => :load do
-    begin
-      system("[ -x /usr/local/bin/brew ] || /usr/bin/ruby -e $(curl -fsSL $urls[:homebrew])")
-    rescue Exception =>e
-      $stderr.puts e.message
+    desc "Uninstall formulas"
+    task :uninstall =>:load do
+      begin
+        $formulas.each { |f| system("[ -x /usr/local/bin/brew ] && /usr/local/bin/brew uninstall --force #{f}") }
+      rescue Exception =>e
+        $stderr.puts e.message
+      end
     end
   end
 
-  desc "Install brews"
-  task :install =>:install_base do
-
-    begin
-      $brews.each { |b| system("brew install #{b}") }
-    rescue Exception =>e
-      $stderr.puts e.message
+  namespace :cask do
+    task :tap => :load do
+      begin
+        system("[ -x /usr/local/bin/brew ] && /usr/local/bin/brew tap caskroom/cask")
+      rescue Exception =>e
+        $stderr.puts e.message
+      end
     end
-  end
 
-  desc "Uninstall brews"
-  task :uninstall =>:load do
+    desc "Install casks"
+    task :install =>:tap do
+      begin
+        $casks.each { |c| system("[ -x /usr/local/bin/brew ] && /usr/local/bin/brew cask install #{c}") }
+      rescue Exception =>e
+        $stderr.puts e.message
+      end
+    end
 
-    begin
-      $brews.each { |b| system("brew uninstall #{b}") }
-    rescue Exception =>e
-      $stderr.puts e.message
+    desc "Uninstall casks"
+    task :uninstall =>:tap do
+      begin
+        $casks.each { |c| system("[ -x /usr/local/bin/brew ] || /usr/local/bin/brew cask uninstall --force #{c}") }
+      rescue Exception =>e
+        $stderr.puts e.message
+      end
     end
   end
 end
