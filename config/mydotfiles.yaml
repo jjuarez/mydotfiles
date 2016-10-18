@@ -89,6 +89,7 @@
     - whatsapp
     - things
     - caffeine
+    - dash
   :rbenv:
     :url: https://github.com/rbenv/rbenv.git
     :plugins:
