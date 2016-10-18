@@ -47,6 +47,7 @@
     - md5sha1sum
     - gnu-tar
     - findutils
+    - most
     - tmux
     - fortune
     - tree
