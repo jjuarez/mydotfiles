@@ -44,6 +44,10 @@
       :local_item: .gitignore_global
   # Brews
   :brews:
+    - vim
+    - go
+    - httperf
+    - httpie
     - md5sha1sum
     - gnu-tar
     - findutils
