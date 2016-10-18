@@ -49,7 +49,6 @@
     - findutils
     - most
     - tmux
-    - fortune
     - tree
     - git-flow
     - gnu-sed
