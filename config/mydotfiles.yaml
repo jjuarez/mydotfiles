@@ -90,6 +90,7 @@
     - things
     - caffeine
     - dash
+    - spectacle
   :rbenv:
     :url: https://github.com/rbenv/rbenv.git
     :plugins:
