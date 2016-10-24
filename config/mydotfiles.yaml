@@ -69,6 +69,7 @@
     - wget
     - unrar
     - nmap
+    - ipcalc
   # Casks
   :casks:
     - 1password
