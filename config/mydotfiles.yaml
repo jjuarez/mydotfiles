@@ -45,6 +45,7 @@
       :local_item: .gitignore_global
   # Brews
   :formulas:
+    - jq
     - go
     - httperf
     - md5sha1sum
