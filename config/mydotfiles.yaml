@@ -19,7 +19,7 @@
       :local_item: .ldaprc
     # tmux
     - :name: .tmux.conf
-      :git_item: shell/tmux/.tmux-osx.conf
+      :git_item: shell/tmux/.tmux.conf
       :local_item: .tmux.conf
     # ssh
     - :name: .ssh/config

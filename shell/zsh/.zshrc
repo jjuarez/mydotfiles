@@ -2,6 +2,10 @@
 ZSH="${HOME}/.oh-my-zsh"
 
 ##
+# Term customizations
+TERM=xterm-256color
+
+##
 # Theme customization
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
