@@ -14,8 +14,6 @@ Host raspberrypi
   User         root
 
 Host *
-# ControlMaster          auto
-# ControlPath            /tmp/ssh_mux_%h_%p_%r
   IdentitiesOnly         yes
   PubkeyAcceptedKeyTypes +ssh-dss
   IdentityFile           ~/.ssh/id_rsa
