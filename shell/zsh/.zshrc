@@ -23,7 +23,7 @@ PATH=${PATH}:/usr/local/bin
 
 ##
 # Plugins
-plugins=(ssh-agent brew git go docker sublime jjuarez)
+plugins=(ssh-agent brew git go docker sublime vagrant jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
 # To avoid shared history
