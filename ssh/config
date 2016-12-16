@@ -15,20 +15,6 @@ Host raspberrypi
 
 ##
 # Amazon
-Host puppetserver
-  HostName     ec2-54-174-243-185.compute-1.amazonaws.com
-  IdentityFile ~/.ssh/Amazon.4iq.Systems.pem
-  User         centos
-
-Host puppetmaster
-  HostName     ec2-54-174-243-185.compute-1.amazonaws.com
-  IdentityFile ~/.ssh/Amazon.4iq.Systems.pem
-  User         centos
-
-Host puppet.4iq.int
-  HostName     ec2-54-174-243-185.compute-1.amazonaws.com
-  User         centos
-
 Host puppet-pro-1.4iq.int
   HostName     ec2-54-174-243-185.compute-1.amazonaws.com
   User         centos
@@ -41,16 +27,30 @@ Host artifactory-pro-1.4iq.int
   HostName     ec2-52-91-127-36.compute-1.amazonaws.com
   User         centos
 
-Host sonardb-pro-1.4iq.int
-  HostName     ec2-54-210-124-139.compute-1.amazonaws.com
-  User         centos
-
 Host sonar-pro-1.4iq.int
   HostName     ec2-54-226-5-219.compute-1.amazonaws.com
   User         centos
 
+Host sonardb-pro-1.4iq.int
+  HostName     ec2-54-210-124-139.compute-1.amazonaws.com
+  User         centos
+
+Host vpn-pro-1.4iq.int
+  HostName     ec2-52-87-186-215.compute-1.amazonaws.com
+  User         ec2-user
+
+Host vpn-pro-2.4iq.int
+  HostName     ec2-52-45-174-162.compute-1.amazonaws.com
+  User         centos
+
+Host jenkins
+  HostName     ec2-54-163-192-56.compute-1.amazonaws.com
+  IdentityFile ~/.ssh/Amazon.4iq.SurvelaWeb.pem
+  User         ec2-user
+
 Host *.4iq.int
   IdentityFile ~/.ssh/Amazon.4iq.Systems.pem
+
 
 Host *
   IdentitiesOnly         yes
