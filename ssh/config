@@ -14,6 +14,18 @@ Host raspberrypi
   User         root
 
 ##
+# Arsys
+Host cpt-test-1.4iq.contractors
+  IdentityFile ~/.ssh/id_rsa
+  User         root
+
+##
+# CPI
+Host cptcpi-pro-1.4iq.int
+  HostName 190.26.217.217
+  User     root
+
+##
 # Amazon
 Host puppet-pro-1.4iq.int
   HostName     ec2-54-174-243-185.compute-1.amazonaws.com
@@ -28,11 +40,11 @@ Host artifactory-pro-1.4iq.int
   User         centos
 
 Host sonar-pro-1.4iq.int
-  HostName     ec2-54-226-5-219.compute-1.amazonaws.com
+  HostName     ec2-54-162-237-203.compute-1.amazonaws.com
   User         centos
 
 Host sonardb-pro-1.4iq.int
-  HostName     ec2-54-210-124-139.compute-1.amazonaws.com
+  HostName     ec2-52-91-148-236.compute-1.amazonaws.com
   User         centos
 
 Host vpn-pro-1.4iq.int
@@ -51,6 +63,8 @@ Host jenkins
 Host *.4iq.int
   IdentityFile ~/.ssh/Amazon.4iq.Systems.pem
 
+Host vpn-pro-1.mad.4iq.int
+  HostName 192.168.0.155
 
 Host *
   IdentitiesOnly         yes
