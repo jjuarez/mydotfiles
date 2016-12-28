@@ -46,15 +46,6 @@ slave_status() {
   [[ -n "${db_host}" ]] && mysql -A -h ${db_host} mysql -e "show slave status\G;"
 }
 
-mcd() { 
-
-  local directory=${1}
-
-  [[ -n "${directory}" ]] || return 1 
-
-  mkdir -p "${directory}" && cd "${directory}"
-}
-
 archive() {
 
   local directory=${1}
@@ -64,7 +55,12 @@ archive() {
   tar -czvf "${directory}"{.tar.gz,} && rm -fr "${directory}" &>/dev/null
 }
 
+rmd() {
+
+  pandoc ${1} | lynx -stdin
+}
+
+
 ##
 # Aliases
-alias sshto='ssh_to'
 
