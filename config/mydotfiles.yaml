@@ -93,6 +93,7 @@
     - caffeine
     - dash
     - spectacle
+    - vnc-viewer
   :rbenv:
     :url: https://github.com/rbenv/rbenv.git
     :plugins:
