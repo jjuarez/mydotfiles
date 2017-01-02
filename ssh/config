@@ -8,10 +8,20 @@ Host bitbucket.org
   IdentityFile ~/.ssh/id_rsa.4iq.mbp.bitbucket
   User         javier_juarez
 
+Host raspberrypi-eth0
+  HostName     192.168.0.19
+  IdentityFile ~/.ssh/id_ecdsa
+  User         pi
+
 Host raspberrypi
-  HostName     192.168.0.3
-  IdentityFile ~/.ssh/id_dsa.raspberrypi
-  User         root
+  HostName     192.168.0.12
+  IdentityFile ~/.ssh/id_ecdsa
+  User         pi
+
+Host raspberrypi3
+  HostName     192.168.0.18
+  IdentityFile ~/.ssh/id_ecdsa
+  User         pi
 
 ##
 # Arsys
@@ -60,8 +70,33 @@ Host jenkins
   IdentityFile ~/.ssh/Amazon.4iq.SurvelaWeb.pem
   User         ec2-user
 
+Host spinnaker-pro-1.4iq.int
+  HostName     ec2-54-144-238-249.compute-1.amazonaws.com
+  User         ubuntu
+
 Host *.4iq.int
   IdentityFile ~/.ssh/Amazon.4iq.Systems.pem
+
+##
+# Spinnaker PoC
+Host spinnaker-start
+  HostName      ec2-54-144-238-249.compute-1.amazonaws.com
+  IdentityFile  ~/.ssh/Amazon.4iq.Systems.pem
+  ControlMaster yes
+  ControlPath   ~/.ssh/spinnaker-tunnel.ctl
+  LocalForward  9000 127.0.0.1:9000
+  LocalForward  8084 127.0.0.1:8084
+  LocalForward  8087 127.0.0.1:8087
+  RequestTTY    no
+  User          ubuntu
+
+Host spinnaker-stop
+  HostName      ec2-54-144-238-249.compute-1.amazonaws.com
+  IdentityFile  ~/.ssh/Amazon.4iq.Systems.pem
+  ControlMaster yes
+  ControlPath   ~/.ssh/spinnaker-tunnel.ctl
+  RequestTTY    no
+  User          ubuntu
 
 Host vpn-pro-1.mad.4iq.int
   HostName 192.168.0.155
