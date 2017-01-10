@@ -22,8 +22,16 @@ COMPLETION_WAITING_DOTS="true"
 PATH=${PATH}:/usr/local/bin
 
 ##
+# Jira plugin options
+JIRA_URL=https://4iqnet.atlassian.net/
+JIRA_PREFIX=
+JIRA_NAME="Javier Juarez"
+JIRA_RAPID_BOARD=27
+JIRA_DEFAULT_ACTION=new
+
+##
 # Plugins
-plugins=(ssh-agent brew git go docker sublime vagrant jjuarez)
+plugins=(ssh-agent brew git go docker sublime vagrant jira jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
 # To avoid shared history
