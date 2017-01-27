@@ -39,6 +39,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'sjl/gundo.vim'
 Plugin 'wincent/ferret'
 Plugin 'tpope/vim-dispatch'
+Plugin 'hashivim/vim-terraform'
 
 if has('autocmd')
   filetype plugin indent on
