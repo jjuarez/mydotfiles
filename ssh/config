@@ -70,6 +70,16 @@ Host jenkins
   IdentityFile ~/.ssh/Amazon.4iq.SurvelaWeb.pem
   User         ec2-user
 
+Host websearch_dowloader
+  HostName     54.172.112.138
+  IdentityFile ~/.ssh/Amazon.4iq.WebSearch.pem
+  User         ec2-user
+
+Host websearch_indexer
+  HostName     52.3.254.221
+  IdentityFile ~/.ssh/Amazon.4iq.WebSearch.pem
+  User         ec2-user
+
 Host spinnaker-pro-1.4iq.int
   HostName     ec2-54-144-238-249.compute-1.amazonaws.com
   User         ubuntu
