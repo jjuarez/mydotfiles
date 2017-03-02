@@ -3,7 +3,7 @@
 require 'irb/completion'
 require 'irb/ext/save-history'
 
-%w[looksee awesome_print wirble].each do |gem|
+%w[looksee awesome_print].each do |gem|
   begin
     require gem
   rescue LoadError =>le
