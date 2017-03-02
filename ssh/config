@@ -37,9 +37,17 @@ Host cptcpi-pro-1.4iq.int
 
 ##
 # Amazon
+Host proxy-pro-2.4iq.int
+  HostName ec2-54-236-5-227.compute-1.amazonaws.com
+  User     centos
+
 Host puppet-pro-1.4iq.int
-  HostName     ec2-54-174-243-185.compute-1.amazonaws.com
-  User         centos
+  HostName ec2-54-174-243-185.compute-1.amazonaws.com
+  User     centos
+
+Host puppetdb-pro-1.4iq.int
+  HostName ec2-54-152-96-0.compute-1.amazonaws.com
+  User     centos
 
 Host artifactorydb-pro-1.4iq.int
   HostName     ec2-54-197-94-23.compute-1.amazonaws.com
@@ -67,46 +75,44 @@ Host vpn-pro-2.4iq.int
 
 Host jenkins
   HostName     ec2-54-163-192-56.compute-1.amazonaws.com
-  IdentityFile ~/.ssh/Amazon.4iq.SurvelaWeb.pem
+  IdentityFile ~/.ssh/SurvelaWeb.pem
   User         ec2-user
 
 Host websearch_dowloader
   HostName     54.172.112.138
-  IdentityFile ~/.ssh/Amazon.4iq.WebSearch.pem
+  IdentityFile ~/.ssh/WebSearch.pem
   User         ec2-user
 
 Host websearch_indexer
   HostName     52.3.254.221
-  IdentityFile ~/.ssh/Amazon.4iq.WebSearch.pem
+  IdentityFile ~/.ssh/WebSearch.pem
   User         ec2-user
 
 Host spinnaker-pro-1.4iq.int
   HostName     ec2-54-144-238-249.compute-1.amazonaws.com
   User         ubuntu
 
+Host mongodb_wlp
+  HostName     54.152.184.208
+  IdentityFile ~/.ssh/Systems.pem
+  User         ec2-user
+
+Host mysql_integrationenv
+  HostName     ec2-54-175-90-140.compute-1.amazonaws.com
+  IdentityFile ~/.ssh/Systems.pem
+  User         ec2-user
+
+Host p2p_torrent_downloader_exp
+  HostName     ec2-52-205-206-123.compute-1.amazonaws.com
+  IdentityFile ~/.ssh/Systems.pem
+  User         ec2-user
+
+# Host proxy-pro-1.4iq.int
+#   HostName ec2-54-210-192-70.compute-1.amazonaws.com
+#   User     centos
+
 Host *.4iq.int
-  IdentityFile ~/.ssh/Amazon.4iq.Systems.pem
-
-##
-# Spinnaker PoC
-Host spinnaker-start
-  HostName      ec2-54-144-238-249.compute-1.amazonaws.com
-  IdentityFile  ~/.ssh/Amazon.4iq.Systems.pem
-  ControlMaster yes
-  ControlPath   ~/.ssh/spinnaker-tunnel.ctl
-  LocalForward  9000 127.0.0.1:9000
-  LocalForward  8084 127.0.0.1:8084
-  LocalForward  8087 127.0.0.1:8087
-  RequestTTY    no
-  User          ubuntu
-
-Host spinnaker-stop
-  HostName      ec2-54-144-238-249.compute-1.amazonaws.com
-  IdentityFile  ~/.ssh/Amazon.4iq.Systems.pem
-  ControlMaster yes
-  ControlPath   ~/.ssh/spinnaker-tunnel.ctl
-  RequestTTY    no
-  User          ubuntu
+  IdentityFile ~/.ssh/Systems.pem
 
 Host vpn-pro-1.mad.4iq.int
   HostName 192.168.0.155
