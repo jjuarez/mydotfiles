@@ -31,7 +31,7 @@ JIRA_DEFAULT_ACTION=new
 
 ##
 # Plugins
-plugins=(ssh-agent brew git go docker sublime vagrant jira jjuarez)
+plugins=(ssh-agent brew git go docker sublime vagrant jira aws jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
 # To avoid shared history
