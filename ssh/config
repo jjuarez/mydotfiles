@@ -70,10 +70,6 @@ Host sonardb-pro-1.4iq.int
   User         centos
 
 Host vpn-pro-1.4iq.int
-  HostName     ec2-52-87-186-215.compute-1.amazonaws.com
-  User         ec2-user
-
-Host vpn-pro-2.4iq.int
   HostName     ec2-52-45-174-162.compute-1.amazonaws.com
   User         centos
 
