@@ -9,14 +9,14 @@ Host bitbucket.org
   User         javier_juarez
 
 Host raspberrypi-eth0
-  HostName     192.168.0.19
-  IdentityFile ~/.ssh/id_ecdsa
-  User         pi
+  HostName     192.168.0.12
+  IdentityFile ~/.ssh/id_rsa.raspberrypi
+  User         root
 
 Host raspberrypi
   HostName     192.168.0.12
   IdentityFile ~/.ssh/id_ecdsa
-  User         pi
+  User         root
 
 Host raspberrypi3
   HostName     192.168.0.18
@@ -46,40 +46,41 @@ Host puppet-pro-1.4iq.int
   User     centos
 
 Host puppetdb-pro-1.4iq.int
-  HostName ec2-54-152-96-0.compute-1.amazonaws.com
+  HostName ec2-34-204-95-126.compute-1.amazonaws.com
   User     centos
 
 Host puppetdb.4iq.int
-  HostName ec2-54-152-96-0.compute-1.amazonaws.com
+  HostName ec2-34-204-95-126.compute-1.amazonaws.com
   User     centos
 
 Host artifactorydb-pro-1.4iq.int
-  HostName     ec2-54-197-94-23.compute-1.amazonaws.com
-  User         centos
+  HostName ec2-54-197-94-23.compute-1.amazonaws.com
+  User     centos
 
 Host artifactory-pro-1.4iq.int
-  HostName     ec2-52-91-127-36.compute-1.amazonaws.com
-  User         centos
+  HostName ec2-52-91-127-36.compute-1.amazonaws.com
+  User     centos
 
 Host sonar-pro-1.4iq.int
-  HostName     ec2-54-162-237-203.compute-1.amazonaws.com
-  User         centos
+  HostName ec2-54-162-237-203.compute-1.amazonaws.com
+  User     centos
 
 Host sonardb-pro-1.4iq.int
-  HostName     ec2-52-91-148-236.compute-1.amazonaws.com
-  User         centos
+  HostName ec2-52-91-148-236.compute-1.amazonaws.com
+  User     centos
 
 Host vpn-pro-1.4iq.int
-  HostName     ec2-52-45-174-162.compute-1.amazonaws.com
-  User         centos
+  HostName ec2-52-45-174-162.compute-1.amazonaws.com
+  User     centos
 
-Host jenkins
+Host jenkins.4iq.int
   HostName     ec2-54-163-192-56.compute-1.amazonaws.com
   IdentityFile ~/.ssh/SurvelaWeb.pem
   User         ec2-user
 
 Host *.compute-1.amazonaws.com
   IdentityFile ~/.ssh/Systems.pem
+  User         centos 
 
 Host *.4iq.int
   IdentityFile ~/.ssh/Systems.pem
