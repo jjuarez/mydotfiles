@@ -80,13 +80,19 @@ Host jenkins.4iq.int
 
 Host *.compute-1.amazonaws.com
   IdentityFile ~/.ssh/Systems.pem
-  User         centos 
+  User         ec2-user
 
 Host *.4iq.int
   IdentityFile ~/.ssh/Systems.pem
 
 Host vpn-pro-1.mad.4iq.int
   HostName 192.168.0.155
+
+##
+# Office
+Host puppet.4iq.office
+  HostName puppet.4iq.office
+  User     vagrant
 
 Host *
   IdentitiesOnly         yes
