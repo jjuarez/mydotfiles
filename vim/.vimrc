@@ -13,7 +13,8 @@ Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'thoughtbot/vim-rspec'
-Plugin 'puppetlabs/puppet-syntax-vim'
+"Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'rodjek/vim-puppet'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'burnettk/vim-angular'
 Plugin 'bling/vim-airline'
@@ -36,6 +37,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'hashivim/vim-terraform'
+Plugin 'ryanoasis/vim-devicons'
 
 if has('autocmd')
   filetype plugin indent on
@@ -112,7 +114,7 @@ set clipboard=unnamed	" Yank to the system clipboard by default
 
 " ----------------------------------------------------------------------------
 " editing text			" TODO: look at these options
-set backspace=indent,eol,start  "backspace over everything
+set backspace=indent,eol,start  "backspace over everything OSX fix
 set showmatch 
 set nojoinspaces
 set completeopt+=longest 
