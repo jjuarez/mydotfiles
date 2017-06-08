@@ -60,7 +60,16 @@ rmd() {
   pandoc ${1} | lynx -stdin
 }
 
+ssh_connect() {
 
-##
-# Aliases
+  local aws_host=${1}
+  local ssh_user=${2:-'centos'}
+  local ssh_key_file=${3:-$HOME/.ssh/Systems.pem}
+
+  [[ -n "${aws_host}" ]] || return 1
+  [[ -f "${ssh_key_file}" ]] || return 2
+
+  /usr/bin/ssh -l ${ssh_user} -i "${ssh_key_file}" ${aws_host}
+}
+
 
