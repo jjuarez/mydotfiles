@@ -13,8 +13,7 @@ Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'thoughtbot/vim-rspec'
-"Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'rodjek/vim-puppet'
+Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'burnettk/vim-angular'
 Plugin 'bling/vim-airline'
@@ -86,6 +85,7 @@ set number
 " Hihglight the current line and column
 set cursorline
 set cuc cul"
+
 
 " ----------------------------------------------------------------------------
 " multiple windows
