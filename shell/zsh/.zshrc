@@ -44,6 +44,10 @@ MYDOTFILES="${HOME}/.mydotfiles"
 [[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
 
 # Setup for rbenv
-export PATH=${HOME}/.rbenv/bin:${PATH}
+export PATH=${HOME}/.rbenv/bin:${HOME}/.rbenv/shims:${PATH}
 eval "$(rbenv init -)"
+
+# Setup for pyenv
+export PATH=${HOME}/.pyenv/shims:${PATH}
+eval "$(pyenv init -)"
 

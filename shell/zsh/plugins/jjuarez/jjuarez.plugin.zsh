@@ -5,7 +5,6 @@ wildcards=( '*' '.' '?' '|' ']' '[' )
 ##
 # Functions
 contains_wildcards() {
-
   local str=${1}
 
   for w in "${wildcards[@]}"; do
@@ -17,7 +16,6 @@ contains_wildcards() {
 
 
 is_alive() {
-
   local target_host=${1}
   local timeout=5
   local result=1
@@ -28,7 +26,6 @@ is_alive() {
 }
 
 is_port_open() {
-
   local target_host=${1}
   local port=${2}
   local timeout=2
@@ -47,7 +44,6 @@ slave_status() {
 }
 
 archive() {
-
   local directory=${1}
 
   [[ -d "${directory}" ]] || return 1
@@ -60,8 +56,10 @@ rmd() {
   pandoc ${1} | lynx -stdin
 }
 
-ssh_connect() {
 
+##
+# AWS
+ssh_aws() {
   local aws_host=${1}
   local ssh_user=${2:-'centos'}
   local ssh_key_file=${3:-$HOME/.ssh/Systems.pem}
@@ -72,4 +70,16 @@ ssh_connect() {
   /usr/bin/ssh -l ${ssh_user} -i "${ssh_key_file}" ${aws_host}
 }
 
+launch_test_instance() {
+  local image_id="${1}"
+  local sg_id="${2}"
+  local subnet_id=${3:-'subnet-ab288497'}
+  local instance_type=${4:-'t2.micro'}
+
+  instance_id=$(aws ec2 run-instances --image-id "${image_id}" --count 1 --instance-type "${instance_type}" --security-group-ids "${sg_id}" --subnet-id "${subnet_id}" --associate-public-ip-address 2>/dev/null|jq '.Instances[].InstanceId'|sed -e 's/"//g')
+
+  [[ -n "${instance_id}" ]] || return 1
+
+  aws ec2 create-tags --resources ${instance_id} --tags Key=Name,Value="Packer serverspec test"
+}
 
