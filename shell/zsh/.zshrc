@@ -51,3 +51,6 @@ eval "$(rbenv init -)"
 export PATH=${HOME}/.pyenv/shims:${PATH}
 eval "$(pyenv init -)"
 
+# Setup for thefuck tool
+eval "$(thefuck --alias)"
+
