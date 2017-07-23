@@ -37,6 +37,8 @@ Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'hashivim/vim-terraform'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'splattael/rufo-vim'
+Plugin 'johngrib/vim-game-code-break'
 
 if has('autocmd')
   filetype plugin indent on
