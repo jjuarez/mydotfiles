@@ -36,9 +36,23 @@ puppet::pc() {
  [[ -d "${pc_directory}" ]] && cd "${pc_directory}" 
 }
 
+terraform::iac() {
+ local iac_directory="${HOME}/workspace/4iq/devops/infrastructure/iac" 
+
+ [[ -d "${iac_directory}" ]] && cd "${iac_directory}" 
+}
+
+terraform::mgmt() {
+ local mgmt_directory="${HOME}/workspace/4iq/devops/infrastructure/iac_management" 
+
+ [[ -d "${mgmt_directory}" ]] && cd "${mgmt_directory}" 
+}
+
 ##
 # Aliases
 alias pc='puppet::pc'
+alias iac='terraform::iac'
+alias mgmt='terraform::mgmt'
 alias li='aws::launch_instance'
 alias archive='fs::archive'
 
