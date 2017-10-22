@@ -49,6 +49,14 @@ export PATH=${HOME}/.rbenv/bin:${HOME}/.rbenv/shims:${PATH}
 eval "$(rbenv init -)"
 
 # Setup for pyenv
-export PATH=${HOME}/.pyenv/shims:${PATH}
-eval "$(pyenv init -)"
+[[ -d "${HOME}/.pyenv" ]] && {
+  export PATH=${HOME}/.pyenv/shims:${PATH}
+  eval "$(pyenv init -)"
+}
+
+# Setup for rbenv
+[[ -d "${HOME}/.rbenv" ]] && {
+  export PATH=${HOME}/.rbenv/bin:${PATH}
+  eval "$(rbenv init -)"
+}
 

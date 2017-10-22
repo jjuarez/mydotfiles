@@ -111,4 +111,6 @@
         :git: https://github.com/rkh/rbenv-whatis.git
       - :name: update-rubies
         :git: https://github.com/toy/rbenv-update-rubies
+  :pyenv:
+    :url: https://github.com/pyenv/pyenv.git
 
