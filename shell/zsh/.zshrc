@@ -23,7 +23,7 @@ PATH=${PATH}:/usr/local/bin
 
 ##
 # Plugins
-plugins=(ssh-agent brew git docker aws jjuarez)
+plugins=(ssh-agent brew docker aws jira jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
 # To avoid shared history
@@ -35,6 +35,15 @@ MYDOTFILES="${HOME}/.mydotfiles"
 
 [[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
 
+##
+# Some homebrew configuration
+export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
+
+##
+# Google Cloud SDK
+[[ -f /opt/google-cloud-sdk/path.zsh.inc ]] && source /opt/google-cloud-sdk/path.zsh.inc
+
+
 # Setup for rbenv
 export PATH=${HOME}/.rbenv/bin:${HOME}/.rbenv/shims:${PATH}
 eval "$(rbenv init -)"
@@ -43,4 +52,3 @@ eval "$(rbenv init -)"
 export PATH=${HOME}/.pyenv/shims:${PATH}
 eval "$(pyenv init -)"
 
-#export PATH="$HOME/.tfenv/bin:$PATH"
