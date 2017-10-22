@@ -27,14 +27,11 @@ Plugin 'honza/vim-snippets'
 Plugin 'tomasr/molokai'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'ngmy/vim-rubocop'
 Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'hashivim/vim-terraform'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'splattael/rufo-vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
 
 if has('autocmd')
   filetype plugin indent on
@@ -80,7 +77,6 @@ set display+=lastline
 set cmdheight=2
 set nowrap
 set number
-" Hihglight the current line and column
 set cursorline
 set cuc cul"
 
@@ -111,7 +107,7 @@ set clipboard=unnamed	" Yank to the system clipboard by default
 
 
 " ----------------------------------------------------------------------------
-" editing text			" TODO: look at these options
+" editing text	
 set backspace=indent,eol,start  "backspace over everything OSX fix
 set showmatch 
 set nojoinspaces
@@ -161,10 +157,6 @@ endif
 " multi-byte characters
 set encoding=utf-8
 
-" ----------------------------------------------------------------------------
-" viminfo sessions
-set viminfo+=n~/.vim/viminfo
-
 
 " ----------------------------------------------------------------------------
 " Airline 
@@ -185,12 +177,6 @@ let g:syntastic_check_on_wq = 1
 
 
 " ----------------------------------------------------------------------------
-" Rubocop
-let g:vimrubocop_keymap = 0
-nmap <leader>r :RuboCop<CR>
-
-
-" ----------------------------------------------------------------------------
 " Mappings
 " toggle the paste mode
 map <leader>pp :setlocal paste!<CR>
@@ -198,6 +184,12 @@ map <leader>pp :setlocal paste!<CR>
 map <leader>/ :nohlsearch<CR>
 " Open NERDTree
 map <leader>q :NERDTreeToggle<CR>
+
+
+" ----------------------------------------------------------------------------
+" viminfo sessions
+set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.viminfo
+let g:session_autosave='no'
 
 
 " ----------------------------------------------------------------------------
