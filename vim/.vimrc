@@ -8,30 +8,28 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
+" Utils
+Plugin 'scrooloose/nerdtree'
+Plugin 'mileszs/ack.vim'
 Plugin 'ervandew/supertab'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'thoughtbot/vim-rspec'
+Plugin 'tomtom/tlib_vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'DataWraith/auto_mkdir'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'w0rp/ale'
+" Syntax
+"Plugin 'vim-ruby/vim-ruby'
+"Plugin 'thoughtbot/vim-rspec'
 Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'burnettk/vim-angular'
+"Plugin 'hashivim/vim-terraform'
+"Plugin 'ekalinin/Dockerfile.vim'
+"Plugin 'sheerun/vim-polyglot'
+" Themes
+Plugin 'tomasr/molokai'
+Plugin 'ryanoasis/vim-devicons'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'fatih/vim-go'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'DataWraith/auto_mkdir'
-Plugin 'scrooloose/syntastic'
-Plugin 'honza/vim-snippets'
-Plugin 'tomasr/molokai'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'sjl/gundo.vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'hashivim/vim-terraform'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'splattael/rufo-vim'
+
 
 if has('autocmd')
   filetype plugin indent on
@@ -177,13 +175,18 @@ let g:syntastic_check_on_wq = 1
 
 
 " ----------------------------------------------------------------------------
+" fzf
+
+" ----------------------------------------------------------------------------
 " Mappings
-" toggle the paste mode
-map <leader>pp :setlocal paste!<CR>
 " toggle the search highlight mode
-map <leader>/ :nohlsearch<CR>
+map ; :Buffers<CR>
+map <Leader>/ :nohlsearch<CR>
 " Open NERDTree
-map <leader>q :NERDTreeToggle<CR>
+map <Leader>q :NERDTreeToggle<CR>
+" fzf
+map <Leader>t :Files<CR>
+map <Leader>r :Tags<CR>
 
 
 " ----------------------------------------------------------------------------
