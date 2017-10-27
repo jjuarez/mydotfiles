@@ -43,11 +43,6 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 # Google Cloud SDK
 [[ -f /opt/google-cloud-sdk/path.zsh.inc ]] && source /opt/google-cloud-sdk/path.zsh.inc
 
-
-# Setup for rbenv
-export PATH=${HOME}/.rbenv/bin:${HOME}/.rbenv/shims:${PATH}
-eval "$(rbenv init -)"
-
 # Setup for pyenv
 [[ -d "${HOME}/.pyenv" ]] && {
   export PATH=${HOME}/.pyenv/shims:${PATH}
