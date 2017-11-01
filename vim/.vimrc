@@ -21,7 +21,7 @@ Plugin 'w0rp/ale'
 "Plugin 'vim-ruby/vim-ruby'
 "Plugin 'thoughtbot/vim-rspec'
 Plugin 'puppetlabs/puppet-syntax-vim'
-"Plugin 'hashivim/vim-terraform'
+Plugin 'hashivim/vim-terraform'
 "Plugin 'ekalinin/Dockerfile.vim'
 "Plugin 'sheerun/vim-polyglot'
 " Themes
