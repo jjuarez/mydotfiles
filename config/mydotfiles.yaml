@@ -13,10 +13,6 @@
     - :name: .zlogin
       :git_item: shell/zsh/.zlogin
       :local_item: .zlogin
-    # ldap
-    - :name: .ldaprc
-      :git_item: shell/ldap/.ldaprc
-      :local_item: .ldaprc
     # tmux
     - :name: .tmux.conf
       :git_item: shell/tmux/.tmux.conf
@@ -67,6 +63,7 @@
     - psgrep
     - pv
     - terraform
+    - terragrunt
     - wget
     - unrar
     - nmap
@@ -77,13 +74,11 @@
     - dropbox
     - istat-menus
     - launchbar
-    - rubymine
     - sublime-text
     - viscosity
     - docker
     - google-chrome
     - iterm2
-    - macdown
     - slack
     - telegram
     - virtualbox
@@ -91,9 +86,6 @@
     - whatsapp
     - things
     - caffeine
-    - dash
-    - spectacle
-    - vnc-viewer
   :rbenv:
     :url: https://github.com/rbenv/rbenv.git
     :plugins:
