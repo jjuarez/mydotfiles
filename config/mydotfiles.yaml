@@ -41,33 +41,50 @@
       :local_item: .gitignore_global
   # Brews
   :formulas:
-    - jq
-    - go
-    - httperf
-    - md5sha1sum
-    - gnu-tar
+    - coreutils
     - findutils
-    - most
-    - tmux
-    - tree
+    - moreutils
+    - ack
+    - jq
+    - httpie
+    - wget
+    - vim
+    - ctags
+    - dos2unix
+    - gawk
+    - git
+    - git-extras
     - git-flow
+    - git-lfs
     - gnu-sed
     - gnu-tar
-    - htop
-    - ack
-    - amazon-ecs-cli
-    - coreutils
-    - moreutils
-    - socat
-    - packer
-    - psgrep
+    - most
+    - ncdu
+    - md5sha1sum
     - pv
+    - htop
+    - ipcalc
+    - nmap
+    - socat
+    - psgrep
+    - tmux
+    - tree
+    - ruby
+    - lua
+    - go
+    - pyenv
+    - ipython
+    - python
+    - python3
+    - kubernetes-cli
+    - amazon-ecs-cli
+    - awscli
+    - packer
     - terraform
     - terragrunt
-    - wget
-    - unrar
-    - nmap
-    - ipcalc
+    - nomad
+    - vault
+    - vault-cli
   # Casks
   :casks:
     - 1password
