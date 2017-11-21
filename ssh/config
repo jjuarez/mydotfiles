@@ -3,17 +3,10 @@ Host github.com
   IdentityFile ~/.ssh/id_rsa.fon
   User         jjuarez
 
-##
-# Arsys
-Host cpt-test-1.4iq.contractors
-  IdentityFile ~/.ssh/id_rsa
-  User         root
-
-##
-# CPI
-Host cptcpi-pro-1.4iq.int
-  HostName 190.26.217.217
-  User     root
+Host gitlab.fon.ofi
+  Hostname gitlab.fon.ofi
+  IdentityFile ~/.ssh/id_rsa.fon
+  User         javier.juarez@fon.com
 
 Host *
   IdentitiesOnly         yes
