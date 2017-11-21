@@ -8,6 +8,7 @@ TERM=xterm-256color
 ##
 # Theme customization
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
@@ -38,10 +39,6 @@ MYDOTFILES="${HOME}/.mydotfiles"
 ##
 # Some homebrew configuration
 export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
-
-##
-# Google Cloud SDK
-[[ -f /opt/google-cloud-sdk/path.zsh.inc ]] && source /opt/google-cloud-sdk/path.zsh.inc
 
 # Setup for pyenv
 [[ -d "${HOME}/.pyenv" ]] && {
