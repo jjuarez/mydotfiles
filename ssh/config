@@ -1,27 +1,7 @@
 Host github.com
   HostName     github.com
-  IdentityFile ~/.ssh/id_rsa.github
+  IdentityFile ~/.ssh/id_rsa.fon
   User         jjuarez
-
-Host bitbucket.org
-  HostName     bitbucket.org
-  IdentityFile ~/.ssh/id_rsa.4iq.mbp.bitbucket
-  User         javier_juarez
-
-Host raspberrypi-eth0
-  HostName     192.168.0.12
-  IdentityFile ~/.ssh/id_rsa.raspberrypi
-  User         root
-
-Host raspberrypi
-  HostName     192.168.0.12
-  IdentityFile ~/.ssh/id_ecdsa
-  User         root
-
-Host raspberrypi3
-  HostName     192.168.0.18
-  IdentityFile ~/.ssh/id_ecdsa
-  User         pi
 
 ##
 # Arsys
@@ -34,65 +14,6 @@ Host cpt-test-1.4iq.contractors
 Host cptcpi-pro-1.4iq.int
   HostName 190.26.217.217
   User     root
-
-##
-# Amazon
-Host puppet.4iq.int
-  HostName ec2-54-174-243-185.compute-1.amazonaws.com
-  User     centos
-
-Host puppet-pro-1.4iq.int
-  HostName ec2-54-174-243-185.compute-1.amazonaws.com
-  User     centos
-
-Host puppetdb-pro-1.4iq.int
-  HostName ec2-34-204-95-126.compute-1.amazonaws.com
-  User     centos
-
-Host puppetdb.4iq.int
-  HostName ec2-34-204-95-126.compute-1.amazonaws.com
-  User     centos
-
-Host artifactorydb-pro-1.4iq.int
-  HostName ec2-54-197-94-23.compute-1.amazonaws.com
-  User     centos
-
-Host artifactory-pro-1.4iq.int
-  HostName ec2-52-91-127-36.compute-1.amazonaws.com
-  User     centos
-
-Host sonar-pro-1.4iq.int
-  HostName ec2-54-162-237-203.compute-1.amazonaws.com
-  User     centos
-
-Host sonardb-pro-1.4iq.int
-  HostName ec2-52-91-148-236.compute-1.amazonaws.com
-  User     centos
-
-Host vpn-pro-1.4iq.int
-  HostName ec2-52-45-174-162.compute-1.amazonaws.com
-  User     centos
-
-Host jenkins.4iq.int
-  HostName     ec2-54-163-192-56.compute-1.amazonaws.com
-  IdentityFile ~/.ssh/SurvelaWeb.pem
-  User         ec2-user
-
-Host *.compute-1.amazonaws.com
-  IdentityFile ~/.ssh/Systems.pem
-  User         ec2-user
-
-Host *.4iq.int
-  IdentityFile ~/.ssh/Systems.pem
-
-Host vpn-pro-1.mad.4iq.int
-  HostName 192.168.0.155
-
-##
-# Office
-Host puppet.4iq.office
-  HostName puppet.4iq.office
-  User     vagrant
 
 Host *
   IdentitiesOnly         yes
