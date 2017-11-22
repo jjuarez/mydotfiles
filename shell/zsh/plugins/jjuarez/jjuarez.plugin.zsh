@@ -49,28 +49,35 @@ aws::launch_instance() {
 ##
 # Puppet
 puppet::pc() {
- local pc_directory="${HOME}/workspace/4iq/devops/cm/puppet/modules/puppet_control"
+ local dir="${HOME}/workspace/fon/devops/cm/puppet/modules/puppet_control"
 
- [[ -d "${pc_directory}" ]] && cd "${pc_directory}"
+ [[ -d "${dir}" ]] && cd "${dir}"
 }
 
-terraform::iac() {
- local iac_directory="${HOME}/workspace/4iq/devops/infrastructure/iac"
+terraform::stack() {
+ local dir="${HOME}/workspace/fon/devops/infra/stack"
 
- [[ -d "${iac_directory}" ]] && cd "${iac_directory}"
+ [[ -d "${dir}" ]] && cd "${dir}"
 }
 
 terraform::mgmt() {
- local mgmt_directory="${HOME}/workspace/4iq/devops/infrastructure/iac_management"
+ local dir="${HOME}/workspace/fon/devops/infra/stack_management"
 
- [[ -d "${mgmt_directory}" ]] && cd "${mgmt_directory}" 
+ [[ -d "${dir}" ]] && cd "${dir}"
+}
+
+terraform::stack_live() {
+ local dir="${HOME}/workspace/fon/devops/infra/stack_live"
+
+ [[ -d "${dir}" ]] && cd "${dir}"
 }
 
 ##
 # Aliases
 alias pc='puppet::pc'
-alias iac='terraform::iac'
-alias mgmt='terraform::mgmt'
+alias stack='terraform::stack'
+alias stack_mgmt='terraform::mgmt'
+alias stack_live='terraform::live'
 alias li='aws::launch_instance'
 alias archive='fs::archive'
 
