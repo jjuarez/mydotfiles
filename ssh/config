@@ -4,9 +4,19 @@ Host github.com
   User         jjuarez
 
 Host gitlab.fon.ofi
-  Hostname gitlab.fon.ofi
+  Hostname     gitlab.fon.ofi
   IdentityFile ~/.ssh/id_rsa.fon
   User         javier.juarez@fon.com
+
+##
+# ECS cluster HW
+Host middleware-hw-staging
+  Hostname     52.18.32.170
+  IdentityFile ~/.ssh/homeWifiClusterKey.pem
+
+Host middleware-hw-development
+  Hostname     34.252.100.236
+  IdentityFile ~/.ssh/homeWifiClusterKey.pem
 
 Host *
   IdentitiesOnly         yes
@@ -22,6 +32,6 @@ Host *
   Compression            yes
   CheckHostIP            yes
   LogLevel               quiet
-  User                   root
+  User                   ec2-user
   Port                   22
 
