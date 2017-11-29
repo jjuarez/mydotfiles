@@ -11,11 +11,19 @@ Host gitlab.fon.ofi
 ##
 # ECS cluster HW
 Host middleware-hw-staging
-  Hostname     52.18.32.170
+  HostName     52.18.32.170
+  IdentityFile ~/.ssh/homeWifiClusterKey.pem
+
+Host stats-hw-staging
+  HostName     52.211.27.115
   IdentityFile ~/.ssh/homeWifiClusterKey.pem
 
 Host middleware-hw-development
-  Hostname     34.252.100.236
+  HostName     34.252.100.236
+  IdentityFile ~/.ssh/homeWifiClusterKey.pem
+
+Host stats-hw-development
+  HostName 34.242.90.101
   IdentityFile ~/.ssh/homeWifiClusterKey.pem
 
 Host *
