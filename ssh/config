@@ -3,32 +3,53 @@ Host github.com
   IdentityFile ~/.ssh/id_rsa.fon
   User         jjuarez
 
+
+##
+# Fon infra
 Host gitlab.fon.ofi
   Hostname     gitlab.fon.ofi
   IdentityFile ~/.ssh/id_rsa.fon
   User         javier.juarez@fon.com
 
+
 ##
-# ECS cluster HW
+# ECS cluster homeWiFi (staging)
+Host jarvis-hw-staging
+  HostName 52.31.157.8
+
+Host edge-hw-staging
+  HostName 54.194.131.103
+
 Host middleware-hw-staging
-  HostName     52.18.32.170
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
+  HostName 52.18.32.170
+
+Host malone-hw-staging
+  HostName 34.240.196.175
 
 Host stats-hw-staging
-  HostName     52.211.27.115
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
+  HostName 52.211.27.115
 
+##
+# ECS cluster homeWiFi (staging)
 Host middleware-hw-development
-  HostName     34.252.100.236
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
+  HostName 34.252.100.236
 
 Host stats-hw-development
   HostName 34.242.90.101
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
+
+Host jarvis-hw-development
+  HostName 52.19.150.159
+
+Host malone-hw-development
+  HostName 52.51.75.134
+
+Host edge-hw-development
+  HostName 34.251.233.58
+
 
 Host *
   IdentitiesOnly         yes
-  IdentityFile           ~/.ssh/id_rsa
+  IdentityFile           ~/.ssh/homeWifiClusterKey.pem
   UserKnownHostsFile     /dev/null
   StrictHostKeyChecking  no
   VerifyHostKeyDNS       no
