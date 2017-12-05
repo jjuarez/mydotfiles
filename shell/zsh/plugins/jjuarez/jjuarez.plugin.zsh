@@ -30,23 +30,6 @@ aws::launch_instance() {
 }
 
 ##
-# AWS retrieves the IP address of the instances that belongs to an ASG
-# aws::get_asg_ips() {
-#  local asg_name="${1}"
-#  local instances=""
-#
-#  [[ -n "${asg_name}" ]] || return 5
-#
-#  instances=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name "${asg_name}"|grep InstanceId|cut -d: -f2|sed -e 's/"//g'|sed -e 's/,//g')
-#
-#  [[ -n "${instances}" ]] || return 6
-#
-#  for i in "${instances}"; do
-#    aws ec2 describe-instances --instance-ids "${i}"|grep PrivateIpAddress|cut -d" " -f2|head -1|cut -d, -f1|sed -e 's/"//g'
-#  done
-# }
-
-##
 # Puppet
 puppet::pc() {
  local dir="${HOME}/workspace/fon/devops/cm/puppet/modules/puppet_control"
@@ -55,19 +38,19 @@ puppet::pc() {
 }
 
 terraform::stack() {
- local dir="${HOME}/workspace/fon/devops/infra/stack"
+ local dir="${HOME}/workspace/fon/devops/infra/iac_stack"
 
  [[ -d "${dir}" ]] && cd "${dir}"
 }
 
 terraform::mgmt() {
- local dir="${HOME}/workspace/fon/devops/infra/stack_management"
+ local dir="${HOME}/workspace/fon/devops/infra/iac_mgmt"
 
  [[ -d "${dir}" ]] && cd "${dir}"
 }
 
 terraform::stack_live() {
- local dir="${HOME}/workspace/fon/devops/infra/stack_live"
+ local dir="${HOME}/workspace/fon/devops/infra/iac_live"
 
  [[ -d "${dir}" ]] && cd "${dir}"
 }
