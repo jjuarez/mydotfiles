@@ -104,6 +104,8 @@
     - whatsapp
     - things
     - caffeine
+    - kaleidoscope
+    - tower
   :rbenv:
     :url: https://github.com/rbenv/rbenv.git
     :plugins:
