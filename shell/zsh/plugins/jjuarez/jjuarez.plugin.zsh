@@ -11,40 +11,36 @@ fs::archive() {
 ##
 # AWS
 aws::launch_instance() {
-  local image_id="${1}"
-  local sg_id="${2}"
-  local subnet_id="${3}"
-  local instance_type=${4:-'t2.micro'}
-  local key_name=${5:-'Systems'}
-  local instance_id=""
+  local configuration_file=${1:-"${HOME}/.aws_plugin_instance.conf"}
 
-  [[ -n "${image_id}"  ]] || return 1
-  [[ -n "${sg_id}"     ]] || return 2
+  [[ -s "${configuration_file}" ]] || return 1
+
+  source "${configuration_file}"
+
+  [[ -n "${image_id}" ]] || return 2
   [[ -n "${subnet_id}" ]] || return 3
+  [[ -n "${sg_id}" ]] || return 4
+  [[ -n "${instance_type}" ]] || return 5
+  [[ -n "${key_name}" ]] || return 6
 
   instance_id=$(aws ec2 run-instances --image-id "${image_id}" --count 1 --instance-type "${instance_type}" --key-name "${key_name}" --security-group-ids "${sg_id}" --subnet-id "${subnet_id}" --associate-public-ip-address|jq '.Instances[].InstanceId'|sed -e 's/"//g')
 
-  [[ -n "${instance_id}" ]] || return 4
+  [[ -n "${instance_id}" ]] || return 7
 
   aws ec2 create-tags --resources ${instance_id} --tags Key=Name,Value="Serverspec TEST instance"
 }
 
-##
-# Puppet
-puppet::pc() {
- local dir="${HOME}/workspace/fon/devops/cm/puppet/modules/puppet_control"
+aws::list_amis() {
+  local configuration_file=${1:-"${HOME}/.aws_plugin_instance.conf"}
 
- [[ -d "${dir}" ]] && cd "${dir}"
+  [[ -s "${configuration_file}" ]] || return 1
+
+  source "${configuration_file}"
+  aws ec2 describe-images --owners ${owner} | jq '.Images[] | { name: .Name, id: .ImageId }'
 }
 
 terraform::stack() {
  local dir="${HOME}/workspace/fon/devops/infra/iac_stack"
-
- [[ -d "${dir}" ]] && cd "${dir}"
-}
-
-terraform::mgmt() {
- local dir="${HOME}/workspace/fon/devops/infra/iac_mgmt"
 
  [[ -d "${dir}" ]] && cd "${dir}"
 }
@@ -57,10 +53,9 @@ terraform::stack_live() {
 
 ##
 # Aliases
-alias pc='puppet::pc'
+alias launch_instance='aws::launch_instance'
+alias list_amis='aws::list_amis'
 alias stack='terraform::stack'
-alias stack_mgmt='terraform::mgmt'
 alias stack_live='terraform::live'
-alias li='aws::launch_instance'
 alias archive='fs::archive'
 
