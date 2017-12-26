@@ -48,6 +48,7 @@
     - ack
     - jq
     - httpie
+    - fzf
     - wget
     - vim
     - ctags
