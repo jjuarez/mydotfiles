@@ -23,18 +23,6 @@ namespace :ohmyzsh do
     end
   end
 
-  desc "Install oh-my-zsh custom themes"
-  task :themes =>:load do
-    begin
-      ltd    = File.join(ENV['MYDOTFILES'], "shell", "zsh", "themes")
-      omzctd = File.join(ENV['HOME'], ".oh-my-zsh", "custom")
-
-      FileUtils.cp_r(ltd, omzctd, :verbose =>false)
-    rescue Exception =>e
-      $stderr.puts e.message
-    end
-  end
-
   desc "Uninstall oh-my-zsh"
   task :uninstall do
     begin
