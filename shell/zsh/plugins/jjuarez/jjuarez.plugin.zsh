@@ -8,14 +8,16 @@ fs::archive() {
   tar -czf ${directory}{.tar.gz,} && rm -fr "${directory}" &>/dev/null
 }
 
+
 aws::list_amis() {
-  local configuration_file=${1:-"${HOME}/.aws_plugin_instance.conf"}
+  local configuration_file=${1:-"${HOME}/.aws_zsh_plugin.conf"}
 
   [[ -s "${configuration_file}" ]] || return 1
 
   source "${configuration_file}"
   aws ec2 describe-images --owners ${owner} | jq '.Images[] | { name: .Name, id: .ImageId }'
 }
+
 
 git::fshow() {
   git log --graph --color=always \
@@ -33,5 +35,5 @@ FZF-EOF"
 # Aliases
 alias lamis='aws::list_amis'
 alias archive='fs::archive'
-alias fshow='git::fshow'
+alias gitfshow='git::fshow'
 
