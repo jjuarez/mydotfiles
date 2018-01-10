@@ -6,11 +6,10 @@ Host github.com
 
 ##
 # Fon infra
-Host gitlab.fon.ofi
-  Hostname     gitlab.fon.ofi
+Host git.fontools.com
+  Hostname     git.fontools.com
   IdentityFile ~/.ssh/id_rsa.fon
   User         javier.juarez@fon.com
-
 
 ##
 # ECS cluster homeWiFi (staging)
@@ -49,7 +48,7 @@ Host edge-hw-development
 
 Host *
   IdentitiesOnly         yes
-  IdentityFile           ~/.ssh/homeWifiClusterKey.pem
+# IdentityFile           ~/.ssh/homeWifiClusterKey.pem
   UserKnownHostsFile     /dev/null
   StrictHostKeyChecking  no
   VerifyHostKeyDNS       no
