@@ -19,7 +19,5 @@ task :load do
   $dotfiles = config[:dotfiles]
   $formulas = config[:formulas]
   $casks    = config[:casks]
-  $rbenv    = config[:rbenv]
-  $pyenv    = config[:pyenv]
   $urls     = config[:urls]
 end
