@@ -6,40 +6,33 @@
     :homebrew_uninstall: https://raw.githubusercontent.com/Homebrew/install/master/uninstall
 
   :dotfiles:
-    # zsh
     - :name: .zshrc
       :git_item: shell/zsh/.zshrc
       :local_item: .zshrc
     - :name: .zlogin
       :git_item: shell/zsh/.zlogin
       :local_item: .zlogin
-    # tmux
     - :name: .tmux.conf
       :git_item: shell/tmux/.tmux.conf
       :local_item: .tmux.conf
-    # ssh
     - :name: .ssh/config
       :git_item: ssh/config
       :local_item: .ssh/config
-    # vim
     - :name: .vimrc
       :git_item: vim/.vimrc
       :local_item: .vimrc
-    # ruby
     - :name: .irbrc
       :git_item: ruby/.irbrc
       :local_item: .irbrc
     - :name: .gemrc
       :git_item: ruby/.gemrc
       :local_item: .gemrc
-    # git
     - :name: .gitconfig
       :git_item: git/.gitconfig
       :local_item: .gitconfig
     - :name: .gitignore_global
       :git_item: git/.gitignore_global
       :local_item: .gitignore_global
-  # Brews
   :formulas:
     - coreutils
     - findutils
@@ -88,12 +81,9 @@
     - kr
     - rbenv
     - ruby-build
-    - rbenv-aliases
     - rbenv-gemset
     - rbenv-bundler
     - rbenv-bundle-exec
-    - 
-  # Casks
   :casks:
     - 1password
     - dropbox
@@ -113,4 +103,3 @@
     - caffeine
     - kaleidoscope
     - tower
-
