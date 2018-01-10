@@ -1,5 +1,0 @@
-BASE        dc=4iq,dc=com
-URI         ldaps://ldapmaster-pro-1.4iq.com
-BINDDN      cn=admin,dc=4iq,dc=com
-TIMELIMIT   15
-TLS_REQCERT never
