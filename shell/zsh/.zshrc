@@ -40,15 +40,8 @@ MYDOTFILES="${HOME}/.mydotfiles"
 # Some homebrew configuration
 export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 
-# Setup for pyenv
-[[ -d "${HOME}/.pyenv" ]] && {
-  export PATH=${HOME}/.pyenv/shims:${PATH}
-  eval "$(pyenv init -)"
-}
-
 # Setup for rbenv
 [[ -d "${HOME}/.rbenv" ]] && {
   export PATH=${HOME}/.rbenv/bin:${PATH}
   eval "$(rbenv init -)"
 }
-
