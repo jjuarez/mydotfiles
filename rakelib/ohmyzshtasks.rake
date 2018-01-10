@@ -14,10 +14,16 @@ namespace :ohmyzsh do
   desc "Install oh-my-zsh custom plugins"
   task :plugins =>:load do
     begin
-      lpd    = File.join(ENV['MYDOTFILES'], "shell", "zsh", "plugins")
-      omzcpd = File.join(ENV['HOME'], ".oh-my-zsh", "custom")
+      lpd    = File.join(ENV['MYDOTFILES'], 'shell', 'zsh', 'plugins')
+      omzcpd = File.join(ENV['HOME'], '.oh-my-zsh', 'custom', 'plugins')
 
-      FileUtils.cp_r(lpd, omzcpd, :verbose =>false)
+      Dir.glob("#{lpd}/**/*.plugin.zsh").each do |pf|
+        pd  = File.dirname(pf).split(File::SEPARATOR).last
+        apd = File.join(omzcpd, pd)
+
+        Dir.mkdir(apd) unless File.exist?(apd)
+        FileUtils.cp(pf, apd)
+      end
     rescue Exception =>e
       $stderr.puts e.message
     end
