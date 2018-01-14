@@ -1,0 +1,3 @@
+[[ -d "${HOME}/workspace/go" ]] || mkdir -p "${HOME}/workspace/go"
+
+export GOPATH="${HOME}/workspace/go"

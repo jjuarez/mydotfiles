@@ -33,6 +33,9 @@
     - :name: .gitignore_global
       :git_item: git/.gitignore_global
       :local_item: .gitignore_global
+    - :name: .gorc
+      :git_item: go/.gorc
+      :local_item: .gorc
   :formulas:
     - coreutils
     - findutils

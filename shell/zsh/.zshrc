@@ -45,3 +45,8 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
   export PATH=${HOME}/.rbenv/bin:${PATH}
   eval "$(rbenv init -)"
 }
+
+# Setup for golang
+[[ -s "${HOME}/.gorc" ]] && {
+  source "${HOME}/.gorc"
+}
