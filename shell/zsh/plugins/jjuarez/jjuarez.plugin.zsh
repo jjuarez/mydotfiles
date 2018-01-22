@@ -20,6 +20,13 @@ aws::list_amis() {
   aws --profile ${profile} ec2 describe-images --filters ${FILTERS} --owners ${OWNERS} --query 'Images[*].{ id:ImageId, name:Name, location:ImageLocation }'
 }
 
+aws::list_bastions() {
+  local profile=${1:-"default"}
+  local env=${2:-"pro"}
+
+  aws --profile ${profile} ec2 describe-instances --filter "Name=tag:Name,Values=bastion-${env}-*" --query 'Reservations[*].Instances[*].NetworkInterfaces[0].Association.PublicIp'
+}
+
 
 git::fshow() {
   git log --graph --color=always \
@@ -36,6 +43,7 @@ FZF-EOF"
 ##
 # Aliases
 alias archive='fs::archive'
-alias my_amis='aws::list_amis'
+alias amis='aws::list_amis'
+alias bastions='aws::list_bastions'
 alias git_fshow='git::fshow'
 
