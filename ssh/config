@@ -23,7 +23,7 @@ Host bastion-pro-001.fon.int
   HostName     ec2-54-171-112-79.eu-west-1.compute.amazonaws.com
 
 Host puppet.fon.int
-  ProxyJump bastion-pro-001.fon.int
+  ProxyJump    bastion-pro-001.fon.int
 
 Host *.fon.int
   IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
