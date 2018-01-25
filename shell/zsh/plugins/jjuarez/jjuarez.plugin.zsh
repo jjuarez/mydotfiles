@@ -37,7 +37,7 @@ aws::get_bastion() {
 
   cat<<EOF
 
-Host ${host_name}
+Host ${host_name}.fon.int
   HostName     ${BASTION}
 
 EOF
