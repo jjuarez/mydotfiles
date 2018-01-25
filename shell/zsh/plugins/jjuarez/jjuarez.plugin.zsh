@@ -20,11 +20,28 @@ aws::list_amis() {
   aws --profile ${profile} ec2 describe-images --filters ${FILTERS} --owners ${OWNERS} --query 'Images[*].{ id:ImageId, name:Name, location:ImageLocation }'
 }
 
-aws::list_bastions() {
-  local profile=${1:-"default"}
-  local env=${2:-"pro"}
 
-  aws --profile ${profile} ec2 describe-instances --filter "Name=tag:Name,Values=bastion-${env}-*" --query 'Reservations[*].Instances[*].NetworkInterfaces[0].Association.PublicIp'
+declare -r DEFAULT_PROFILE="homewifi_terraform"
+declare -r DEFAULT_ENV="pro"
+
+##
+# Get the bastion host
+aws::get_bastion() {
+  local profile=${1:-${DEFAULT_PROFILE}}
+  local env=${2:-${DEFAULT_ENV}}
+  local host_name="bastion-${env}-001"
+
+  BASTION=$(aws --profile ${profile} ec2 describe-instances --filter "Name=tag:Name,Values=${host_name}" --query 'Reservations[0].Instances[0].PublicDnsName'|sed -e 's/"//g')
+
+  [[ -n "${BASTION}" ]] || return 1
+
+  cat<<EOF
+#
+# SSH bastion configuration snippet
+Host ${host_name}
+  HostName ${BASTION}
+
+EOF
 }
 
 
@@ -44,6 +61,5 @@ FZF-EOF"
 # Aliases
 alias archive='fs::archive'
 alias amis='aws::list_amis'
-alias bastions='aws::list_bastions'
+alias bastion='aws::get_bastion'
 alias git_fshow='git::fshow'
-
