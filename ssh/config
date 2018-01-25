@@ -17,63 +17,13 @@ Host gitlab.com
   IdentityFile ~/.ssh/id_rsa.gitlab
   User         javier.juarez@fon.com
 
-##
-# ECS cluster homeWiFi
-Host jarvis-hw-staging
-  HostName     52.31.157.8
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
-  User         ec2-user
-
-Host edge-hw-staging
-  HostName     54.194.131.103
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
-  User         ec2-user
-
-Host middleware-hw-staging
-  HostName     52.18.32.170
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
-  User         ec2-user
-
-Host malone-hw-staging
-  HostName     34.240.196.175
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
-  User         ec2-user
-
-Host stats-hw-staging
-  HostName     52.211.27.115
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
-  User         ec2-user
-
-Host middleware-hw-development
-  HostName     34.252.100.236
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
-  User         ec2-user
-
-Host stats-hw-development
-  HostName     34.242.90.101
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
-  User         ec2-user
-
-Host jarvis-hw-development
-  HostName     52.19.150.159
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
-  User         ec2-user
-
-Host malone-hw-development
-  HostName     52.51.75.134
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
-  User         ec2-user
-
-Host edge-hw-development
-  HostName     34.251.233.58
-  IdentityFile ~/.ssh/homeWifiClusterKey.pem
-  User         ec2-user
-
 ## 
 # Fon AWS new infrastructure
-#
 Host bastion-pro-001.fon.int
   HostName     ec2-54-171-112-79.eu-west-1.compute.amazonaws.com
+
+Host puppet.fon.int
+  ProxyJump bastion-pro-001.fon.int
 
 Host *.fon.int
   IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
@@ -93,4 +43,3 @@ Host *
   CheckHostIP            yes
   LogLevel               quiet
   Port                   22
-
