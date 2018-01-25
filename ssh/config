@@ -1,6 +1,6 @@
 Host github.com
   HostName     github.com
-  IdentityFile ~/.ssh/id_rsa.fon
+  IdentityFile ~/.ssh/id_rsa.githubfon
   User         jjuarez
 
 ##
