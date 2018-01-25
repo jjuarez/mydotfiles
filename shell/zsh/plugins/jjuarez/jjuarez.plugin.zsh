@@ -36,8 +36,7 @@ aws::get_bastion() {
   [[ -n "${BASTION}" ]] || return 1
 
   cat<<EOF
-#
-# SSH bastion configuration snippet
+
 Host ${host_name}
   HostName ${BASTION}
 
