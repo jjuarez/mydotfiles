@@ -31,7 +31,7 @@ aws::get_bastion() {
   local env=${2:-${DEFAULT_ENV}}
   local host_name="bastion-${env}-001"
 
-  BASTION=$(aws --profile ${profile} ec2 describe-instances --filter "Name=tag:Name,Values=${host_name}" --query 'Reservations[0].Instances[0].PublicDnsName'|sed -e 's/"//g')
+  BASTION=$(aws --profile ${profile} ec2 describe-instances --filter "Name=instance-state-name,Values=running" "Name=tag:Name,Values=${host_name}" --query "Reservations[*].Instances[*].PublicDnsName" --output text)
 
   [[ -n "${BASTION}" ]] || return 1
 
