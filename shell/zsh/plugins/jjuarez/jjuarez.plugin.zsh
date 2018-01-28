@@ -9,6 +9,26 @@ fs::archive() {
 }
 
 
+typeset -A directories
+directories[mgmt]="${HOME}/workspace/fon/devops/infra/iac_mgmt"
+directories[stack]="${HOME}/workspace/fon/devops/infra/iac_homewifi"
+directories[live]="${HOME}/workspace/fon/devops/infra/iac_live"
+directories[pc]="${HOME}/workspace/fon/devops/cm/puppet-control"
+
+fs::directories() {
+  local dir=${1}
+
+  case ${dir} in
+    mgmt|stack|live|pc)
+      [[ -d "${directories[$dir]}" ]] && cd "${directories[$dir]}"
+    ;;
+    *)
+      return 1
+    ;;
+  esac
+}
+
+
 aws::list_amis() {
   local profile=${1:-"default"}
   local configuration_file=${2:-"${HOME}/.aws_zsh_plugin.conf"}
@@ -56,9 +76,15 @@ FZF-EOF"
 }
 
 
+
+
 ##
 # Aliases
 alias archive='fs::archive'
+alias git_fshow='git::fshow'
 alias amis='aws::list_amis'
 alias bastion='aws::get_bastion'
-alias git_fshow='git::fshow'
+alias mgmt='fs::directories mgmt'
+alias stack='fs::directories stack'
+alias live='fs::directories live'
+alias pc='fs::directories pc'
