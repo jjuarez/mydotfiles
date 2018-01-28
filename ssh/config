@@ -19,15 +19,28 @@ Host gitlab.com
 
 ## 
 # Fon AWS new infrastructure
-Host bastion-pro-001.fon.int
-  HostName     ec2-54-171-112-79.eu-west-1.compute.amazonaws.com
 
-Host puppet.fon.int
+Host puppetserver.fon.int
+  ProxyJump    bastion-pro-001.fon.int
+
+Host puppetdb.fon.int
+  ProxyJump    bastion-pro-001.fon.int
+
+Host prometheus.fon.int
+  ProxyJump    bastion-pro-001.fon.int
+
+Host alertmanager.fon.int
+  ProxyJump    bastion-pro-001.fon.int
+
+Host grafana.fon.int
   ProxyJump    bastion-pro-001.fon.int
 
 Host *.fon.int
   IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
   User         admin
+
+Host bastion-pro-001.fon.int
+  HostName     ec2-54-246-254-109.eu-west-1.compute.amazonaws.com
 
 Host *
   IdentitiesOnly         yes
