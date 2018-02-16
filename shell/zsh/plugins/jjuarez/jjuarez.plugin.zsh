@@ -41,15 +41,20 @@ aws::list_amis() {
 }
 
 
-declare -r DEFAULT_PROFILE="homewifi_terraform"
+declare -r DEFAULT_PROFILE="terraform"
+declare -r DEFAULT_PARTNER="Fon"
+declare -r DEFAULT_SYSTEM="mgmt"
 declare -r DEFAULT_ENV="pro"
 
 ##
 # Get the bastion host
 aws::get_bastion() {
   local profile=${1:-${DEFAULT_PROFILE}}
-  local env=${2:-${DEFAULT_ENV}}
-  local host_name="bastion-${env}-001"
+  local partner=${2:-${DEFAULT_PARTNER}}
+  local system=${2:-${DEFAULT_SYSTEM}}
+  local env=${3:-${DEFAULT_ENV}}
+
+  local host_name="bastion-${partner}-${system}-${env}-001"
 
   BASTION=$(aws --profile ${profile} ec2 describe-instances --filter "Name=instance-state-name,Values=running" "Name=tag:Name,Values=${host_name}" --query "Reservations[*].Instances[*].PublicDnsName" --output text)
 
