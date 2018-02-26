@@ -11,7 +11,7 @@ fs::archive() {
 
 typeset -A directories
 directories[mgmt]="${HOME}/workspace/fon/devops/infra/iac_mgmt"
-directories[stack]="${HOME}/workspace/fon/devops/infra/iac_homewifi"
+directories[homewifi]="${HOME}/workspace/fon/devops/infra/iac_homewifi"
 directories[live]="${HOME}/workspace/fon/devops/infra/iac_live"
 directories[pc]="${HOME}/workspace/fon/devops/cm/puppet-control"
 
@@ -19,7 +19,7 @@ fs::directories() {
   local dir=${1}
 
   case ${dir} in
-    mgmt|stack|live|pc)
+   homewifi| mgmt|live|pc)
       [[ -d "${directories[$dir]}" ]] && cd "${directories[$dir]}"
     ;;
     *)
@@ -90,6 +90,6 @@ alias git_fshow='git::fshow'
 alias amis='aws::list_amis'
 alias bastion='aws::get_bastion'
 alias mgmt='fs::directories mgmt'
-alias stack='fs::directories stack'
+alias homewifi='fs::directories homewifi'
 alias live='fs::directories live'
 alias pc='fs::directories pc'
