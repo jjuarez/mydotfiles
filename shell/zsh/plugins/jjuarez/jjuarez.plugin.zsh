@@ -42,7 +42,7 @@ aws::list_amis() {
 
 
 declare -r DEFAULT_PROFILE="terraform"
-declare -r DEFAULT_PARTNER="Fon"
+declare -r DEFAULT_PARTNER="fon"
 declare -r DEFAULT_SYSTEM="mgmt"
 declare -r DEFAULT_ENV="pro"
 
