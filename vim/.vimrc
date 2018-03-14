@@ -171,9 +171,6 @@ let g:syntastic_check_on_wq = 1
 
 
 " ----------------------------------------------------------------------------
-" fzf
-
-" ----------------------------------------------------------------------------
 " Mappings
 " toggle the search highlight mode
 map ; :Buffers<CR>
@@ -191,6 +188,14 @@ set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.viminfo
 let g:session_autosave='no'
 
 
+" ----------------------------------------------------------------------------
+" Terraform plugin setup
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_remap_spacebar=1
+
+
+"
 " ----------------------------------------------------------------------------
 " Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
