@@ -20,7 +20,7 @@ CASE_SENSITIVE="true"
 DISABLE_AUTO_UPDATE="false"
 COMPLETION_WAITING_DOTS="true"
 
-PATH=${PATH}:/usr/local/bin:${HOME}/.bin
+PATH=${PATH}:${HOME}/.bin
 
 ##
 # Plugins
