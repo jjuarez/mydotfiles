@@ -2,8 +2,6 @@
   :urls:
     :vundle: https://github.com/gmarik/vundle.git
     :ohmyzsh: https://github.com/robbyrussell/oh-my-zsh.git
-    :homebrew_install: https://raw.githubusercontent.com/Homebrew/install/master/install
-    :homebrew_uninstall: https://raw.githubusercontent.com/Homebrew/install/master/uninstall
 
   :dotfiles:
     - :name: .zshrc
@@ -12,9 +10,6 @@
     - :name: .zlogin
       :git_item: shell/zsh/.zlogin
       :local_item: .zlogin
-    - :name: .tmux.conf
-      :git_item: shell/tmux/.tmux.conf
-      :local_item: .tmux.conf
     - :name: .ssh/config
       :git_item: ssh/config
       :local_item: .ssh/config
@@ -33,76 +28,3 @@
     - :name: .gitignore_global
       :git_item: git/.gitignore_global
       :local_item: .gitignore_global
-    - :name: .gorc
-      :git_item: go/.gorc
-      :local_item: .gorc
-  :formulas:
-    - coreutils
-    - findutils
-    - moreutils
-    - iproute2mac
-    - ack
-    - jq
-    - httpie
-    - fzf
-    - wget
-    - vim
-    - ctags
-    - dos2unix
-    - gawk
-    - git
-    - git-extras
-    - git-flow
-    - git-lfs
-    - gnu-sed
-    - gnu-tar
-    - most
-    - ncdu
-    - md5sha1sum
-    - pv
-    - ipcalc
-    - nmap
-    - socat
-    - psgrep
-    - tmux
-    - tree
-    - ruby
-    - lua
-    - go
-    - pyenv
-    - ipython
-    - python
-    - python3
-    - amazon-ecs-cli
-    - awscli
-    - packer
-    - terraform
-    - terragrunt
-    - nomad
-    - vault
-    - vault-cli
-    - kr
-    - rbenv
-    - ruby-build
-    - rbenv-gemset
-    - rbenv-bundler
-    - rbenv-bundle-exec
-  :casks:
-    - 1password
-    - dropbox
-    - istat-menus
-    - launchbar
-    - sublime-text
-    - viscosity
-    - docker
-    - google-chrome
-    - iterm2
-    - slack
-    - telegram
-    - virtualbox
-    - vagrant
-    - whatsapp
-    - things
-    - caffeine
-    - kaleidoscope
-    - tower
