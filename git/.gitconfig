@@ -1,29 +1,24 @@
 [user]
-	name = Javier Juarez
+	name  = Javier Juarez
 	email = javier.juarez@fon.com
-  signingkey = 2ED23857
 
 [color]
   diff        = auto
   status      = auto
   branch      = auto
   interactive = auto
-  ui          = true
-  pager       = true
+  ui          = false
+  pager       = false
 
 [alias]
-  co         = checkout
-  ci         = commit
-  br         = branch
   st         = status -sb
-  t          = tag -l
-  nb         = checkout -b 
   branches   = branch -a
   remotes    = remote -v
   last       = log -1 HEAD
   unstage    = reset HEAD --
-  lg         = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso8601-strict
   tree       = log --oneline --decorate --graph
+  lg         = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso8601-strict
+
 
 [github]
   user = jjuarez
@@ -51,10 +46,3 @@
 
 [format]
   pretty = oneline
-
-[filter "lfs"]
-  required = true
-	process  = git-lfs filter-process
-	clean    = git-lfs clean -- %f
-	smudge   = git-lfs smudge -- %f
-
