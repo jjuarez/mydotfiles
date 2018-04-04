@@ -194,6 +194,12 @@ let g:terraform_align=1
 let g:terraform_fold_sections=1
 let g:terraform_remap_spacebar=1
 
+" ----------------------------------------------------------------------------
+" Ruby slow workaround
+augroup ft_rb
+  au!
+  au FileType ruby setlocal re=1 foldmethod=manual
+augroup END
 
 "
 " ----------------------------------------------------------------------------
