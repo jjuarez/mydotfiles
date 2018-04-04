@@ -7,10 +7,11 @@
   status      = auto
   branch      = auto
   interactive = auto
-  ui          = false
-  pager       = false
+  ui          = true
+  pager       = true
 
 [alias]
+  co         = checkout
   st         = status -sb
   branches   = branch -a
   remotes    = remote -v
