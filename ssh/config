@@ -46,6 +46,16 @@ Host pki
   User     root
   IdentityFile ~/.ssh/id_rsa.fon-pki
 
+Host default
+  HostName 127.0.0.1
+  User vagrant
+  Port 2222
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile /Users/javier.juarez/workspace/fon/devops/infra/vagrant/stretch/.vagrant/machines/default/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL
+
 Host *
   IdentitiesOnly         yes
   UserKnownHostsFile     /dev/null
