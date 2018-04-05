@@ -15,9 +15,6 @@ PATH=${PATH}:${HOME}/.bin
 plugins=(ssh-agent aws)
 . "${ZSH}/oh-my-zsh.sh"
 
-# To avoid shared history
-unsetopt share_history Off
-
 ##
 # My own stuffs
 MYDOTFILES="${HOME}/.mydotfiles"
