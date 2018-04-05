@@ -9,20 +9,13 @@ call vundle#rc()
 
 Plugin 'gmarik/Vundle.vim'
 " Utils
-Plugin 'scrooloose/nerdtree'
-Plugin 'mileszs/ack.vim'
-Plugin 'ervandew/supertab'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'DataWraith/auto_mkdir'
-Plugin 'tpope/vim-unimpaired'
 Plugin 'w0rp/ale'
-Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'fatih/vim-go'
 " Themes
 Plugin 'tomasr/molokai'
-Plugin 'ryanoasis/vim-devicons'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
@@ -159,15 +152,6 @@ let g:airline_detect_paste=1
 let g:airline#extensions#tabline#enabled=1
 
 
-" ----------------------------------------------------------------------------
-" Syntastic 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
 
 
 " ----------------------------------------------------------------------------
@@ -175,11 +159,6 @@ let g:syntastic_check_on_wq = 1
 " toggle the search highlight mode
 map ; :Buffers<CR>
 map <Leader>/ :nohlsearch<CR>
-" Open NERDTree
-map <Leader>q :NERDTreeToggle<CR>
-" fzf
-map <Leader>t :Files<CR>
-map <Leader>r :Tags<CR>
 
 
 " ----------------------------------------------------------------------------
