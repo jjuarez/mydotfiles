@@ -7,11 +7,13 @@ TERM=xterm-256color
 
 ##
 # Theme customization
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs rbenv)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+POWERLEVEL9K_CONTEXT_TEMPLATE="%n@%m"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHORTEN_DELIMITER="…"
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+
 ZSH_THEME="powerlevel9k"
 
 ##
@@ -24,7 +26,7 @@ PATH=${PATH}:${HOME}/.bin
 
 ##
 # Plugins
-plugins=(ssh-agent brew docker aws jira jjuarez)
+plugins=(ssh-agent git bundler colorize brew docker aws jira jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
 # To avoid shared history
