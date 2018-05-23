@@ -19,18 +19,6 @@ Host gitlab.com
 
 ## 
 # Fon AWS new infrastructure
-Host puppetserver.fon.int
-  ProxyJump    bastion-Fon-mgmt-pro-001.fon.int
-
-Host puppetdb.fon.int
-  ProxyJump    bastion-Fon-mgmt-pro-001.fon.int
-
-Host prometheus.fon.int
-  ProxyJump    bastion-Fon-mgmt-pro-001.fon.int
-
-Host alertmanager.fon.int
-  ProxyJump    bastion-Fon-mgmt-pro-001.fon.int
-
 Host grafana.fon.int
   ProxyJump    bastion-Fon-mgmt-pro-001.fon.int
 
