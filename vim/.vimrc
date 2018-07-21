@@ -38,6 +38,8 @@ endif
 
 let mapleader=","
 
+" This configuration helps with the slowliness of ruby plugin
+set regexpengine=1
 
 " ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
