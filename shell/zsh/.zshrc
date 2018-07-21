@@ -26,7 +26,7 @@ PATH=${PATH}:${HOME}/.bin
 
 ##
 # Plugins
-plugins=(ssh-agent git bundler colorize brew docker aws jira jjuarez zsh-syntax-highlighting)
+plugins=(ssh-agent git bundler colorize brew docker aws terraform jira jjuarez zsh-syntax-highlighting)
 . "${ZSH}/oh-my-zsh.sh"
 
 # To avoid shared history
