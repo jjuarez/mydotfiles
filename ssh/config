@@ -17,22 +17,50 @@ Host gitlab.com
   IdentityFile ~/.ssh/id_rsa.gitlab
   User         javier.juarez@fon.com
 
+
 ## 
 # Fon AWS new infrastructure
-Host grafana.fon.int
-  ProxyJump    bastion-Fon-mgmt-pro-001.fon.int
-
 Host *.fon.int
   IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
   User         admin
 
 Host bastion-fon-mgmt-pro-001.fon.int
-  HostName     ec2-34-245-19-63.eu-west-1.compute.amazonaws.com
+  HostName     ec2-34-254-133-254.eu-west-1.compute.amazonaws.com
 
 Host pki
   HostName 172.16.175.95
   User     root
   IdentityFile ~/.ssh/id_rsa.fon-pki
+
+Host kubemaster
+  HostName               192.168.0.39
+  User                   osboxes
+  IdentityFile           ~/.ssh/id_rsa.osboxes.org
+  Port                   22
+  StrictHostKeyChecking  no
+  PasswordAuthentication no
+  IdentitiesOnly         yes
+  LogLevel               FATAL
+
+Host kubenode1
+  HostName               192.168.0.40
+  User                   osboxes
+  IdentityFile           ~/.ssh/id_rsa.osboxes.org
+  Port                   22
+  StrictHostKeyChecking  no
+  PasswordAuthentication no
+  IdentitiesOnly         yes
+  LogLevel               FATAL
+
+Host kubenode2
+  HostName               192.168.0.41
+  User                   osboxes
+  IdentityFile           ~/.ssh/id_rsa.osboxes.org
+  Port                   22
+  StrictHostKeyChecking  no
+  PasswordAuthentication no
+  IdentitiesOnly         yes
+  LogLevel               FATAL
 
 Host default
   HostName 127.0.0.1
