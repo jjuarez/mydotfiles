@@ -9,23 +9,23 @@ call vundle#rc()
 
 Plugin 'gmarik/Vundle.vim'
 " Utils
-Plugin 'scrooloose/nerdtree'
 Plugin 'mileszs/ack.vim'
-Plugin 'ervandew/supertab'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'DataWraith/auto_mkdir'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'w0rp/ale'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+" Syntax
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'fatih/vim-go'
 " Themes
 Plugin 'tomasr/molokai'
 Plugin 'ryanoasis/vim-devicons'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
+Plugin 'sheerun/vim-wombat-scheme'
+Plugin 'itchyny/lightline.vim'
 
 if has('autocmd')
   filetype plugin indent on
@@ -35,26 +35,30 @@ if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
 
+if !has('gui_running')
+  set t_Co=256  
+endif
 
 let mapleader=","
 
 " This configuration helps with the slowliness of ruby plugin
 set regexpengine=1
 
-" ----------------------------------------------------------------------------
 " syntax, highlighting and spelling
 set background=dark  
 let g:molokai_original=1  
 let g:rehash256=1  
-set t_Co=256  
-colorscheme molokai
+
+" The Color Scheme
+"colorscheme molokai
+colorscheme wombat
+execute "set colorcolumn=" . join(range(133,335), ',')
+
 
 " Show trailing whitespace and spaces before a tab:
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/
 
-
-" ----------------------------------------------------------------------------
 " moving around, searching and patterns
 set nostartofline
 set incsearch	
@@ -62,8 +66,6 @@ set ignorecase
 set smartcase
 set hlsearch
 
-
-" ----------------------------------------------------------------------------
 " displaying text
 set scrolloff=3
 set linebreak
@@ -76,33 +78,23 @@ set number
 set cursorline
 set cuc cul"
 
-
-" ----------------------------------------------------------------------------
 " multiple windows
 set laststatus=2
 set hidden
 set switchbuf=usetab
 set helpheight=30   
 
-
-" ----------------------------------------------------------------------------
 " terminal
-set ttyfast			      " this is the 21st century, people
+set ttyfast
 
-
-" ----------------------------------------------------------------------------
 " messages and info
 set showcmd
 set ruler
 set confirm
 
-
-" ----------------------------------------------------------------------------
 " selecting text
 set clipboard=unnamed	" Yank to the system clipboard by default
 
-
-" ----------------------------------------------------------------------------
 " editing text	
 set backspace=indent,eol,start  "backspace over everything OSX fix
 set showmatch 
@@ -110,8 +102,6 @@ set nojoinspaces
 set completeopt+=longest 
 set nrformats-=octal    
 
-
-" ----------------------------------------------------------------------------
 " tabs and indenting
 set smartindent
 set smarttab              " <TAB> in front of line inserts 'shiftwidth' blanks
@@ -122,24 +112,18 @@ set scrolloff=2
 set tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
 
-
-" ----------------------------------------------------------------------------
 " folding
 set nofoldenable 		  " When opening files, all folds open by default
 
-
-" ----------------------------------------------------------------------------
 " reading and writing files
 set autoread
 
-
-" ----------------------------------------------------------------------------
 " command line editing
 set history=200
 set wildmode=list:longest,full
 
 " File tab completion ignores these file patterns
-set wildignore+=*.exe,*.o,*.obj,*.pyc,*.rbc,*.class,vendor/gems/*,*.swp,.DS_Store,.git,.svn
+set wildignore+=*.exe,*.o,*.obj,*.pyc,*.class,vendor/gems/*,*.swp,.DS_Store,.git,.svn
 set wildmenu
 set wildmode=list:longest,list:full
 
@@ -148,63 +132,41 @@ if exists('&wildignorecase')
   set wildignorecase
 endif
 
-
-" ----------------------------------------------------------------------------
 " multi-byte characters
 set encoding=utf-8
 
+" LightLine
+let g:lightline = {
+\ 'colorscheme': 'powerline',
+\}
 
-" ----------------------------------------------------------------------------
-" Airline 
-let g:airline_powerline_fonts=1
-let g:airline_detect_paste=1
-let g:airline#extensions#tabline#enabled=1
-
-
-" ----------------------------------------------------------------------------
-" Syntastic 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-
-
-" ----------------------------------------------------------------------------
 " Mappings
-" toggle the search highlight mode
 map ; :Buffers<CR>
 map <Leader>/ :nohlsearch<CR>
-" Open NERDTree
-map <Leader>q :NERDTreeToggle<CR>
-" fzf
-map <Leader>t :Files<CR>
-map <Leader>r :Tags<CR>
 
-
-" ----------------------------------------------------------------------------
 " viminfo sessions
 set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.viminfo
 let g:session_autosave='no'
 
-
-" ----------------------------------------------------------------------------
 " Terraform plugin setup
 let g:terraform_align=1
 let g:terraform_fold_sections=1
 let g:terraform_remap_spacebar=1
 
-" ----------------------------------------------------------------------------
-" Ruby slow workaround
-augroup ft_rb
-  au!
-  au FileType ruby setlocal re=1 foldmethod=manual
-augroup END
+" ALE linters setup
+let g:ale_completion_enabled = 1
+let g:ale_linters = {
+\ 'javascript': ['eslint'],
+\ 'Dockerfile': ['hadolint'],
+\ 'json': ['jq'],
+\ 'SQL': ['sqlint'],
+\ 'yaml': ['yamllint'],
+\ 'ruby': ['rubocop'],
+\ 'puppet': ['puppet-lint'],
+\ 'terraform': ['tflint'],
+\ 'ansible': ['ansible-lint'],
+\}
 
-"
-" ----------------------------------------------------------------------------
 " Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
