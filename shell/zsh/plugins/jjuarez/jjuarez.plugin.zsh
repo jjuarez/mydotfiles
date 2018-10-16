@@ -1,3 +1,19 @@
+WORKSPACE="${HOME}/workspace"
+
+[[ -d "${WORKSPACE}" ]] || exit 8
+
+typeset -A directories
+directories[mgmt]="${WORKSPACE}/fon/devops/infra/iac_mgmt"
+directories[hw]="${WORKSPACE}/fon/devops/infra/iac_homewifi"
+directories[live]="${WORKSPACE}/fon/devops/infra/iac_live"
+directories[pc]="${WORKSPACE}/fon/devops/cm/puppet-control"
+directories[pm]="${WORKSPACE}/fon/devops/cm/modules"
+directories[ck8s]="${WORKSPACE}/fon/devops/infra/ck8s"
+directories[backend]="${WORKSPACE}/fon/homeWiFi/services"
+directories[misc]="${WORKSPACE}/fon/misc"
+directories[src]="${WORKSPACE}/src"
+
+
 ##
 # Functions
 fs::archive() {
@@ -9,23 +25,10 @@ fs::archive() {
 }
 
 
-typeset -A directories
-directories[mgmt]="${HOME}/workspace/fon/devops/infra/iac_mgmt"
-directories[homewifi]="${HOME}/workspace/fon/devops/infra/iac_homewifi"
-directories[live]="${HOME}/workspace/fon/devops/infra/iac_live"
-directories[pc]="${HOME}/workspace/fon/devops/cm/puppet-control"
-
 fs::directories() {
   local dir=${1}
 
-  case ${dir} in
-   homewifi| mgmt|live|pc)
-      [[ -d "${directories[$dir]}" ]] && cd "${directories[$dir]}"
-    ;;
-    *)
-      return 1
-    ;;
-  esac
+  [[ -d "${directories[$dir]}" ]] && cd "${directories[$dir]}"
 }
 
 
@@ -70,8 +73,9 @@ EOF
 
 
 git::fshow() {
-  git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  git log --graph \
+          --color=always \
+          --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --preview "echo {} | grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always %'" \
              --bind "enter:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
@@ -89,8 +93,16 @@ alias archive='fs::archive'
 alias git_fshow='git::fshow'
 alias amis='aws::list_amis'
 alias bastion='aws::get_bastion'
+alias backup='${HOME}/.bin/backup.sh'
+
+##
+# Jumps
 alias mgmt='fs::directories mgmt'
-alias homewifi='fs::directories homewifi'
+alias hw='fs::directories hw'
 alias live='fs::directories live'
 alias pc='fs::directories pc'
-alias backup='${HOME}/.bin/backup.sh'
+alias pm='fs::directories pm'
+alias ck8s='fs::directories ck8s'
+alias backend='fs::directories backend'
+alias misc='fs::directories misc'
+alias src='fs::directories src'
