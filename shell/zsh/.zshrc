@@ -21,7 +21,7 @@ COMPLETION_WAITING_DOTS="true"
 PATH=${PATH}:${HOME}/.bin
 
 # Plugins
-plugins=(ssh-agent git bundler colorize brew docker aws terraform jira jjuarez zsh-syntax-highlighting)
+plugins=(ssh-agent git bundler brew docker aws terraform kubectl helm jira jjuarez zsh-syntax-highlighting)
 . "${ZSH}/oh-my-zsh.sh"
 
 # My own stuffs
@@ -48,4 +48,3 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 
 # To avoid shared history
 setopt no_share_history
-
