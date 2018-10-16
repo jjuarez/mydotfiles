@@ -3,64 +3,20 @@ Host github.com
   IdentityFile ~/.ssh/id_rsa.githubfon
   User         jjuarez
 
-##
-# Fon infra
 Host git.fontools.com
   Hostname     git.fontools.com
   IdentityFile ~/.ssh/id_rsa.fon
   User         javier.juarez@fon.com
 
-##
-# Fon on gitlab.com
 Host gitlab.com
   Hostname     gitlab.com
-  IdentityFile ~/.ssh/id_rsa.gitlab
+  IdentityFile ~/.ssh/id_rsa.gitlab.com
   User         javier.juarez@fon.com
-
-
-## 
-# Fon AWS new infrastructure
-Host *.fon.int
-  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
-  User         admin
-
-Host bastion-fon-mgmt-pro-001.fon.int
-  HostName     ec2-34-254-133-254.eu-west-1.compute.amazonaws.com
 
 Host pki
   HostName 172.16.175.95
   User     root
   IdentityFile ~/.ssh/id_rsa.fon-pki
-
-Host kubemaster
-  HostName               192.168.0.39
-  User                   osboxes
-  IdentityFile           ~/.ssh/id_rsa.osboxes.org
-  Port                   22
-  StrictHostKeyChecking  no
-  PasswordAuthentication no
-  IdentitiesOnly         yes
-  LogLevel               FATAL
-
-Host kubenode1
-  HostName               192.168.0.40
-  User                   osboxes
-  IdentityFile           ~/.ssh/id_rsa.osboxes.org
-  Port                   22
-  StrictHostKeyChecking  no
-  PasswordAuthentication no
-  IdentitiesOnly         yes
-  LogLevel               FATAL
-
-Host kubenode2
-  HostName               192.168.0.41
-  User                   osboxes
-  IdentityFile           ~/.ssh/id_rsa.osboxes.org
-  Port                   22
-  StrictHostKeyChecking  no
-  PasswordAuthentication no
-  IdentitiesOnly         yes
-  LogLevel               FATAL
 
 Host default
   HostName 127.0.0.1
@@ -71,6 +27,23 @@ Host default
   PasswordAuthentication no
   IdentitiesOnly yes
   LogLevel FATAL
+
+## 
+# Fon AWS new infrastructure
+Host *.fon.int
+  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
+  User         admin
+
+Host bastion-fon-mgmt-pro-001.fon.int
+  HostName     ec2-34-254-133-254.eu-west-1.compute.amazonaws.com
+
+##
+# XCA Poc
+Host xca.poc
+  Hostname    104.239.198.103
+  Port        222
+  User        idson1
+  IdentityFile ~/.ssh/id_rsa.xca
 
 Host *
   IdentitiesOnly         yes
