@@ -12,11 +12,11 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'DataWraith/auto_mkdir'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'w0rp/ale'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'majutsushi/tagbar'
 " Syntax
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'hashivim/vim-terraform'
@@ -24,7 +24,6 @@ Plugin 'fatih/vim-go'
 " Themes
 Plugin 'tomasr/molokai'
 Plugin 'ryanoasis/vim-devicons'
-Plugin 'sheerun/vim-wombat-scheme'
 Plugin 'itchyny/lightline.vim'
 
 if has('autocmd')
@@ -45,13 +44,12 @@ let mapleader=","
 set regexpengine=1
 
 " syntax, highlighting and spelling
-set background=dark  
-let g:molokai_original=1  
-let g:rehash256=1  
+set background=dark
+"let g:molokai_original=1
+let g:rehash256=1
 
 " The Color Scheme
-"colorscheme molokai
-colorscheme wombat
+colorscheme molokai
 execute "set colorcolumn=" . join(range(133,335), ',')
 
 
