@@ -34,8 +34,20 @@ Host *.fon.int
   IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
   User         admin
 
-Host bastion-fon-mgmt-pro-001.fon.int
-  HostName     ec2-34-254-133-254.eu-west-1.compute.amazonaws.com
+Host bastion-pro-001
+  HostName     bastion-pro-001.threesadtigerseatwheat.com
+  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
+  User         admin
+
+Host bastion-pro-002
+  HostName     bastion-pro-002.threesadtigerseatwheat.com
+  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
+  User         admin
+
+Host bastion-pro-003
+  HostName     bastion-pro-003.threesadtigerseatwheat.com
+  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
+  User         admin
 
 ##
 # XCA Poc
