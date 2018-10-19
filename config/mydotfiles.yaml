@@ -68,7 +68,6 @@
     - ruby
     - lua
     - go
-    - pyenv
     - ipython
     - python
     - python3
@@ -77,15 +76,10 @@
     - packer
     - terraform
     - terragrunt
-    - nomad
     - vault
     - vault-cli
     - kr
-    - rbenv
     - ruby-build
-    - rbenv-gemset
-    - rbenv-bundler
-    - rbenv-bundle-exec
   :casks:
     - 1password
     - dropbox
