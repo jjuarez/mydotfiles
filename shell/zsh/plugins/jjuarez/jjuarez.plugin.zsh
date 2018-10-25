@@ -44,14 +44,14 @@ aws::list_amis() {
 }
 
 
+##
+# Get the bastion host
+aws::get_bastion() {
 declare -r DEFAULT_PROFILE="terraform"
 declare -r DEFAULT_PARTNER="fon"
 declare -r DEFAULT_SYSTEM="mgmt"
 declare -r DEFAULT_ENV="pro"
 
-##
-# Get the bastion host
-aws::get_bastion() {
   local profile=${1:-${DEFAULT_PROFILE}}
   local partner=${2:-${DEFAULT_PARTNER}}
   local system=${2:-${DEFAULT_SYSTEM}}
@@ -72,19 +72,34 @@ EOF
 }
 
 
+##
+# Load the k8s cluster configurations
+declare -r DEFAULT_KUBECONFIG_DIRECTORY="${HOME}/.kube"
+declare -r DEFAULT_KUBECONFIG_PATTERN="*.config"
+
+k8s::load_configs() {
+  local kubeconfig_pattern="*.config"
+  local kubeconfig_directory="${HOME}/.kube"
+
+  [[ -d "${kubeconfig_directory}" ]] || return 1
+
+  export KUBECONFIG=$(find ${kubeconfig_directory} -type f -name "${kubeconfig_pattern}" -print|tr '\n' ':'|sed -e 's/:$//g')
+}
+
+
+##
+# Iteractive log
 git::fshow() {
   git log --graph \
           --color=always \
           --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --ansi --preview "echo {} | grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always %'" \
+  fzf --ansi --preview "echo {}|grep -o '[a-f0-9]\{7\}'|head -1|xargs -I % sh -c 'git show --color=always %'" \
              --bind "enter:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
 FZF-EOF"
 }
-
-
 
 
 ##
@@ -94,6 +109,8 @@ alias git_fshow='git::fshow'
 alias amis='aws::list_amis'
 alias bastion='aws::get_bastion'
 alias backup='${HOME}/.bin/backup.sh'
+alias klc='k8s::load_configs'
+alias k='/usr/local/bin/kubectl'
 
 ##
 # Jumps
