@@ -39,16 +39,6 @@ Host bastion-pro-001
   IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
   User         admin
 
-Host bastion-pro-002
-  HostName     bastion-pro-002.threesadtigerseatwheat.com
-  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
-  User         admin
-
-Host bastion-pro-003
-  HostName     bastion-pro-003.threesadtigerseatwheat.com
-  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
-  User         admin
-
 ##
 # XCA Poc
 Host xca.poc
