@@ -13,39 +13,17 @@ Host gitlab.com
   IdentityFile ~/.ssh/id_rsa.gitlab.com
   User         javier.juarez@fon.com
 
-Host pki
-  HostName 172.16.175.95
-  User     root
-  IdentityFile ~/.ssh/id_rsa.fon-pki
-
-Host default
-  HostName 127.0.0.1
-  User vagrant
-  IdentityFile ~/.ssh/id_rsa.vagrant-boxes
-  Port 2222
-  StrictHostKeyChecking no
-  PasswordAuthentication no
-  IdentitiesOnly yes
-  LogLevel FATAL
-
 ## 
 # Fon AWS new infrastructure
-Host *.fon.int
-  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
-  User         admin
-
-Host bastion-pro-001
+Host bastion
   HostName     bastion-pro-001.threesadtigerseatwheat.com
   IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
   User         admin
 
-##
-# XCA Poc
-Host xca.poc
-  Hostname    104.239.198.103
-  Port        222
-  User        idson1
-  IdentityFile ~/.ssh/id_rsa.xca
+Host *.fon.int
+  User         admin
+  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
+  ProxyJump    bastion
 
 Host *
   IdentitiesOnly         yes
