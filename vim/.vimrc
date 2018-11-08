@@ -52,7 +52,6 @@ let g:rehash256=1
 colorscheme molokai
 execute "set colorcolumn=" . join(range(133,335), ',')
 
-
 " Show trailing whitespace and spaces before a tab:
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/
@@ -133,11 +132,6 @@ endif
 " multi-byte characters
 set encoding=utf-8
 
-" LightLine
-let g:lightline = {
-\ 'colorscheme': 'powerline',
-\}
-
 " Mappings
 map ; :Buffers<CR>
 map <Leader>/ :nohlsearch<CR>
@@ -152,18 +146,8 @@ let g:terraform_fold_sections=1
 let g:terraform_remap_spacebar=1
 
 " ALE linters setup
-let g:ale_completion_enabled = 1
-let g:ale_linters = {
-\ 'javascript': ['eslint'],
-\ 'Dockerfile': ['hadolint'],
-\ 'json': ['jq'],
-\ 'SQL': ['sqlint'],
-\ 'yaml': ['yamllint'],
-\ 'ruby': ['rubocop'],
-\ 'puppet': ['puppet-lint'],
-\ 'terraform': ['tflint'],
-\ 'ansible': ['ansible-lint'],
-\}
+let g:ale_completion_enabled=1
+let g:ale_change_sign_column_color=1
 
 " Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
