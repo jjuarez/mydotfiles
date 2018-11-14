@@ -16,7 +16,7 @@ Host gitlab.com
 ## 
 # Fon AWS new infrastructure
 Host bastion
-  HostName     bastion-pro-001.threesadtigerseatwheat.com
+  HostName     bastion-fon-mgmt-pro-001.threesadtigerseatwheat.com
   IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
   User         admin
 
