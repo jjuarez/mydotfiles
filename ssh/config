@@ -16,17 +16,14 @@ Host gitlab.com
 ## 
 # Fon AWS new infrastructure
 Host bastion
-  HostName     bastion-fon-mgmt-pro-001.threesadtigerseatwheat.com
-  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
-  User         admin
+  HostName bastion-fon-mgmt-pro-001.threesadtigerseatwheat.com
+  User     admin
 
 Host *.fon.int
-  User         admin
-  IdentityFile ~/.ssh/HomeWiFiMgmtSSHAccessKey.pem
-  ProxyJump    bastion
+  User      admin
+  ProxyJump bastion
 
 Host *
-  IdentitiesOnly         yes
   UserKnownHostsFile     /dev/null
   StrictHostKeyChecking  no
   VerifyHostKeyDNS       no
