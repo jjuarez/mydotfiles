@@ -5,7 +5,7 @@ ZSH="${HOME}/.oh-my-zsh"
 TERM=xterm-256color
 
 # Theme customization
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir aws rbenv vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 POWERLEVEL9K_CONTEXT_TEMPLATE="%n@%m"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
@@ -45,6 +45,11 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 [[ -s "${HOME}/.gorc" ]] && {
   source "${HOME}/.gorc"
 }
+
+# Terraform/Terragrunt setup
+[[ -d "${HOME}/.terragrunt/cache" ]] || mkdir -p "${HOME}/.terragrunt/cache"
+
+export TERRAGRUNT_DOWNLOAD="${HOME}/.terragrunt/cache"
 
 # To avoid shared history
 setopt no_share_history
