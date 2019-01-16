@@ -17,6 +17,7 @@ Plugin 'w0rp/ale'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'gabrielelana/vim-markdown'
 " Syntax
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'hashivim/vim-terraform'
