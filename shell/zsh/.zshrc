@@ -21,7 +21,7 @@ COMPLETION_WAITING_DOTS="true"
 PATH=${PATH}:${HOME}/.bin
 
 # Plugins
-plugins=(ssh-agent git bundler brew docker aws terraform kubectl helm jira jjuarez zsh-syntax-highlighting)
+plugins=(ssh-agent git bundler brew docker aws terraform kubectl helm jira jjuarez zsh-syntax-highlighting zsh-autosuggestions)
 . "${ZSH}/oh-my-zsh.sh"
 
 # My own stuffs
