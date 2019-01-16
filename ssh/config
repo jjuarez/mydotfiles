@@ -13,21 +13,35 @@ Host gitlab.com
   IdentityFile ~/.ssh/id_rsa.gitlab.com
   User         javier.juarez@fon.com
 
-## 
-# Fon AWS new infrastructure
 Host bastion
-  HostName bastion-fon-mgmt-pro-001.threesadtigerseatwheat.com
+  HostName bastion-fon-mgmt-pro-001.mgmt.homewifi.fon.com
   User     admin
 
 Host *.fon.int
   User      admin
   ProxyJump bastion
 
+Host 10.4*
+  User      ec2-user
+  ProxyJump bastion
+
+Host 10.5*
+  User      ec2-user
+  ProxyJump bastion
+
+Host 10.6*
+  User      ec2-user
+  ProxyJump bastion
+
+Host 10.7*
+  User      ec2-user
+  ProxyJump bastion
+
 Host *
   UserKnownHostsFile     /dev/null
   StrictHostKeyChecking  no
   VerifyHostKeyDNS       no
-  KeepAlive              yes
+  TCPKeepAlive           yes
   ForwardX11             no
   ForwardAgent           yes
   ServerAliveInterval    15
