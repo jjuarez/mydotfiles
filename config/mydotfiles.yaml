@@ -80,6 +80,7 @@
     - vault-cli
     - kr
     - ruby-build
+    - kubectx
   :casks:
     - 1password
     - dropbox
@@ -92,7 +93,6 @@
     - telegram
     - virtualbox
     - vagrant
-    - whatsapp
     - caffeine
     - kaleidoscope
     - tower
