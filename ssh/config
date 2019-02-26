@@ -37,6 +37,25 @@ Host 10.7*
   User      ec2-user
   ProxyJump bastion
 
+Host 10.8*
+  User      ec2-user
+  ProxyJump bastion
+
+Host 10.9*
+  User      ec2-user
+  ProxyJump bastion
+
+Host default
+  HostName 127.0.0.1
+  User vagrant
+  Port 2222
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile ~/workspace/fon/devops/misc/mqtt_custom_plugin/.vagrant/machines/default/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL
+
 Host *
   UserKnownHostsFile     /dev/null
   StrictHostKeyChecking  no
