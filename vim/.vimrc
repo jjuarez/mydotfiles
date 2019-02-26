@@ -22,6 +22,8 @@ Plugin 'gabrielelana/vim-markdown'
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'fatih/vim-go'
+Plugin 'pearofducks/ansible-vim'
+Plugin 'vim-scripts/bats.vim'
 " Themes
 Plugin 'tomasr/molokai'
 Plugin 'ryanoasis/vim-devicons'
