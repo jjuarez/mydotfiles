@@ -31,8 +31,8 @@ fs::directories() {
 
 ##
 # Load the k8s cluster configurations
-declare -r DEFAULT_KUBECONFIG_PATTERN="*.config"
-declare -r DEFAULT_KUBECONFIG_DIRECTORY="${HOME}/.kube"
+DEFAULT_KUBECONFIG_PATTERN="*.config"
+DEFAULT_KUBECONFIG_DIRECTORY="${HOME}/.kube"
 
 k8s::load_configs() {
   local kubeconfig_pattern="${1:-${DEFAULT_KUBECONFIG_PATTERN}}"
