@@ -1,14 +1,14 @@
 WORKSPACE="${HOME}/workspace"
+CORP="clarity"
 
 [[ -d "${WORKSPACE}" ]] || exit 8
 
 typeset -A directories
-directories[mgmt]="${WORKSPACE}/fon/devops/infra/iac_mgmt"
-directories[hw]="${WORKSPACE}/fon/devops/infra/iac_homewifi"
-directories[live]="${WORKSPACE}/fon/devops/infra/iac_live"
-directories[pc]="${WORKSPACE}/fon/devops/cm/puppet-control"
-directories[pm]="${WORKSPACE}/fon/devops/cm/modules"
-directories[ck8s]="${WORKSPACE}/fon/devops/infra/ck8s"
+directories[live]="${WORKSPACE}/${CORP}/devops/infra/clarity_live"
+directories[mgmt]="${WORKSPACE}/${CORP}/devops/infra/iac_mgmt"
+directories[clarity]="${WORKSPACE}/${CORP}/devops/infra/clarity_modules"
+#directories[pc]="${WORKSPACE}/${CORP}/devops/cm/puppet-control"
+#directories[pm]="${WORKSPACE}/${CORP}/devops/cm/modules"
 
 
 ##
@@ -31,12 +31,12 @@ fs::directories() {
 
 ##
 # Load the k8s cluster configurations
-declare -r DEFAULT_KUBECONFIG_DIRECTORY="${HOME}/.kube"
 declare -r DEFAULT_KUBECONFIG_PATTERN="*.config"
+declare -r DEFAULT_KUBECONFIG_DIRECTORY="${HOME}/.kube"
 
 k8s::load_configs() {
-  local kubeconfig_pattern="*-config"
-  local kubeconfig_directory="${HOME}/.kube"
+  local kubeconfig_pattern="${1:-${DEFAULT_KUBECONFIG_PATTERN}}"
+  local kubeconfig_directory="${2:-${DEFAULT_KUBECONFIG_DIRECTORY}}"
 
   [[ -d "${kubeconfig_directory}" ]] || return 1
 
@@ -64,13 +64,12 @@ FZF-EOF"
 alias archive='fs::archive'
 alias git_fshow='git::fshow'
 alias backup='${HOME}/.bin/backup.sh'
-alias loadkc='k8s::load_configs'
+alias loadkubeconfs='k8s::load_configs'
 
 ##
 # Jumps
-alias mgmt='fs::directories mgmt'
-alias hw='fs::directories hw'
 alias live='fs::directories live'
-alias pc='fs::directories pc'
-alias pm='fs::directories pm'
-alias ck8s='fs::directories ck8s'
+alias mgmt='fs::directories mgmt'
+alias clarity='fs::directories clarity'
+#alias pc='fs::directories pc'
+#alias pm='fs::directories pm'
