@@ -1,12 +1,7 @@
 Host github.com
   HostName     github.com
-  IdentityFile ~/.ssh/id_rsa.githubfon
+  IdentityFile ~/.ssh/id_rsa.github.clarity
   User         jjuarez
-
-Host git.fontools.com
-  Hostname     git.fontools.com
-  IdentityFile ~/.ssh/id_rsa.fon
-  User         javier.juarez@fon.com
 
 Host gitlab.com
   Hostname     gitlab.com
@@ -16,34 +11,6 @@ Host gitlab.com
 Host bastion
   HostName bastion-fon-mgmt-pro-001.mgmt.homewifi.fon.com
   User     admin
-
-Host *.fon.int
-  User      admin
-  ProxyJump bastion
-
-Host 10.4*
-  User      ec2-user
-  ProxyJump bastion
-
-Host 10.5*
-  User      ec2-user
-  ProxyJump bastion
-
-Host 10.6*
-  User      ec2-user
-  ProxyJump bastion
-
-Host 10.7*
-  User      ec2-user
-  ProxyJump bastion
-
-Host 10.8*
-  User      ec2-user
-  ProxyJump bastion
-
-Host 10.9*
-  User      ec2-user
-  ProxyJump bastion
 
 Host default
   HostName 127.0.0.1
