@@ -51,5 +51,11 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 
 export TERRAGRUNT_DOWNLOAD="${HOME}/.terragrunt/cache"
 
+# ncurses support for the zsh autosuggestions
+[[ -d "/usr/local/opt/ncurses/bin" ]] && {
+  export PATH="/usr/local/opt/ncurses/bin:$PATH"
+}
+
+
 # To avoid shared history
 setopt no_share_history
