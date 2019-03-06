@@ -81,6 +81,8 @@
     - kr
     - ruby-build
     - kubectx
+    - ncdu
+    - zsh
   :casks:
     - 1password
     - dropbox
@@ -99,3 +101,4 @@
     - docker
     - font-hack-nerd-font
     - font-hack-nerd-font-mono
+    - spectacle
