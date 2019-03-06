@@ -21,7 +21,7 @@ COMPLETION_WAITING_DOTS="true"
 PATH=${PATH}:${HOME}/.bin
 
 # Plugins
-plugins=(ssh-agent git bundler brew docker aws terraform kubectl helm jira jjuarez zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(ssh-agent git brew docker aws terraform kubectl helm jira zsh-syntax-highlighting zsh-autosuggestions jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
 # My own stuffs
@@ -55,7 +55,6 @@ export TERRAGRUNT_DOWNLOAD="${HOME}/.terragrunt/cache"
 [[ -d "/usr/local/opt/ncurses/bin" ]] && {
   export PATH="/usr/local/opt/ncurses/bin:$PATH"
 }
-
 
 # To avoid shared history
 setopt no_share_history
