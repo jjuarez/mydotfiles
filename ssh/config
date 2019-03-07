@@ -1,16 +1,7 @@
-Host github.com
-  HostName     github.com
-  IdentityFile ~/.ssh/id_rsa.github.clarity
-  User         jjuarez
-
-Host gitlab.com
-  Hostname     gitlab.com
-  IdentityFile ~/.ssh/id_rsa.gitlab.com
-  User         javier.juarez@fon.com
-
-Host bastion
-  HostName bastion-fon-mgmt-pro-001.mgmt.homewifi.fon.com
-  User     admin
+Host gitlab.clarity.ai
+  HostName     gitlab.clarity.ai
+  User         javier.juarez
+  IdentityFile ~/.ssh/id_rsa.clarity.gitlab
 
 Host default
   HostName 127.0.0.1
@@ -19,7 +10,7 @@ Host default
   UserKnownHostsFile /dev/null
   StrictHostKeyChecking no
   PasswordAuthentication no
-  IdentityFile ~/workspace/fon/devops/misc/mqtt_custom_plugin/.vagrant/machines/default/virtualbox/private_key
+  IdentityFile ~/workspace/clarity/devops/PROJECT/.vagrant/machines/default/virtualbox/private_key
   IdentitiesOnly yes
   LogLevel FATAL
 
