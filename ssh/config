@@ -1,3 +1,8 @@
+Host github.com
+  HostName     github.com
+  User         jjuarez
+  IdentityFile ~/.ssh/id_rsa.clarity.github
+
 Host gitlab.clarity.ai
   HostName     gitlab.clarity.ai
   User         javier.juarez
