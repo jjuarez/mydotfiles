@@ -82,6 +82,7 @@
     - ruby-build
     - kubectx
     - ncdu
+    - redis
     - zsh
     - zsh-autosuggestions
   :casks:
