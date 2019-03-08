@@ -36,6 +36,11 @@
     - :name: .gorc
       :git_item: go/.gorc
       :local_item: .gorc
+  :taps:
+    - derailed/k9s
+    - homebrew/cask-fonts
+    - wagoodman/dive
+    - wata727/tflint
   :formulas:
     - coreutils
     - findutils
@@ -52,12 +57,10 @@
     - gawk
     - git
     - git-extras
-    - git-flow
     - gnu-sed
     - gnu-tar
     - most
     - ncdu
-    - md5sha1sum
     - pv
     - ipcalc
     - nmap
@@ -85,6 +88,7 @@
     - redis
     - zsh
     - zsh-autosuggestions
+    - zsh-hightlight
   :casks:
     - 1password
     - dropbox
@@ -98,9 +102,10 @@
     - virtualbox
     - vagrant
     - caffeine
-    - kaleidoscope
     - tower
     - docker
     - font-hack-nerd-font
     - font-hack-nerd-font-mono
     - spectacle
+    - gpgsuite
+
