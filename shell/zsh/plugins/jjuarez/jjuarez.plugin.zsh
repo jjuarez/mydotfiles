@@ -7,8 +7,6 @@ typeset -A directories
 directories[live]="${WORKSPACE}/${CORP}/devops/infra/clarity_live"
 directories[mgmt]="${WORKSPACE}/${CORP}/devops/infra/iac_mgmt"
 directories[clarity]="${WORKSPACE}/${CORP}/devops/infra/clarity_modules"
-#directories[pc]="${WORKSPACE}/${CORP}/devops/cm/puppet-control"
-#directories[pm]="${WORKSPACE}/${CORP}/devops/cm/modules"
 
 
 ##
@@ -71,5 +69,3 @@ alias loadkubeconfs='k8s::load_configs'
 alias live='fs::directories live'
 alias mgmt='fs::directories mgmt'
 alias clarity='fs::directories clarity'
-#alias pc='fs::directories pc'
-#alias pm='fs::directories pm'
