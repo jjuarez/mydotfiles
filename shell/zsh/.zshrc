@@ -36,7 +36,7 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Setup for rbenv
-[[ -d "${HOME}/.rbenv" ]] && {
+[[ -d "${HOME}/.rbenv/bin" ]] && {
   export PATH=${HOME}/.rbenv/bin:${PATH}
   eval "$(rbenv init -)"
 }
