@@ -20,6 +20,7 @@ Host default
   LogLevel FATAL
 
 Host *
+  User                   ubuntu
   UserKnownHostsFile     /dev/null
   StrictHostKeyChecking  no
   VerifyHostKeyDNS       no
