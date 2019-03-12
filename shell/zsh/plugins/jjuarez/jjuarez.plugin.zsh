@@ -62,7 +62,9 @@ FZF-EOF"
 alias archive='fs::archive'
 alias git_fshow='git::fshow'
 alias backup='${HOME}/.bin/backup.sh'
-alias loadkubeconfs='k8s::load_configs'
+alias k='kubectl'
+alias kx='kubectx'
+alias kn='kubens'
 
 ##
 # Jumps
