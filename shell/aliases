@@ -1,8 +1,6 @@
 ##
 # Alias
 alias vi='vim'
-alias k=kubectl
-alias kx=kubectx
 alias scpresume="rsync --partial --progress --rsh=ssh"
 
 case "`uname`" in
