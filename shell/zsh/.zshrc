@@ -33,7 +33,7 @@ MYDOTFILES="${HOME}/.mydotfiles"
 export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 
 # Setup for fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # Setup for rbenv
 [[ -d "${HOME}/.rbenv/bin" ]] && {
@@ -41,20 +41,22 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
   eval "$(rbenv init -)"
 }
 
-# Setup for golang
-[[ -s "${HOME}/.gorc" ]] && {
-  source "${HOME}/.gorc"
+[[ -d "${HOME}/.pyenv/bin" ]] && {
+  export PYENV_ROOT="${HOME}/.pyenv"
+  export PATH=${PYENV_ROOT}/bin:${PATH}
+
+  eval "$(pyenv init -)"
 }
+
+# Setup for golang
+[[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
 
 # Terraform/Terragrunt setup
 [[ -d "${HOME}/.terragrunt/cache" ]] || mkdir -p "${HOME}/.terragrunt/cache"
-
 export TERRAGRUNT_DOWNLOAD="${HOME}/.terragrunt/cache"
 
-# ncurses support for the zsh autosuggestions
-[[ -d "/usr/local/opt/ncurses/bin" ]] && {
-  export PATH="/usr/local/opt/ncurses/bin:$PATH"
-}
+[[ -d "${HOME}/.tfenv" ]] && export PATH="${HOME}/.tfenv/bin:$PATH"
+[[ -x "${HOME}/.tfenv/bin/terraform" ]] && export TERRAGRUNT_TFPATH="${HOME}/.tfenv/bin/terraform"
 
 # To avoid shared history
 setopt no_share_history
