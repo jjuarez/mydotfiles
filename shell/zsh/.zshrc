@@ -23,7 +23,8 @@ PATH=${PATH}:${HOME}/.bin
 
 # Plugins
 # plugins=(ssh-agent git brew docker aws terraform kubectl helm jira zsh-syntax-highlighting zsh-autosuggestions jjuarez)
-plugins=(ssh-agent git brew docker aws terraform helm zsh-syntax-highlighting zsh-autosuggestions jjuarez)
+#plugins=(ssh-agent git brew docker aws terraform helm jjuarez zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(ssh-agent git brew docker aws terraform helm jira jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
 # My own stuffs
@@ -49,6 +50,7 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
   export PATH=${PYENV_ROOT}/bin:${PATH}
 
   eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 }
 
 # Setup for golang
@@ -60,6 +62,11 @@ export TERRAGRUNT_DOWNLOAD="${HOME}/.terragrunt/cache"
 
 [[ -d "${HOME}/.tfenv" ]] && export PATH="${HOME}/.tfenv/bin:$PATH"
 [[ -x "${HOME}/.tfenv/bin/terraform" ]] && export TERRAGRUNT_TFPATH="${HOME}/.tfenv/bin/terraform"
+
+# Load always all the k8s contexts
+if k8s::load_configs 2>/dev/null; then
+  k8s::load_configs
+fi
 
 # To avoid shared history
 setopt no_share_history
