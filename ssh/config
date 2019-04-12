@@ -8,16 +8,14 @@ Host gitlab.clarity.ai
   User         javier.juarez
   IdentityFile ~/.ssh/id_rsa.clarity.gitlab
 
-Host default
-  HostName 127.0.0.1
-  User vagrant
-  Port 2222
-  UserKnownHostsFile /dev/null
-  StrictHostKeyChecking no
-  PasswordAuthentication no
-  IdentityFile ~/workspace/clarity/devops/PROJECT/.vagrant/machines/default/virtualbox/private_key
-  IdentitiesOnly yes
-  LogLevel FATAL
+Host in.gitlab.clarity.ai
+  HostName     172.24.12.152
+  User         ubuntu
+  Port         2222
+
+Host vpn-staff.clarity.ai
+  HostName     172.16.200.6
+  IdentityFile ~/.ssh/id_rsa.clarity.ec2
 
 Host *
   User                   ubuntu
