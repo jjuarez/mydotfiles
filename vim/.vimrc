@@ -19,12 +19,14 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'gabrielelana/vim-markdown'
 Plugin 'andrewstuart/vim-kubernetes'
+Plugin 'ervandew/supertab'
 " Syntax
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'fatih/vim-go'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'vim-scripts/bats.vim'
+Plugin 'klen/python-mode'
 " Themes
 Plugin 'tomasr/molokai'
 Plugin 'ryanoasis/vim-devicons'
@@ -152,6 +154,9 @@ let g:terraform_remap_spacebar=1
 " ALE linters setup
 let g:ale_completion_enabled=1
 let g:ale_change_sign_column_color=1
+
+" PyMode
+let g:pymode_lint_ignore = "E501,W"
 
 " Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
