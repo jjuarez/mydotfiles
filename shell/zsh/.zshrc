@@ -48,6 +48,8 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 [[ -d "${HOME}/.pyenv/bin" ]] && {
   export PYENV_ROOT="${HOME}/.pyenv"
   export PATH=${PYENV_ROOT}/bin:${PATH}
+  export CFLAGS="-O2 -I$(brew --prefix openssl)/include"
+  export LDFLAGS="-L$(brew --prefix openssl)/lib"
 
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
@@ -62,6 +64,9 @@ export TERRAGRUNT_DOWNLOAD="${HOME}/.terragrunt/cache"
 
 [[ -d "${HOME}/.tfenv" ]] && export PATH="${HOME}/.tfenv/bin:$PATH"
 [[ -x "${HOME}/.tfenv/bin/terraform" ]] && export TERRAGRUNT_TFPATH="${HOME}/.tfenv/bin/terraform"
+
+# Krew support
+[[ -d "${HOME}/.krew" ]] && export PATH="$HOME/.krew/bin:$PATH"
 
 # Load always all the k8s contexts
 if k8s::load_configs 2>/dev/null; then
