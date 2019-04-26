@@ -1,5 +1,5 @@
-declare -r CORP="clarity"
-declare -r WORKSPACE="${HOME}/workspace/${CORP}"
+declare CORP="clarity"
+declare WORKSPACE="${HOME}/workspace/${CORP}"
 
 [[ -d "${WORKSPACE}" ]] || return 1
 
