@@ -7,11 +7,10 @@ TERM=xterm-256color
 ZSH_THEME="powerlevel9k"
 
 # Theme customization
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir kubecontext pyenv vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir pyenv kubecontext vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 POWERLEVEL9K_CONTEXT_TEMPLATE="%n@%m"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-#POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
 # ZSH Options
@@ -22,9 +21,7 @@ COMPLETION_WAITING_DOTS="true"
 PATH=${PATH}:${HOME}/.bin
 
 # Plugins
-# plugins=(ssh-agent git brew docker aws terraform kubectl helm jira zsh-syntax-highlighting zsh-autosuggestions jjuarez)
-#plugins=(ssh-agent git brew docker aws terraform helm jjuarez zsh-syntax-highlighting zsh-autosuggestions)
-plugins=(ssh-agent git brew docker aws terraform helm jira jjuarez)
+plugins=(ssh-agent git docker terraform helm kubectl kops jjuarez clarity)
 . "${ZSH}/oh-my-zsh.sh"
 
 # My own stuffs
