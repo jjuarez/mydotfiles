@@ -66,8 +66,8 @@ export TERRAGRUNT_DOWNLOAD="${HOME}/.terragrunt/cache"
 [[ -d "${HOME}/.krew" ]] && export PATH="$HOME/.krew/bin:$PATH"
 
 # Load always all the k8s contexts
-if k8s::load_configs 2>/dev/null; then
-  k8s::load_configs
+if clarity::k8s_load_configs 2>/dev/null; then
+  clarity::k8s_load_configs
 fi
 
 # To avoid shared history
