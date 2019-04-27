@@ -13,4 +13,4 @@ done
 ##
 # General User environment
 export EDITOR='vim'
-export PAGER='most'
+#export PAGER='most'
