@@ -1,6 +1,8 @@
 # vi: set ft=zsh :
 declare -A K8S_ENVIRONMENTS=(
-  [dev]=x [pre]=x [prod]=x
+  [dev]=x
+  [pre]=x
+  [prod]=x
 )
 
 # Configuration
@@ -20,7 +22,6 @@ HELM=$(which helm 2>/dev/null)
 [[ -x "${KOPS}" ]] || return 1
 [[ -x "${HELM}" ]] || return 1
 
-
 clarity::valid_environment() {
   local environment=${1}
 
@@ -31,8 +32,8 @@ clarity::context() {
   local environment=${1}
   local namespace=${2}
 
-  ${KCTX} ${environment}.${DNS}
-  ${KNS} ${namespace}
+  ${KCTX} ${environment}.${DNS} 2>&1 >/dev/null
+  ${KNS} ${namespace} 2>&1 >/dev/null
 }
 
 clarity::kops() {
@@ -54,7 +55,7 @@ clarity::test_cluster() {
 
   [[ "${test}" == "test" ]] && {
     echo "\nKubectl version:"
-    ${KCTL} version
+    ${KCTL} cluster-info
 
     echo "\nCustom namespaces:"
     ${KCTL} get namespaces --no-headers | grep -vE '(default|ingress|kube\-*)'
@@ -67,9 +68,16 @@ clarity::test_cluster() {
   }
 }
 
-#
 # ::main::
-#
+clarity::k8s_load_configs() {
+  local kubeconfig_pattern="${1:-*.config}"
+  local kubeconfig_directory="${2:-${HOME}/.kube}"
+
+  [[ -d "${kubeconfig_directory}" ]] || return 1
+
+  export KUBECONFIG=$(find ${kubeconfig_directory} -type f -iname "${kubeconfig_pattern}" -print|tr '\n' ':'|sed -e 's/:$//g')
+}
+
 clarity::k8s_switch() {
   local environment=${1:-dev}
   local namespace=${2:-clarity}
@@ -85,4 +93,6 @@ clarity::k8s_switch() {
   fi
 }
 
+# ::alias:
+alias klc='clarity::k8s_load_configs'
 alias ksw='clarity::k8s_switch'

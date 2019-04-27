@@ -13,13 +13,11 @@ directories[cm]="${WORKSPACE}/devops/cm/ansible"
 directories[citools]="${WORKSPACE}/devops/infrastructure/ci-tools"
 directories[helm]="${WORKSPACE}/devops/infrastructure/helm-charts"
 
-
 fs::shortcut() {
   local dir=${1}
 
   [[ -d "${directories[$dir]}" ]] && cd "${directories[$dir]}"
 }
-
 
 fs::archive() {
   local directory="${1}"
@@ -28,22 +26,6 @@ fs::archive() {
 
   tar -czf ${directory}{.tar.gz,} && rm -fr "${directory}" &>/dev/null
 }
-
-
-##
-# Load the k8s cluster configurations
-DEFAULT_KUBECONFIG_PATTERN="*.config"
-DEFAULT_KUBECONFIG_DIRECTORY="${HOME}/.kube"
-
-k8s::load_configs() {
-  local kubeconfig_pattern="${1:-${DEFAULT_KUBECONFIG_PATTERN}}"
-  local kubeconfig_directory="${2:-${DEFAULT_KUBECONFIG_DIRECTORY}}"
-
-  [[ -d "${kubeconfig_directory}" ]] || return 1
-
-  export KUBECONFIG=$(find ${kubeconfig_directory} -type f -name "${kubeconfig_pattern}" -print|tr '\n' ':'|sed -e 's/:$//g')
-}
-
 
 ##
 # Iteractive log
@@ -59,15 +41,12 @@ git::fshow() {
 FZF-EOF"
 }
 
-
 ##
-# Aliases
 # utils
 alias archive='fs::archive'
 alias git_fshow='git::fshow'
 alias backup='${HOME}/.bin/backup.sh'
 # k8s
-alias klc='k8s::load_configs'
 alias k='kubectl'
 alias kx='kubectx'
 alias kn='kubens'
