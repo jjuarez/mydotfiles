@@ -5,6 +5,22 @@ declare -A K8S_ENVIRONMENTS=(
   [prod]=x
 )
 
+declare CORP="clarity"
+declare WORKSPACE="${HOME}/workspace/${CORP}"
+
+[[ -d "${WORKSPACE}" ]] || return 1
+
+declare -A directories
+directories[product]="${WORKSPACE}/product"
+directories[front]="${WORKSPACE}/product/frontend"
+directories[back]="${WORKSPACE}/product/backend"
+directories[needs]="${WORKSPACE}/product/needs"
+directories[infra]="${WORKSPACE}/devops/infrastructure"
+directories[cm]="${WORKSPACE}/devops/cm/ansible"
+directories[citools]="${WORKSPACE}/devops/infrastructure/ci-tools"
+directories[helm]="${WORKSPACE}/devops/infrastructure/helm-charts"
+
+
 # Configuration
 DNS=${DNS:-'clarity.ai'}
 HELM_ROOT="${HOME}/.helm"
@@ -22,6 +38,16 @@ HELM=$(which helm 2>/dev/null)
 [[ -x "${KOPS}" ]] || return 1
 [[ -x "${HELM}" ]] || return 1
 
+##
+# Shortcut
+clarity::shortcut() {
+  local dir=${1}
+
+  [[ -d "${directories[$dir]}" ]] && cd "${directories[$dir]}"
+}
+
+##
+# Kubernetes
 clarity::valid_environment() {
   local environment=${1}
 
@@ -93,6 +119,39 @@ clarity::k8s_switch() {
   fi
 }
 
+##
+# Issues
+clarity::open_issue() {
+  local issue_id=${1}
+  local url=${2:-'https://gitlab.clarity.ai/infrastructure/issues/issues'}
+
+  echo "Issue id: ${issue_id}"
+  echo "URL: ${url}"
+
+  if [[ ${issue_id} =~ '^[0-9]+$' ]]; then
+    echo "Go to to issue: ${issue_id}..."
+    open_command "${url}/${issue_id}"
+  else
+    (>&2 echo "Error: No issue id")
+    open_command "${url}"
+  fi
+}
+
+
 # ::alias:
 alias klc='clarity::k8s_load_configs'
 alias ksw='clarity::k8s_switch'
+# Shortcuts
+alias _infra='fs::shortcut infra'
+alias _cm='fs::shortcut cm'
+alias _product='fs::shortcut product'
+alias _front='fs::shortcut front'
+alias _back='fs::shortcut back'
+alias _needs='fs::shortcut needs'
+alias _citools='fs::shortcut citools'
+alias _helm='fs::shortcut helm'
+# Sites
+alias _issue='clarity::open_issue' ${@}
+alias _aws='open_command https://console.aws.amazon.com/console/home'
+alias _calendar='open_command https://calendar.google.com'
+alias _docs='open_command https://gitlab.clarity.ai/documentation'
