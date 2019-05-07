@@ -49,6 +49,12 @@ let mapleader=","
 " This configuration helps with the slowliness of ruby plugin
 set regexpengine=1
 
+" Assume that filetype=sh are posix and therefore will support proper `$(...)`
+" See:
+" * https://git.io/fjngy
+" * https://github.com/tpope/vim-sensible/issues/140
+let g:is_posix = 1
+
 " syntax, highlighting and spelling
 set background=dark
 "let g:molokai_original=1
