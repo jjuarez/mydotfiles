@@ -3,6 +3,7 @@ ZSH="${HOME}/.oh-my-zsh"
 
 # Term customizations
 TERM=xterm-256color
+export LANG=en_US.UTF-8
 
 ZSH_THEME="powerlevel9k"
 
