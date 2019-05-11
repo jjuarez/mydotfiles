@@ -96,12 +96,15 @@ clarity::test_cluster() {
 
 # ::main::
 clarity::k8s_load_configs() {
-  local kubeconfig_pattern="${1:-*.config}"
-  local kubeconfig_directory="${2:-${HOME}/.kube}"
+  local new_kubeconfig=""
 
-  [[ -d "${kubeconfig_directory}" ]] || return 1
+  [[ -d "${HOME}/.kube" ]] || return 1
 
-  export KUBECONFIG=$(find ${kubeconfig_directory} -type f -iname "${kubeconfig_pattern}" -print|tr '\n' ':'|sed -e 's/:$//g')
+  new_kubeconfig=$(find ${HOME}/.kube -type f -iname "*config" -print|tr '\n' ':'|sed -e 's/:$//g')
+
+  [[ -n "${new_kubeconfig}" ]] || return 1
+
+  export KUBECONFIG="${new_kubeconfig}"
 }
 
 clarity::k8s_switch() {
@@ -142,14 +145,14 @@ clarity::open_issue() {
 alias klc='clarity::k8s_load_configs'
 alias ksw='clarity::k8s_switch'
 # Shortcuts
-alias _infra='fs::shortcut infra'
-alias _cm='fs::shortcut cm'
-alias _product='fs::shortcut product'
-alias _front='fs::shortcut front'
-alias _back='fs::shortcut back'
-alias _needs='fs::shortcut needs'
-alias _citools='fs::shortcut citools'
-alias _helm='fs::shortcut helm'
+alias _infra='clarity::shortcut infra'
+alias _cm='clarity::shortcut cm'
+alias _product='clarity::shortcut product'
+alias _front='clarity::shortcut front'
+alias _back='clarity::shortcut back'
+alias _needs='clarity::shortcut needs'
+alias _citools='clarity::shortcut citools'
+alias _helm='clarity::shortcut helm'
 # Sites
 alias _issue='clarity::open_issue' ${@}
 alias _aws='open_command https://console.aws.amazon.com/console/home'
