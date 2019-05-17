@@ -36,6 +36,9 @@
     - :name: .gorc
       :git_item: go/.gorc
       :local_item: .gorc
+    - :name: .mongorc.js
+      :git_item: mongodb/.mongorc.js
+      :local_item: .mongorc.js
   :taps:
     - derailed/k9s
     - homebrew/cask-fonts
