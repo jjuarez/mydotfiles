@@ -140,10 +140,39 @@ clarity::open_issue() {
   fi
 }
 
+##
+# Convert the AWS name of the host to a useful IP address
+clarity::aws2ip() {
+  local aws_ip_address="${1}"
+
+  [[ -n "${aws_ip_address}" ]] || return 1
+
+  echo -n "${aws_ip_address}"|sed -e 's/^ip\-//g'|sed -e 's/\-/\./g'
+}
+
+##
+# Builds the MongoDB URI
+clarity::mongodb_uri() {
+  local environment=${1:-'dev'}
+  local user=${2:-'admin'}
+  local replica_set=${3:-'rs0'}
+
+  case ${environment} in
+    dev)  export MONGODB_URI="mongodb://int.mongodb-01.dev.clarity.ai:27017/ --authenticationDatabase=admin --username=${user}" ;;
+    pre)  export MONGODB_URI="mongodb://int.mongodb-01.pre.clarity.ai:27017,int.mongodb-02.pre.clarity.ai:27017,int.mongodb-03.pre.clarity.ai:27017/?replicaSet=${replica_set} --authenticationDatabase=admin --username=${user}" ;;
+    prod) export MONGODB_URI="mongodb://int.mongodb-01.prod.clarity.ai:27017,int.mongodb-02.prod.clarity.ai:27017,int.mongodb-03.prod.clarity.ai:27017/?replicaSet=${replica_set} --authenticationDatabase=admin --username=${user}" ;;
+    *) return 1 ;;
+  esac
+
+  echo ${MONGODB_URI}
+  return 0
+}
+
 
 # ::alias:
 alias klc='clarity::k8s_load_configs'
 alias ksw='clarity::k8s_switch'
+alias ipa='clarity::aws2ip'
 # Shortcuts
 alias _infra='clarity::shortcut infra'
 alias _cm='clarity::shortcut cm'
@@ -158,3 +187,5 @@ alias _issue='clarity::open_issue' ${@}
 alias _aws='open_command https://console.aws.amazon.com/console/home'
 alias _calendar='open_command https://calendar.google.com'
 alias _docs='open_command https://gitlab.clarity.ai/documentation'
+alias _runbooks='open_command https://gitlab.clarity.ai/documentation/runbooks'
+alias _handbooks='open_command https://gitlab.clarity.ai/documentation/handbooks'
