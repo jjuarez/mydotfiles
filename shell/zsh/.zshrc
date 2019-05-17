@@ -22,7 +22,7 @@ COMPLETION_WAITING_DOTS="true"
 PATH=${PATH}:${HOME}/.bin
 
 # Plugins
-plugins=(ssh-agent git docker terraform helm kubectl kops jjuarez clarity)
+plugins=(ssh-agent git docker terraform helm kubectl kops jira jjuarez clarity)
 . "${ZSH}/oh-my-zsh.sh"
 
 # My own stuffs
