@@ -156,15 +156,28 @@ clarity::mongodb_uri() {
   local environment=${1:-'dev'}
   local user=${2:-'admin'}
   local replica_set=${3:-'rs0'}
+  local auth_db=${4:-'admin'}
+  local hosts=""
+  local mongodb_uri=""
 
   case ${environment} in
-    dev)  export MONGODB_URI="mongodb://int.mongodb-01.dev.clarity.ai:27017/ --authenticationDatabase=admin --username=${user}" ;;
-    pre)  export MONGODB_URI="mongodb://int.mongodb-01.pre.clarity.ai:27017,int.mongodb-02.pre.clarity.ai:27017,int.mongodb-03.pre.clarity.ai:27017/?replicaSet=${replica_set} --authenticationDatabase=admin --username=${user}" ;;
-    prod) export MONGODB_URI="mongodb://int.mongodb-01.prod.clarity.ai:27017,int.mongodb-02.prod.clarity.ai:27017,int.mongodb-03.prod.clarity.ai:27017/?replicaSet=${replica_set} --authenticationDatabase=admin --username=${user}" ;;
+    dev|development)
+      hosts="int.mongodb-01.dev.clarity.ai:27017"
+      mongodb_uri="mongodb://${hosts}/ --authenticationDatabase=${auth_db} --username=${user}"
+      ;;
+    pre|preproduction|staging)
+      hosts="int.mongodb-01.pre.clarity.ai:27017,int.mongodb-02.pre.clarity.ai:27017,int.mongodb-03.pre.clarity.ai:27017"
+      mongodb_uri="mongodb://${hosts}/?replicaSet=${replica_set} --authenticationDatabase=${auth_db} --username=${user}"
+      ;;
+    pro|prod|production)
+      hosts="int.mongodb-01.prod.clarity.ai:27017,int.mongodb-02.prod.clarity.ai:27017,int.mongodb-03.prod.clarity.ai:27017"
+      mongodb_uri="mongodb://${hosts}/?replicaSet=${replica_set} --authenticationDatabase=${auth_db} --username=${user}"
+      ;;
     *) return 1 ;;
   esac
 
-  echo ${MONGODB_URI}
+  echo ${mongodb_uri}
+
   return 0
 }
 
