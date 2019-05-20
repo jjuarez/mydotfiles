@@ -60,11 +60,14 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 [[ -d "${HOME}/.terragrunt/cache" ]] || mkdir -p "${HOME}/.terragrunt/cache"
 export TERRAGRUNT_DOWNLOAD="${HOME}/.terragrunt/cache"
 
-[[ -d "${HOME}/.tfenv" ]] && export PATH="${HOME}/.tfenv/bin:$PATH"
+[[ -d "${HOME}/.tfenv" ]] && export PATH="${HOME}/.tfenv/bin:${PATH}"
 [[ -x "${HOME}/.tfenv/bin/terraform" ]] && export TERRAGRUNT_TFPATH="${HOME}/.tfenv/bin/terraform"
 
+# kops
+[[ -d "${HOME}/.kopsenv" ]] && export PATH="${HOME}/.kopsenv/bin:${PATH}"
+
 # Krew support
-[[ -d "${HOME}/.krew" ]] && export PATH="$HOME/.krew/bin:$PATH"
+[[ -d "${HOME}/.krew" ]] && export PATH="$HOME/.krew/bin:${PATH}"
 
 # Load always all the k8s contexts
 if clarity::k8s_load_configs 2>/dev/null; then
