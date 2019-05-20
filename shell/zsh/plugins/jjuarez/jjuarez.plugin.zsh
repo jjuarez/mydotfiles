@@ -26,7 +26,3 @@ FZF-EOF"
 # utils
 alias archive='fs::archive'
 alias git_fshow='git::fshow'
-alias backup='${HOME}/.bin/backup.sh'
-# k8s
-alias kx='kubectx'
-alias kn='kubens'
