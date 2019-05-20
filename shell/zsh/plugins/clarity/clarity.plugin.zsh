@@ -20,7 +20,6 @@ directories[cm]="${WORKSPACE}/devops/cm/ansible"
 directories[citools]="${WORKSPACE}/devops/infrastructure/ci-tools"
 directories[helm]="${WORKSPACE}/devops/infrastructure/helm-charts"
 
-
 # Configuration
 DNS=${DNS:-'clarity.ai'}
 HELM_ROOT="${HOME}/.helm"
@@ -181,8 +180,10 @@ clarity::mongodb_uri() {
   return 0
 }
 
-
+##
 # ::alias:
+alias kx='kubectx'
+alias kn='kubens'
 alias klc='clarity::k8s_load_configs'
 alias ksw='clarity::k8s_switch'
 alias ipa='clarity::aws2ip'
