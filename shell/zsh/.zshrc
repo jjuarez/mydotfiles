@@ -21,6 +21,9 @@ COMPLETION_WAITING_DOTS="true"
 
 PATH=${PATH}:${HOME}/.bin
 
+# kops (you need this before to load the clarity plugin)
+[[ -d "${HOME}/.kopsenv" ]] && export PATH="${HOME}/.kopsenv/bin:${PATH}"
+
 # Plugins
 plugins=(ssh-agent git docker terraform helm kubectl kops jira jjuarez clarity)
 . "${ZSH}/oh-my-zsh.sh"
@@ -34,7 +37,7 @@ MYDOTFILES="${HOME}/.mydotfiles"
 export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 
 # Setup for fzf
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
 # Setup for rbenv
 [[ -d "${HOME}/.rbenv/bin" ]] && {
@@ -63,8 +66,6 @@ export TERRAGRUNT_DOWNLOAD="${HOME}/.terragrunt/cache"
 [[ -d "${HOME}/.tfenv" ]] && export PATH="${HOME}/.tfenv/bin:${PATH}"
 [[ -x "${HOME}/.tfenv/bin/terraform" ]] && export TERRAGRUNT_TFPATH="${HOME}/.tfenv/bin/terraform"
 
-# kops
-[[ -d "${HOME}/.kopsenv" ]] && export PATH="${HOME}/.kopsenv/bin:${PATH}"
 
 # Krew support
 [[ -d "${HOME}/.krew" ]] && export PATH="$HOME/.krew/bin:${PATH}"
