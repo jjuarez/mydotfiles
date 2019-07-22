@@ -8,10 +8,10 @@ Host gitlab.clarity.ai
   User         javier.juarez
   IdentityFile ~/.ssh/id_rsa.clarity.gitlab
 
-Host in.gitlab.clarity.ai
+Host int.gitlab.clarity.ai
   HostName     172.24.12.152
-  User         ubuntu
   Port         2222
+  IdentityFile ~/.ssh/id_rsa.ansible_provisioner_prod
 
 Host vpn-staff.clarity.ai
   HostName     172.16.200.6
