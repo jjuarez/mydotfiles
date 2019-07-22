@@ -125,7 +125,7 @@ clarity::k8s_switch() {
 # Issues
 clarity::open_issue() {
   local issue_id=${1}
-  local url=${2:-'https://gitlab.clarity.ai/infrastructure/issues/issues'}
+  local url=${2:-'https://gitlab.clarity.ai/infrastructure/ops/issues'}
 
   echo "Issue id: ${issue_id}"
   echo "URL: ${url}"
