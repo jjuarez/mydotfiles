@@ -27,6 +27,7 @@ Plugin 'fatih/vim-go'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'vim-scripts/bats.vim'
 Plugin 'klen/python-mode'
+Plugin 'towolf/vim-helm'
 " Themes
 Plugin 'tomasr/molokai'
 Plugin 'ryanoasis/vim-devicons'
