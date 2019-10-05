@@ -27,7 +27,7 @@ PATH=${PATH}:${HOME}/.bin
 
 # Plugins
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa.clarity.ec2 id_rsa.ansible_provisioner_dev id_rsa.ansible_provisioner_pre id_rsa.ansible_provisioner_prod
-plugins=(ssh-agent zsh-autosuggestions kubectl jira jjuarez clarity)
+plugins=(ssh-agent zsh-autosuggestions kubectl kops helm jira jjuarez clarity)
 . "${ZSH}/oh-my-zsh.sh"
 
 # My own stuffs
@@ -73,17 +73,17 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 [[ -d "${HOME}/.krew" ]] && export PATH="$HOME/.krew/bin:${PATH}"
 
 # Java support
-JAVA_VERSION="1.8.0_211"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk${JAVA_VERSION}.jdk/Contents/Home"
-export PATH=${JAVA_HOME}/jre/bin:${JAVA_HOME}/bin:${PATH}
+[[ -d "${HOME}/.sdkman" ]] && { 
+  source "${HOME}/.sdkman/bin/sdkman-init.sh"
+}
 
 # Load always all the k8s contexts
 if clarity::k8s_load_configs 2>/dev/null; then
   echo "Loading kubernetes configurations..."
   clarity::k8s_load_configs
 
-  echo "Switching to the development cluster..."
-  clarity::k8s_switch dev
+# echo "Switching to the development cluster..."
+# clarity::k8s_switch dev
 fi
 
 # To avoid shared history
