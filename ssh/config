@@ -9,13 +9,15 @@ Host gitlab.clarity.ai
   IdentityFile ~/.ssh/id_rsa.clarity.gitlab
 
 Host int.gitlab.clarity.ai
-  HostName     172.24.12.152
   Port         2222
   IdentityFile ~/.ssh/id_rsa.ansible_provisioner_prod
 
 Host vpn-staff.clarity.ai
   HostName     172.16.200.6
   IdentityFile ~/.ssh/id_rsa.clarity.ec2
+
+Host *.awscompute.internal
+  User admin
 
 Host *
   User                   ubuntu
