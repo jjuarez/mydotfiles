@@ -30,12 +30,14 @@ KCTX=$(which kubectx 2>/dev/null)
 KNS=$(which kubens 2>/dev/null)
 KOPS=$(which kops 2>/dev/null)
 HELM=$(which helm 2>/dev/null)
+OP=$(which op 2>/dev/null)
 
 [[ -x "${KCTL}" ]] || return 1
 [[ -x "${KCTX}" ]] || return 1
 [[ -x "${KNS}"  ]] || return 1
 [[ -x "${KOPS}" ]] || return 1
 [[ -x "${HELM}" ]] || return 1
+[[ -x "${OP}"   ]] || return 1
 
 ##
 # Shortcut
@@ -181,6 +183,30 @@ clarity::mongodb_uri() {
 }
 
 ##
+# Handles the 1Password signin
+clarity::op_signin() {
+  [[ -s "${HOME}/.1password" ]] || return 1
+
+  eval $(cat "${HOME}/.1password"|${OP} signin --account=clarity.1password.com 2>/dev/null)
+}
+
+##
+# Gather the VPN password with OTP
+clarity::vpn_password() {
+  local vpn_password=""
+  local vpn_totp=""
+
+  [[ -z "${OP_SESSION_clarity}" ]] && clarity::op_signin
+  [[ -z "${OP_SESSION_clarity}" ]] && return 1
+
+  vpn_password="$(${OP} get item 'Clarity VPN' 2>/dev/null|jq -r '.details.fields[1].value')"
+  vpn_totp="$(${OP} get totp 'Clarity VPN' 2>/dev/null)"
+
+  echo "${vpn_password}${vpn_totp}"
+}
+
+
+##
 # ::alias:
 alias kx='kubectx'
 alias kn='kubens'
@@ -193,7 +219,6 @@ alias _cm='clarity::shortcut cm'
 alias _product='clarity::shortcut product'
 alias _front='clarity::shortcut front'
 alias _back='clarity::shortcut back'
-alias _needs='clarity::shortcut needs'
 alias _citools='clarity::shortcut citools'
 alias _helm='clarity::shortcut helm'
 # Sites
