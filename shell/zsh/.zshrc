@@ -36,10 +36,12 @@ MYDOTFILES="${HOME}/.mydotfiles"
 [[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
 
 # Some homebrew configuration
-export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
+export GITHUB_HOMEBREW_TOKEN="7f462fbb75bf7b92986c17162c6f8d8eba572978"
 
 # Setup for fzf
 [[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
+
+eval "$(direnv hook zsh)"
 
 # Setup for golang
 [[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
@@ -60,14 +62,19 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
   eval "$(pyenv init -)"
 }
 
-# Terraform/Terragrunt setup
-[[ -d "${HOME}/.tfenv" ]] && {
-   export PATH="${HOME}/.tfenv/bin:${PATH}"
-   export TERRAGRUNT_TFPATH="${HOME}/.tfenv/bin/terraform"
+# Terragrunt set up
+[[ -d "${HOME}/.tgenv" ]] && {
+  export PATH="${HOME}/.tgenv/bin:${PATH}"
+  export TERRAGRUNT_TFPATH="${HOME}/.tfenv/bin/terraform"
 }
 
 [[ -d "${HOME}/.terragrunt/cache" ]] || mkdir -p "${HOME}/.terragrunt/cache"
 #export TERRAGRUNT_DOWNLOAD="${HOME}/.terragrunt/cache"
+
+# Terraform set up
+[[ -d "${HOME}/.tfenv" ]] && {
+   export PATH="${HOME}/.tfenv/bin:${PATH}"
+}
 
 # Krew support
 [[ -d "${HOME}/.krew" ]] && export PATH="$HOME/.krew/bin:${PATH}"
@@ -76,6 +83,12 @@ export GITHUB_HOMEBREW_TOKEN="e0f12273063596b0bfa523008b3d6bcf4147f112"
 [[ -d "${HOME}/.sdkman" ]] && { 
   source "${HOME}/.sdkman/bin/sdkman-init.sh"
 }
+
+# MongoDB support
+[[ -d "/Applications/MongoDB.app/Contents/Resources/Vendor/mongodb/bin" ]] && export PATH=${PATH}:/Applications/MongoDB.app/Contents/Resources/Vendor/mongodb/bin
+
+# MySQL support
+[[ -d "/usr/local/opt/mysql-client" ]] && export PATH=${PATH}:/usr/local/opt/mysql-client/bin
 
 # Load always all the k8s contexts
 if clarity::k8s_load_configs 2>/dev/null; then
