@@ -11,14 +11,12 @@ declare WORKSPACE="${HOME}/workspace/${CORP}"
 [[ -d "${WORKSPACE}" ]] || return 1
 
 declare -A directories
+directories[infra]="${WORKSPACE}/devops/infrastructure"
+directories[cm]="${WORKSPACE}/devops/cm/ansible"
+directories[tf]="${WORKSPACE}/devops/infrastructure/terraform"
 directories[product]="${WORKSPACE}/product"
 directories[front]="${WORKSPACE}/product/frontend"
 directories[back]="${WORKSPACE}/product/backend"
-directories[needs]="${WORKSPACE}/product/needs"
-directories[infra]="${WORKSPACE}/devops/infrastructure"
-directories[cm]="${WORKSPACE}/devops/cm/ansible"
-directories[citools]="${WORKSPACE}/devops/infrastructure/ci-tools"
-directories[helm]="${WORKSPACE}/devops/infrastructure/helm-charts"
 
 # Configuration
 DNS=${DNS:-'clarity.ai'}
@@ -144,11 +142,13 @@ clarity::open_issue() {
 ##
 # Convert the AWS name of the host to a useful IP address
 clarity::aws2ip() {
-  local aws_ip_address="${1}"
+  local aws_internal_name="${1}"
+  local aws_internal_ip_address=""
 
-  [[ -n "${aws_ip_address}" ]] || return 1
+  [[ -n "${aws_internal_name}" ]] || return 1
 
-  echo -n "${aws_ip_address}"|sed -e 's/^ip\-//g'|sed -e 's/\-/\./g'
+  aws_internal_ip_address=$(echo -n "${aws_internal_name}"|cut -d"." -f1)
+  echo -n "${aws_internal_ip_address}"|sed -e 's/^ip\-//g'|sed -e 's/\-/\./g'
 }
 
 ##
@@ -202,7 +202,12 @@ clarity::vpn_password() {
   vpn_password="$(${OP} get item 'Clarity VPN' 2>/dev/null|jq -r '.details.fields[1].value')"
   vpn_totp="$(${OP} get totp 'Clarity VPN' 2>/dev/null)"
 
-  echo "${vpn_password}${vpn_totp}"
+  if [ -d "${HOME}/.openvpn" ]; then
+    echo -e "javier.juarez\n${vpn_password}${vpn_totp}" >"${HOME}/.openvpn/credentials"
+    chmod 0600 "${HOME}/.openvpn/credentials"
+  fi
+
+  echo -e "${vpn_password}${vpn_totp}"
 }
 
 
@@ -216,11 +221,10 @@ alias ipa='clarity::aws2ip'
 # Shortcuts
 alias _infra='clarity::shortcut infra'
 alias _cm='clarity::shortcut cm'
+alias _tf='clarity::shortcut tf'
 alias _product='clarity::shortcut product'
 alias _front='clarity::shortcut front'
 alias _back='clarity::shortcut back'
-alias _citools='clarity::shortcut citools'
-alias _helm='clarity::shortcut helm'
 # Sites
 alias _issue='clarity::open_issue' ${@}
 alias _aws='open_command https://console.aws.amazon.com/console/home'
@@ -228,3 +232,4 @@ alias _calendar='open_command https://calendar.google.com'
 alias _docs='open_command https://gitlab.clarity.ai/documentation'
 alias _runbooks='open_command https://gitlab.clarity.ai/documentation/runbooks'
 alias _handbooks='open_command https://gitlab.clarity.ai/documentation/handbooks'
+
