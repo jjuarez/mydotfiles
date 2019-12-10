@@ -1,4 +1,11 @@
 # vi: set ft=zsh :
+declare -r DEFAULT_NAMESPACE='clarity'
+declare -r DEFAULT_AWS_PROFILE='root' # Indentifier for the root AWS account
+declare -r DEFAULT_ENVIRONMENT='dev'
+declare -r DEFAULT_ISSUES_URL='https://gitlab.clarity.ai/infrastructure/ops/issues'
+declare -r DEFAULT_MONGODB_USER='admin'
+declare -r DEFAULT_MONGODB_RS='rs0'
+declare -r DEFAULT_MONGODB_AUTH_DB='admin'
 declare -A K8S_ENVIRONMENTS=(
   [dev]=x
   [pre]=x
@@ -37,6 +44,7 @@ OP=$(which op 2>/dev/null)
 [[ -x "${HELM}" ]] || return 1
 [[ -x "${OP}"   ]] || return 1
 
+
 ##
 # Shortcut
 clarity::shortcut() {
@@ -44,6 +52,7 @@ clarity::shortcut() {
 
   [[ -d "${directories[$dir]}" ]] && cd "${directories[$dir]}"
 }
+
 
 ##
 # Kubernetes
@@ -53,6 +62,7 @@ clarity::valid_environment() {
   [[ -n "${K8S_ENVIRONMENTS[$environment]}" ]]
 }
 
+
 clarity::context() {
   local environment=${1}
   local namespace=${2}
@@ -61,11 +71,15 @@ clarity::context() {
   ${KNS} ${namespace} 2>&1 >/dev/null
 }
 
+
 clarity::kops() {
   local environment=${1}
+  local aws_profile=${2:-${DEFAULT_AWS_PROFILE}}
 
   export KOPS_STATE_STORE="s3://kubernetes.${environment}.${DNS}"
+  export AWS_PROFILE="${aws_profile}"
 }
+
 
 clarity::helm() {
   local environment=${1}
@@ -75,25 +89,26 @@ clarity::helm() {
   export HELM_HOME="${HELM_ROOT}/clusters/${environment}.${DNS}"
 }
 
+
 clarity::test_cluster() {
   local test=${1}
 
   [[ "${test}" == "test" ]] && {
-    echo "\nKubectl version:"
+    echo -e "\nKubectl version:"
     ${KCTL} cluster-info
 
-    echo "\nCustom namespaces:"
+    echo -e "\nCustom namespaces:"
     ${KCTL} get namespaces --no-headers | grep -vE '(default|ingress|kube\-*)'
 
-    echo "\nKops cluster:"
+    echo -e "\nKops cluster:"
     ${KOPS} get cluster
 
-    echo "\nHelm version:"
+    echo -e "\nHelm version:"
     ${HELM} version --tls
   }
 }
 
-# ::main::
+
 clarity::k8s_load_configs() {
   local new_kubeconfig=""
 
@@ -106,10 +121,11 @@ clarity::k8s_load_configs() {
   export KUBECONFIG="${new_kubeconfig}"
 }
 
+
 clarity::k8s_switch() {
-  local environment=${1:-dev}
-  local namespace=${2:-clarity}
-  local test=${3:-nope_thanks}
+  local environment=${1:-${DEFAULT_ENVIRONMENT}}
+  local namespace=${2:-${DEFAULT_NAMESPACE}}
+  local test=${3:-'nope'}
 
   if clarity::valid_environment ${environment}; then
     clarity::context ${environment} ${namespace}
@@ -121,11 +137,12 @@ clarity::k8s_switch() {
   fi
 }
 
+
 ##
 # Issues
 clarity::open_issue() {
   local issue_id=${1}
-  local url=${2:-'https://gitlab.clarity.ai/infrastructure/ops/issues'}
+  local url=${2:-${DEFAULT_ISSUES_URL}}
 
   echo "Issue id: ${issue_id}"
   echo "URL: ${url}"
@@ -139,6 +156,7 @@ clarity::open_issue() {
   fi
 }
 
+
 ##
 # Convert the AWS name of the host to a useful IP address
 clarity::aws2ip() {
@@ -151,13 +169,14 @@ clarity::aws2ip() {
   echo -n "${aws_internal_ip_address}"|sed -e 's/^ip\-//g'|sed -e 's/\-/\./g'
 }
 
+
 ##
 # Builds the MongoDB URI
 clarity::mongodb_uri() {
-  local environment=${1:-'dev'}
-  local user=${2:-'admin'}
-  local replica_set=${3:-'rs0'}
-  local auth_db=${4:-'admin'}
+  local environment=${1:-${DEFAULT_ENVIRONMENT}}
+  local user=${2:-${DEFAULT_MONGODB_USER}}
+  local replica_set=${3:-${DEFAULT_MONGODB_RS}}
+  local auth_db=${4:-${DEFAULT_MONGODB_AUTH_DB}}
   local hosts=""
   local mongodb_uri=""
 
@@ -182,6 +201,7 @@ clarity::mongodb_uri() {
   return 0
 }
 
+
 ##
 # Handles the 1Password signin
 clarity::op_signin() {
@@ -189,6 +209,7 @@ clarity::op_signin() {
 
   eval $(cat "${HOME}/.1password"|${OP} signin --account=clarity.1password.com 2>/dev/null)
 }
+
 
 ##
 # Gather the VPN password with OTP
