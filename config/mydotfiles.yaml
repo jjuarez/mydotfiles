@@ -41,7 +41,6 @@
       :local_item: .mongorc.js
   :taps:
     - derailed/k9s
-    - homebrew/cask-fonts
     - wagoodman/dive
     - wata727/tflint
   :formulas:
@@ -92,6 +91,10 @@
     - zsh
     - zsh-autosuggestions
     - zsh-hightlight
+    - bat
+    - fd
+    - ripgrep
+    - diff-so-fancy
   :casks:
     - 1password
     - dropbox
