@@ -17,13 +17,12 @@ declare WORKSPACE="${HOME}/workspace/${CORP}"
 
 [[ -d "${WORKSPACE}" ]] || return 1
 
-declare -A directories
-directories[infra]="${WORKSPACE}/devops/infrastructure"
-directories[cm]="${WORKSPACE}/devops/cm/ansible"
-directories[tf]="${WORKSPACE}/devops/infrastructure/terraform"
-directories[product]="${WORKSPACE}/product"
-directories[front]="${WORKSPACE}/product/frontend"
-directories[back]="${WORKSPACE}/product/backend"
+declare -A shortcuts
+shortcuts[infra]="${WORKSPACE}/devops/infrastructure"
+shortcuts[cm]="${WORKSPACE}/devops/cm/ansible"
+shortcuts[tf]="${WORKSPACE}/devops/infrastructure/terraform"
+shortcuts[front]="${WORKSPACE}/product/frontend"
+shortcuts[back]="${WORKSPACE}/product/backend"
 
 # Configuration
 DNS=${DNS:-'clarity.ai'}
@@ -47,10 +46,10 @@ OP=$(which op 2>/dev/null)
 
 ##
 # Shortcut
-clarity::shortcut() {
+clarity::shortcuts() {
   local dir=${1}
 
-  [[ -d "${directories[$dir]}" ]] && cd "${directories[$dir]}"
+  [[ -d "${shortcuts[${dir}]}" ]] && cd "${shortcuts[${dir}]}" || echo "fuck!"
 }
 
 
@@ -234,20 +233,21 @@ clarity::vpn_password() {
 
 ##
 # ::alias:
+alias k='kubectl'
 alias kx='kubectx'
 alias kn='kubens'
 alias klc='clarity::k8s_load_configs'
 alias ksw='clarity::k8s_switch'
 alias ipa='clarity::aws2ip'
 # Shortcuts
-alias _infra='clarity::shortcut infra'
-alias _cm='clarity::shortcut cm'
-alias _tf='clarity::shortcut tf'
-alias _product='clarity::shortcut product'
-alias _front='clarity::shortcut front'
-alias _back='clarity::shortcut back'
+alias _infra='clarity::shortcuts infra'
+alias _cm='clarity::shortcuts cm'
+alias _tf='clarity::shortcuts tf'
+alias _k8s='clarity::shortcuts k8s'
+alias _front='clarity::shortcuts front'
+alias _back='clarity::shortcuts back'
 # Sites
-alias _issue='clarity::open_issue' ${@}
+alias _issues='clarity::open_issue' ${@}
 alias _aws='open_command https://console.aws.amazon.com/console/home'
 alias _calendar='open_command https://calendar.google.com'
 alias _docs='open_command https://gitlab.clarity.ai/documentation'
