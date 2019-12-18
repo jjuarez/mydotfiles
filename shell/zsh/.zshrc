@@ -37,7 +37,7 @@ PATH=${PATH}:${HOME}/.bin
 
 # Plugins
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa.clarity.ec2 id_rsa.ansible_provisioner_dev id_rsa.ansible_provisioner_pre id_rsa.ansible_provisioner_prod
-plugins=(ssh-agent zsh-autosuggestions kubectl jira z clarity jjuarez)
+plugins=(ssh-agent zsh-autosuggestions jira z clarity jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
 # Some homebrew configuration
@@ -113,13 +113,29 @@ fi
 
 [[ "${STARSHIP_SUPPORT}" -eq 1 ]] && eval "$(starship init zsh)"
 
-# Testing new tools
-alias diff="diff-so-fancy"
-alias cat="bat"
-
 # ZSH options
 setopt no_share_history
 setopt autocd
 setopt cdablevars
 setopt correct
 setopt histignoredups
+
+# Testing new tools
+alias diff="diff-so-fancy"
+alias cat="bat"
+
+# Shortcuts
+shortcuts[k8s]=${WORKSPACE}/devops/infrastructure/kubernetes
+shortcuts[helm]=${WORKSPACE}/devops/infrastructure/helm-charts
+shortcuts[iac_live]=${WORKSPACE}/devops/infrastructure/terraform/iac_live
+shortcuts[iac_root]=${WORKSPACE}/devops/infrastructure/terraform/iac_root
+shortcuts[iac_mgmt]=${WORKSPACE}/devops/infrastructure/terraform/iac_mgmt
+shortcuts[iac_saas]=${WORKSPACE}/devops/infrastructure/terraform/iac_saas
+
+alias _k8s='clarity::shortcuts k8s'
+alias _helm='clarity::shortcuts helm'
+alias _iac_live='clarity::shortcuts iac_live'
+alias _iac_root='clarity::shortcuts iac_root'
+alias _iac_mgmt='clarity::shortcuts iac_mgmt'
+alias _iac_saas='clarity::shortcuts iac_saas'
+
