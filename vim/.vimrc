@@ -20,6 +20,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'gabrielelana/vim-markdown'
 Plugin 'andrewstuart/vim-kubernetes'
 Plugin 'ervandew/supertab'
+Plugin 'wlemuel/vim-tldr'
 " Syntax
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'hashivim/vim-terraform'
