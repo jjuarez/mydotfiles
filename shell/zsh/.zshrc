@@ -2,7 +2,7 @@
 ZSH="${HOME}/.oh-my-zsh"
 
 # Custom flags
-PYTHON_SUPPORT=0
+PYTHON_SUPPORT=1
 RUBY_SUPPORT=0
 JAVA_SUPPORT=0
 TERRAGRUNT_SUPPORT=1
@@ -37,7 +37,7 @@ PATH=${PATH}:${HOME}/.bin
 
 # Plugins
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa.clarity.ec2 id_rsa.ansible_provisioner_dev id_rsa.ansible_provisioner_pre id_rsa.ansible_provisioner_prod
-plugins=(ssh-agent zsh-autosuggestions kubectl jira clarity jjuarez)
+plugins=(ssh-agent zsh-autosuggestions kubectl jira z clarity jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
 # Some homebrew configuration
@@ -112,6 +112,10 @@ fi
 [[ -d "/usr/local/opt/mysql-client" ]] && export PATH=${PATH}:/usr/local/opt/mysql-client/bin
 
 [[ "${STARSHIP_SUPPORT}" -eq 1 ]] && eval "$(starship init zsh)"
+
+# Testing new tools
+alias diff="diff-so-fancy"
+alias cat="bat"
 
 # ZSH options
 setopt no_share_history
