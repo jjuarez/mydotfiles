@@ -1,8 +1,7 @@
 # vi: set ft=zsh :
-declare -r DEFAULT_NAMESPACE='clarity'
+declare -r DEFAULT_NAMESPACE='default'
 declare -r DEFAULT_AWS_PROFILE='root' # Indentifier for the root AWS account
 declare -r DEFAULT_ENVIRONMENT='dev'
-declare -r DEFAULT_ISSUES_URL='https://gitlab.clarity.ai/infrastructure/ops/issues'
 declare -r DEFAULT_MONGODB_USER='admin'
 declare -r DEFAULT_MONGODB_RS='rs0'
 declare -r DEFAULT_MONGODB_AUTH_DB='admin'
@@ -10,10 +9,12 @@ declare -A K8S_ENVIRONMENTS=(
   [dev]=x
   [pre]=x
   [prod]=x
+  [common.mgmt]=x
 )
 
 declare CORP="clarity"
 declare WORKSPACE="${HOME}/workspace/${CORP}"
+declare KUBECONFIG_SAVE="${KUBECONFIG}"
 
 [[ -d "${WORKSPACE}" ]] || return 1
 
@@ -55,16 +56,9 @@ clarity::shortcuts() {
 
 ##
 # Kubernetes
-clarity::valid_environment() {
-  local environment=${1}
-
-  [[ -n "${K8S_ENVIRONMENTS[$environment]}" ]]
-}
-
-
 clarity::context() {
   local environment=${1}
-  local namespace=${2}
+  local namespace=${2:-'default'}
 
   ${KCTX} ${environment}.${DNS} 2>&1 >/dev/null
   ${KNS} ${namespace} 2>&1 >/dev/null
@@ -75,8 +69,18 @@ clarity::kops() {
   local environment=${1}
   local aws_profile=${2:-${DEFAULT_AWS_PROFILE}}
 
-  export KOPS_STATE_STORE="s3://kubernetes.${environment}.${DNS}"
-  export AWS_PROFILE="${aws_profile}"
+  case ${environment} in
+    common.mgmt)
+         export KOPS_STATE_STORE="s3://commonk8s-clarity-mgmt-pro"
+         [[ -s "${HOME}/.env.Clarity.tf.mgmt" ]] || return 1
+         source "${HOME}/.env.Clarity.tf.mgmt"
+         ;;
+
+       *)
+         export KOPS_STATE_STORE="s3://kubernetes.${environment}.${DNS}"
+         export AWS_PROFILE="${aws_profile}"
+         ;;
+  esac
 }
 
 
@@ -89,31 +93,12 @@ clarity::helm() {
 }
 
 
-clarity::test_cluster() {
-  local test=${1}
-
-  [[ "${test}" == "test" ]] && {
-    echo -e "\nKubectl version:"
-    ${KCTL} cluster-info
-
-    echo -e "\nCustom namespaces:"
-    ${KCTL} get namespaces --no-headers | grep -vE '(default|ingress|kube\-*)'
-
-    echo -e "\nKops cluster:"
-    ${KOPS} get cluster
-
-    echo -e "\nHelm version:"
-    ${HELM} version --tls
-  }
-}
-
-
 clarity::k8s_load_configs() {
   local new_kubeconfig=""
 
   [[ -d "${HOME}/.kube" ]] || return 1
 
-  new_kubeconfig=$(find ${HOME}/.kube -type f -iname "*config" -print|tr '\n' ':'|sed -e 's/:$//g')
+  new_kubeconfig=$(find ${HOME}/.kube -type f -iname "*.config" -print|tr '\n' ':'|sed -e 's/:$//g')
 
   [[ -n "${new_kubeconfig}" ]] || return 1
 
@@ -126,32 +111,12 @@ clarity::k8s_switch() {
   local namespace=${2:-${DEFAULT_NAMESPACE}}
   local test=${3:-'nope'}
 
-  if clarity::valid_environment ${environment}; then
+  if [ -n "${K8S_ENVIRONMENTS[${environment}]}" ]; then
     clarity::context ${environment} ${namespace}
     clarity::kops ${environment}
     clarity::helm ${environment}
-    clarity::test_cluster ${test}
   else
     return 1
-  fi
-}
-
-
-##
-# Issues
-clarity::open_issue() {
-  local issue_id=${1}
-  local url=${2:-${DEFAULT_ISSUES_URL}}
-
-  echo "Issue id: ${issue_id}"
-  echo "URL: ${url}"
-
-  if [[ ${issue_id} =~ '^[0-9]+$' ]]; then
-    echo "Go to to issue: ${issue_id}..."
-    open_command "${url}/${issue_id}"
-  else
-    (>&2 echo "Error: No issue id")
-    open_command "${url}"
   fi
 }
 
@@ -210,8 +175,6 @@ clarity::op_signin() {
 }
 
 
-##
-# Gather the VPN password with OTP
 clarity::vpn_password() {
   local vpn_password=""
   local vpn_totp=""
@@ -247,7 +210,6 @@ alias _k8s='clarity::shortcuts k8s'
 alias _front='clarity::shortcuts front'
 alias _back='clarity::shortcuts back'
 # Sites
-alias _issues='clarity::open_issue' ${@}
 alias _aws='open_command https://console.aws.amazon.com/console/home'
 alias _calendar='open_command https://calendar.google.com'
 alias _docs='open_command https://gitlab.clarity.ai/documentation'
