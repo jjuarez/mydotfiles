@@ -3,6 +3,11 @@ Host github.com
   User         jjuarez
   IdentityFile ~/.ssh/id_rsa.clarity.github
 
+Host gitlab.com
+  HostName     gitlab.com
+  User         jjuarez
+  IdentityFile ~/.ssh/id_rsa.mundokids
+
 Host gitlab.clarity.ai
   HostName     gitlab.clarity.ai
   User         javier.juarez
@@ -14,11 +19,12 @@ Host int.gitlab.clarity.ai
   IdentityFile ~/.ssh/id_rsa.ansible_provisioner_prod
 
 Host vpn-staff.clarity.ai
+  User         ubuntu
   HostName     172.16.200.6
   IdentityFile ~/.ssh/id_rsa.clarity.ec2
 
 Host *
-  User                   ubuntu
+  User                   admin
   UserKnownHostsFile     /dev/null
   StrictHostKeyChecking  no
   VerifyHostKeyDNS       no
