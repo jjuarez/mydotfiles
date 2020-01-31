@@ -36,7 +36,7 @@ PATH=${PATH}:${HOME}/.bin
 [[ -d "${HOME}/.kopsenv" ]] && export PATH="${HOME}/.kopsenv/bin:${PATH}"
 
 # Plugins
-zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa.clarity.ec2 id_rsa.ansible_provisioner_dev id_rsa.ansible_provisioner_pre id_rsa.ansible_provisioner_prod
+zstyle :omz:plugins:ssh-agent identities id_rsa.mundokids id_rsa id_rsa.clarity.ec2 id_rsa.ansible_provisioner_dev id_rsa.ansible_provisioner_pre id_rsa.ansible_provisioner_prod
 plugins=(ssh-agent zsh-autosuggestions jira z clarity jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
