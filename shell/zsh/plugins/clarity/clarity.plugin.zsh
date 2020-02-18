@@ -1,6 +1,6 @@
 # vi: set ft=zsh :
 declare -r DEFAULT_NAMESPACE='default'
-declare -r DEFAULT_AWS_PROFILE='root' # Indentifier for the root AWS account
+declare -r DEFAULT_AWS_PROFILE='default'
 declare -r DEFAULT_ENVIRONMENT='dev'
 declare -r DEFAULT_MONGODB_USER='admin'
 declare -r DEFAULT_MONGODB_RS='rs0'
