@@ -2,27 +2,25 @@
 ZSH="${HOME}/.oh-my-zsh"
 
 # Custom flags
+DIRENV_SUPPORT=0
+K8S_SUPPORT=1
 PYTHON_SUPPORT=1
 RUBY_SUPPORT=0
 JAVA_SUPPORT=0
 TERRAGRUNT_SUPPORT=1
 TERRAFORM_SUPPORT=1
-K8S_SUPPORT=1
-STARSHIP_SUPPORT=0
 
 # Term customizations
 TERM=xterm-256color
 export LANG=en_US.UTF-8
 
-[[ "${STARSHIP_SUPPORT}" -ne 1 ]] && {
-  ZSH_THEME="powerlevel9k"
+ZSH_THEME="powerlevel9k"
 
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir kubecontext vcs)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
-  POWERLEVEL9K_CONTEXT_TEMPLATE="%n@%m"
-  POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-  POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-}
+POWERLEVEL9K_MODE="nerdfont-complete"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir kubecontext vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
 # ZSH Options
 CASE_SENSITIVE="true"
@@ -36,7 +34,7 @@ PATH=${PATH}:${HOME}/.bin
 [[ -d "${HOME}/.kopsenv" ]] && export PATH="${HOME}/.kopsenv/bin:${PATH}"
 
 # Plugins
-zstyle :omz:plugins:ssh-agent identities id_rsa.mundokids id_rsa id_rsa.clarity.ec2 id_rsa.ansible_provisioner_dev id_rsa.ansible_provisioner_pre id_rsa.ansible_provisioner_prod
+zstyle :omz:plugins:ssh-agent identities id_rsa.mundokids id_rsa id_rsa.clarity.ec2 id_rsa.ansible_provisioner_dev id_rsa.ansible_provisioner_pre id_rsa.ansible_provisioner_prod id_rsa.ansible_provisioner_mgmt
 plugins=(ssh-agent zsh-autosuggestions jira z clarity jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
@@ -52,7 +50,7 @@ MYDOTFILES="${HOME}/.mydotfiles"
 [[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
 # Direnv
-#eval "$(direnv hook zsh)"
+[[ "${DIRENV_SUPPORT}" -eq 1 ]] && eval "$(direnv hook zsh)"
 
 # Setup for golang
 [[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
@@ -110,8 +108,6 @@ fi
 
 # MySQL support
 [[ -d "/usr/local/opt/mysql-client" ]] && export PATH=${PATH}:/usr/local/opt/mysql-client/bin
-
-[[ "${STARSHIP_SUPPORT}" -eq 1 ]] && eval "$(starship init zsh)"
 
 # ZSH options
 setopt no_share_history
