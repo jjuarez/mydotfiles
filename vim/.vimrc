@@ -22,7 +22,7 @@ Plugin 'andrewstuart/vim-kubernetes'
 Plugin 'ervandew/supertab'
 Plugin 'wlemuel/vim-tldr'
 " Syntax
-Plugin 'puppetlabs/puppet-syntax-vim'
+"Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'fatih/vim-go'
 Plugin 'pearofducks/ansible-vim'
