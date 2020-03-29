@@ -3,6 +3,12 @@ Host github.com
   User         jjuarez
   IdentityFile ~/.ssh/id_rsa.clarity.github
 
+Host pi.local
+  HostName       192.168.1.64
+  User           pi
+  IdentitiesOnly yes
+  IdentityFile   ~/.ssh/id_rsa.pi
+
 Host gitlab.com
   HostName     gitlab.com
   User         jjuarez
@@ -26,6 +32,7 @@ Host vpn-staff.clarity.ai
 Host *
   User                   admin
   UserKnownHostsFile     /dev/null
+# IdentitiesOnly         yes
   StrictHostKeyChecking  no
   VerifyHostKeyDNS       no
   TCPKeepAlive           yes
