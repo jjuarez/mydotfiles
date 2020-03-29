@@ -9,6 +9,7 @@ call vundle#rc()
 
 Plugin 'gmarik/Vundle.vim'
 " Utils
+Plugin 'tpope/vim-surround'
 Plugin 'mileszs/ack.vim'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tomtom/tcomment_vim'
@@ -29,7 +30,7 @@ Plugin 'pearofducks/ansible-vim'
 Plugin 'vim-scripts/bats.vim'
 Plugin 'klen/python-mode'
 Plugin 'towolf/vim-helm'
-Plugin 'posva/vim-vue'
+" Plugin 'posva/vim-vue'
 " Themes
 Plugin 'tomasr/molokai'
 Plugin 'ryanoasis/vim-devicons'
