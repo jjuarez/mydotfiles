@@ -4,11 +4,11 @@ ZSH="${HOME}/.oh-my-zsh"
 # Custom flags
 DIRENV_SUPPORT=0
 K8S_SUPPORT=1
-PYTHON_SUPPORT=1
-RUBY_SUPPORT=0
-JAVA_SUPPORT=0
 TERRAGRUNT_SUPPORT=1
 TERRAFORM_SUPPORT=1
+PYTHON_SUPPORT=0
+RUBY_SUPPORT=0
+JAVA_SUPPORT=0
 
 # Term customizations
 TERM=xterm-256color
@@ -17,9 +17,10 @@ export LANG=en_US.UTF-8
 ZSH_THEME="powerlevel9k"
 
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir kubecontext vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir aws kubecontext vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
 # ZSH Options
@@ -34,8 +35,8 @@ PATH=${PATH}:${HOME}/.bin
 [[ -d "${HOME}/.kopsenv" ]] && export PATH="${HOME}/.kopsenv/bin:${PATH}"
 
 # Plugins
-zstyle :omz:plugins:ssh-agent identities id_rsa.mundokids id_rsa id_rsa.clarity.ec2 id_rsa.ansible_provisioner_dev id_rsa.ansible_provisioner_pre id_rsa.ansible_provisioner_prod id_rsa.ansible_provisioner_mgmt
-plugins=(ssh-agent zsh-autosuggestions jira z clarity jjuarez)
+zstyle :omz:plugins:ssh-agent identities id_rsa.mundokids id_rsa id_rsa.clarity.ec2 id_rsa.ansible_provisioner_dev id_rsa.ansible_provisioner_pre id_rsa.ansible_provisioner_prod id_rsa.ansible_provisioner_mgmt id_rsa.mgmt_k8s
+plugins=(ssh-agent zsh-autosuggestions jira z kops kubectl helm clarity jjuarez)
 . "${ZSH}/oh-my-zsh.sh"
 
 # Some homebrew configuration
@@ -115,23 +116,14 @@ setopt autocd
 setopt cdablevars
 setopt correct
 setopt histignoredups
+setopt auto_cd
+cdpath=(
+ ${HOME}/workspace/clarity/infrastructure
+ ${HOME}/workspace/clarity/product
+)
 
 # Testing new tools
 alias diff="diff-so-fancy"
 alias cat="bat"
 
-# Shortcuts
-shortcuts[k8s]=${WORKSPACE}/devops/infrastructure/kubernetes
-shortcuts[helm]=${WORKSPACE}/devops/infrastructure/helm-charts
-shortcuts[iac_live]=${WORKSPACE}/devops/infrastructure/terraform/iac_live
-shortcuts[iac_root]=${WORKSPACE}/devops/infrastructure/terraform/iac_root
-shortcuts[iac_mgmt]=${WORKSPACE}/devops/infrastructure/terraform/iac_mgmt
-shortcuts[iac_saas]=${WORKSPACE}/devops/infrastructure/terraform/iac_saas
-
-alias _k8s='clarity::shortcuts k8s'
-alias _helm='clarity::shortcuts helm'
-alias _iac_live='clarity::shortcuts iac_live'
-alias _iac_root='clarity::shortcuts iac_root'
-alias _iac_mgmt='clarity::shortcuts iac_mgmt'
-alias _iac_saas='clarity::shortcuts iac_saas'
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
