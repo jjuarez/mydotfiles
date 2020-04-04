@@ -88,19 +88,6 @@ clarity::helm() {
 }
 
 
-clarity::k8s_load_configs() {
-  local new_kubeconfig=""
-
-  [[ -d "${HOME}/.kube" ]] || return 1
-
-  new_kubeconfig=$(find ${HOME}/.kube -type f -iname "*.config" -print|tr '\n' ':'|sed -e 's/:$//g')
-
-  [[ -n "${new_kubeconfig}" ]] || return 1
-
-  export KUBECONFIG="${new_kubeconfig}"
-}
-
-
 clarity::k8s_switch() {
   local environment=${1:-${DEFAULT_ENVIRONMENT}}
   local namespace=${2:-${DEFAULT_NAMESPACE}}
@@ -119,10 +106,22 @@ clarity::k8s_switch() {
 }
 
 
+clarity::k8s_load_kubeconfig() {
+  local fresh_kubeconfig=""
+
+  [[ -d "${HOME}/.kube" ]] || return 1
+
+  fresh_kubeconfig=$(find ${HOME}/.kube -type f -iname "*.config" -print|tr '\n' ':'|sed -e 's/:$//g')
+  [[ -n "${fresh_kubeconfig}" ]] || return 0
+
+  export SAVED_KUBECONFIG=${KUBECONFIG}
+  export KUBECONFIG=${fresh_kubeconfig}
+}
+
+
 ##
 # Clean the current AWS environment
 clarity::aws_clean_credentials() {
-
   [[ -n "${AWS_PROFILE}"           ]] && unset AWS_PROFILE
   [[ -n "${AWS_DEFAULT_REGION}"    ]] && unset AWS_DEFAULT_REGION
   [[ -n "${AWS_ACCESS_KEY_ID}"     ]] && unset AWS_ACCESS_KEY_ID
@@ -183,12 +182,12 @@ clarity::vpn_password() {
 
   vpn_password="$(${OP} get item 'Clarity VPN' 2>/dev/null|jq -r '.details.fields[1].value')"
   vpn_totp="$(${OP} get totp 'Clarity VPN' 2>/dev/null)"
-  #
-  # if [ -d "${HOME}/.openvpn" ]; then
-  #   echo -e "javier.juarez\n${vpn_password}${vpn_totp}" >"${HOME}/.openvpn/credentials"
-  #   chmod 0600 "${HOME}/.openvpn/credentials"
-  # fi
-  #
+#
+# if [ -d "${HOME}/.openvpn" ]; then
+#   echo -e "javier.juarez\n${vpn_password}${vpn_totp}" >"${HOME}/.openvpn/credentials"
+#   chmod 0600 "${HOME}/.openvpn/credentials"
+# fi
+#
   echo -e "${vpn_password}${vpn_totp}"
 }
 
@@ -198,9 +197,9 @@ clarity::vpn_password() {
 alias k='kubectl'
 alias kx='kubectx'
 alias kn='kubens'
-alias klc='clarity::k8s_load_configs'
 alias ksw='clarity::k8s_switch'
 alias awscc='clarity::aws_clean_credentials'
+alias klc='clarity::k8s_load_kubeconfig'
 
 # Sites
 alias _aws='open_command https://console.aws.amazon.com/console/home'
