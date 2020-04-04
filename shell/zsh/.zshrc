@@ -140,7 +140,7 @@ for feature activated in ${(kv)FTS}; do
     ft::${feature}
   fi
 done
-echo -e "\n"
+echo -en "\n"
 
 
 ##
