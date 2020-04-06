@@ -59,8 +59,9 @@ source "${ZSH}/oh-my-zsh.sh"
 ##
 if [ -d "${HOME}/.mydotfiles" ]; then
 
-  export BREW_HOME=/usr/local
+  export PATH=${PATH}:/usr/local/sbin
   export MYDOTFILES="${HOME}/.mydotfiles"
+
   [[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
 fi
 
