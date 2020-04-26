@@ -1,6 +1,5 @@
 # zsh cache configuration
 
-# Just to debug
 #set -e -o pipefail
 
 ZSH="${HOME}/.oh-my-zsh"
@@ -12,16 +11,12 @@ ZSH_CACHE_DIR="${HOME}/.zsh_cache"
 # Feature flags
 declare -A FTS=(
   [fzf]=true
+  [direnv]=false
+  [k8s]=true
   [tf]=true
   [python]=true
   [ruby]=false
   [java]=false
-  [golang]=true
-  [k8s]=true
-  [krew]=true
-  [mongodb]=true
-  [mysql]=true
-  [direnv]=false
 )
 
 # Term customizations
@@ -65,38 +60,16 @@ if [ -d "${HOME}/.mydotfiles" ]; then
   [[ -f "${MYDOTFILES}/shell/shell.sh" ]] && source "${MYDOTFILES}/shell/shell.sh"
 fi
 
+
 ##
-## Features
+## Optional Features
 ##
 ft::fzf() {
   [[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 }
 
 ft::direnv() {
-  [[ -x "${BREW_HOME}/bin/direnv" ]] && eval "$(direnv hook zsh)"
-}
-
-ft::golang() {
-  [[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
-}
-
-ft::ruby() {
-  [[ -d "${HOME}/.rbenv/bin" ]] && {
-    export PATH=${HOME}/.rbenv/bin:${PATH}
-
-    eval "$(rbenv init -)"
-  }
-}
-
-ft::python() {
-  [[ -d "${HOME}/.pyenv/bin" ]] && {
-    export PYENV_ROOT="${HOME}/.pyenv"
-    export PATH=${PYENV_ROOT}/bin:${PATH}
-   #export CFLAGS="-O2 -I$(brew --prefix openssl)/include"
-   #export LDFLAGS="-L$(brew --prefix openssl)/lib"
-
-    eval "$(pyenv init -)"
-  }
+  [[ -x "$(brew --prefix)/bin/direnv" ]] && eval "$(direnv hook zsh)"
 }
 
 ft::tf() {
@@ -108,30 +81,35 @@ ft::tf() {
   }
 }
 
+ft::python() {
+  [[ -d "${HOME}/.pyenv/bin" ]] && {
+    export PYENV_ROOT="${HOME}/.pyenv"
+    export PATH=${PYENV_ROOT}/bin:${PATH}
+    export CFLAGS="-O2 -I$(brew --prefix openssl)/include"
+    export LDFLAGS="-L$(brew --prefix openssl)/lib"
+
+    eval "$(pyenv init -)"
+  }
+}
+
+ft::ruby() {
+  [[ -d "${HOME}/.rbenv/bin" ]] && {
+    export PATH=${HOME}/.rbenv/bin:${PATH}
+
+    eval "$(rbenv init -)"
+  }
+}
+
 ft::java() {
   [[ -d "${HOME}/.sdkman" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 }
 
 ft::k8s() {
   if whence -w clarity::k8s_load_kubeconfig 2>&1 >/dev/null; then
-    clarity::k8s_load_kubeconfig
+    clarity::k8s_load_kubeconfig # Forces the load of all the kubeconfig files
   fi
-}
 
-ft::krew() {
   [[ -d "${HOME}/.krew" ]] && export PATH="${HOME}/.krew/bin:${PATH}"
-}
-
-ft::mongodb() {
-  MONGODB_PATH="/Applications/MongoDB.app/Contents/Resources/Vendor/mongodb/bin"
-
-  [[ -d "${MONGODB_PATH}" ]] && export PATH=${PATH}:${MONGODB_PATH}
-}
-
-ft::mysql() {
-  MYSQL_PATH="${BREW_HOME}/opt/mysql-client/bin"
-
-  [[ -d "${MYSQL_PATH}" ]] && export PATH=${PATH}:${MYSQL_PATH}
 }
 
 echo -en "Features: "
@@ -142,6 +120,26 @@ for feature activated in ${(kv)FTS}; do
   fi
 done
 echo -en "\n"
+
+
+##
+## Non optional features
+##
+
+# Golang support
+ft::go() {
+  [[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
+}
+
+# MongoDB support
+MONGODB_PATH="/Applications/MongoDB.app/Contents/Resources/Vendor/mongodb/bin"
+
+[[ -d "${MONGODB_PATH}" ]] && export PATH=${PATH}:${MONGODB_PATH}
+
+# MySQL support
+MYSQL_PATH="$(brew --prefix)/opt/mysql-client/bin"
+
+[[ -d "${MYSQL_PATH}" ]] && export PATH=${PATH}:${MYSQL_PATH}
 
 
 ##
@@ -158,9 +156,9 @@ cdpath=(
   "${HOME}/workspace/clarity/documentation"
 )
 
+
 ##
 ## Alternative tools
 ##
 alias diff="diff-so-fancy"
 alias cat="bat"
-
