@@ -1,13 +1,13 @@
-Host github.com
-  HostName     github.com
-  User         jjuarez
-  IdentityFile ~/.ssh/id_rsa.clarity.github
-
 Host pi.local
   HostName       192.168.1.64
   User           pi
   IdentitiesOnly yes
   IdentityFile   ~/.ssh/id_rsa.pi
+
+Host github.com
+  HostName     github.com
+  User         jjuarez
+  IdentityFile ~/.ssh/id_rsa.clarity.github
 
 Host gitlab.com
   HostName     gitlab.com
@@ -20,9 +20,10 @@ Host gitlab.clarity.ai
   IdentityFile ~/.ssh/id_rsa.clarity.gitlab
 
 Host int.gitlab.clarity.ai
-  User         ubuntu
-  Port         2222
-  IdentityFile ~/.ssh/id_rsa.ansible_provisioner_prod
+  User           ubuntu
+  Port           2222
+  IdentitiesOnly yes
+  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_prod
 
 Host vpn-staff.clarity.ai
   User         ubuntu
@@ -32,7 +33,6 @@ Host vpn-staff.clarity.ai
 Host *
   User                   admin
   UserKnownHostsFile     /dev/null
-# IdentitiesOnly         yes
   StrictHostKeyChecking  no
   VerifyHostKeyDNS       no
   TCPKeepAlive           yes
