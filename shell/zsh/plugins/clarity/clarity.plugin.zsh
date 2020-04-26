@@ -33,13 +33,6 @@ OP=$(which op 2>/dev/null)
 
 ##
 # Kubernetes
-clarity::context() {
-  local environment=${1}
-
-  ${KCTX} ${environment}.clarity.ai 2>&1 >/dev/null
-}
-
-
 clarity::kops() {
   local environment=${1}
 
@@ -63,6 +56,8 @@ clarity::kops() {
       ;;
 
     dev|pre|prod)
+      # Back to the root account we have to clean the environment
+      clarity::aws_clean_credentials
       export KOPS_STATE_STORE="s3://kubernetes.${environment}.clarity.ai"
       export AWS_PROFILE="default"
       ;;
@@ -92,6 +87,20 @@ clarity::helm() {
 }
 
 
+clarity::context() {
+  local environment=${1}
+
+  ${KCTX} ${environment}.clarity.ai 2>&1 >/dev/null
+}
+
+
+clarity::namespace() {
+  local namespace=${1}
+
+  ${KNS} ${namespace} 2>&1 >/dev/null
+}
+
+
 clarity::k8s_switch() {
   local environment=${1:-${DEFAULT_ENVIRONMENT}}
   local namespace=${2:-${DEFAULT_NAMESPACE}}
@@ -99,7 +108,8 @@ clarity::k8s_switch() {
 
   case "${environment}" in
     k8s.stg|common.mgmt|dev|pre|prod)
-      clarity::context ${environment} ${namespace}
+      clarity::context ${environment}
+      clarity::namespace ${namespace}
       clarity::kops ${environment}
       clarity::helm ${environment}
       ;;
@@ -151,6 +161,11 @@ clarity::mongodb_uri() {
 
     pre)
       hosts="int.mongodb-01.pre.clarity.ai:27017,int.mongodb-02.pre.clarity.ai:27017,int.mongodb-03.pre.clarity.ai:27017"
+      mongodb_uri="mongodb://${hosts}/?replicaSet=${replica_set} --authenticationDatabase=${auth_db} --username=${user}"
+      ;;
+
+    stg)
+      hosts="int.mongodb-01.stg.clarity.ai:27017,int.mongodb-02.stg.clarity.ai:27017,int.mongodb-03.stg.clarity.ai:27017"
       mongodb_uri="mongodb://${hosts}/?replicaSet=${replica_set} --authenticationDatabase=${auth_db} --username=${user}"
       ;;
 
