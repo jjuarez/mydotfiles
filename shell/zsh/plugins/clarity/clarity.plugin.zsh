@@ -6,6 +6,10 @@ declare -r DEFAULT_MONGODB_USER='admin'
 declare -r DEFAULT_MONGODB_RS='rs0'
 declare -r DEFAULT_MONGODB_AUTH_DB='admin'
 declare -r K8S_DEFAULT_NS='clarity'
+declare -r OP_ACCOUNT="clarity.1password.com"
+
+# Variables
+
 
 # Configuration
 [[ -d "${HOME}/.helm" ]] || mkdir -p "${HOME}/.helm/clusters"
@@ -170,7 +174,7 @@ clarity::mongodb_uri() {
 clarity::op_signin() {
   [[ -s "${HOME}/.1password" ]] || return 1
 
-  eval $(cat "${HOME}/.1password"|${OP} signin --account=clarity.1password.com 2>/dev/null)
+  eval $(cat "${HOME}/.1password"|${OP} signin --account=${OP_ACCOUNT} 2>/dev/null)
 }
 
 
@@ -182,13 +186,13 @@ clarity::vpn_password() {
 
   vpn_password="$(${OP} get item 'Clarity VPN' 2>/dev/null|jq -r '.details.fields[1].value')"
   vpn_totp="$(${OP} get totp 'Clarity VPN' 2>/dev/null)"
-#
+
 # if [ -d "${HOME}/.openvpn" ]; then
 #   echo -e "javier.juarez\n${vpn_password}${vpn_totp}" >"${HOME}/.openvpn/credentials"
 #   chmod 0600 "${HOME}/.openvpn/credentials"
 # fi
-#
-  echo -e "${vpn_password}${vpn_totp}"
+
+  echo "${vpn_password}${vpn_totp}"
 }
 
 
