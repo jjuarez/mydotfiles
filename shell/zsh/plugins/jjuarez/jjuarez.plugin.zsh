@@ -23,6 +23,13 @@ FZF-EOF"
 }
 
 ##
+# Docker clean exited images
+docker::containers::clean() {
+  docker container rm $(docker container ls -q --filter status=exited)
+}
+
+##
 # utils
 alias archive='fs::archive'
 alias git_fshow='git::fshow'
+alias dcc='docker::containers::clean'
