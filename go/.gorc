@@ -1,4 +1,4 @@
-[[ -d "${HOME}/workspace/go" ]] || mkdir -p "${HOME}/workspace/go"
+[[ -d "${HOME}/go" ]] || mkdir -p "${HOME}/go"
 
-export GOPATH="${HOME}/workspace/go"
+export GOPATH="${HOME}/go"
 export GOCACHE="${GOPATH}/tmp"
