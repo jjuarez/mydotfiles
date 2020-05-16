@@ -10,7 +10,6 @@ declare -r OP_ACCOUNT="clarity.1password.com"
 
 # Variables
 
-
 # Configuration
 [[ -d "${HOME}/.helm" ]] || mkdir -p "${HOME}/.helm/clusters"
 export HELM_ROOT="${HOME}/.helm"
@@ -60,6 +59,7 @@ clarity::kops() {
       clarity::aws_clean_credentials
       export KOPS_STATE_STORE="s3://kubernetes.${environment}.clarity.ai"
       export AWS_PROFILE="default"
+      export KOPS_RUN_OBSOLETE_VERSION="yes"
       ;;
 
     *)
@@ -104,7 +104,6 @@ clarity::namespace() {
 clarity::k8s_switch() {
   local environment=${1:-${DEFAULT_ENVIRONMENT}}
   local namespace=${2:-${DEFAULT_NAMESPACE}}
-  local test=${3:-'nope'}
 
   case "${environment}" in
     k8s.stg|common.mgmt|dev|pre|prod)
@@ -113,6 +112,7 @@ clarity::k8s_switch() {
       clarity::kops ${environment}
       clarity::helm ${environment}
       ;;
+
     *)
       return 1
       ;;
