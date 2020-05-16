@@ -17,6 +17,7 @@ declare -A FTS=(
   [python]=true
   [ruby]=false
   [java]=false
+  [github]=true
 )
 
 # Term customizations
@@ -53,7 +54,6 @@ source "${ZSH}/oh-my-zsh.sh"
 ## My own zsh stuff
 ##
 if [ -d "${HOME}/.mydotfiles" ]; then
-
   export PATH=${PATH}:/usr/local/sbin
   export MYDOTFILES="${HOME}/.mydotfiles"
 
@@ -70,6 +70,14 @@ ft::fzf() {
 
 ft::direnv() {
   [[ -x "$(brew --prefix)/bin/direnv" ]] && eval "$(direnv hook zsh)"
+}
+
+ft::k8s() {
+  if whence -w clarity::k8s_load_kubeconfig 2>&1 >/dev/null; then
+    clarity::k8s_load_kubeconfig # Forces the load of all the kubeconfig files
+  fi
+
+  [[ -d "${HOME}/.krew" ]] && export PATH="${HOME}/.krew/bin:${PATH}"
 }
 
 ft::tf() {
@@ -104,12 +112,8 @@ ft::java() {
   [[ -d "${HOME}/.sdkman" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 }
 
-ft::k8s() {
-  if whence -w clarity::k8s_load_kubeconfig 2>&1 >/dev/null; then
-    clarity::k8s_load_kubeconfig # Forces the load of all the kubeconfig files
-  fi
-
-  [[ -d "${HOME}/.krew" ]] && export PATH="${HOME}/.krew/bin:${PATH}"
+ft::github() {
+  [[ -d "${HOME}/.githubrc" ]] && source "${HOME}/.githubrc"
 }
 
 echo -en "Features: "
@@ -139,7 +143,12 @@ MONGODB_PATH="/Applications/MongoDB.app/Contents/Resources/Vendor/mongodb/bin"
 # MySQL support
 MYSQL_PATH="$(brew --prefix)/opt/mysql-client/bin"
 
-[[ -d "${MYSQL_PATH}" ]] && export PATH=${PATH}:${MYSQL_PATH}
+[[ -d "${MYSQL_PATH}" ]] && {
+  export PATH=${PATH}:${MYSQL_PATH}
+  export LDFLAGS="-L/usr/local/opt/mysql-client/lib"
+  export CPPFLAGS="-I/usr/local/opt/mysql-client/include"
+  export PKG_CONFIG_PATH="/usr/local/opt/mysql-client/lib/pkgconfig"
+}
 
 
 ##

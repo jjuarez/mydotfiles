@@ -20,4 +20,6 @@ task :load do
   $formulas = config[:formulas]
   $casks    = config[:casks]
   $urls     = config[:urls]
+
+  puts $dotfiles
 end

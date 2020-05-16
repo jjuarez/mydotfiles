@@ -39,10 +39,39 @@
     - :name: .mongorc.js
       :git_item: mongodb/.mongorc.js
       :local_item: .mongorc.js
+    - :name: .githubrc
+      :git_item: github/.githubrc
+      :local_item: .githubrc
   :taps:
-    - derailed/k9s
     - wagoodman/dive
+    - aylei/tap
+    - caskroom/cask
+    - charmbracelet/tap
+    - derailed/k9s
+    - derailed/popeye
+    - garden-io/garden
+    - golangci/tap
+    - goreleaser/tap
+    - heroku/brew
+    - homebrew/cask
+    - homebrew/cask-fonts
+    - homebrew/cask-versions
+    - homebrew/core
+    - homebrew/services
+    - instrumenta/instrumenta
+    - k14s/tap
+    - knqyf263/trivy
+    - kudobuilder/tap
+    - lucagrulla/tap
+    - mongodb/brew
+    - reactiveops/tap
+    - robscott/tap
+    - shyiko/kubesec
+    - txn2/tap
+    - weaveworks/tap
+    - ynqa/ktop
     - wata727/tflint
+    - jjuarez/tap
   :formulas:
     - coreutils
     - findutils
@@ -114,4 +143,3 @@
     - font-hack-nerd-font-mono
     - spectacle
     - gpgsuite
-
