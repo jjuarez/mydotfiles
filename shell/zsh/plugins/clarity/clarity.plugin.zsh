@@ -1,55 +1,28 @@
 # vi: set ft=zsh :
-declare -r DEFAULT_NAMESPACE='default'
-declare -r DEFAULT_AWS_PROFILE='default'
-declare -r DEFAULT_ENVIRONMENT='dev'
-declare -r DEFAULT_MONGODB_USER='admin'
-declare -r DEFAULT_MONGODB_RS='rs0'
-declare -r DEFAULT_MONGODB_AUTH_DB='admin'
-declare -r K8S_DEFAULT_NS='clarity'
-declare -r OP_ACCOUNT="clarity.1password.com"
 
-# Variables
+# set -eux -o pipefail 
 
 # Configuration
 [[ -d "${HOME}/.helm" ]] || mkdir -p "${HOME}/.helm/clusters"
-export HELM_ROOT="${HOME}/.helm"
-
-# Dependencies
-KCTL=$(which kubectl 2>/dev/null)
-KCTX=$(which kubectx 2>/dev/null)
-KNS=$(which kubens 2>/dev/null)
-KOPS=$(which kops 2>/dev/null)
-HELM=$(which helm 2>/dev/null)
-OP=$(which op 2>/dev/null)
-
-[[ -x "${KCTL}" ]] || return 1
-[[ -x "${KCTX}" ]] || return 1
-[[ -x "${KNS}"  ]] || return 1
-[[ -x "${KOPS}" ]] || return 1
-[[ -x "${HELM}" ]] || return 1
-[[ -x "${OP}"   ]] || return 1
-
 
 ##
 # Kubernetes
 clarity::kops() {
-  local environment=${1}
+  local cluster=${1}
 
-  case ${environment} in
-    common.mgmt)
+  case ${cluster} in
+    mgmt)
       export KOPS_STATE_STORE="s3://commonk8s-clarity-mgmt-pro"
       export AWS_PROFILE="mgmt"
 
-      # Workaround kops does not work well with profiles
       [[ -s "${HOME}/.env.Clarity.tf.mgmt.pro" ]] || return 1
       source "${HOME}/.env.Clarity.tf.mgmt.pro"
       ;;
 
-    k8s.stg)
+    stg)
       export KOPS_STATE_STORE="s3://k8s-clarity-saas-stg"
       export AWS_PROFILE="saas-stg"
 
-      # Workaround kops does not work well with profiles
       [[ -s "${HOME}/.env.Clarity.tf.saas.stg" ]] || return 1
       source "${HOME}/.env.Clarity.tf.saas.stg"
       ;;
@@ -57,8 +30,8 @@ clarity::kops() {
     dev|pre|prod)
       # Back to the root account we have to clean the environment
       clarity::aws_clean_credentials
-      export KOPS_STATE_STORE="s3://kubernetes.${environment}.clarity.ai"
-      export AWS_PROFILE="default"
+      export KOPS_STATE_STORE="s3://kubernetes.${cluster}.clarity.ai"
+      export AWS_PROFILE="default"  # root account
       export KOPS_RUN_OBSOLETE_VERSION="yes"
       ;;
 
@@ -68,16 +41,15 @@ clarity::kops() {
   esac
 }
 
-
 clarity::helm() {
-  local environment=${1}
+  local cluster=${1}
 
-  [[ -d "${HELM_ROOT}/clusters/${environment}.clarity.ai" ]] || return 2
+  [[ -d "${HOME}/.helm/clusters/${cluster}" ]] || return 1
 
-  case ${environment} in
-    k8s.stg|common.mgmt|dev|pre|prod)
-      [[ -d "${HELM_ROOT}/clusters/${environment}.clarity.ai" ]] || return 1
-      export HELM_HOME="${HELM_ROOT}/clusters/${environment}.clarity.ai"
+  case ${cluster} in
+    stg|mgmt|dev|pre|prod)
+      [[ -d "${HOME}/.helm/clusters/${cluster}" ]] || return 1
+      export HELM_HOME="${HOME}/.helm/clusters/${cluster}"
       ;;
 
     *)
@@ -85,32 +57,29 @@ clarity::helm() {
       ;;
   esac
 }
-
-
-clarity::context() {
-  local environment=${1}
-
-  ${KCTX} ${environment}.clarity.ai 2>&1 >/dev/null
-}
-
-
-clarity::namespace() {
-  local namespace=${1}
-
-  ${KNS} ${namespace} 2>&1 >/dev/null
-}
-
 
 clarity::k8s_switch() {
-  local environment=${1:-${DEFAULT_ENVIRONMENT}}
-  local namespace=${2:-${DEFAULT_NAMESPACE}}
+  local cluster=${1}
 
-  case "${environment}" in
-    k8s.stg|common.mgmt|dev|pre|prod)
-      clarity::context ${environment}
-      clarity::namespace ${namespace}
-      clarity::kops ${environment}
-      clarity::helm ${environment}
+  case "${cluster}" in
+    dev|pre|prod)
+      clarity::kops ${cluster}
+      clarity::helm ${cluster}
+      kubie ctx ${cluster}.clarity.ai -n clarity
+      ;;
+
+    mgmt)
+      echo "Mgmt"
+      clarity::kops ${cluster}
+      clarity::helm ${cluster}
+      kubie ctx common.${cluster}.clarity.ai -n clarity
+      ;;
+
+    stg)
+      echo "stg"
+      clarity::kops ${cluster}
+      clarity::helm ${cluster}
+      kubie ctx k8s.${cluster}.clarity.ai -n clarity
       ;;
 
     *)
@@ -118,20 +87,6 @@ clarity::k8s_switch() {
       ;;
   esac
 }
-
-
-clarity::k8s_load_kubeconfig() {
-  local fresh_kubeconfig=""
-
-  [[ -d "${HOME}/.kube" ]] || return 1
-
-  fresh_kubeconfig=$(find ${HOME}/.kube -type f -iname "*.config" -print|tr '\n' ':'|sed -e 's/:$//g')
-  [[ -n "${fresh_kubeconfig}" ]] || return 0
-
-  export SAVED_KUBECONFIG=${KUBECONFIG}
-  export KUBECONFIG=${fresh_kubeconfig}
-}
-
 
 ##
 # Clean the current AWS environment
@@ -142,86 +97,52 @@ clarity::aws_clean_credentials() {
   [[ -n "${AWS_SECRET_ACCESS_KEY}" ]] && unset AWS_SECRET_ACCESS_KEY
 }
 
-
 ##
 # Builds the MongoDB URI
 clarity::mongodb_uri() {
-  local environment=${1:-${DEFAULT_ENVIRONMENT}}
-  local user=${2:-${DEFAULT_MONGODB_USER}}
-  local replica_set=${3:-${DEFAULT_MONGODB_RS}}
-  local auth_db=${4:-${DEFAULT_MONGODB_AUTH_DB}}
-  local hosts=""
-  local mongodb_uri=""
+  local environment=${1}
 
   case ${environment} in
-    dev)
-      hosts="int.mongodb-01.dev.clarity.ai:27017"
-      mongodb_uri="mongodb://${hosts}/ --authenticationDatabase=${auth_db} --username=${user}"
+    dev) echo "mongodb://int.mongodb-01.dev.clarity.ai:27017 --authenticationDatabase=admin --username=admin"
       ;;
-
-    pre)
-      hosts="int.mongodb-01.pre.clarity.ai:27017,int.mongodb-02.pre.clarity.ai:27017,int.mongodb-03.pre.clarity.ai:27017"
-      mongodb_uri="mongodb://${hosts}/?replicaSet=${replica_set} --authenticationDatabase=${auth_db} --username=${user}"
+    pre) echo "mongodb://int.mongodb-01.pre.clarity.ai:27017,int.mongodb-02.pre.clarity.ai:27017,int.mongodb-03.pre.clarity.ai:27017/?replicaSet=rs0 --authenticationDatabase=admin --username=admin"
       ;;
-
-    stg)
-      hosts="int.mongodb-01.stg.clarity.ai:27017,int.mongodb-02.stg.clarity.ai:27017,int.mongodb-03.stg.clarity.ai:27017"
-      mongodb_uri="mongodb://${hosts}/?replicaSet=${replica_set} --authenticationDatabase=${auth_db} --username=${user}"
+    stg) echo "mongodb://int.mongodb-01.stg.clarity.ai:27017,int.mongodb-02.stg.clarity.ai:27017,int.mongodb-03.stg.clarity.ai:27017/?replicaSet=rs0 --authenticationDatabase=admin --username=admin"
       ;;
-
-    prod)
-      hosts="int.mongodb-01.prod.clarity.ai:27017,int.mongodb-02.prod.clarity.ai:27017,int.mongodb-03.prod.clarity.ai:27017"
-      mongodb_uri="mongodb://${hosts}/?replicaSet=${replica_set} --authenticationDatabase=${auth_db} --username=${user}"
+    prod) echo "mongodb://int.mongodb-01.prod.clarity.ai:27017,int.mongodb-02.prod.clarity.ai:27017,int.mongodb-03.prod.clarity.ai:27017?replicaSet=rs0 --autheticationDatabase=admin --username=admin"
       ;;
-
     *) return 1
       ;;
   esac
 
-  echo ${mongodb_uri}
-
   return 0
 }
-
 
 ##
 # Handles the 1Password signin
 clarity::op_signin() {
   [[ -s "${HOME}/.1password" ]] || return 1
 
-  eval $(cat "${HOME}/.1password"|${OP} signin --account=${OP_ACCOUNT} 2>/dev/null)
+  eval $(cat "${HOME}/.1password"|op signin --account=clarity.1password.com 2>/dev/null)
 }
-
 
 clarity::vpn_password() {
   local vpn_password=""
   local vpn_totp=""
 
-  [[ -z "${OP_SESSION_clarity}" ]] && clarity::op_signin
+  if [ -z "${OP_SESSION_clarity}" ]; then
+    [[ -s "${HOME}/.1password" ]] || return 1
+    eval $(cat "${HOME}/.1password"|op signin --account=clarity.1password.com 2>/dev/null)
+  fi
 
-  vpn_password="$(${OP} get item 'Clarity VPN' 2>/dev/null|jq -r '.details.fields[1].value')"
-  vpn_totp="$(${OP} get totp 'Clarity VPN' 2>/dev/null)"
-
-# if [ -d "${HOME}/.openvpn" ]; then
-#   echo -e "javier.juarez\n${vpn_password}${vpn_totp}" >"${HOME}/.openvpn/credentials"
-#   chmod 0600 "${HOME}/.openvpn/credentials"
-# fi
+  vpn_password="$(op get item 'Clarity VPN' 2>/dev/null|jq -r '.details.fields[1].value')"
+  vpn_totp="$(op get totp 'Clarity VPN' 2>/dev/null)"
 
   echo "${vpn_password}${vpn_totp}"
 }
 
-
 ##
 # ::alias:
 alias k='kubectl'
-alias kx='kubectx'
-alias kn='kubens'
 alias ksw='clarity::k8s_switch'
 alias awscc='clarity::aws_clean_credentials'
-alias klc='clarity::k8s_load_kubeconfig'
-
-# Sites
-alias _aws='open_command https://console.aws.amazon.com/console/home'
-alias _runbooks='open_command https://gitlab.clarity.ai/documentation/runbooks'
-alias _handbooks='open_command https://gitlab.clarity.ai/documentation/handbooks'
-
