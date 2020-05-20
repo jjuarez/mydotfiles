@@ -12,11 +12,12 @@ ZSH_CACHE_DIR="${HOME}/.zsh_cache"
 declare -A FTS=(
   [fzf]=true
   [direnv]=false
-  [k8s]=true
+  [krew]=true
   [tf]=true
   [python]=true
   [ruby]=false
   [java]=false
+  [go]=true
   [github]=true
 )
 
@@ -27,7 +28,7 @@ export LANG=en_US.UTF-8
 # Theme
 ZSH_THEME="powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir aws kubecontext vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir aws vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
@@ -45,7 +46,7 @@ COMPLETION_WAITING_DOTS="false"
 [[ -d "${HOME}/.kopsenv" ]] && export PATH="${HOME}/.kopsenv/bin:${PATH}"
 
 # Plugins
-zstyle :omz:plugins:ssh-agent identities id_rsa.pi id_rsa.mundokids id_rsa id_rsa.clarity.ec2 id_rsa.ansible_provisioner_dev id_rsa.ansible_provisioner_pre id_rsa.ansible_provisioner_prod id_rsa.ansible_provisioner_mgmt id_rsa.mgmt_k8s
+zstyle :omz:plugins:ssh-agent identities id_rsa.pi id_rsa.mundokids ansible_provisioner_dev ansible_provisioner_pre ansible_provisioner_stg ansible_provisioner_prod ansible_provisioner_mgmt
 plugins=(ssh-agent zsh-autosuggestions z jira kubectl clarity jjuarez)
 
 source "${ZSH}/oh-my-zsh.sh"
@@ -72,11 +73,7 @@ ft::direnv() {
   [[ -x "$(brew --prefix)/bin/direnv" ]] && eval "$(direnv hook zsh)"
 }
 
-ft::k8s() {
-  if whence -w clarity::k8s_load_kubeconfig 2>&1 >/dev/null; then
-    clarity::k8s_load_kubeconfig # Forces the load of all the kubeconfig files
-  fi
-
+ft::krew() {
   [[ -d "${HOME}/.krew" ]] && export PATH="${HOME}/.krew/bin:${PATH}"
 }
 
@@ -112,6 +109,11 @@ ft::java() {
   [[ -d "${HOME}/.sdkman" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 }
 
+# Golang support
+ft::go() {
+  [[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
+}
+
 ft::github() {
   [[ -d "${HOME}/.githubrc" ]] && source "${HOME}/.githubrc"
 }
@@ -129,11 +131,6 @@ echo -en "\n"
 ##
 ## Non optional features
 ##
-
-# Golang support
-ft::go() {
-  [[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
-}
 
 # MongoDB support
 MONGODB_PATH="/Applications/MongoDB.app/Contents/Resources/Vendor/mongodb/bin"
