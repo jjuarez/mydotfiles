@@ -26,9 +26,9 @@ TERM=xterm-256color
 export LANG=en_US.UTF-8
 
 # Theme
-ZSH_THEME="powerlevel9k"
+ZSH_THEME="powerlevel10k"
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir aws vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir aws kubecontext vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
@@ -47,7 +47,7 @@ COMPLETION_WAITING_DOTS="false"
 
 # Plugins
 zstyle :omz:plugins:ssh-agent identities id_rsa.pi id_rsa.mundokids ansible_provisioner_dev ansible_provisioner_pre ansible_provisioner_stg ansible_provisioner_prod ansible_provisioner_mgmt
-plugins=(ssh-agent zsh-autosuggestions z jira kubectl clarity jjuarez)
+plugins=(ssh-agent zsh-autosuggestions z jira clarity jjuarez)
 
 source "${ZSH}/oh-my-zsh.sh"
 
