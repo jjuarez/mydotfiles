@@ -1,106 +1,41 @@
 Host pi.local
-  HostName       192.168.1.64
-  User           pi
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.pi
+  HostName     192.168.1.64
+  User         pi
+  IdentityFile ~/.ssh/id_rsa.pi
 
 Host github.com
-  HostName     github.com
   User         jjuarez
   IdentityFile ~/.ssh/id_rsa.clarity.github
 
 Host gitlab.com
-  HostName     gitlab.com
   User         jjuarez
   IdentityFile ~/.ssh/id_rsa.mundokids
 
 Host gitlab.clarity.ai
   HostName     gitlab.clarity.ai
   User         javier.juarez
-  IdentityFile ~/.ssh/id_rsa.clarity.gitlab
+
+Host int.vpn.clarity.ai
+  HostName     172.16.200.6
+  IdentityFile ~/.ssh/ansible_provisioner_dev
 
 Host int.gitlab.clarity.ai
-  User           ubuntu
-  Port           2222
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_prod
-
-Host vpn-staff.clarity.ai
-  User         ubuntu
-  HostName     172.16.200.6
-  IdentityFile ~/.ssh/id_rsa.clarity.ec2
-
-Host int.mongodb-01.dev.clarity.ai
-  User           ubuntu
-  Port           22
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_dev
-
-Host int.mongodb-01.pre.clarity.ai
-  User           ubuntu
-  Port           22
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_pre
-
-Host int.mongodb-02.pre.clarity.ai
-  User           ubuntu
-  Port           22
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_pre
-
-Host int.mongodb-03.pre.clarity.ai
-  User           ubuntu
-  Port           22
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_pre
-
-Host int.mongodb-01.stg.clarity.ai
-  User           ubuntu
-  Port           22
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_stg
-
-Host int.mongodb-02.stg.clarity.ai
-  User           ubuntu
-  Port           22
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_stg
-
-Host int.mongodb-03.stg.clarity.ai
-  User           ubuntu
-  Port           22
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_stg
-
-Host int.mongodb-01.prod.clarity.ai
-  User           ubuntu
-  Port           22
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_prod
-
-Host int.mongodb-02.prod.clarity.ai
-  User           ubuntu
-  Port           22
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_prod
-
-Host int.mongodb-03.prod.clarity.ai
-  User           ubuntu
-  Port           22
-  IdentitiesOnly yes
-  IdentityFile   ~/.ssh/id_rsa.ansible_provisioner_prod
+  Port         2222
+  IdentityFile ~/.ssh/ansible_provisioner_prod
 
 Host *
-  User                   admin
-  UserKnownHostsFile     /dev/null
-  StrictHostKeyChecking  no
-  VerifyHostKeyDNS       no
-  TCPKeepAlive           yes
-  ForwardX11             no
-  ForwardAgent           yes
-  ServerAliveInterval    15
-  ServerAliveCountMax    4
-  Compression            yes
-  CheckHostIP            yes
-  LogLevel               quiet
-  Port                   22
+  UserKnownHostsFile    /dev/null
+  User                  ubuntu
+# IdentitiesOnly        yes
+  StrictHostKeyChecking no
+  VerifyHostKeyDNS      no
+  TCPKeepAlive          yes
+  ForwardX11            no
+  ForwardAgent          no
+  ServerAliveInterval   15
+  ServerAliveCountMax   4
+  Compression           yes
+  CheckHostIP           no
+  LogLevel              quiet
+  Port                  22
+
