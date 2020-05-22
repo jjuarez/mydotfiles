@@ -69,14 +69,12 @@ clarity::k8s_switch() {
       ;;
 
     mgmt)
-      echo "Mgmt"
       clarity::kops ${cluster}
       clarity::helm ${cluster}
       kubie ctx common.${cluster}.clarity.ai -n clarity
       ;;
 
     stg)
-      echo "stg"
       clarity::kops ${cluster}
       clarity::helm ${cluster}
       kubie ctx k8s.${cluster}.clarity.ai -n clarity
