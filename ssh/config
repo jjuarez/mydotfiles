@@ -17,11 +17,9 @@ Host gitlab.clarity.ai
 
 Host int.vpn.clarity.ai
   HostName     172.16.200.6
-  IdentityFile ~/.ssh/ansible_provisioner_dev
 
 Host int.gitlab.clarity.ai
   Port         2222
-  IdentityFile ~/.ssh/ansible_provisioner_prod
 
 Host *
   UserKnownHostsFile    /dev/null
