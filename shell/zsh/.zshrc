@@ -46,8 +46,8 @@ COMPLETION_WAITING_DOTS="false"
 [[ -d "${HOME}/.kopsenv" ]] && export PATH="${HOME}/.kopsenv/bin:${PATH}"
 
 # Plugins
-zstyle :omz:plugins:ssh-agent identities id_rsa.pi id_rsa.mundokids ansible_provisioner_dev ansible_provisioner_pre ansible_provisioner_stg ansible_provisioner_prod ansible_provisioner_mgmt
-plugins=(ssh-agent zsh-autosuggestions z jira clarity jjuarez)
+zstyle :omz:plugins:ssh-agent identities id_rsa.pi id_rsa.mundokids id_rsa.clarity.gitlab ansible_provisioner_dev ansible_provisioner_pre ansible_provisioner_stg ansible_provisioner_prod ansible_provisioner_mgmt
+plugins=(ssh-agent zsh-autosuggestions z clarity jjuarez)
 
 source "${ZSH}/oh-my-zsh.sh"
 
