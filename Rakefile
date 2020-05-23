@@ -16,10 +16,8 @@ task :load do
   config_file = File.join(ENV['MYDOTFILES'], "config", "mydotfiles.yaml")
   config      = YAML.load_file(config_file)
 
-  $dotfiles = config[:dotfiles]
-  $formulas = config[:formulas]
-  $casks    = config[:casks]
-  $urls     = config[:urls]
+  $dotfiles = config['dotfiles']
+  $urls     = config['urls']
 
   puts $dotfiles
 end
