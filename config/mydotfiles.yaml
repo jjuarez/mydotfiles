@@ -1,145 +1,46 @@
 ---
-  :urls:
-    :vundle: https://github.com/gmarik/vundle.git
-    :ohmyzsh: https://github.com/robbyrussell/oh-my-zsh.git
-    :homebrew_install: https://raw.githubusercontent.com/Homebrew/install/master/install
-    :homebrew_uninstall: https://raw.githubusercontent.com/Homebrew/install/master/uninstall
-
-  :dotfiles:
-    - :name: .zshrc
-      :git_item: shell/zsh/.zshrc
-      :local_item: .zshrc
-    - :name: .zlogin
-      :git_item: shell/zsh/.zlogin
-      :local_item: .zlogin
-    - :name: .tmux.conf
-      :git_item: shell/tmux/.tmux.conf
-      :local_item: .tmux.conf
-    - :name: .ssh/config
-      :git_item: ssh/config
-      :local_item: .ssh/config
-    - :name: .vimrc
-      :git_item: vim/.vimrc
-      :local_item: .vimrc
-    - :name: .irbrc
-      :git_item: ruby/.irbrc
-      :local_item: .irbrc
-    - :name: .gemrc
-      :git_item: ruby/.gemrc
-      :local_item: .gemrc
-    - :name: .gitconfig
-      :git_item: git/.gitconfig
-      :local_item: .gitconfig
-    - :name: .gitignore_global
-      :git_item: git/.gitignore_global
-      :local_item: .gitignore_global
-    - :name: .gorc
-      :git_item: go/.gorc
-      :local_item: .gorc
-    - :name: .mongorc.js
-      :git_item: mongodb/.mongorc.js
-      :local_item: .mongorc.js
-    - :name: .githubrc
-      :git_item: github/.githubrc
-      :local_item: .githubrc
-  :taps:
-    - wagoodman/dive
-    - aylei/tap
-    - caskroom/cask
-    - charmbracelet/tap
-    - derailed/k9s
-    - derailed/popeye
-    - garden-io/garden
-    - golangci/tap
-    - goreleaser/tap
-    - heroku/brew
-    - homebrew/cask
-    - homebrew/cask-fonts
-    - homebrew/cask-versions
-    - homebrew/core
-    - homebrew/services
-    - instrumenta/instrumenta
-    - k14s/tap
-    - knqyf263/trivy
-    - kudobuilder/tap
-    - lucagrulla/tap
-    - mongodb/brew
-    - reactiveops/tap
-    - robscott/tap
-    - shyiko/kubesec
-    - txn2/tap
-    - weaveworks/tap
-    - ynqa/ktop
-    - wata727/tflint
-    - jjuarez/tap
-  :formulas:
-    - coreutils
-    - findutils
-    - moreutils
-    - iproute2mac
-    - ack
-    - jq
-    - httpie
-    - fzf
-    - wget
-    - vim
-    - ctags
-    - dos2unix
-    - gawk
-    - git
-    - git-extras
-    - gnu-sed
-    - gnu-tar
-    - most
-    - ncdu
-    - pv
-    - ipcalc
-    - nmap
-    - socat
-    - psgrep
-    - tmux
-    - tree
-    - ruby
-    - lua
-    - go
-    - ipython
-    - python
-    - python3
-    - amazon-ecs-cli
-    - awscli
-    - packer
-    - terraform
-    - terragrunt
-    - vault
-    - vault-cli
-    - kr
-    - ruby-build
-    - kubectx
-    - ncdu
-    - redis
-    - zsh
-    - zsh-autosuggestions
-    - zsh-hightlight
-    - bat
-    - fd
-    - ripgrep
-    - diff-so-fancy
-  :casks:
-    - 1password
-    - dropbox
-    - istat-menus
-    - launchbar
-    - viscosity
-    - google-chrome
-    - iterm2
-    - slack
-    - telegram
-    - virtualbox
-    - vagrant
-    - caffeine
-    - tower
-    - docker
-    - font-hack-nerd-font
-    - font-hack-nerd-font-mono
-    - spectacle
-    - gpgsuite
+urls:
+  vundle: https://github.com/gmarik/vundle.git
+  ohmyzsh: https://github.com/robbyrussell/oh-my-zsh.git
+  homebrew_install: https://raw.githubusercontent.com/Homebrew/install/master/install
+  homebrew_uninstall: https://raw.githubusercontent.com/Homebrew/install/master/uninstall
+dotfiles:
+  - name: .zshrc
+    git_item: shell/zsh/.zshrc
+    local_item: .zshrc
+  - name: .zlogin
+    git_item: shell/zsh/.zlogin
+    local_item: .zlogin
+  - name: .tmux.conf
+    git_item: shell/tmux/.tmux.conf
+    local_item: .tmux.conf
+  - name: .ssh/config
+    git_item: ssh/config
+    local_item: .ssh/config
+  - name: .vimrc
+    git_item: vim/.vimrc
+    local_item: .vimrc
+  - name: .irbrc
+    git_item: ruby/.irbrc
+    local_item: .irbrc
+  - name: .gemrc
+    git_item: ruby/.gemrc
+    local_item: .gemrc
+  - name: .gitconfig
+    git_item: git/.gitconfig
+    local_item: .gitconfig
+  - name: .gitignore_global
+    git_item: git/.gitignore_global
+    local_item: .gitignore_global
+  - name: .gorc
+    git_item: go/.gorc
+    local_item: .gorc
+  - name: .mongorc.js
+    git_item: mongodb/.mongorc.js
+    local_item: .mongorc.js
+  - name: .githubrc
+    git_item: github/.githubrc
+    local_item: .githubrc
+  - name: .Brewfile
+    git_item: brew/Brewfile
+    local_item: .Brewfile
