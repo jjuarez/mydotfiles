@@ -15,7 +15,7 @@ declare -A FTS=(
   [krew]=true
   [tf]=true
   [python]=true
-  [ruby]=false
+  [ruby]=true
   [java]=false
   [go]=true
   [github]=true
@@ -47,7 +47,7 @@ COMPLETION_WAITING_DOTS="false"
 
 # Plugins
 zstyle :omz:plugins:ssh-agent identities id_rsa.pi id_rsa.mundokids id_rsa.clarity.gitlab ansible_provisioner_dev ansible_provisioner_pre ansible_provisioner_stg ansible_provisioner_prod ansible_provisioner_mgmt
-plugins=(ssh-agent zsh-autosuggestions z clarity jjuarez)
+plugins=(ssh-agent zsh-autosuggestions z utils k8s clarity)
 
 source "${ZSH}/oh-my-zsh.sh"
 
