@@ -26,12 +26,11 @@ namespace :dotfiles do
       puts 'Installing:'
 
       $dotfiles.each do |df|
-
-        gi = File.join(ENV['MYDOTFILES'], df[:git_item])
-        li = File.join(ENV['HOME'], df[:local_item])
+        gi = File.join(ENV['MYDOTFILES'], df['git_item'])
+        li = File.join(ENV['HOME'], df['local_item'])
 
         if File.exist?(gi)
-          puts " √ #{df[:name]} linking #{li} to #{gi}"
+          puts " √ #{df['name']} linking #{li} to #{gi}"
           FileUtils.ln_sf(gi, li)
         end
       end
