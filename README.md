@@ -17,7 +17,7 @@ Explore others tasks that you have doing:
 
 ```bash
 $ cd mydotfiles
-$ rake --tasks
+$ rake -T
 ```
 
 ## License
