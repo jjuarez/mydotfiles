@@ -12,7 +12,7 @@ end
 ##
 # Init task load the configuration
 task :load do
-  config_file = File.join(ENV['MYDOTFILES'], "config", "mydotfiles.yaml")
+  config_file = File.join(ENV['MYDOTFILES'], "config.yaml")
   config      = YAML.load_file(config_file)
 
   $dotfiles = config['dotfiles']
