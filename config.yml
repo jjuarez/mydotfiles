@@ -1,0 +1,20 @@
+---
+urls:
+  vundle: https://github.com/gmarik/vundle.git
+  ohmyzsh: https://github.com/robbyrussell/oh-my-zsh.git
+  homebrew:
+    install: https://github.com/homebrew/install#install-homebrew
+    uninstall: https://github.com/homebrew/install#uninstall-homebrew
+dotfiles:
+  - tools/zsh/.zshenv
+  - tools/zsh/.zshrc
+  - tools/zsh/.aliases
+  - tools/tmux/.tmux.conf
+  - tools/git/.gitconfig
+  - tools/git/.gitignore_global
+  - tools/mongodb/.mongorc.js
+  - tools/github/.githubrc
+  - langs/go/.gorc
+  - langs/ruby/.irbrc
+  - langs/ruby/.gemrc
+  - editors/vim/.vimrc
