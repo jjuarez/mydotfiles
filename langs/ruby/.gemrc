@@ -5,6 +5,5 @@ gem: --no-ri --no-rdoc
 :benchmark: false
 :backtrace: false
 :verbose: true
-rdoc: --inline-source --line-numbers --format=html --template=hanna
 :sources: 
   - https://rubygems.org/
