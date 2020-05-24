@@ -1,0 +1,39 @@
+Host pi.local
+  HostName     192.168.1.64
+  User         pi
+  IdentityFile ~/.ssh/id_rsa.pi
+
+Host github.com
+  User         jjuarez
+  IdentityFile ~/.ssh/id_rsa.clarity.github
+
+Host gitlab.com
+  User         jjuarez
+  IdentityFile ~/.ssh/id_rsa.mundokids
+
+Host gitlab.clarity.ai
+  HostName     gitlab.clarity.ai
+  User         javier.juarez
+
+Host int.vpn.clarity.ai
+  HostName     172.16.200.6
+
+Host int.gitlab.clarity.ai
+  Port         2222
+
+Host *
+  UserKnownHostsFile    /dev/null
+  User                  ubuntu
+# IdentitiesOnly        yes
+  StrictHostKeyChecking no
+  VerifyHostKeyDNS      no
+  TCPKeepAlive          yes
+  ForwardX11            no
+  ForwardAgent          no
+  ServerAliveInterval   15
+  ServerAliveCountMax   4
+  Compression           yes
+  CheckHostIP           no
+  LogLevel              quiet
+  Port                  22
+

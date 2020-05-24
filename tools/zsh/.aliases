@@ -1,0 +1,22 @@
+# Alias
+alias vi='vim'
+alias scpresume="rsync --partial --progress --rsh=ssh"
+
+case "`uname`" in
+  Darwin*)
+    alias ls='ls -h -G'
+    alias netstat='netstat -an -p tcp -f inet'
+
+    [ -z "${BREW_HOME}" ] && BREW_HOME="`/usr/local/bin/brew --prefix 2>/dev/null`"
+
+    # GNU power!!!
+    [ -x "${BREW_HOME}/bin/gtar"  ] && alias tar="${BREW_HOME}/bin/gtar"
+    [ -x "${BREW_HOME}/bin/gfind" ] && alias find="${BREW_HOME}/bin/gfind"
+    [ -x "${BREW_HOME}/bin/gsed"  ] && alias sed="${BREW_HOME}/bin/gsed"
+  ;;
+
+  Linux*)
+    alias ls='ls -h --color'
+  ;;
+esac
+

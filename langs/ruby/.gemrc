@@ -1,0 +1,10 @@
+--- 
+gem: --no-ri --no-rdoc
+:bulk_threshold: 1000
+:update_sources: true
+:benchmark: false
+:backtrace: false
+:verbose: true
+rdoc: --inline-source --line-numbers --format=html --template=hanna
+:sources: 
+  - https://rubygems.org/
