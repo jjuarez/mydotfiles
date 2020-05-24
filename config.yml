@@ -2,6 +2,7 @@
 urls:
   vundle: https://github.com/gmarik/vundle.git
   ohmyzsh: https://github.com/robbyrussell/oh-my-zsh.git
+  powerlevel10k: https://github.com/romkatv/powerlevel10k.git
   homebrew:
     install: https://github.com/homebrew/install#install-homebrew
     uninstall: https://github.com/homebrew/install#uninstall-homebrew
@@ -17,4 +18,3 @@ dotfiles:
   - langs/go/.gorc
   - langs/ruby/.irbrc
   - langs/ruby/.gemrc
-  - editors/vim/.vimrc
