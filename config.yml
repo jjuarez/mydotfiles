@@ -1,20 +1,22 @@
 ---
 urls:
-  vundle: https://github.com/gmarik/vundle.git
-  ohmyzsh: https://github.com/robbyrussell/oh-my-zsh.git
-  powerlevel10k: https://github.com/romkatv/powerlevel10k.git
+  vundle: https://github.com/VundleVim/Vundle.vim.git
+  zimfw:
+    install: https://github.com/zimfw/zimfw#installation
+    uninstall: https://github.com/zimfw/zimfw#uninstalling
   homebrew:
     install: https://github.com/homebrew/install#install-homebrew
     uninstall: https://github.com/homebrew/install#uninstall-homebrew
 dotfiles:
-  - tools/zsh/.zshenv
-  - tools/zsh/.zshrc
-  - tools/zsh/.aliases
+  - shell/zsh/.zshenv
+  - shell/zsh/.zshrc
+  - shell/zsh/.aliases
+  - shell/zsh/zim/.zimrc
   - tools/tmux/.tmux.conf
   - tools/git/.gitconfig
   - tools/git/.gitignore_global
-  - tools/mongodb/.mongorc.js
   - tools/github/.githubrc
+  - tools/mongodb/.mongorc.js
   - langs/go/.gorc
   - langs/ruby/.irbrc
   - langs/ruby/.gemrc
