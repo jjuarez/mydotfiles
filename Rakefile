@@ -8,7 +8,7 @@ unless ENV['DOTFILES']
 end
 
 task :load do
-  config    = YAML.load_file(File.join(ENV['DOTFILES'], 'config.yaml'))
-  $dotfiles = config['dotfiles']
-  $urls     = config['urls']
+  $config = YAML.load_file(File.join(ENV['DOTFILES'], 'config.yml'))
+rescue StandardError => e
+  warn(e.message)
 end
