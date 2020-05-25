@@ -1,37 +1,28 @@
 set nocompatible " like -N parameter remember to suppres the shell alias
-
-" ----------------------------------------------------------------------------
-"  Vundle setup
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
-" Utils
+Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'tpope/vim-surround'
-Plugin 'mileszs/ack.vim'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'w0rp/ale'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-" Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
-Plugin 'wlemuel/vim-tldr'
-" Syntax
-"Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'fatih/vim-go'
 Plugin 'pearofducks/ansible-vim'
-Plugin 'vim-scripts/bats.vim'
 Plugin 'klen/python-mode'
-Plugin 'posva/vim-vue'
-" Themes
 Plugin 'tomasr/molokai'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'itchyny/lightline.vim'
+
+call vundle#end()
 
 if has('autocmd')
   filetype plugin indent on
@@ -56,13 +47,10 @@ set regexpengine=1
 " * https://github.com/tpope/vim-sensible/issues/140
 let g:is_posix = 1
 
-" syntax, highlighting and spelling
-set background=dark
-"let g:molokai_original=1
-let g:rehash256=1
-
 " The Color Scheme
 colorscheme molokai
+let g:molokai_original=1
+let g:rehash256=1
 execute "set colorcolumn=" . join(range(133,335), ',')
 
 " Show trailing whitespace and spaces before a tab:
@@ -129,7 +117,7 @@ set nofoldenable 		  " When opening files, all folds open by default
 set autoread
 
 " command line editing
-set history=200
+set history=50
 set wildmode=list:longest,full
 
 " File tab completion ignores these file patterns
@@ -169,4 +157,3 @@ let g:pymode_lint_ignore = "E501,W"
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
-
