@@ -11,6 +11,7 @@ dotfiles:
   - shell/zsh/.zshenv
   - shell/zsh/.zshrc
   - shell/zsh/.aliases
+  - shell/zsh/.functions
   - shell/zsh/zim/.zimrc
   - tools/tmux/.tmux.conf
   - tools/git/.gitconfig
