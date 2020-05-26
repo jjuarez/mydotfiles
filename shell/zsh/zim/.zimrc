@@ -2,10 +2,14 @@
 
 # Sets sane Zsh built-in environment options.
 zmodule environment
-#zmodule git
+zmodule git
+zmodule git-info
 zmodule input
 zmodule termtitle
 zmodule utility
+zmodule ssh
+zmodule history
+zmodule archive
 
 # Themes
 zmodule romkatv/powerlevel10k
