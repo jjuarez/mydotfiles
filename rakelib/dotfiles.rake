@@ -3,13 +3,11 @@
 namespace :dotfiles do
   desc 'Delete the dotfiles links'
   task :uninstall => :load do
-    $dotfiles.each do |df|
+    $config['dotfiles'].each do |df|
       local_file = File.join(ENV['HOME'], File.basename(df))
 
-      if File.symlink?(local_file) && local_file != '.vim'
-        puts " - #{local_file}"
-        FileUtils.rm_f(local_file)
-      end
+      puts " - #{local_file}"
+      FileUtils.rm_f(local_file)
     end
   rescue StandardError => e
     warn(e.message)
@@ -17,8 +15,8 @@ namespace :dotfiles do
 
   desc 'Install mydotfiles'
   task :install => :load do
-    $dotfiles.each do |df|
-      gi = File.join(ENV['MYDOTFILES'], df)
+    $config['dotfiles'].each do |df|
+      gi = File.join(ENV['DOTFILES'], df)
       li = File.join(ENV['HOME'], File.basename(df))
 
       if File.exist?(gi) && !File.exist?(li)

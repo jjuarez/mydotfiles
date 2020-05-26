@@ -3,7 +3,7 @@
 namespace :brew do
   desc 'Delete the brews, taps, casks, and mas'
   task :uninstall => :load do
-    puts "Just take a loo there: #{$urls['homebrew']['uninstall']}"
+    puts "Just take a look here: #{$config['urls']['homebrew']['uninstall']}"
   rescue StandarError => e
     warn(e.message)
   end
