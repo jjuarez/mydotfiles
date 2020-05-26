@@ -1,0 +1,5 @@
+DEFAULT_GOPATH="${HOME}/workspace/go"
+
+[[ -d "${DEFAULT_GOPATH}" ]] || mkdir -o "${DEFAULT_GOPATH}"
+
+export GOPATH="${DEFAULT_GOPATH}"

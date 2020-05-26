@@ -5,9 +5,7 @@
 ### Install from GitHub the latest version:
 
 ```bash
-$ git >/dev/null 2>&1 || xcode-select --install 
 $ git clone https://jjuarez@github.com/jjuarez/mydotfiles.git && cd mydotfiles
-$ export MYDOTFILES=$(pwd)
 $ rake dotfiles:install
 $ rake vim:plugins:install
 ```
@@ -21,7 +19,7 @@ Explore others tasks that you have doing:
 $ cd mydotfiles
 $ rake -T
 ```
-  
+
 ## License
 
 Copyright © 2007-2010 Javier Juarez, released under the MIT license.

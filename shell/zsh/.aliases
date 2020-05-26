@@ -1,8 +1,4 @@
-##
 # Alias
-alias vi='vim'
-alias scpresume="rsync --partial --progress --rsh=ssh"
-
 case "`uname`" in
   Darwin*)
     alias ls='ls -h -G'
@@ -21,3 +17,7 @@ case "`uname`" in
   ;;
 esac
 
+alias vi='vim'
+alias scpresume="rsync --partial --progress --rsh=ssh"
+alias diff="diff-so-fancy"
+alias cat="bat"

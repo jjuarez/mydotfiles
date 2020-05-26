@@ -1,28 +1,22 @@
+# frozen_string_literal: true
+
 namespace :brew do
   desc 'Delete the brews, taps, casks, and mas'
-  task :uninstall =>:load do
-    begin
-      puts 'Uninstalling (not implemented):'
-    rescue Exception =>e
-      $stderr.puts e.message
-    end
+  task :uninstall => :load do
+    puts "Just take a look here: #{$config['urls']['homebrew']['uninstall']}"
+  rescue StandarError => e
+    warn(e.message)
   end
 
-  desc "Install brews, taps, casks, and mas"
-  task :install =>:load do
-    begin
-      FileUtils.cd(ENV['HOME'])
-      puts 'Installing:'
+  desc 'Install brews, taps, casks, and mas'
+  task :install => :load do
+    brew_file = File.join(ENV['MYDOTFILES'], 'tools', 'brew', 'Brewfile')
 
-      gi = FileUtils.ln_sf(File.join(ENV['MYDOTFILES'], 'Brewfile'))
-      li = FileUtils.ln_sf(File.join(ENV['HOME'], 'Brewfile'))
-
-      unless File.exist?(gi)
-        puts " √ Brewfile linking #{li} to #{gi}"
-        FileUtils.ln_sf(gi, li)
-      end
-    rescue Exception =>e
-      $stderr.puts e.message
+    if File.exist?(brew_file)
+      puts "Installing from: #{brew_file}"
+      system("brew bundle --file #{brew_file}")
     end
+  rescue StandardError => e
+    warn(e.message)
   end
 end

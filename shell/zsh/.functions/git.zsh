@@ -1,12 +1,3 @@
-# To archive a directory
-fs::archive() {
-  local directory="${1}"
-
-  [[ -d "${directory}" ]] || return 7
-
-  tar -czf ${directory}{.tar.gz,} && rm -fr "${directory}" &>/dev/null
-}
-
 # Iteractive log
 git::fshow() {
   git log --graph \
@@ -20,12 +11,5 @@ git::fshow() {
 FZF-EOF"
 }
 
-# Docker clean exited images
-docker::containers::clean() {
-  docker container rm $(docker container ls -q --filter status=exited)
-}
-
-# utils
-alias archive='fs::archive'
+# alias
 alias git_fshow='git::fshow'
-alias dcc='docker::containers::clean'

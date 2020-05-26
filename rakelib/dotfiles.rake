@@ -1,41 +1,30 @@
+# frozen_string_literal: true
+
 namespace :dotfiles do
   desc 'Delete the dotfiles links'
-  task :uninstall =>:load do
-    begin
-      puts 'Uninstalling:'
+  task :uninstall => :load do
+    $config['dotfiles'].each do |df|
+      local_file = File.join(ENV['HOME'], File.basename(df))
 
-      $dotfiles.each do |df|
-        local_file = File.join(ENV['HOME'], df['local_item'])
-
-        if File.symlink?(local_file) && df['local_item'] != '.vim'
-          puts " - #{df['name']} in #{local_file}"
-          FileUtils.rm_f(local_file)
-        end
-      end
-
-      FileUtils.rm(File.join(ENV['HOME'], '.vim'))
-    rescue Exception =>e
-      $stderr.puts e.message
+      puts " - #{local_file}"
+      FileUtils.rm_f(local_file)
     end
+  rescue StandardError => e
+    warn(e.message)
   end
 
-  desc "Install mydotfiles"
-  task :install =>:load do
-    begin
-      FileUtils.cd(ENV['HOME'])
-      puts 'Installing:'
+  desc 'Install mydotfiles'
+  task :install => :load do
+    $config['dotfiles'].each do |df|
+      gi = File.join(ENV['DOTFILES'], df)
+      li = File.join(ENV['HOME'], File.basename(df))
 
-      $dotfiles.each do |df|
-        gi = File.join(ENV['MYDOTFILES'], df['git_item'])
-        li = File.join(ENV['HOME'], df['local_item'])
-
-        if File.exist?(gi)
-          puts " √ #{df['name']} linking #{li} to #{gi}"
-          FileUtils.ln_sf(gi, li)
-        end
+      if File.exist?(gi) && !File.exist?(li)
+        puts " √ #{li} -> #{gi}"
+        FileUtils.ln_sf(gi, li)
       end
-    rescue Exception =>e
-      $stderr.puts e.message
     end
+  rescue StandardError => e
+    warn(e.message)
   end
 end

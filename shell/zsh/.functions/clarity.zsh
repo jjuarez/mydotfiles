@@ -11,7 +11,7 @@ clarity::aws_clean_credentials() {
 }
 
 # Builds the MongoDB URI
-clarity::mongodb_uri() {
+clarity::_mongodb_uri() {
   local environment=${1}
 
   case ${environment} in
@@ -30,7 +30,7 @@ clarity::mongodb_uri() {
   return 0
 }
 
-clarity::vpn_password() {
+clarity::_vpn_password() {
   local vpn_password=""
   local vpn_totp=""
 

@@ -1,4 +1,0 @@
-[[ -d "${HOME}/go" ]] || mkdir -p "${HOME}/go"
-
-export GOPATH="${HOME}/go"
-export GOCACHE="${GOPATH}/tmp"
