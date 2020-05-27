@@ -52,13 +52,19 @@ POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 
 # Custom, kops & helm (you need this before to load the k8s plugin)
-[[ -d "${HOME}/.bin"     ]] && export PATH="${PATH}:${HOME}/.bin"
 [[ -d "${HOME}/.helmenv" ]] && export PATH="${HOME}/.helmenv/bin:${PATH}"
 [[ -d "${HOME}/.kopsenv" ]] && export PATH="${HOME}/.kopsenv/bin:${PATH}"
 [[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
 # SSH agent pre-loaded keys
-zstyle :zim:ssh: ids id_rsa.pi id_rsa.mundokids id_rsa.clarity.gitlab ansible_provisioner_dev ansible_provisioner_pre ansible_provisioner_stg ansible_provisioner_prod ansible_provisioner_mgmt
+zstyle ':zim:ssh' ids 'id_rsa.pi' 'id_rsa.mundokids' 'id_rsa.clarity.gitlab' 'ansible_provisioner_dev' 'ansible_provisioner_pre' 'ansible_provisioner_stg' 'ansible_provisioner_prod' 'ansible_provisioner_mgmt'
+
+##
+## dotfiles
+##
+[[ -n "${DOTFILES}" ]] || export DOTFILES="${HOME}/.mydotfiles"
+
+export PATH=${PATH}:${DOTFILES}/bin
 
 ##
 ## Toggles
