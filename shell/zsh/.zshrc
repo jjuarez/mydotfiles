@@ -11,16 +11,13 @@ WORDCHARS=${WORDCHARS//[\/]}
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZIM_HOME="${HOME}/.zim"
 
-if [[ ${ZIM_HOME}/init.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  # Update static initialization script if it's outdated, before sourcing it
+if [[ ${ZIM_HOME}/init.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then 
   source ${ZIM_HOME}/zimfw.zsh init -q
 fi
 
 source ${ZIM_HOME}/init.zsh
 
-#
 # zsh-history-substring-search
-#
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
@@ -45,11 +42,12 @@ export LANG=en_US.UTF-8
 ZSH_THEME="powerlevel10k"
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir aws kubecontext vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(aws kubecontext dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
+# typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|kubie'
 
 # Custom, kops & helm (you need this before to load the k8s plugin)
 [[ -d "${HOME}/.helmenv" ]] && export PATH="${HOME}/.helmenv/bin:${PATH}"
@@ -73,14 +71,16 @@ declare -A FTS=(
   [direnv]=false
   [krew]=true
   [tf]=true
-  [python]=false
+  [python]=true
   [ruby]=false
   [java]=false
   [go]=true
   [github]=true
 )
 
-# MongoDB support
+##
+## MongoDB support
+##
 MONGODB_PATH="/Applications/MongoDB.app/Contents/Resources/Vendor/mongodb/bin"
 
 [[ -d "${MONGODB_PATH}" ]] && export PATH=${PATH}:${MONGODB_PATH}
