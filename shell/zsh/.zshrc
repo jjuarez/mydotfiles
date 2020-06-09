@@ -3,6 +3,7 @@
 ##
 ## zimfw configuration
 ##
+export HISTFILE="${HOME}/.zsh_history"  # Try to share the shell history across subshells
 setopt HIST_IGNORE_ALL_DUPS
 bindkey -e
 setopt CORRECT
@@ -62,7 +63,7 @@ zstyle ':zim:ssh' ids 'id_rsa.pi' 'id_rsa.mundokids' 'id_rsa.clarity.gitlab' 'an
 ##
 [[ -n "${DOTFILES}" ]] || export DOTFILES="${HOME}/.mydotfiles"
 
-export PATH=${PATH}:${DOTFILES}/bin
+export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
 
 ##
 ## Toggles
@@ -71,7 +72,7 @@ declare -A FTS=(
   [direnv]=false
   [krew]=true
   [tf]=true
-  [python]=true
+  [python]=false
   [ruby]=false
   [java]=false
   [go]=true
