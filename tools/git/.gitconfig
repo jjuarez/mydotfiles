@@ -16,7 +16,6 @@
   st         = status -sb
   branches   = branch -a
   merged     = branch --remotes --merged
-# mrproper   = "!f() { git branch --remotes --merged|grep -vE '(develop|pre|prod)'|sed 's@ origin/@:@'|xargs git push origin }; f"
   remotes    = remote -v
   last       = log -1 HEAD
   unstage    = reset HEAD --
