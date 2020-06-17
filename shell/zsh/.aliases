@@ -19,7 +19,6 @@ esac
 
 alias vi='vim'
 alias scpresume="rsync --partial --progress --rsh=ssh"
-alias diff="diff-so-fancy"
 alias cat="bat"
 alias kx="kubectx"
 alias kn="kubens"
