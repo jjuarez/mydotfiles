@@ -1,6 +1,6 @@
-##
-## Optional Features
-##
+#
+# Optional Features
+#
 ft::direnv() {
   [[ -x "$(brew --prefix)/bin/direnv" ]] && eval "$(direnv hook zsh)"
 }
@@ -39,7 +39,6 @@ ft::java() {
   fi
 }
 
-# Golang support
 ft::go() {
   [[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
 }
@@ -51,7 +50,7 @@ ft::github() {
 #
 # ::main::
 #
-echo -en "Features: "
+echo -en "Activating toggles: "
 for feature activated in ${(kv)FTS}; do
   if [ "${activated}" = true ]; then
     echo -en "${feature} "
