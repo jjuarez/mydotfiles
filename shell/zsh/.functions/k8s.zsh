@@ -59,24 +59,25 @@ k8s::helm() {
 
 k8s::switch() {
   local cluster=${1}
+  local namespace=${2:-'clarity'}
 
   case "${cluster}" in
     dev|pre|prod)
       k8s::kops ${cluster}
       k8s::helm ${cluster}
-      kubie ctx ${cluster}.clarity.ai -n clarity
+      kubie ctx ${cluster}.clarity.ai -n ${namespace}
       ;;
 
     mgmt)
       k8s::kops ${cluster}
       k8s::helm ${cluster}
-      kubie ctx common.${cluster}.clarity.ai -n clarity
+      kubie ctx common.${cluster}.clarity.ai -n ${namespace}
       ;;
 
     stg)
       k8s::kops ${cluster}
       k8s::helm ${cluster}
-      kubie ctx k8s.${cluster}.clarity.ai -n clarity
+      kubie ctx k8s.${cluster}.clarity.ai -n ${namespace}
       ;;
 
     *)
