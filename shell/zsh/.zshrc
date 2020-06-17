@@ -12,7 +12,7 @@ WORDCHARS=${WORDCHARS//[\/]}
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZIM_HOME="${HOME}/.zim"
 
-if [[ ${ZIM_HOME}/init.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then 
+if [[ ${ZIM_HOME}/init.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
   source ${ZIM_HOME}/zimfw.zsh init -q
 fi
 
@@ -72,8 +72,8 @@ declare -A FTS=(
   [direnv]=false
   [krew]=true
   [tf]=true
-  [python]=false
-  [ruby]=false
+  [python]=true
+  [ruby]=true
   [java]=false
   [go]=true
   [github]=true
@@ -92,6 +92,8 @@ MONGODB_PATH="/Applications/MongoDB.app/Contents/Resources/Vendor/mongodb/bin"
 for f in ${HOME}/.functions/*.zsh; do
   source "${f}"
 done 2>/dev/null
+
+#fpath=(~/.functions $fpath)
 
 ##
 ## Aliases
