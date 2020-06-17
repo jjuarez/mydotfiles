@@ -22,6 +22,8 @@ Plugin 'tomasr/molokai'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'itchyny/lightline.vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()
 
