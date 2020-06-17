@@ -21,6 +21,7 @@ Plugin 'klen/python-mode'
 Plugin 'tomasr/molokai'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'itchyny/lightline.vim'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 
