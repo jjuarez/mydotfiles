@@ -6,7 +6,7 @@ declare -r WORKSPACE="${HOME}/workspace"
 declare -r DESTINATION_DIRECTORY="${HOME}/Dropbox/Backups/Clarity"
 
 DATE=$(date +${DATE_FORMAT})
-DIRECTORIES=(go src linuxacademy clarity/infrastructure clarity/documentation clarity/lab)
+DIRECTORIES=(go src linuxacademy clarity/infrastructure clarity/documentation clarity/lab clarity/product)
 
 
 command::do_backup( ) {
