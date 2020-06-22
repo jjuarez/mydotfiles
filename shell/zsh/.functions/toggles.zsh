@@ -10,12 +10,9 @@ ft::krew() {
 }
 
 ft::tf() {
-  [[ -d "${HOME}/.tfenv" ]] && export PATH="${HOME}/.tfenv/bin:${PATH}"
-
-  [[ -d "${HOME}/.tgenv" ]] && {
-    export PATH="${HOME}/.tgenv/bin:${PATH}"
-    export TERRAGRUNT_TFPATH="${HOME}/.tfenv/bin/terraform"
-  }
+  if command -v tfenv 1>/dev/null 2>&1; then
+    export PATH="${HOME}/.tfenv/bin:${PATH}"
+  fi
 }
 
 ft::python() {
