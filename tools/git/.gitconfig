@@ -1,6 +1,6 @@
 [user]
 	name  = Javier Juarez
-	email = javier.juarez@clarity.ai
+	email = javier.juarez.martinez@ibm.com
 
 [color]
   diff        = auto
@@ -23,7 +23,6 @@
   ts         = tag --sort=-committerdate
   lg         = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso8601-strict
 
-
 [github]
   user = jjuarez
 
@@ -32,7 +31,6 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-	pager = diff-so-fancy | less --tabs=2 -RFX
 
 [help]
   autocorrect = 0
@@ -51,3 +49,6 @@
 
 [format]
   pretty = oneline
+
+[pull]
+	rebase = false
