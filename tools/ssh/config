@@ -11,19 +11,12 @@ Host gitlab.com
   User         jjuarez
   IdentityFile ~/.ssh/id_rsa.mundokids
 
-Host gitlab.clarity.ai
-  HostName     gitlab.clarity.ai
+Host github.ibm.com
   User         javier.juarez
-
-Host int.vpn.clarity.ai
-  HostName     172.16.200.6
-
-Host int.gitlab.clarity.ai
-  Port         2222
+  IdentityFile ~/.ssh/id_rsa.ibm
 
 Host *
   UserKnownHostsFile    /dev/null
-  User                  ubuntu
 # IdentitiesOnly        yes
   StrictHostKeyChecking no
   VerifyHostKeyDNS      no
