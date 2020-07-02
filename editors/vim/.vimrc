@@ -24,6 +24,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'moll/vim-node'
 
 call vundle#end()
 
