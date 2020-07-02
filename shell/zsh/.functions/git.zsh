@@ -12,4 +12,4 @@ FZF-EOF"
 }
 
 # alias
-alias git_fshow='git::fshow'
+alias gitfs='git::fshow'
