@@ -72,11 +72,12 @@ declare -A FTS=(
   [direnv]=false
   [krew]=true
   [tf]=true
-  [python]=true
-  [ruby]=true
+  [python]=false
+  [ruby]=false
   [java]=false
   [go]=true
   [github]=true
+  [travis]=true
 )
 
 ##
