@@ -2,8 +2,6 @@
 
 # Sets sane Zsh built-in environment options.
 zmodule environment
-zmodule git
-zmodule git-info
 zmodule input
 zmodule termtitle
 zmodule utility
@@ -19,6 +17,5 @@ zmodule completion
 zmodule zsh-users/zsh-completions
 zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-syntax-highlighting
-zmodule zsh-users/zsh-history-substring-search
 
 # }}} End configuration added by Zim install
