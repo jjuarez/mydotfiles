@@ -44,6 +44,10 @@ ft::github() {
   [[ -d "${HOME}/.githubrc" ]] && source "${HOME}/.githubrc"
 }
 
+ft::travis() {
+  [[ -d "${HOME}/.travis/travis.sh" ]] && source "${HOME}/.travis/travis.sh"
+}
+
 #
 # ::main::
 #
