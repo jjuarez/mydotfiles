@@ -1,11 +1,12 @@
 # vi: set ft=zsh :
 
-# set -eux -o pipefail 
+# set -ux -o pipefail
+
 OP_CLI=$(which op 2>/dev/null)
 OPASSWORD_IBM_DOMAIN="ibm"
 
 
-ibm::_w3i_password() {
+ibm::w3i_password() {
   local password=""
 
   [[ -x "${OP_CLI}" ]] || return 1
@@ -17,7 +18,11 @@ ibm::_w3i_password() {
 
   password="$(${OP_CLI} get item 'IBM::w3id' 2>/dev/null|jq -r '.details.fields[1].value')"
   echo "${password}"
+
   return 0
 }
 
+
 # ::alias::
+alias ic='ibmcloud'
+alias w3i='ibm::w3i_password'
