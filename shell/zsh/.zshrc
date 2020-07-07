@@ -18,21 +18,8 @@ fi
 
 source ${ZIM_HOME}/init.zsh
 
-# zsh-history-substring-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
 # Bind up and down keys
 zmodload -F zsh/terminfo +p:terminfo
-if [[ -n ${terminfo[kcuu1]} && -n ${terminfo[kcud1]} ]]; then
-  bindkey ${terminfo[kcuu1]} history-substring-search-up
-  bindkey ${terminfo[kcud1]} history-substring-search-down
-fi
-
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
 
 # Term customizations
@@ -51,8 +38,6 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 # typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|kubie'
 
 # Custom, kops & helm (you need this before to load the k8s plugin)
-[[ -d "${HOME}/.helmenv" ]] && export PATH="${HOME}/.helmenv/bin:${PATH}"
-[[ -d "${HOME}/.kopsenv" ]] && export PATH="${HOME}/.kopsenv/bin:${PATH}"
 [[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
 # SSH agent pre-loaded keys
@@ -79,6 +64,7 @@ declare -A FTS=(
   [github]=true
   [travis]=true
 )
+
 
 ##
 ## MongoDB support
