@@ -2,9 +2,9 @@
 
 # set -ux -o pipefail
 
+# 1Password management
 OP_CLI=$(which op 2>/dev/null)
 OPASSWORD_IBM_DOMAIN="ibm"
-
 
 ibm::w3i_password() {
   local password=""
@@ -24,5 +24,6 @@ ibm::w3i_password() {
 
 
 # ::alias::
-alias ic='ibmcloud'
+alias ic="${IBMCLOUD_CLI}"
 alias w3i='ibm::w3i_password'
+
