@@ -4,3 +4,4 @@ vim/.netrwhist
 git/gitconfig
 *.swp
 *.rbc
+.vscode
