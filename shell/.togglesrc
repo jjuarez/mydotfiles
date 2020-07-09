@@ -1,24 +1,24 @@
 toggles::tf() {
-  command -v tfenv >/dev/null 2>&1 && export PATH="${HOME}/.tfenv/bin:${PATH}"
+  command -v tfenv 1>/dev/null 2>&1 && export PATH="${HOME}/.tfenv/bin:${PATH}"
 }
 
 toggles::python() {
   export CFLAGS="-O2 -I$(brew --prefix openssl)/include"
   export LDFLAGS="-L$(brew --prefix openssl)/lib"
 
-  command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
+  command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
+}
+
+toggles::node() {
+  command -v nodenv 1>/dev/null 2>&1 && eval "$(nodenv init -)"
 }
 
 toggles::ruby() {
-  command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init -)"
+  command -v rbenv 1>/dev/null 2>&1 && eval "$(rbenv init -)"
 }
 
 toggles::go() {
   [[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
-}
-
-toggles::node() {
-  command -v nodenv >/dev/null 2>&1 && eval "$(nodenv init -)"
 }
 
 toggles::github() {
