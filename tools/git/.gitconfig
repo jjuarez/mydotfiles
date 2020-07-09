@@ -1,6 +1,6 @@
 [user]
-	name  = Javier Juarez
-	email = javier.juarez.martinez@ibm.com
+	name = javier.juarez
+	email = Javier.Juarez.Martinez@ibm.com
 
 [color]
   diff        = auto
@@ -52,3 +52,8 @@
 
 [pull]
 	rebase = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
