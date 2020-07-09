@@ -1,8 +1,5 @@
 # Start configuration added by Zim install {{{
-
-##
-## zimfw configuration
-##
+# zimfw configuration
 export HISTFILE="${HOME}/.zsh_history"  # Try to share the shell history across subshells
 setopt HIST_IGNORE_ALL_DUPS
 bindkey -e
@@ -18,7 +15,6 @@ fi
 
 source ${ZIM_HOME}/init.zsh
 
-# Bind up and down keys
 zmodload -F zsh/terminfo +p:terminfo
 # }}} End configuration added by Zim install
 
@@ -35,54 +31,38 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
-# typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|kubie'
-
-# Custom, kops & helm (you need this before to load the k8s plugin)
-[[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
 # SSH agent pre-loaded keys
 zstyle ':zim:ssh' ids 'id_rsa.pi' 'id_rsa.mundokids' 'id_rsa.clarity.gitlab' 'ansible_provisioner_dev' 'ansible_provisioner_pre' 'ansible_provisioner_stg' 'ansible_provisioner_prod' 'ansible_provisioner_mgmt'
 
-##
-## dotfiles
-##
+[[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
+
+# dotfiles
 [[ -n "${DOTFILES}" ]] || export DOTFILES="${HOME}/.mydotfiles"
 
 export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
 
-##
-## Toggles
-##
-declare -A FTS=(
-  [direnv]=false
-  [krew]=true
-  [tf]=true
-  [python]=false
-  [ruby]=false
-  [java]=false
-  [go]=true
-  [github]=true
-  [travis]=true
-)
+# Toggles
+[[ -L "${HOME}/.togglesrc" ]] && {
+  declare -A TOGGLES_CONFIGURATION=(
+    [tf]=true
+    [python]=true
+    [ruby]=false
+    [go]=true
+    [node]=true
+    [github]=true
+    [travis]=true
+  )
 
+  source "${HOME}/.togglesrc"
+}
 
-##
-## MongoDB support
-##
-MONGODB_PATH="/Applications/MongoDB.app/Contents/Resources/Vendor/mongodb/bin"
-
-[[ -d "${MONGODB_PATH}" ]] && export PATH=${PATH}:${MONGODB_PATH}
-
-##
-## Custom plugins
-##
-for f in ${HOME}/.functions/*.zsh; do
-  source "${f}"
+# Plugins
+for plugin_file in ${HOME}/.functions/*.zsh; do
+  source "${plugin_file}"
 done 2>/dev/null
 
 #fpath=(~/.functions $fpath)
 
-##
 ## Aliases
-## 
-[[ -f "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
+[[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasercs"

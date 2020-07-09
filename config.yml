@@ -8,12 +8,12 @@ urls:
     install: https://github.com/homebrew/install#install-homebrew
     uninstall: https://github.com/homebrew/install#uninstall-homebrew
 dotfiles:
-  - shell/zsh/.zshenv
-  - shell/zsh/.zshrc
-  - shell/zsh/.aliases
-  - shell/zsh/.functions
-  - shell/zsh/.togglesrc
-  - shell/zsh/zim/.zimrc
+  - shell/.zshenv
+  - shell/.zshrc
+  - shell/.togglesrc
+  - shell/.functions
+  - shell/.aliases
+  - shell/zim/.zimrc
   - tools/tmux/.tmux.conf
   - tools/git/.gitconfig
   - tools/git/.gitignore_global
