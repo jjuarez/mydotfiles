@@ -45,8 +45,8 @@ export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
 # Toggles
 [[ -L "${HOME}/.togglesrc" ]] && {
   declare -A TOGGLES_CONFIGURATION=(
+    [python]=false
     [tf]=true
-    [python]=true
     [ruby]=false
     [go]=true
     [node]=true
@@ -65,4 +65,4 @@ done 2>/dev/null
 #fpath=(~/.functions $fpath)
 
 ## Aliases
-[[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasercs"
+[[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
