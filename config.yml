@@ -12,7 +12,7 @@ dotfiles:
   - shell/.zshrc
   - shell/.togglesrc
   - shell/.functions
-  - shell/.aliases
+  - shell/.aliasesrc
   - shell/zim/.zimrc
   - tools/tmux/.tmux.conf
   - tools/git/.gitconfig
