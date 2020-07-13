@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-declare -r TAR="gtar" # GNU tar installed by home brew
+declare -r TAR="/usr/local/bin/gtar" # GNU tar installed by home brew
 declare -r DATE_FORMAT="%Y%m%d%H%M"
 declare -r WORKSPACE="${HOME}/workspace"
 declare -r DESTINATION_DIRECTORY="${HOME}/Dropbox/Backups/IBM"
