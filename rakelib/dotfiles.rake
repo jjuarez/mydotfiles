@@ -6,7 +6,7 @@ namespace :dotfiles do
     $config['dotfiles'].each do |df|
       local_file = File.join(ENV['HOME'], File.basename(df))
 
-      puts " - #{local_file}"
+      puts " 💣 #{local_file}"
       FileUtils.rm_f(local_file)
     end
   rescue StandardError => e
@@ -20,7 +20,7 @@ namespace :dotfiles do
       li = File.join(ENV['HOME'], File.basename(df))
 
       if File.exist?(gi) && !File.exist?(li)
-        puts " √ #{li} -> #{gi}"
+        puts " ✅ #{li} -> #{gi}"
         FileUtils.ln_sf(gi, li)
       end
     end
