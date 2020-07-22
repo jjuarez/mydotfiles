@@ -49,7 +49,7 @@ export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
     [tf]=true
     [ruby]=false
     [go]=true
-    [node]=true
+    [node]=false
     [github]=true
     [travis]=true
   )
@@ -58,11 +58,13 @@ export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
 }
 
 # Plugins
-for plugin_file in ${HOME}/.functions/*.zsh; do
-  source "${plugin_file}"
-done 2>/dev/null
+#fpath=("/Users/jjuarez/.functions" ${fpath})
 
-#fpath=(~/.functions $fpath)
+[[ -L "${HOME}/.functions" ]] && {
+  for pf in ${HOME}/.functions/*.zsh; do
+    source "${pf}"
+  done 2>/dev/null
+}
 
 ## Aliases
 [[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
