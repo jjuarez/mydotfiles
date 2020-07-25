@@ -19,4 +19,16 @@ namespace :brew do
   rescue StandardError => e
     warn(e.message)
   end
+
+  desc 'Backup brews, taps, casks, and mas'
+  task :dump => :load do
+    brew_file = File.join(ENV['MYDOTFILES'], 'tools', 'brew', 'Brewfile')
+
+    if File.exist?(brew_file)
+      puts "Dumping brews to: #{brew_file}"
+      system("brew bundle dump --force --file #{brew_file}")
+    end
+  rescue StandardError => e
+    warn(e.message)
+  end
 end
