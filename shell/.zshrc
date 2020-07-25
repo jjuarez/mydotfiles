@@ -18,53 +18,44 @@ source ${ZIM_HOME}/init.zsh
 zmodload -F zsh/terminfo +p:terminfo
 # }}} End configuration added by Zim install
 
-# Term customizations
-TERM=xterm-256color
-export LANG=en_US.UTF-8
-
 # Theme
 ZSH_THEME="powerlevel10k"
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(aws kubecontext dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(kubecontext dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_DELIMITER="·"
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 
-# SSH agent pre-loaded keys
-zstyle ':zim:ssh' ids 'id_rsa.pi' 'id_rsa.mundokids' 'id_rsa.clarity.gitlab' 'ansible_provisioner_dev' 'ansible_provisioner_pre' 'ansible_provisioner_stg' 'ansible_provisioner_prod' 'ansible_provisioner_mgmt'
+zstyle ':zim:ssh' ids 'id_ed25519.pi' 'id_rsa.github' 'id_rsa.ibm'
 
 [[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
-# dotfiles
 [[ -n "${DOTFILES}" ]] || export DOTFILES="${HOME}/.mydotfiles"
-
 export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
 
 # Toggles
 [[ -L "${HOME}/.togglesrc" ]] && {
   declare -A TOGGLES_CONFIGURATION=(
-    [python]=false
-    [tf]=true
-    [ruby]=false
+    [node]=true
+    [ruby]=true
     [go]=true
-    [node]=false
+    [tf]=true
     [github]=true
     [travis]=true
+    [python]=false
   )
 
   source "${HOME}/.togglesrc"
 }
 
 # Plugins
-#fpath=("/Users/jjuarez/.functions" ${fpath})
-
 [[ -L "${HOME}/.functions" ]] && {
   for pf in ${HOME}/.functions/*.zsh; do
     source "${pf}"
   done 2>/dev/null
 }
 
-## Aliases
-[[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
+# Aliases
+[[ -L "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
