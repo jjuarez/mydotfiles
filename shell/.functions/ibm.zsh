@@ -1,6 +1,5 @@
-# vi: set ft=zsh :
-
-# set -ux -o pipefail
+#set -u -o pipefail
+#set -x
 
 # 1Password management
 OP_CLI=$(which op 2>/dev/null)
@@ -23,38 +22,14 @@ ibm::w3i::password() {
 }
 
 
-ibm::ks::get_kubeconfigs() {
-  local -r cluster_ids=$(ibmcloud ks cluster ls --json|jq '.[] | .name'|sed -e 's/\"//g')
+ibm::cloud::login() {
+  local -r region="${1:-'us-south'}"
+  local -r resource_group="${X:-'RIS2-ETX'}"
 
   [[ -n "${IBMCLOUD_API_KEY}" ]] || return 1
-
-  for ci in ${cluster_ids}; do
-    ibmcloud ks cluster config --cluster ${ci}
-  done
+  ibmcloud login -r ${region} -g ${respource_group}
 }
 
-
-ibm::k8s::load_kubeconfigs() {
-  local -r kubeconfig_dir="${1:-${HOME}/.kube}"
-  local kubeconfig_files=$(find ${HOME}/.kube -type f -name "*.config" -o -name "config")
-
-  [[ -n "${kubeconfig_files}" ]] || return 1
-
-  export KUBECONFIG_SAVE=${KUBECONFIG}
-  export KUBECONFIG=$(echo ${kubeconfig_files}|tr '\n' ':')
-
-  return 0
-}
-
-
-ibm::k8s::restore_kubeconfig() {
-  [[ -n "${KUBECONFIG_SAVE}" ]] || return 1
-
-  export KUBECONFIG=${KUBECONFIG_SAVE}
-  unset KUBECONFIG_SAVE
-
-  return 0
-}
 
 
 # ::alias::
