@@ -8,8 +8,9 @@ urls:
     install: https://github.com/homebrew/install#install-homebrew
     uninstall: https://github.com/homebrew/install#uninstall-homebrew
 dotfiles:
-  - shell/.zshenv
+  - shell/.zprofile
   - shell/.zshrc
+  - shell/.zshenv
   - shell/.togglesrc
   - shell/.functions
   - shell/.aliasesrc
