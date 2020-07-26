@@ -1,4 +1,6 @@
-# Alias
+#echo "File ${0}"
+
+HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"$(brew --prefix 2>/dev/null)"}
 OS="$(uname)"
 
 case "${OS}" in
@@ -6,17 +8,11 @@ case "${OS}" in
     alias ls='ls -h -G'
     alias netstat='netstat -an -p tcp -f inet'
 
-    [[ -z "${BREW_HOME}"           ]] && BREW_HOME="$(/usr/local/bin/brew --prefix 2>/dev/null)"
-    [[ -x "${BREW_HOME}/bin/gtar"  ]] && alias tar="${BREW_HOME}/bin/gtar"
-    [[ -x "${BREW_HOME}/bin/gfind" ]] && alias find="${BREW_HOME}/bin/gfind"
-    [[ -x "${BREW_HOME}/bin/gsed"  ]] && alias sed="${BREW_HOME}/bin/gsed"
-  ;;
-
-  Linux*)
-    alias ls='ls -h --color'
+    [[ -x "${HOMEBREW_PREFIX}/bin/gtar"  ]] && alias tar="${HOMEBREW_PREFIX}/bin/gtar"
+    [[ -x "${HOMEBREW_PREFIX}/bin/gfind" ]] && alias find="${HOMEBREW_PREFIX}/bin/gfind"
+    [[ -x "${HOMEBREW_PREFIX}/bin/gsed"  ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
   ;;
 esac
 
 alias vi='vim'
 alias cat="bat"
-
