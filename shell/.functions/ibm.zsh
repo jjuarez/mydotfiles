@@ -1,5 +1,7 @@
 #set -u -o pipefail
 #set -x
+declare -r IBMCLOUD_ENDPOINT_DEFAULT="cloud.ibm.com"
+IBMCLOUD_SESSION="no"
 
 # 1Password management
 OP_CLI=$(which op 2>/dev/null)
@@ -21,16 +23,21 @@ ibm::w3i::password() {
   return 0
 }
 
-
 ibm::cloud::login() {
-  local -r region="${1:-'us-south'}"
-  local -r resource_group="${X:-'RIS2-ETX'}"
+  local -r region=${1:-"us-south"}
+  local -r resource_group=${2:-"RIS2-ETX"}
 
   [[ -n "${IBMCLOUD_API_KEY}" ]] || return 1
-  ibmcloud login -r ${region} -g ${respource_group}
+  ibmcloud login -a ${IBMCLOUD_ENDPOINT_DEFAULT} -r ${region} -g ${resource_group} --quiet && export IBMCLOUD_SESSION="yes"
 }
 
+ibm::cloud::target() {
+  local -r organization=${1:-"RIS2-ETX"}
+  local -r space=${2:-"dev"}
 
+  [[ "${IBMCLOUD_SESSION}" == "yes" ]] || return 1
+  ibmcloud target -o ${organization} -s ${space} --quiet
+}
 
 # ::alias::
 alias ic='ibmcloud'
