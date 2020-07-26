@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 namespace :dotfiles do
-  desc 'Delete the dotfiles links'
+  desc 'Deletes the dotfiles links'
   task :uninstall => :load do
     $config['dotfiles'].each do |df|
       local_file = File.join(ENV['HOME'], File.basename(df))
@@ -13,7 +13,7 @@ namespace :dotfiles do
     warn(e.message)
   end
 
-  desc 'Install mydotfiles'
+  desc 'Installs mydotfiles'
   task :install => :load do
     $config['dotfiles'].each do |df|
       gi = File.join(ENV['DOTFILES'], df)

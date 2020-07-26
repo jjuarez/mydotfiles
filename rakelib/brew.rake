@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 namespace :brew do
-  desc 'Delete the brews, taps, casks, and mas'
+  desc 'Deletes the brews, taps, casks, and mas'
   task :uninstall => :load do
     puts " 🔖 Just take a look here: #{$config['urls']['homebrew']['uninstall']}"
   rescue StandarError => e
     warn(e.message)
   end
 
-  desc 'Install brews, taps, casks, and mas'
+  desc 'Installs brews, taps, casks, and mas'
   task :install => :load do
     brew_file = File.join(ENV['MYDOTFILES'], 'tools', 'brew', 'Brewfile')
 
@@ -20,7 +20,7 @@ namespace :brew do
     warn(e.message)
   end
 
-  desc 'Backup brews, taps, casks, and mas'
+  desc 'Backups brews, taps, casks, and mas'
   task :dump => :load do
     brew_file = File.join(ENV['MYDOTFILES'], 'tools', 'brew', 'Brewfile')
 
