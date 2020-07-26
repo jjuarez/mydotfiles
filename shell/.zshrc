@@ -1,3 +1,6 @@
+#set -u -o pipefail
+#set -x
+
 # Start configuration added by Zim install {{{
 # zimfw configuration
 export HISTFILE="${HOME}/.zsh_history"  # Try to share the shell history across subshells
@@ -18,6 +21,8 @@ source ${ZIM_HOME}/init.zsh
 zmodload -F zsh/terminfo +p:terminfo
 # }}} End configuration added by Zim install
 
+# My dotfiles
+
 # Theme
 ZSH_THEME="powerlevel10k"
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
@@ -28,7 +33,7 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER="·"
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 
-zstyle ':zim:ssh' ids 'id_ed25519.pi' 'id_rsa.github' 'id_rsa.ibm'
+zstyle ':zim:ssh' ids 'id_ed25519.pi' 'id_rsa.github' 'id_rsa.ibm' 'id_ed25519.gitlab'
 
 [[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
@@ -46,7 +51,6 @@ export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
     [travis]=true
     [python]=false
   )
-
   source "${HOME}/.togglesrc"
 }
 
