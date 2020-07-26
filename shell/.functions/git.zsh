@@ -1,4 +1,6 @@
-# Iteractive log
+#set -u -o pipefail
+#set -x
+
 git::superlog() {
   git log \
     --graph \

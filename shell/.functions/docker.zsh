@@ -1,4 +1,5 @@
-#echo "File: ${0}"
+#set -u -o pipefail
+#set -x
 
 # Docker clean exited images
 docker::containers::clean() {
