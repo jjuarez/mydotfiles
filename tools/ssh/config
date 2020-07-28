@@ -15,6 +15,10 @@ Host github.ibm.com
   User         javier.juarez
   IdentityFile ~/.ssh/id_rsa.ibm
 
+Host us-south.git.cloud.ibm.com
+  User         Javier.Juarez.Martinez
+  IdentityFile ~/.ssh/id_ed25519.ibm-gitlab
+
 Host *
   UserKnownHostsFile    /dev/null
 # IdentitiesOnly        yes
