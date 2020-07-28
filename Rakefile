@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 unless ENV['DOTFILES']
-  warn("💣 Environment variable MYDOTFILES undefined, setting it to: #{Dir.pwd}")
+  warn("💣 Environment variable DOTFILES undefined, setting it to: #{Dir.pwd}")
   ENV['DOTFILES'] = Dir.pwd
 end
 
