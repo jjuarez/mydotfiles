@@ -6,7 +6,7 @@ declare -r WORKSPACE="${HOME}/workspace"
 declare -r DESTINATION_DIRECTORY="${HOME}/Dropbox/Backups/IBM"
 
 DATE=$(date +${DATE_FORMAT})
-DIRECTORIES=(acloudguru codelytv go ibm/infrastructure ibm/src kike linuxacademy micifuz mundokids src)
+DIRECTORIES=(ibm/infrastructure ibm/projects ibm/src src acloudguru codelytv go kike linuxacademy micifuz mundokids)
 
 
 command::do_backup( ) {
