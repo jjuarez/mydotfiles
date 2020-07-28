@@ -14,5 +14,24 @@ git::superlog() {
 FZF-EOF"
 }
 
+
+git::squash_branch() {
+  local -r current_branch_name=$(git rev-parse --abbrev-ref HEAD)
+  local -r parent_commit=$(git merge-base master ${current_branch_name})
+
+  cat<<EOF
+
+  💣 Be careful this is a dangerous command, if you agree just follow these steps:
+
+  Current branch name: ${current_branch_name}
+  Branch parent commit: ${parent_commit}
+  git reset ${parent_commit}
+  git status
+  git commit -am 'Squashed branch'
+  git push origin ${current_branch_name} --force
+EOF
+}
+
 # alias
 alias gitsl='git::superlog'
+alias gitsb='git::squash_branch'
