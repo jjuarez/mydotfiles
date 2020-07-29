@@ -21,7 +21,7 @@ iks::get_kubeconfigs() {
 
 k8s::load_kubeconfigs() {
   local -r kubeconfig_dir="${1:-${HOME}/.kube}"
-  local kubeconfig_files=$(find ${HOME}/.kube -type f -name "*.config" -o -name "config")
+  local kubeconfig_files=$(find ${HOME}/.kube -type f -name "*.config.yml" -o -name "config")
 
   [[ -n "${kubeconfig_files}" ]] || return 1
 
