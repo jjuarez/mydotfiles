@@ -1,22 +1,29 @@
 #!/usr/bin/env bash
 
-declare -r TAR="/usr/local/bin/gtar" # GNU tar installed by home brew
-declare -r DATE_FORMAT="%Y%m%d%H%M"
-declare -r WORKSPACE="${HOME}/workspace"
+declare -r WORKSPACE="${HOME}/Workspace"
 declare -r DESTINATION_DIRECTORY="${HOME}/Dropbox/Backups/IBM"
+declare -r TAR="$(brew --prefix)/bin/gtar"
 
-DATE=$(date +${DATE_FORMAT})
-DIRECTORIES=(ibm/infrastructure ibm/projects ibm/src src acloudguru codelytv go kike linuxacademy micifuz mundokids)
+DATE=$(date +"%Y-%m-%d-%H:%M")
+DIRECTORIES=(
+  ibm/infrastructure
+  ibm/projects
+  ibm/src
+  src
+  go/src
+  kike
+  micifuz
+  mundokids
+)
 
 
 command::do_backup( ) {
-  local directory=${1}
+  local -r directory=${1}
   local complete_directory="${WORKSPACE}/${directory}"
-  local tar_file_name="/tmp/${directory//\//-}-${DATE}.tar.gz"
+  local tar_file_name="/tmp/${directory//\//-}-${DATE}.tgz"
 
   if [ -d "${complete_directory}" ]; then
-    ${TAR} -czf ${tar_file_name} \
-      --exclude='.git'\
+    "${TAR}" -czf "${tar_file_name}" \
       --exclude='.DS_Store' \
       --exclude='.terraform' \
       --exclude='.terragrunt-cache' \
@@ -28,15 +35,15 @@ command::do_backup( ) {
       --exclude='.code' --exclude='.idea' \
       --exclude='.po' --exclude='.pc' --exclude='__pycache__' \
       -C "${complete_directory}" . && \
-    cp "${tar_file_name}" "${DESTINATION_DIRECTORY}/" &&
+    cp -av "${tar_file_name}" "${DESTINATION_DIRECTORY}/" &&
     rm -f "${tar_file_name}"
   fi
 }
 
 
-#
 # ::main::
-#
+[[ -x "${TAR}" ]] || exit 1
+
 for d in "${DIRECTORIES[@]}"; do
   command::do_backup "${d}"
 done
