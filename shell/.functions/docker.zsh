@@ -24,7 +24,7 @@ docker::containers::connect() {
 }
 
 docker::images::clean() {
-  docker image rm $(docker image ls|grep none|awk '{ print $1 }')
+  docker image rm $(docker image ls|grep 'none'|awk '{ print $3 }')
 }
 
 # alias
