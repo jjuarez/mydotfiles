@@ -32,6 +32,12 @@ git::squash_branch() {
 EOF
 }
 
+git::delete_tag() {
+  local -r tag="${1}"
+
+  git fetch -a && git tag -d ${tag} && git push --no-verify origin :refs/tags/${tag}
+}
+
 # alias
 alias gitsl='git::superlog'
 alias gitsb='git::squash_branch'
