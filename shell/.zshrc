@@ -1,5 +1,5 @@
 #set -u -o pipefail
-#set -x
+#set -x # Exteme debug mode
 
 # Start configuration added by Zim install {{{
 # zimfw configuration
@@ -33,11 +33,13 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER="·"
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 
-zstyle ':zim:ssh' ids 'id_ed25519.pi' 'id_rsa.github' 'id_rsa.ibm' 'id_ed25519.gitlab'
+zstyle ':zim:ssh' ids 'id_ed25519.pi' 'id_ed25519.github.com' 'id_ed25519.github.ibm.com' 'id_ed25519.gitlab'
+
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 [[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 
-[[ -n "${DOTFILES}" ]] || export DOTFILES="${HOME}/.mydotfiles"
+export DOTFILES="${HOME}/.mydotfiles"
 export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
 
 # Toggles
@@ -50,6 +52,7 @@ export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
     [github]=true
     [travis]=true
     [python]=false
+    [direnv]=true
   )
   source "${HOME}/.togglesrc"
 }
