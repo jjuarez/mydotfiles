@@ -32,6 +32,16 @@ git::squash_branch() {
 EOF
 }
 
+git::close_feature_branch() {
+  local -r current_branch_name=$(git rev-parse --abbrev-ref HEAD)
+  local -r main_branch_name="master"
+
+  git checkout ${main_branch_name} &&
+  git fetch --all --prune &&
+  git pull origin ${main_branch_name} &&
+  git branch -d ${current_branch_name}
+}
+
 git::delete_tag() {
   local -r tag="${1}"
 
