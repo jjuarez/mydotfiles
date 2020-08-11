@@ -80,7 +80,7 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>-2320 952 799 448 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-3839 106 1918 1577 -3840 106 3840 1577 </string>
+	<string>-3839 130 1918 1553 -3840 106 3840 1577 </string>
 	<key>NeverWarnAboutShortLivedSessions_B4CA3ABF-1AD4-458A-B9A6-60EE869AC3B5</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_B4CA3ABF-1AD4-458A-B9A6-60EE869AC3B5_selection</key>
@@ -691,7 +691,7 @@
 				<real>0.0</real>
 			</dict>
 			<key>Mouse Reporting</key>
-			<true/>
+			<false/>
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
@@ -699,7 +699,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>MesloLGLDZNerdFontCompleteM-Regular 15</string>
+			<string>MesloLGLDZNerdFontComplete-Regular 15</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -711,7 +711,7 @@
 			<key>Screen</key>
 			<integer>1</integer>
 			<key>Scrollback Lines</key>
-			<integer>1000</integer>
+			<integer>0</integer>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -765,7 +765,7 @@
 			<key>Transparency</key>
 			<real>0.071311865482233505</real>
 			<key>Unlimited Scrollback</key>
-			<false/>
+			<true/>
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
@@ -1484,7 +1484,7 @@
 		<key>screenFrame</key>
 		<string>{{-3840, 106}, {3840, 1600}}</string>
 		<key>topLeft</key>
-		<string>{-3406, 1194}</string>
+		<string>{-2549, 1227}</string>
 	</dict>
 	<key>NoSyncHaveUsedCopyMode</key>
 	<true/>
@@ -1493,7 +1493,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>618052189.47461498</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>7</integer>
+	<integer>9</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2283,7 +2283,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-08-02T09:10:03Z</date>
+	<date>2020-08-10T07:46:49Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
@@ -2300,6 +2300,8 @@
 	</array>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>iTerm Version</key>
 	<string>3.3.12</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
