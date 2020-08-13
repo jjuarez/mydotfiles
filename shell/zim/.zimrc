@@ -5,7 +5,6 @@ zmodule environment
 zmodule input
 zmodule utility
 zmodule history
-zmodule ssh
 
 # Themes
 zmodule romkatv/powerlevel10k
