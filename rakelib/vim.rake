@@ -9,20 +9,20 @@ namespace :vim do
   end
 
   desc 'Deletes vim vundle'
-  task :uninstall => [:load, :setup] do
+  task :uninstall => %i[load setup] do
     puts(" 🔖 Please take a look here: #{$config['url']['vundle']}")
   rescue StandardError => e
     warn(e.message)
   end
 
   desc 'Instals lvim vundle'
-  task :install => [:load, :setup] do
-    puts " ✅ seting up the custom .vimrc file"
+  task :install => %i[load setup] do
+    puts ' ✅ seting up the custom .vimrc file'
     FileUtils.ln_sf(@custom_vimrc, @vimrc) unless File.exist?(@vimrc)
 
     unless File.directory?(@vundle_destination)
       FileUtils.mkdir_p(@vundle_dir) unless File.directory?(@vundle_dir)
-      puts " ✅ cloning the Vundle git repository"
+      puts ' ✅ cloning the Vundle git repository'
       system("git clone #{$config['urls']['vundle']} #{@vundle_destination}")
     end
   rescue StandardError => e
