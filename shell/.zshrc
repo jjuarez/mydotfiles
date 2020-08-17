@@ -51,7 +51,7 @@ export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
     [tf]=true
     [github]=true
     [travis]=true
-    [python]=false
+    [python]=true
     [direnv]=true
   )
   source "${HOME}/.togglesrc"
