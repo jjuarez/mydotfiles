@@ -14,8 +14,9 @@ Host github.ibm.com
 Host us-south.git.cloud.ibm.com
   User Javier.Juarez.Martinez
 
-Host *.sl.cloud9.ibm.com
+Host *-staging.sl.cloud9.ibm.com
   User root
+  Identityfile ~/.ssh/id_ed25519.ansible_provisioning_staging
 
 Host *
   UserKnownHostsFile    /dev/null
@@ -24,11 +25,10 @@ Host *
   VerifyHostKeyDNS      no
   TCPKeepAlive          yes
   ForwardX11            no
-  ForwardAgent          no
+  ForwardAgent          yes
   ServerAliveInterval   15
   ServerAliveCountMax   4
   Compression           yes
   CheckHostIP           no
   LogLevel              quiet
   Port                  22
-
