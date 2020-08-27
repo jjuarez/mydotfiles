@@ -34,6 +34,8 @@
 	<string>{799, 448}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
 	<string>{712, 448}</string>
+	<key>NSOverlayScrollersFallBackForAccessoryViews</key>
+	<false/>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -80,7 +82,7 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>-2320 952 799 448 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-3839 106 1918 1577 -3840 106 3840 1577 </string>
+	<string>-3840 116 1920 1553 -3840 92 3840 1577 </string>
 	<key>NeverWarnAboutShortLivedSessions_B4CA3ABF-1AD4-458A-B9A6-60EE869AC3B5</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_B4CA3ABF-1AD4-458A-B9A6-60EE869AC3B5_selection</key>
@@ -361,7 +363,7 @@
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
-			<string>No</string>
+			<string>Recycle</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Description</key>
@@ -1471,6 +1473,7 @@
 	<key>NoSyncAllAppVersions</key>
 	<array>
 		<string>3.3.12</string>
+		<string>3.4.0beta3</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
@@ -1482,18 +1485,22 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{-3840, 106}, {3840, 1600}}</string>
+		<string>{{-3840, 92}, {3840, 1600}}</string>
 		<key>topLeft</key>
-		<string>{-2549, 1227}</string>
+		<string>{-3571, 687}</string>
 	</dict>
 	<key>NoSyncHaveUsedCopyMode</key>
 	<true/>
+	<key>NoSyncIgnoreSystemWindowRestoration</key>
+	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>649E5C9E-8C49-4541-81C3-DAD1A8AD9705</string>
+	<key>NoSyncLastOSVersion</key>
+	<string>Version 10.15.6 (Build 19G2021)</string>
 	<key>NoSyncLastTipTime</key>
 	<real>618052189.47461498</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>10</integer>
+	<integer>16</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1620,6 +1627,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>selectionLength</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>path</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -1631,6 +1646,14 @@
 				<string>triggerName</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<false/>
+				<key>name</key>
+				<string>parentSession</string>
+				<key>nonterminalContext</key>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>isTerminal</key>
@@ -1738,6 +1761,14 @@
 			</dict>
 			<dict>
 				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>parentSession.terminalIconName</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
 				<false/>
 				<key>name</key>
 				<string>tab</string>
@@ -1749,6 +1780,14 @@
 				<true/>
 				<key>name</key>
 				<string>tmuxStatusLeft</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>selection</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -2000,6 +2039,14 @@
 				<true/>
 				<key>name</key>
 				<string>currentTab.currentSession.jobName</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>currentTab.currentSession.parentSession.terminalIconName</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -2279,11 +2326,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/final_new.xml?shard=69</string>
+	<string>https://iterm2.com/appcasts/final_modern.xml?shard=69</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-08-13T16:41:40Z</date>
+	<date>2020-08-21T08:59:11Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
@@ -2303,7 +2350,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.12</string>
+	<string>3.4.0beta3</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>3</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
