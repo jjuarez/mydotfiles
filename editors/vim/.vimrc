@@ -6,7 +6,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'tpope/vim-surround'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-unimpaired'
