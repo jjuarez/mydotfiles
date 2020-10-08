@@ -14,11 +14,8 @@ Host github.ibm.com
 Host us-south.git.cloud.ibm.com
   User Javier.Juarez.Martinez
 
-Host *-staging.sl.cloud9.ibm.com
-  User root
-  Identityfile ~/.ssh/id_ed25519.ansible_provisioning_staging
-
 Host *
+  User                  root
   UserKnownHostsFile    /dev/null
 # IdentitiesOnly        yes
   StrictHostKeyChecking no
