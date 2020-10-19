@@ -33,7 +33,7 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER="·"
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 
-zstyle ':zim:ssh' ids 'id_ed25519.pi' 'id_ed25519.github.com' 'id_ed25519.github.ibm.com' 'id_ed25519.gitlab'
+zstyle ':zim:ssh' ids  'id_ed25519.github.ibm.com' 'id_ed25519_ansible_provisioning_staging' 'id_ed25519.github.com'
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
