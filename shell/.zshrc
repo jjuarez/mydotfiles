@@ -37,6 +37,11 @@ zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.ansible_provisioning_staging' \
                       'id_ed25519.github.com'
 
+# Z configuration
+export ZSHZ_CMD="z -e"
+export ZSHZ_COMPLETION="frecent"
+export ZSHZ_MAX_SCORE=9000
+
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 [[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"

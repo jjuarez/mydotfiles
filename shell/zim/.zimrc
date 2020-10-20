@@ -9,6 +9,9 @@ zmodule history
 # Themes
 zmodule romkatv/powerlevel10k
 
+# Quick directory change
+zmodule agkozak/zsh-z
+
 # Additional completion definitions for Zsh.
 zmodule completion
 zmodule zsh-users/zsh-completions
