@@ -7,6 +7,9 @@ IBMCLOUD_SESSION="no"
 OP_CLI=$(which op 2>/dev/null)
 OPASSWORD_IBM_DOMAIN="ibm"
 
+#
+# SSO
+#
 ibm::w3i::password() {
   local password=""
 
@@ -23,6 +26,9 @@ ibm::w3i::password() {
   return 0
 }
 
+#
+# IBMCloud stuff
+#
 ibm::cloud::login() {
   local -r region=${1:-"us-south"}
   local -r resource_group=${2:-"RIS2-ETX"}
@@ -38,6 +44,31 @@ ibm::cloud::target() {
   [[ "${IBMCLOUD_SESSION}" == "yes" ]] || return 1
   ibmcloud target -o ${organization} -s ${space} --quiet
 }
+
+
+#
+# iRIS SoftLayer stuff
+#
+ibm::iris::get_all_vms() {
+  [[ -n "${IRIS_USERNAME}" ]] || return 1
+  [[ -n "${IRIS_PASSWORD}" ]] || return 1
+
+  curl -sSlLk -u "${IRIS_USERNAME}:${IRIS_PASSWORD}" -X GET "https://ris-ims.cloud9.ibm.com/iRIS-IMS-API/rest/v1/SoftLayer_Account/VirtualGuests"|jq
+}
+
+ibm::iris::get_vm() {
+  local -r vm_id="${1}"
+
+  set -x
+  [[ -n "${IRIS_USERNAME}" ]] || return 1
+  [[ -n "${IRIS_PASSWORD}" ]] || return 1
+
+  [[ -n "${vm_id}" ]] || return 1
+
+  curl -sSlLk -u "${IRIS_USERNAME}:${IRIS_PASSWORD}" -X GET "https://ris-ims.cloud9.ibm.com/iRIS-IMS-API/rest/v1/SoftLayer_Virtual_Guest/${vm_id}"|jq
+  set +x
+}
+
 
 # ::alias::
 alias ic='ibmcloud'
