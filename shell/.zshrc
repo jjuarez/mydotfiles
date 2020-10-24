@@ -34,6 +34,7 @@ POWERLEVEL9K_SHORTEN_DELIMITER="·"
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 
 zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
+                      'id_ed25519.ansible_provisioning_development' \
                       'id_ed25519.ansible_provisioning_staging' \
                       'id_ed25519.github.com'
 
