@@ -36,6 +36,7 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.ansible_provisioning_development' \
                       'id_ed25519.ansible_provisioning_staging' \
+                      'id_ed25519.ansible_provisioning_production' \
                       'id_ed25519.github.com'
 
 # Z configuration
@@ -56,7 +57,7 @@ export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
     [node]=true
     [ruby]=true
     [go]=true
-    [tf]=true
+    [tfenv]=true
     [github]=true
     [travis]=true
     [python]=true
@@ -66,8 +67,17 @@ export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
 }
 
 # Plugins
-[[ -L "${HOME}/.functions" ]] && {
-  for pf in ${HOME}/.functions/*.zsh; do
+# fpath+=~/.zfunctions
+# autoload docker::containers::clean
+# autoload docker::images::clean
+# autoload ibm::cloud::login
+# autoload git::superlog
+# autoload git::squash_branch
+# autoload ssh::load_keys
+# autoload k8s::iks_get_kubeconfigs
+# autoload k8s::load_kubeconfigs
+[[ -L "${HOME}/.zfunctions" ]] && {
+  for pf in ${HOME}/.zfunctions/*.zsh; do
     source "${pf}"
   done 2>/dev/null
 }
