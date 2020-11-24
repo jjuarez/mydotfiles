@@ -21,25 +21,14 @@ git::squash_branch() {
 
   cat<<EOF
 
-  💣 Be careful this is a dangerous command, if you agree just follow these steps:
-
-  Current branch name: ${current_branch_name}
-  Branch parent commit: ${parent_commit}
-  git reset ${parent_commit}
-  git status
-  git commit -am 'Squashed branch'
-  git push origin ${current_branch_name} --force
+  Be careful this is a dangerous command, if you agree just follow these steps:
+    Current branch name: ${current_branch_name}
+    Branch parent commit: ${parent_commit}
+    git reset ${parent_commit}
+    git status
+    git commit -am 'Squashed branch'
+    git push origin ${current_branch_name} --force
 EOF
-}
-
-git::close_feature_branch() {
-  local -r current_branch_name=$(git rev-parse --abbrev-ref HEAD)
-  local -r main_branch_name="master"
-
-  git checkout ${main_branch_name} &&
-  git fetch --all --prune &&
-  git pull origin ${main_branch_name} &&
-  git branch -d ${current_branch_name}
 }
 
 git::delete_tag() {

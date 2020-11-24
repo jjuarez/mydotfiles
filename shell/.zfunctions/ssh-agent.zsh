@@ -1,6 +1,3 @@
-#
-# This is a workaround sice the official plugin for zim is not working at all for me
-#
 ssh::load_keys() {
   zstyle -a ':zim:ssh' ids 'zssh_ids'
 
@@ -10,3 +7,5 @@ ssh::load_keys() {
     ssh-add 2>/dev/null
   fi
 }
+
+alias sshlk='ssh::load_keys'

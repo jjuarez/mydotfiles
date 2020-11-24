@@ -4,11 +4,12 @@
 HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
 
 [[ -x "${HOMEBREW_PREFIX}/bin/kubectl" ]] && alias k='kubectl'
+[[ -x "${HOMEBREW_PREFIX}/bin/kubie"   ]] && alias kb='kubie'
 [[ -x "${HOMEBREW_PREFIX}/bin/kubectx" ]] && alias kx='kubectx'
 [[ -x "${HOMEBREW_PREFIX}/bin/kubens"  ]] && alias kn='kubens'
 
 
-iks::get_kubeconfigs() {
+k8s::iks_get_kubeconfigs() {
   local -r cluster_ids=$(ibmcloud ks cluster ls --json|jq '.[] | .name'|sed -e 's/\"//g')
 
   [[ -n "${IBMCLOUD_API_KEY}" ]] || return 1
@@ -27,16 +28,6 @@ k8s::load_kubeconfigs() {
 
   export KUBECONFIG_SAVE=${KUBECONFIG}
   export KUBECONFIG=$(echo ${kubeconfig_files}|tr '\n' ':')
-
-  return 0
-}
-
-
-k8s::restore_kubeconfig() {
-  [[ -n "${KUBECONFIG_SAVE}" ]] || return 1
-
-  export KUBECONFIG=${KUBECONFIG_SAVE}
-  unset KUBECONFIG_SAVE
 
   return 0
 }
