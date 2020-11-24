@@ -6,23 +6,22 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'tomtom/tlib_vim'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'w0rp/ale'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'ervandew/supertab'
-Plugin 'hashivim/vim-terraform'
-Plugin 'fatih/vim-go'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'klen/python-mode'
 Plugin 'tomasr/molokai'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'itchyny/lightline.vim'
+Plugin 'tomtom/tlib_vim'
+Plugin 'tomtom/tcomment_vim'
+" Plugin 'tpope/vim-unimpaired'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'ervandew/supertab'
+Plugin 'w0rp/ale'
+Plugin 'fatih/vim-go'
+Plugin 'pearofducks/ansible-vim'
+Plugin 'klen/python-mode'
 Plugin 'rust-lang/rust.vim'
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'hashivim/vim-terraform'
 Plugin 'moll/vim-node'
 
 call vundle#end()
@@ -43,6 +42,9 @@ let mapleader=","
 
 " This configuration helps with the slowliness of ruby plugin
 set regexpengine=1
+
+" fzf
+set rtp+=/usr/local/opt/fzf
 
 " Assume that filetype=sh are posix and therefore will support proper `$(...)`
 " See:
