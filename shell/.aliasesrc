@@ -1,5 +1,5 @@
-#echo "File ${0}"
 
+# Global
 HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"$(brew --prefix 2>/dev/null)"}
 OS="$(uname)"
 
@@ -15,4 +15,4 @@ case "${OS}" in
 esac
 
 alias vi='vim'
-alias cat="bat"
+alias cat='bat'
