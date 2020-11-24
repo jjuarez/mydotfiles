@@ -20,7 +20,7 @@ dotfiles:
   - tools/git/.gitignore_global
   - tools/github/.githubrc
   - tools/mongodb/.mongorc.js
-  - tools/cheat/conf.yml
+  # - tools/cheat/conf.yml
   - langs/go/.gorc
   - langs/ruby/.irbrc
   - langs/ruby/.gemrc
