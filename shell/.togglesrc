@@ -1,6 +1,6 @@
 #echo "File: ${0}"
 
-toggles::tf() {
+toggles::tfenv() {
   command -v tfenv 1>/dev/null 2>&1 && export PATH="${HOME}/.tfenv/bin:${PATH}"
 }
 
