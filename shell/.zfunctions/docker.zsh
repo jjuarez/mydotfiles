@@ -5,7 +5,7 @@
 docker::containers::clean() {
   local -r docker_exited_containers=$(docker container ls -q --filter status=exited)
 
-  [[ -n "${docker_exited_containers}" ]] && docker container rm "${docker_exited_containers}"
+  [[ -n "${docker_exited_containers}" ]] && echo "${docker_exited_containers}"|xargs docker container rm
 }
 
 docker::images::clean() {
