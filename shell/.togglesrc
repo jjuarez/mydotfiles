@@ -16,15 +16,12 @@ toggles::nodenv() {
 }
 
 toggles::nvm() {
-
-  set -x
   if [ -s "/usr/local/opt/nvm/nvm.sh" ]; then
     export NVM_DIR="${HOME}/.nvm"
 
     [ -d "${NVM_DIR}" ] || mkdir -p "${NVM_DIR}"
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
   fi
-  set +x
 }
 
 toggles::ruby() {
