@@ -54,7 +54,8 @@ export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
 # Toggles
 [[ -L "${HOME}/.togglesrc" ]] && {
   declare -A TOGGLES_CONFIGURATION=(
-    [node]=true
+    [nodenv]=true
+    [nvm]=true
     [ruby]=true
     [go]=true
     [tfenv]=true
