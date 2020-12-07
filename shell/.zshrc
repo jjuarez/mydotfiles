@@ -21,8 +21,6 @@ source ${ZIM_HOME}/init.zsh
 zmodload -F zsh/terminfo +p:terminfo
 # }}} End configuration added by Zim install
 
-# My dotfiles
-
 # Theme
 ZSH_THEME="powerlevel10k"
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
@@ -33,6 +31,7 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER="·"
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 
+# SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.ansible_provisioning_development' \
                       'id_ed25519.ansible_provisioning_staging' \
@@ -41,47 +40,15 @@ zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
 
 # Z configuration
 export ZSHZ_CMD="z -e"
-export ZSHZ_COMPLETION="frecent"
+export ZSHZ_COMPLETION="frecuent"
 export ZSHZ_MAX_SCORE=9000
-
 export HOMEBREW_NO_AUTO_UPDATE=1
-
-[[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
-
 export DOTFILES="${HOME}/.mydotfiles"
-export PATH=${PATH}:/usr/local/sbin:${DOTFILES}/bin
+export PATH=${DOTFILES}/bin:${PATH}
 
-# Toggles
-[[ -L "${HOME}/.togglesrc" ]] && {
-  declare -A TOGGLES_CONFIGURATION=(
-    [nodenv]=true
-    [nvm]=true
-    [ruby]=true
-    [go]=true
-    [tfenv]=true
-    [github]=true
-    [travis]=true
-    [python]=true
-    [direnv]=true
-  )
-  source "${HOME}/.togglesrc"
-}
+# Custom configurations
+[[ -s "${HOME}/.togglesrc"    ]] && source "${HOME}/.togglesrc"
+[[ -s "${HOME}/.zfunctionsrc" ]] && source "${HOME}/.zfunctionsrc"
+[[ -s "${HOME}/.aliasesrc"    ]] && source "${HOME}/.aliasesrc"
 
-# Plugins
-# fpath+=~/.zfunctions
-# autoload docker::containers::clean
-# autoload docker::images::clean
-# autoload ibm::cloud::login
-# autoload git::superlog
-# autoload git::squash_branch
-# autoload ssh::load_keys
-# autoload k8s::iks_get_kubeconfigs
-# autoload k8s::load_kubeconfigs
-[[ -L "${HOME}/.zfunctions" ]] && {
-  for pf in ${HOME}/.zfunctions/*.zsh; do
-    source "${pf}"
-  done 2>/dev/null
-}
-
-# Aliases
-[[ -L "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
