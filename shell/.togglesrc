@@ -1,4 +1,22 @@
 #echo "File: ${0}"
+declare -A TOGGLES_CONFIGURATION=(
+  [fzf]=true
+  [nodenv]=false
+  [nvm]=true
+  [ruby]=true
+  [go]=true
+  [tfenv]=true
+  [github]=true
+  [travis]=true
+  [python]=false
+  [direnv]=true
+)
+
+toggles::fzf() {
+  if command -v fzf >/dev/null 2>&1; then
+    [[ -s "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
+  fi
+}
 
 toggles::tfenv() {
   command -v tfenv >/dev/null 2>&1 && export PATH="${HOME}/.tfenv/bin:${PATH}"
