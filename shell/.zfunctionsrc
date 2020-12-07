@@ -1,0 +1,7 @@
+# Load all the custom plugins over the current shell
+
+[[ -d "${HOME}/.zfunctions" ]] && {
+  for plugin_file in ${HOME}/.zfunctions/*.zsh ${HOME}/.zfunctions/*.sh; do
+    source "${plugin_file}"
+  done 2>/dev/null
+}
