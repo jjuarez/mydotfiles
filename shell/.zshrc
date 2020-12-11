@@ -44,11 +44,11 @@ export ZSHZ_COMPLETION="frecuent"
 export ZSHZ_MAX_SCORE=9000
 export HOMEBREW_NO_AUTO_UPDATE=1
 export DOTFILES="${HOME}/.mydotfiles"
-export PATH=${DOTFILES}/bin:${PATH}
+export PATH=${DOTFILES}/bin:$(brew --prefix)/sbin:${PATH}
 
 # Custom configurations
-[[ -s "${HOME}/.togglesrc"    ]] && source "${HOME}/.togglesrc"
-[[ -s "${HOME}/.zfunctionsrc" ]] && source "${HOME}/.zfunctionsrc"
-[[ -s "${HOME}/.aliasesrc"    ]] && source "${HOME}/.aliasesrc"
+[[ -L "${HOME}/.togglesrc"    ]] && source "${HOME}/.togglesrc"
+[[ -L "${HOME}/.zfunctionsrc" ]] && source "${HOME}/.zfunctionsrc"
+[[ -L "${HOME}/.aliasesrc"    ]] && source "${HOME}/.aliasesrc"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
