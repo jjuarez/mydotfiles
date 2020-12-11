@@ -1,15 +1,13 @@
-#echo "File: ${0}"
 declare -A TOGGLES_CONFIGURATION=(
-  [fzf]=true
-  [nodenv]=false
-  [nvm]=true
-  [ruby]=true
-  [go]=true
-  [tfenv]=true
-  [github]=true
-  [travis]=true
-  [python]=false
   [direnv]=true
+  [fzf]=true
+  [github]=true
+  [go]=true
+  [nvm]=true
+  [python]=false
+  [ruby]=true
+  [tfenv]=true
+  [travis]=true
 )
 
 toggles::fzf() {
@@ -27,10 +25,6 @@ toggles::python() {
   export LDFLAGS="-L$(brew --prefix openssl)/lib"
 
   command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
-}
-
-toggles::nodenv() {
-  command -v nodenv >/dev/null 2>&1 && eval "$(nodenv init -)"
 }
 
 toggles::nvm() {
@@ -63,11 +57,10 @@ toggles::direnv() {
 }
 
 # ::main::
-echo -en "Toggles: "
-for feature activated in ${(kv)TOGGLES_CONFIGURATION}; do
+echo -en "Tggls: "
+for t activated in ${(kv)TOGGLES_CONFIGURATION}; do
   if [ "${activated}" = true ]; then
-    echo -en "${feature} "
-    toggles::${feature}
+    toggles::${t} && echo -en "${t}:√ "
   fi
 done
 echo
