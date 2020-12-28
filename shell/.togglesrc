@@ -7,7 +7,7 @@ declare -A TOGGLES_CONFIGURATION=(
   [python]=false
   [ruby]=true
   [tfenv]=true
-  [travis]=true
+  [travis]=false
 )
 
 toggles::fzf() {
