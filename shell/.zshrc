@@ -25,8 +25,8 @@ zmodload -F zsh/terminfo +p:terminfo
 ZSH_THEME="powerlevel10k"
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(kubecontext pyenv dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(kubecontext dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER="·"
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
@@ -42,6 +42,7 @@ zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
 export ZSHZ_CMD="z -e"
 export ZSHZ_COMPLETION="frecuent"
 export ZSHZ_MAX_SCORE=9000
+
 export HOMEBREW_NO_AUTO_UPDATE=1
 export DOTFILES="${HOME}/.mydotfiles"
 export PATH=${DOTFILES}/bin:$(brew --prefix)/sbin:${PATH}
@@ -50,5 +51,3 @@ export PATH=${DOTFILES}/bin:$(brew --prefix)/sbin:${PATH}
 [[ -L "${HOME}/.togglesrc"    ]] && source "${HOME}/.togglesrc"
 [[ -L "${HOME}/.zfunctionsrc" ]] && source "${HOME}/.zfunctionsrc"
 [[ -L "${HOME}/.aliasesrc"    ]] && source "${HOME}/.aliasesrc"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
