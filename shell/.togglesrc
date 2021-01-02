@@ -6,25 +6,29 @@ declare -A TOGGLES_CONFIGURATION=(
   [nvm]=true
   [python]=false
   [ruby]=true
-  [tfenv]=true
+  [tf]=true
   [travis]=false
 )
 
 toggles::fzf() {
-  if command -v fzf >/dev/null 2>&1; then
+  if [ $commandx[fzf] ]; then
     [[ -s "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
   fi
 }
 
 toggles::tfenv() {
-  command -v tfenv >/dev/null 2>&1 && export PATH="${HOME}/.tfenv/bin:${PATH}"
+  if [ $commands[tfenv] ]; then
+    export PATH="${HOME}/.tfenv/bin:${PATH}"
+  fi
 }
 
 toggles::python() {
-  export CFLAGS="-O2 -I$(brew --prefix openssl)/include"
-  export LDFLAGS="-L$(brew --prefix openssl)/lib"
+  if [ $commands[pyenv] ]; then
+    export CFLAGS="-O2 -I$(brew --prefix openssl)/include"
+    export LDFLAGS="-L$(brew --prefix openssl)/lib"
 
-  command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
+    eval "$(pyenv init -)"
+  fi
 }
 
 toggles::nvm() {
@@ -37,7 +41,9 @@ toggles::nvm() {
 }
 
 toggles::ruby() {
-  command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init -)"
+  if [ $commands[rbenv] ]; then
+    eval "$(rbenv init -)"
+  fi
 }
 
 toggles::go() {
@@ -53,11 +59,13 @@ toggles::travis() {
 }
 
 toggles::direnv() {
-  command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
+  if [ $commands[direnv] ]; then
+    eval "$(direnv hook zsh)"
+  fi
 }
 
 # ::main::
-echo -en "Tggls: "
+echo -en "Toggles: "
 for t activated in ${(kv)TOGGLES_CONFIGURATION}; do
   if [ "${activated}" = true ]; then
     toggles::${t} && echo -en "${t}:√ "
