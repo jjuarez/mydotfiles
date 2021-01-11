@@ -28,6 +28,12 @@ toggles::nvm() {
   fi
 }
 
+toggles::nodenv() {
+  if [ $commands[nodenv] ]; then
+    eval "$(nodenv init -)"
+  fi
+}
+
 toggles::rbenv() {
   if [ $commands[rbenv] ]; then
     eval "$(rbenv init -)"
