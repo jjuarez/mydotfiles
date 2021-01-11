@@ -22,10 +22,10 @@ zmodload -F zsh/terminfo +p:terminfo
 ZSH_THEME="powerlevel10k"
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon kubecontext dir vcs nvm pyenv)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon kubecontext dir vcs nodenv pyenv)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_SHORTEN_DELIMITER="·"
+POWERLEVEL9K_SHORTEN_DELIMITER="..."
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 
 # SSH keys to load by the agent
@@ -53,6 +53,7 @@ declare -A TOGGLES_CONFIGURATION=(
   [travis]=false
   [go]=true
   [nvm]=true
+  [nodenv]=true
   [pyenv]=false
   [rbenv]=true
   [tfenv]=true
