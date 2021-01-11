@@ -13,6 +13,7 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'w0rp/ale'
+Plugin 'ervandew/supertab'
 Plugin 'fatih/vim-go'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'klen/python-mode'
@@ -45,7 +46,7 @@ let g:is_posix = 1
 
 "" The Color Scheme
 colorscheme molokai
-"let g:molokai_original=1
+let g:molokai_original=1
 let g:rehash256=1
 execute "set colorcolumn=" . join(range(133,335), ',')
 
