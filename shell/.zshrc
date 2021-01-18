@@ -14,26 +14,12 @@ if [[ ${ZIM_HOME}/init.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
 fi
 
 source ${ZIM_HOME}/init.zsh
-
 zmodload -F zsh/terminfo +p:terminfo
 # }}} End configuration added by Zim install
-
-# Theme
-ZSH_THEME="powerlevel10k"
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon kubecontext dir vcs nodenv pyenv)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_SHORTEN_DELIMITER="..."
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
 
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.github.com'
-                      # 'id_ed25519.ansible_provisioning_development' \
-                      # 'id_ed25519.ansible_provisioning_staging' \
-                      # 'id_ed25519.ansible_provisioning_production' \
 
 # Z configuration
 export ZSHZ_CMD="z -e"
@@ -52,13 +38,16 @@ declare -A TOGGLES_CONFIGURATION=(
   [github]=true
   [travis]=false
   [go]=true
-  [nvm]=true
   [nodenv]=true
   [pyenv]=false
   [rbenv]=true
   [tfenv]=true
 )
+[[ -L "${HOME}/.togglesrc" ]] && source "${HOME}/.togglesrc"
 
-[[ -L "${HOME}/.togglesrc"    ]] && source "${HOME}/.togglesrc"
+# Utilities and aliases
 [[ -L "${HOME}/.zfunctionsrc" ]] && source "${HOME}/.zfunctionsrc"
-[[ -L "${HOME}/.aliasesrc"    ]] && source "${HOME}/.aliasesrc"
+[[ -L "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
+
+# zsh theme
+[[ -L "${HOME}/.p10krc" ]] && source "${HOME}/.p10krc"

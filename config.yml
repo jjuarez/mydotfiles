@@ -15,6 +15,7 @@ dotfiles:
   - shell/.zfunctions
   - shell/.zfunctionsrc
   - shell/.aliasesrc
+  - shell/.p10krc
   - shell/zim/.zimrc
   - tools/tmux/.tmux.conf
   - tools/git/.gitconfig
