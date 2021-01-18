@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tomasr/molokai'
+Plugin 'dracula/vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tomtom/tcomment_vim'
@@ -45,13 +46,18 @@ set rtp+=/usr/local/opt/fzf
 let g:is_posix = 1
 
 "" The Color Scheme
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+"colorscheme dracula
+"let g:dracula_colorterm = 0
+" to solve the issue with italics
 colorscheme molokai
 let g:molokai_original=1
 let g:rehash256=1
 execute "set colorcolumn=" . join(range(133,335), ',')
 
 "" Show trailing whitespace and spaces before a tab:
-:highlight ExtraWhitespace ctermbg=red guibg=red
+:highlight ExtraWhitespace ctermbg=None guibg=red
 :autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/
 
 "" moving around, searching and patterns
