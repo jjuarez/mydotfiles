@@ -1,7 +1,6 @@
 # Start configuration added by Zim install {{{
 # zimfw configuration
 export HISTFILE="${HOME}/.zsh_history"  # Try to share the shell history across subshells
-setopt HIST_IGNORE_ALL_DUPS
 bindkey -e
 setopt CORRECT
 
@@ -20,11 +19,8 @@ zmodload -F zsh/terminfo +p:terminfo
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.github.com'
-
 # Z configuration
-export ZSHZ_CMD="z -e"
-export ZSHZ_COMPLETION="frecuent"
-export ZSHZ_MAX_SCORE=9000
+#zstyle ':completion:*' menu select
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 export DOTFILES="${HOME}/.mydotfiles"
@@ -50,4 +46,7 @@ declare -A TOGGLES_CONFIGURATION=(
 [[ -L "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
 
 # zsh theme
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+#ZSH_THEME="minimal"
+ZSH_THEME="powerlevel10k"
 [[ -L "${HOME}/.p10krc" ]] && source "${HOME}/.p10krc"

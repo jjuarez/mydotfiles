@@ -1,21 +1,16 @@
 # Start configuration added by Zim install {{{
 
 # Sets sane Zsh built-in environment options.
-zmodule environment
 zmodule input
-zmodule utility
-zmodule history
-
-# Themes
-zmodule romkatv/powerlevel10k
-
+zmodule environment
 # Quick directory change
 zmodule agkozak/zsh-z
-
 # Additional completion definitions for Zsh.
 zmodule completion
 zmodule zsh-users/zsh-completions
 zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-syntax-highlighting
-
+# Themes
+zmodule minimal
+zmodule romkatv/powerlevel10k
 # }}} End configuration added by Zim install
