@@ -6,9 +6,10 @@ declare -r TAR="$(brew --prefix)/bin/gtar"
 
 DATE=$(date +"%Y-%m-%d-%H:%M")
 DIRECTORIES=(
-  ibm/infrastructure
-  ibm/projects
+  ibm/etx
+  ibm/q
   ibm/src
+  ibm/documentation
   src
   go/src
   kike
@@ -34,6 +35,7 @@ command::do_backup( ) {
       --exclude='*.csv' \
       --exclude='.code' --exclude='.idea' \
       --exclude='.po' --exclude='.pc' --exclude='__pycache__' \
+      --exclude='rishavc-roberta-base.tar.gz' \
       -C "${complete_directory}" . && \
     cp -av "${tar_file_name}" "${DESTINATION_DIRECTORY}/" &&
     rm -f "${tar_file_name}"
