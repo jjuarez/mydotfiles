@@ -19,8 +19,6 @@ zmodload -F zsh/terminfo +p:terminfo
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.github.com'
-# Z configuration
-#zstyle ':completion:*' menu select
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 export DOTFILES="${HOME}/.mydotfiles"
@@ -36,8 +34,8 @@ declare -A TOGGLES_CONFIGURATION=(
   [go]=true
   [nodenv]=true
   [pyenv]=false
-  [rbenv]=true
-  [tfenv]=true
+  [rbenv]=false
+  [tfenv]=false
 )
 [[ -L "${HOME}/.togglesrc" ]] && source "${HOME}/.togglesrc"
 
@@ -45,8 +43,10 @@ declare -A TOGGLES_CONFIGURATION=(
 [[ -L "${HOME}/.zfunctionsrc" ]] && source "${HOME}/.zfunctionsrc"
 [[ -L "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
 
+# zsh plugins
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
+
 # zsh theme
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-#ZSH_THEME="minimal"
 ZSH_THEME="powerlevel10k"
 [[ -L "${HOME}/.p10krc" ]] && source "${HOME}/.p10krc"
