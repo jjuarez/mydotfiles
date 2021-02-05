@@ -35,7 +35,7 @@ declare -A TOGGLES_CONFIGURATION=(
   [nodenv]=true
   [pyenv]=false
   [rbenv]=false
-  [tfenv]=false
+  [tfenv]=true
 )
 [[ -L "${HOME}/.togglesrc" ]] && source "${HOME}/.togglesrc"
 
