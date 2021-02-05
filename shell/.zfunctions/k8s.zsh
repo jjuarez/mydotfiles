@@ -4,30 +4,39 @@
 HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
 
 [[ -x "${HOMEBREW_PREFIX}/bin/kubectl" ]] && alias k='kubectl'
-[[ -x "${HOMEBREW_PREFIX}/bin/kubie"   ]] && alias kb='kubie'
+[[ -x "${HOMEBREW_PREFIX}/bin/kubecolor" ]] && alias k='kubecolor'
+
+[[ -x "${HOMEBREW_PREFIX}/bin/kubie" ]] && alias kb='kubie'
 [[ -x "${HOMEBREW_PREFIX}/bin/kubectx" ]] && alias kx='kubectx'
-[[ -x "${HOMEBREW_PREFIX}/bin/kubens"  ]] && alias kn='kubens'
+[[ -x "${HOMEBREW_PREFIX}/bin/kubens" ]] && alias kn='kubens'
 
+k8s::backup_kubeconfig() {
+  local -r date_format="%s"
+  local -r kube_config="${HOME}/.kube/config"
 
-k8s::iks_get_kubeconfigs() {
+  [[ -s "${kube_config}" ]] || return 0
+
+  cp -f "${kube_config}" "${kube_config}.$(date +${date_format})"
+}
+
+k8s::get_all_kubeconfigs() {
   local -r cluster_ids=$(ibmcloud ks cluster ls --json|jq '.[] | .name'|sed -e 's/\"//g')
 
-  [[ -n "${IBMCLOUD_API_KEY}" ]] || return 1
+  [[ "${IBMCLOUD_SESSION_ACTIVE}" == "false" ]] || return 1
 
   for ci in ${cluster_ids}; do
-    ibmcloud ks cluster config --cluster ${ci}
+    ibmcloud ks cluster config --cluster ${ci} -q &&
+    cp -f "${HOME}/.kube/config" "${HOME}/.kube/${ci}.yaml"
   done
 }
 
+k8s::get_kubeconfig() {
+  local cluster_id="${1}"
 
-k8s::load_kubeconfigs() {
-  local -r kubeconfig_dir="${1:-${HOME}/.kube}"
-  local kubeconfig_files=$(find ${HOME}/.kube -type f -name "*.config.yml" -o -name "config")
+  [[ -n "${cluster_id}" ]] || return 1
 
-  [[ -n "${kubeconfig_files}" ]] || return 1
-
-  export KUBECONFIG_SAVE=${KUBECONFIG}
-  export KUBECONFIG=$(echo ${kubeconfig_files}|tr '\n' ':')
-
-  return 0
+  k8s::backup_kubeconfig
+  ibmcloud ks cluster config --cluster "${cluster_id}" -q
+  [[ -s "${HOME}/.kube/config" ]] && cp -f "${HOME}/.kube/config" "${HOME}/.kube/${cluster_id}.yaml"
 }
+
