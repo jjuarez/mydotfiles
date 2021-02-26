@@ -6,15 +6,18 @@ declare -r TAR="$(brew --prefix)/bin/gtar"
 
 DATE=$(date +"%Y-%m-%d-%H:%M")
 DIRECTORIES=(
-  ibm/etx
-  ibm/q
-  ibm/src
-  ibm/documentation
-  src
+  clarity
+  fon
+  ibm
   go/src
+  src
+  lab
   kike
   micifuz
   mundokids
+  codelytv
+  udemy
+  linuxacademy
 )
 
 
