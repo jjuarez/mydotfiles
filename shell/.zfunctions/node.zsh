@@ -1,14 +1,18 @@
 # node stuff
 node::clean_node_modules() {
-  find . -type d -name node_modules -exec rm -rv {} +
+  find . -maxdepth 3 -type d -name node_modules -exec rm -rv {} +
 }
 
 node::clean_dists() {
-  find . -type d -name dist -exec rm -rv {} +
+  find . -maxdepth 3 -type d -name dist -exec rm -rv {} +
+}
+
+
+node::clean_all() {
+  node::clean_node_modules
+  node::clean_dists
 }
 
 autoload node::clean_node_modules
 autoload node::clean_dists
-
-alias ncnm='node::clean_node_modules'
-alias ncd='node::clean_dists'
+autoload node::clean_all
