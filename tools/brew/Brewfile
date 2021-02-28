@@ -148,16 +148,14 @@ brew "mongodb/brew/mongodb-community"
 brew "reactiveops/tap/polaris"
 brew "robscott/tap/kube-capacity"
 brew "shellspec/shellspec/shellspec"
-brew "shyiko/kubesec/kubesec"
 brew "superfly/tap/flyctl"
 brew "warrensbox/tap/tgswitch"
 cask "1password"
 cask "1password-cli"
 cask "deepl"
 cask "docker"
-cask "dropbox"
 cask "font-hack-nerd-font"
-cask "font-meslolg-nerd-font"
+cask "font-meslo-lg-nerd-font"
 cask "google-chrome"
 cask "gpg-suite"
 cask "istat-menus"
@@ -180,4 +178,5 @@ cask "vagrant"
 cask "visual-studio-code"
 mas "Keynote", id: 409183694
 mas "Monosnap", id: 540348655
+mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
