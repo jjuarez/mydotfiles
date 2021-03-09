@@ -14,5 +14,6 @@ case "${OS}" in
   ;;
 esac
 
-alias vi='vim'
+# To use a modern version provided by homebrew
+[[ -x /usr/local/bin/vim ]] && alias vim='/usr/local/bin/vim'
 alias cat='bat'
