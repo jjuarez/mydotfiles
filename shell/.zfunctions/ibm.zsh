@@ -26,6 +26,6 @@ ibm::cloud::logout() {
 
 # ::alias::
 alias ic='ibmcloud'
-alias icl='ibm::cloud::login'
+alias icli='ibm::cloud::login'
 alias iclo='ibm::cloud::logout'
 alias ict='ibmcloud target'
