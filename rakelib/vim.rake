@@ -15,7 +15,7 @@ namespace :vim do
     warn(e.message)
   end
 
-  desc 'Instals lvim vundle'
+  desc 'Installs vim vundle'
   task :install => %i[load setup] do
     puts ' ✅ seting up the custom .vimrc file'
     FileUtils.ln_sf(@custom_vimrc, @vimrc) unless File.exist?(@vimrc)
