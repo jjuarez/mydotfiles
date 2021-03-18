@@ -59,13 +59,19 @@ toggles::log() {
   esac
 }
 
-# ::main::
-toggles::log "Toggles: "
-for t activated in ${(kv)TOGGLES_CONFIGURATION}; do
-  if [ "${activated}" = true ]; then
-    if typeset -f toggles::${t} >/dev/null; then
-      toggles::${t} && toggles::log "${t}:√ "
+main() {
+  toggles::log "Toggles: "
+
+  for t activated in ${(kv)TOGGLES_CONFIGURATION}; do
+    if [ "${activated}" = true ]; then
+      if typeset -f toggles::${t} >/dev/null; then
+        toggles::log "${t} " && toggles::${t}
+        [[ ${?} -eq 0 ]] && toggles::log "√ " || toggles::log "X "
+      fi
     fi
-  fi
-done
-echo
+  done
+  toggles::log "\n"
+}
+
+# ::main::
+main
