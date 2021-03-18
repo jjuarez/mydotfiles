@@ -1,11 +1,8 @@
 #set -u -o pipefail
 #set -x
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
-IBMCLOUD_SESSION_ACTIVE="${IBMCLOUD_SESSION_ACTIVE:-'false'}"
 
 ibm::cloud::login() {
-  [[ "${IBMCLOUD_SESSION_ACTIVE}" == "true" ]] && return 0
-
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
 
   [[ -n "${IBMCLOUD_API_KEY}"        ]] || return 1
@@ -17,12 +14,9 @@ ibm::cloud::login() {
 }
 
 ibm::cloud::logout() {
-  [[ "${IBMCLOUD_SESSION_ACTIVE}" == 'true' ]] || return 0
+  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
 
-  [[ -n "${IBMCLOUD_CLI}" ]] || return 1
-
-  ${IBMCLOUD_CLI} logout -q &&
-  export IBMCLOUD_SESSION_ACTIVE='false'
+  ${IBMCLOUD_CLI} logout -q
 }
 
 # ::alias::
