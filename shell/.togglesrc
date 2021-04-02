@@ -40,12 +40,18 @@ toggles::github() {
 }
 
 toggles::travis() {
-  [[ -d "${HOME}/.travis/travis.sh" ]] && source "${HOME}/.travis/travis.sh"
+  [[ -f "${HOME}/.travis/travis.sh" ]] && source "${HOME}/.travis/travis.sh"
 }
 
 toggles::direnv() {
   if [ $commands[direnv] ]; then
     eval "$(direnv hook zsh)"
+  fi
+}
+
+toggles::krew() {
+  if [ -d "${HOME}/.krew" ]; then
+    export PATH="${PATH}:${HOME}/.krew/bin"
   fi
 }
 
