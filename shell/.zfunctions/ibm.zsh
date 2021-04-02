@@ -19,6 +19,28 @@ ibm::cloud::logout() {
   ${IBMCLOUD_CLI} logout -q
 }
 
+ibm::k8s::ls() {
+  ${IBMCLOUD_CLI} ks cluster ls -q
+}
+
+ibm::k8s::gakc() {
+  local resource_group_id_prev=""
+
+  for cluster_info in $(${IBMCLOUD_CLI} ks cluster ls --output json -q|jq 'sort_by(.resourceGroup)'|jq '.[]|"\(.resourceGroup),\(.name)"'|tr -d '"'); do
+    local resource_group_id=$(echo "${cluster_info}"|awk -F, '{ print $1 }')
+    local cluster_name=$(echo "${cluster_info}"|awk -F, '{ print $2 }')
+
+    if [ "${resource_group_id}" != "${resource_group_id_prev}" ]; then 
+      ${IBMCLOUD_CLI} target -g "${resource_group_id}" -q >/dev/null 2>&1
+      resource_group_id_prev="${resource_group_id}"
+    fi
+
+    ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" -q &&
+      cp -f "${HOME}/.kube/config" "${HOME}/.kube/${cluster_name}.yml" &&
+      rm -f "${HOME}/.kube/config"
+  done
+}
+
 # ::alias::
 alias ic='ibmcloud'
 alias icli='ibm::cloud::login'
