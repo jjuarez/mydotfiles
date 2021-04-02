@@ -7,13 +7,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tomasr/molokai'
-Plugin 'dracula/vim'
 Plugin 'itchyny/lightline.vim'
+Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'w0rp/ale'
+Plugin 'ryanoasis/vim-devicons'
 Plugin 'ervandew/supertab'
 Plugin 'fatih/vim-go'
 Plugin 'pearofducks/ansible-vim'
@@ -48,9 +49,6 @@ let g:is_posix = 1
 "" The Color Scheme
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
-"colorscheme dracula
-"let g:dracula_colorterm = 0
-" to solve the issue with italics
 colorscheme molokai
 let g:molokai_original=1
 let g:rehash256=1
@@ -80,8 +78,8 @@ set cursorline
 set cuc cul"
 
 "" multiple windows
-set laststatus=2
 set hidden
+set laststatus=2
 set switchbuf=usetab
 set helpheight=30   
 
