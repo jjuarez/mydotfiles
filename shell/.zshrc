@@ -30,12 +30,13 @@ declare -A TOGGLES_CONFIGURATION=(
   [direnv]=true
   [fzf]=true
   [github]=true
-  [travis]=false
+  [travis]=true
   [go]=true
   [nodenv]=true
-  [pyenv]=false
+  [pyenv]=true
   [rbenv]=false
   [tfenv]=true
+  [krew]=true
 )
 [[ -L "${HOME}/.togglesrc" ]] && source "${HOME}/.togglesrc"
 
