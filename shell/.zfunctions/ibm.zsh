@@ -7,7 +7,7 @@ ibm::cloud::login() {
 
   [[ -n "${IBMCLOUD_API_KEY}"        ]] || return 1
   [[ -n "${IBMCLOUD_REGION}"         ]] || return 1
-  [[ -n "${IBMCLOUD_RESOURCE_GROUP}" ]] || return 1
+  [[ -n "${IBMCLOUD_RESOURCE_GROUP}" ]] || echo -e "Warning: No IBMCloud resource group specified"
 
   ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -g "${IBMCLOUD_RESOURCE_GROUP}" -q &&
   export IBMCLOUD_SESSION_ACTIVE='true'
@@ -37,7 +37,8 @@ ibm::k8s::gakc() {
 
     ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" -q &&
       cp -f "${HOME}/.kube/config" "${HOME}/.kube/${cluster_name}.yml" &&
-      rm -f "${HOME}/.kube/config"
+      rm -f "${HOME}/.kube/config" &&
+      echo -e "k8s cluster configuration for: ${cluster_name} updated!"
   done
 }
 
