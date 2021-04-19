@@ -55,6 +55,12 @@ toggles::krew() {
   fi
 }
 
+toggles::starship() {
+  if [ $commands[starship] ]; then
+    eval "$(starship init zsh)"
+  fi
+}
+
 toggles::log() {
   local message="${1}"
 

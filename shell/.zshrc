@@ -33,11 +33,13 @@ declare -A TOGGLES_CONFIGURATION=(
   [travis]=true
   [go]=true
   [nodenv]=true
-  [pyenv]=true
+  [pyenv]=false
   [rbenv]=false
   [tfenv]=true
   [krew]=true
+  [starship]=true
 )
+
 [[ -L "${HOME}/.togglesrc" ]] && source "${HOME}/.togglesrc"
 
 # Utilities and aliases
@@ -46,8 +48,7 @@ declare -A TOGGLES_CONFIGURATION=(
 
 # zsh plugins
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
-
 # zsh theme
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 ZSH_THEME="powerlevel10k"
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 [[ -L "${HOME}/.p10krc" ]] && source "${HOME}/.p10krc"
