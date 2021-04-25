@@ -11,10 +11,6 @@ dotfiles:
   - shell/.zprofile
   - shell/.zshrc
   - shell/.zshenv
-  - shell/.togglesrc
-  - shell/.zfunctions
-  - shell/.zfunctionsrc
-  - shell/.aliasesrc
   - shell/.p10krc
   - shell/zim/.zimrc
   - tools/tmux/.tmux.conf
@@ -22,7 +18,7 @@ dotfiles:
   - tools/git/.gitignore_global
   - tools/github/.githubrc
   - tools/mongodb/.mongorc.js
-  # - tools/cheat/conf.yml
   - langs/go/.gorc
-  - langs/ruby/.irbrc
-  - langs/ruby/.gemrc
+# - langs/ruby/.irbrc
+# - langs/ruby/.gemrc
+# - tools/cheat/conf.yml
