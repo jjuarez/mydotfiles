@@ -30,25 +30,22 @@ declare -A TOGGLES_CONFIGURATION=(
   [direnv]=true
   [fzf]=true
   [github]=true
-  [travis]=true
   [go]=true
-  [nodenv]=true
-  [pyenv]=false
-  [rbenv]=false
-  [tfenv]=true
   [krew]=true
+  [nodenv]=true
+  [pyenv]=true
+  [rbenv]=false
   [starship]=true
+  [tfenv]=true
+  [travis]=true
 )
 
-[[ -L "${HOME}/.togglesrc" ]] && source "${HOME}/.togglesrc"
-
 # Utilities and aliases
-[[ -L "${HOME}/.zfunctionsrc" ]] && source "${HOME}/.zfunctionsrc"
-[[ -L "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
+[[ -f "${DOTFILES}/shell/.togglesrc"   ]] && source "${DOTFILES}/shell/.togglesrc"
+[[ -f "${DOTFILES}/shell/.functionsrc" ]] && source "${DOTFILES}/shell/.functionsrc"
+[[ -f "${DOTFILES}/shell/.aliasesrc"   ]] && source "${DOTFILES}/shell/.aliasesrc"
 
-# zsh plugins
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
 # zsh theme
 ZSH_THEME="powerlevel10k"
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+#POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 [[ -L "${HOME}/.p10krc" ]] && source "${HOME}/.p10krc"
