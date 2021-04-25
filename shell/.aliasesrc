@@ -12,8 +12,15 @@ case "${OS}" in
     [[ -x "${HOMEBREW_PREFIX}/bin/gfind" ]] && alias find="${HOMEBREW_PREFIX}/bin/gfind"
     [[ -x "${HOMEBREW_PREFIX}/bin/gsed"  ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
   ;;
+  Linux*)
+    echo "Your specific Linux aliases goes here..."
+  ;;
 esac
 
 # To use a modern version provided by homebrew
 [[ -x /usr/local/bin/vim ]] && alias vim='/usr/local/bin/vim'
+[[ -x /usr/local/bin/vim ]] && alias vi='/usr/local/bin/vim'
+
 alias cat='bat'
+alias ..='cd ..'
+alias ...='cd ../..'
