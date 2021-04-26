@@ -3,7 +3,9 @@
 namespace :vim do
   task :setup do
     @vimrc              = File.join(ENV['HOME'], '.vimrc')
+    @local_vimrc        = File.join(ENV['HOME'], '.vimrc.local')
     @custom_vimrc       = File.join(ENV['DOTFILES'], 'editors', 'vim', '.vimrc')
+    @custom_local_vimrc = File.join(ENV['DOTFILES'], 'editors', 'vim', '.vimrc.local')
     @vundle_dir         = File.join(ENV['HOME'], '.vim', 'bundle')
     @vundle_destination = File.join(@vundle_dir, 'Vundle.vim')
   end
@@ -19,6 +21,9 @@ namespace :vim do
   task :install => %i[load setup] do
     puts ' ✅ seting up the custom .vimrc file'
     FileUtils.ln_sf(@custom_vimrc, @vimrc) unless File.exist?(@vimrc)
+
+    puts ' ✅ seting up the custom .vimrc.local file'
+    FileUtils.ln_sf(@custom_local_vimrc, @local_vimrc) unless File.exist?(@local_vimrc)
 
     unless File.directory?(@vundle_destination)
       FileUtils.mkdir_p(@vundle_dir) unless File.directory?(@vundle_dir)

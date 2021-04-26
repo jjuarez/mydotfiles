@@ -1,0 +1,14 @@
+"
+" This function allow us to open an URL under the cursor
+"
+function! OpenURLUnderCursor()
+  let s:uri = expand('<cWORD>')
+  let s:uri = substitute(s:uri, '?', '\\?', '')
+  let s:uri = shellscape(s:uri, 1)
+  if s:uri != ''
+    silent exec "!open '".s:uri."'"
+    :redraw!
+  endif
+endfunction
+
+nnoremap gx :call OpenURLUnderCursor()<CR>
