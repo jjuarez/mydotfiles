@@ -45,6 +45,9 @@ declare -A TOGGLES_CONFIGURATION=(
 [[ -f "${DOTFILES}/shell/.functionsrc" ]] && source "${DOTFILES}/shell/.functionsrc"
 [[ -f "${DOTFILES}/shell/.aliasesrc"   ]] && source "${DOTFILES}/shell/.aliasesrc"
 
+# zsh plugins
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
+
 # zsh theme
 ZSH_THEME="powerlevel10k"
 #POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
