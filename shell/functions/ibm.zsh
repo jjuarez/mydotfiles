@@ -24,32 +24,25 @@ ibm::k8s::ls() {
   ${IBMCLOUD_CLI} ks cluster ls -q 2>/dev/null
 }
 
-ibm::k8s::gakc() {
-  local resource_group_id_prev=""
+ibm::k8s::update_kubeconfig() {
+  local cluster_name="${1}"
+  local resource_group="${2:-'Clusters Non-Prod'}"
 
-  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+  [[ -x "${IBMCLOUD_CLI}"   ]] || return 1
+  [[ -n "${cluster_name}"   ]] || return 2
 
-  for cluster_info in $(${IBMCLOUD_CLI} ks cluster ls --output json -q|jq 'sort_by(.resourceGroup)'|jq '.[]|"\(.resourceGroup),\(.name)"'|tr -d '"'); do
-    local resource_group_id=$(echo "${cluster_info}"|awk -F, '{ print $1 }')
-    local cluster_name=$(echo "${cluster_info}"|awk -F, '{ print $2 }')
-
-    if [ "${resource_group_id}" != "${resource_group_id_prev}" ]; then 
-      ${IBMCLOUD_CLI} target -g "${resource_group_id}" -q >/dev/null 2>&1
-      resource_group_id_prev="${resource_group_id}"
-    fi
-
-    ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" -q &&
-      cp -f "${HOME}/.kube/config" "${HOME}/.kube/${cluster_name}.yml" &&
-      rm -f "${HOME}/.kube/config" &&
-      echo -e "Cluster configuration ${cluster_name} updated!"
-  done
+  ${IBMCLOUD_CLI} target -g "${resource_group}" -q >/dev/null 2>&1 &&
+  ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" -q &&
+    cp -f "${HOME}/.kube/config" "${HOME}/.kube/${cluster_name}.yml" &&
+    rm -f "${HOME}/.kube/config" &&
+    echo -e "${cluster_name} kubeconfig updated!"
 }
 
 # autoloads
 autoload ibm::cloud::login
 autoload ibm::cloud::logout
 autoload ibm::k8s::ls
-autoload ibm::k8s::gakc
+autoload ibm::k8s::update_kubeconfig
 
 # ::aliases
 alias ic='ibmcloud'
@@ -57,3 +50,4 @@ alias icli='ibm::cloud::login'
 alias iclo='ibm::cloud::logout'
 alias ict='ibmcloud target'
 alias kls='ibm::k8s::ls'
+alias kku='ibm::k8s::update_kubeconfig'
