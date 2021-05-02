@@ -18,11 +18,25 @@ zmodload -F zsh/terminfo +p:terminfo
 
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
-                      'id_ed25519.github.com'
+                      'id_ed25519.github.com' \
+                      'id_ed25519.gitlab.com'
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 export DOTFILES="${HOME}/.mydotfiles"
 export PATH=${DOTFILES}/bin:$(brew --prefix)/sbin:${PATH}
+
+# zsh plugins
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
+
+# Instant prompt
+if [[ -r "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%)}:-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%)}:-%n}.zsh"
+fi
+
+# zsh theme
+ZSH_THEME="powerlevel10k"
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+[[ -L "${HOME}/.p10k.zsh" ]] && source "${HOME}/.p10k.zsh"
 
 # Custom configurations
 TOGGLES_VERBOSE=true
@@ -35,7 +49,6 @@ declare -A TOGGLES_CONFIGURATION=(
   [nodenv]=true
   [pyenv]=true
   [rbenv]=false
-  [starship]=true
   [tfenv]=true
   [travis]=true
 )
@@ -44,11 +57,3 @@ declare -A TOGGLES_CONFIGURATION=(
 [[ -f "${DOTFILES}/shell/.togglesrc"   ]] && source "${DOTFILES}/shell/.togglesrc"
 [[ -f "${DOTFILES}/shell/.functionsrc" ]] && source "${DOTFILES}/shell/.functionsrc"
 [[ -f "${DOTFILES}/shell/.aliasesrc"   ]] && source "${DOTFILES}/shell/.aliasesrc"
-
-# zsh plugins
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
-
-# zsh theme
-ZSH_THEME="powerlevel10k"
-#POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-[[ -L "${HOME}/.p10krc" ]] && source "${HOME}/.p10krc"
