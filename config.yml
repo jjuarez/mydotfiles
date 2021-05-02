@@ -11,8 +11,8 @@ dotfiles:
   - shell/.zprofile
   - shell/.zshrc
   - shell/.zshenv
-  - shell/.p10krc
   - shell/zim/.zimrc
+  - shell/.p10k.zsh
   - tools/tmux/.tmux.conf
   - tools/git/.gitconfig
   - tools/git/.gitignore_global
