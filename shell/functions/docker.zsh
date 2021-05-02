@@ -5,6 +5,8 @@ declare NODE_DOCKER_IMAGES=(
   12.22.1-alpine3.13
   14.16.1
   14.16.1-alpine3.13
+  16.0.0
+  16.0.0-alpine3.13
 )
 declare ARTIFACTORY_DOCKER_REGISTRY="res-quantum-ci-docker-virtual.artifactory.swg-devops.com"
 declare ARTIFACTORY_DOCKER_IMAGES=(
