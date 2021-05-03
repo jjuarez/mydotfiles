@@ -18,6 +18,7 @@ dotfiles:
   - tools/git/.gitignore_global
   - tools/github/.githubrc
   - tools/mongodb/.mongorc.js
+  - tools/.skeletons
   - langs/go/.gorc
 # - langs/ruby/.irbrc
 # - langs/ruby/.gemrc

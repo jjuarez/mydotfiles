@@ -12,3 +12,7 @@ function! OpenURLUnderCursor()
 endfunction
 
 nnoremap gx :call OpenURLUnderCursor()<CR>
+
+" Skeletons for well-known files
+autocmd BufNewFile README.md 0r ~/.skeletons/README.md
+autocmd BufNewFile *.sh 0r ~/.skeletons/bash.sh
