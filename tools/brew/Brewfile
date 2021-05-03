@@ -64,6 +64,7 @@ brew "git"
 brew "git-crypt"
 brew "git-extras"
 brew "git-lfs"
+brew "gitleaks"
 brew "glow"
 brew "gnu-sed"
 brew "gnu-tar"
@@ -195,6 +196,7 @@ cask "typora"
 cask "vagrant"
 cask "visual-studio-code"
 cask "vlc"
+mas "1Password 7", id: 1333542190
 mas "Keynote", id: 409183694
-mas "Monosnap", id: 540348655
 mas "Numbers", id: 409203825
+mas "Save to Pocket", id: 1477385213
