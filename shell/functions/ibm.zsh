@@ -18,8 +18,19 @@ ibm::cloud::logout() {
   ${IBMCLOUD_CLI} logout -q >/dev/null 2>&1
 }
 
-ibm::k8s::ls() {
+ibm::cloud::target() {
+  local -r resource_group="${1}"
+
+  [[ -x "${IBMCLOUD_CLI}"   ]] || return 1
+  [[ -n "${resource_group}" ]] && ${IBMCLOUD_CLI} target -g "${resource_group}" -q 2>/dev/null
+}
+
+ibm::k8s::list() {
+  local -r resource_group="${1}"
+
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+
+  ibm::cloud::target "${resource_group}"
 
   ${IBMCLOUD_CLI} ks cluster ls -q 2>/dev/null
 }
@@ -28,11 +39,12 @@ ibm::k8s::update_kubeconfig() {
   local cluster_name="${1}"
   local resource_group="${2:-'Clusters Non-Prod'}"
 
-  [[ -x "${IBMCLOUD_CLI}"   ]] || return 1
-  [[ -n "${cluster_name}"   ]] || return 4
+  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+  [[ -n "${cluster_name}" ]] || return 4
 
-  ${IBMCLOUD_CLI} target -g "${resource_group}" -q >/dev/null 2>&1 &&
-  ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" -q &&
+  ibm::cloud::target "${resource_group}"
+
+  ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" -q 2>/dev/null &&
     cp -f "${HOME}/.kube/config" "${HOME}/.kube/${cluster_name}.yml" &&
     rm -f "${HOME}/.kube/config" &&
     echo -e "${cluster_name} kubeconfig updated!"
@@ -41,13 +53,14 @@ ibm::k8s::update_kubeconfig() {
 # autoloads
 autoload ibm::cloud::login
 autoload ibm::cloud::logout
-autoload ibm::k8s::ls
+autoload ibm::cloud::target
+autoload ibm::k8s::list
 autoload ibm::k8s::update_kubeconfig
 
 # aliases
 alias ic='ibmcloud'
-alias icli='ibm::cloud::login'
-alias iclo='ibm::cloud::logout'
-alias ict='ibmcloud target'
-alias kls='ibm::k8s::ls'
-alias kku='ibm::k8s::update_kubeconfig'
+alias ici='ibm::cloud::login'
+alias ico='ibm::cloud::logout'
+alias ict='ibm::cloud::target'
+alias ickls='ibm::k8s::list'
+alias ickku='ibm::k8s::update_kubeconfig'
