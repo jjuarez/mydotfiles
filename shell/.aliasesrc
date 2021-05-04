@@ -21,6 +21,7 @@ esac
 [[ -x /usr/local/bin/vim ]] && alias vim='/usr/local/bin/vim'
 [[ -x /usr/local/bin/vim ]] && alias vi='/usr/local/bin/vim'
 
+# Commons
 alias cat='bat'
 alias ..='cd ..'
 alias ...='cd ../..'
