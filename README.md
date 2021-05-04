@@ -5,7 +5,8 @@
 ### Install from GitHub the latest version:
 
 ```bash
-$ git clone https://jjuarez@github.com/jjuarez/mydotfiles.git && cd mydotfiles
+$ git clone https://jjuarez@github.com/jjuarez/mydotfiles.git .mydotfiles
+$ cd .mydotfiles
 $ rake dotfiles:install
 $ rake vim:plugins:install
 ```
