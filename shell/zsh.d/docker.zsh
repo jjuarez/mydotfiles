@@ -5,8 +5,6 @@ declare NODE_DOCKER_IMAGES=(
   12.22.1-alpine3.13
   14.16.1
   14.16.1-alpine3.13
-  16.0.0
-  16.0.0-alpine3.13
 )
 declare ARTIFACTORY_DOCKER_REGISTRY="res-quantum-ci-docker-virtual.artifactory.swg-devops.com"
 declare ARTIFACTORY_DOCKER_IMAGES=(
@@ -32,7 +30,7 @@ docker::images::clean() {
 }
 
 docker::images::update_latest() {
-  for di in $(docker image list --format "{{.Repository}} {{.Tag}}"|grep latest|grep -v ".icr.io"|awk '{ print $1 }'); do
+for di in $(docker image list --format "{{.Repository}} {{.Tag}}"|grep latest|grep -vE "(quantum-computing|quantum-tools)"|awk '{ print $1 }'); do
     echo "Pulling: ${di}..."
     docker pull ${di} -q
   done 2>/dev/null
