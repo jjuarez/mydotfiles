@@ -3,13 +3,16 @@
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 
 ibm::cloud::login() {
-  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+  [[ -x "${IBMCLOUD_CLI}"     ]] || return 1
+  [[ -n "${IBMCLOUD_API_KEY}" ]] || return 2
+  [[ -n "${IBMCLOUD_REGION}"  ]] || return 3
 
-  [[ -n "${IBMCLOUD_API_KEY}"        ]] || return 2
-  [[ -n "${IBMCLOUD_REGION}"         ]] || return 3
-  [[ -n "${IBMCLOUD_RESOURCE_GROUP}" ]] || echo -e "Warning: No IBMCloud resource group specified"
-
-  ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -g "${IBMCLOUD_RESOURCE_GROUP}" -q >/dev/null 2>&1
+  if [[ -n "${IBMCLOUD_RESOURCE_GROUP}" ]]; then
+    ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -g "${IBMCLOUD_RESOURCE_GROUP}" -q
+  else
+    echo -e "Warning: No IBMCloud resource group specified"
+    ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -q
+  fi
 }
 
 ibm::cloud::logout() {
