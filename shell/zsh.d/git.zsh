@@ -24,23 +24,18 @@ git::squash_branch() {
   Be careful this is a dangerous command, if you agree just follow these steps:
     Current branch name: ${current_branch_name}
     Branch parent commit: ${parent_commit}
-    git reset ${parent_commit}
-    git status
-    git commit -am 'Squashed branch'
-    git push origin ${current_branch_name} --force
+      git reset ${parent_commit}
+      git status
+      git commit -am 'Squashed branch'
+      git push origin ${current_branch_name} --force
+
 EOF
-}
-
-git::delete_tag() {
-  local -r tag="${1}"
-
-  git fetch -a && git tag -d ${tag} && git push --no-verify origin :refs/tags/${tag}
 }
 
 # autoloads
 autoload git::xlog
 autoload git::squash_branch
-autoload git::delete_tag
 
 # aliases
-
+alias gxlg='git::xlog'
+alias gsb='git::squash_branch'

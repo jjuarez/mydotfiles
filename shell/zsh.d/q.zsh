@@ -1,7 +1,7 @@
 #set -u -o pipefail
 #set -x
 
-declare QAPI_BRANCHES=(master testing staging production)
+declare QAPI_BRANCHES=(master staging production)
 
 git::qapi_update() {
   git fetch --all --prune
@@ -16,4 +16,4 @@ git::qapi_update() {
 autoload git::qapi_update
 
 # ::aliases
-
+alias gqu='git::qapi_update'

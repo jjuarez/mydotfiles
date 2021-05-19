@@ -60,3 +60,4 @@ autoload docker::images::artifactory_clean
 alias dcc='docker::containers::clean'
 alias dic='docker::images::clean'
 alias diul='docker::images::update_latest'
+alias diac='docker::images::artifactory_clean'
