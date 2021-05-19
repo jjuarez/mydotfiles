@@ -7,6 +7,7 @@ zmodule environment
 zmodule agkozak/zsh-z
 # Additional completion definitions for Zsh.
 zmodule completion
+zmodule fzf
 zmodule zsh-users/zsh-completions
 zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-syntax-highlighting
