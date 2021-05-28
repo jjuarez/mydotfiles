@@ -3,16 +3,12 @@
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 
 ibm::cloud::login() {
-  [[ -x "${IBMCLOUD_CLI}"     ]] || return 1
-  [[ -n "${IBMCLOUD_API_KEY}" ]] || return 2
-  [[ -n "${IBMCLOUD_REGION}"  ]] || return 3
+  [[ -x "${IBMCLOUD_CLI}"            ]] || return 1
+  [[ -n "${IBMCLOUD_API_KEY}"        ]] || return 2
+  [[ -n "${IBMCLOUD_REGION}"         ]] || return 3
+  [[ -n "${IBMCLOUD_RESOURCE_GROUP}" ]] || return 4
 
-  if [[ -n "${IBMCLOUD_RESOURCE_GROUP}" ]]; then
-    ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -g "${IBMCLOUD_RESOURCE_GROUP}" -q
-  else
-    echo -e "Warning: No IBMCloud resource group specified"
-    ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -q
-  fi
+  ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -g "${IBMCLOUD_RESOURCE_GROUP}" -q >/dev/null 2>&1
 }
 
 ibm::cloud::logout() {
@@ -24,8 +20,13 @@ ibm::cloud::logout() {
 ibm::cloud::target() {
   local -r resource_group="${1}"
 
-  [[ -x "${IBMCLOUD_CLI}"   ]] || return 1
-  [[ -n "${resource_group}" ]] && ${IBMCLOUD_CLI} target -g "${resource_group}" -q 2>/dev/null || ${IBMCLOUD_CLI} target
+  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+
+  if [[ -n "${resource_group}" ]]; then
+     ${IBMCLOUD_CLI} target -g "${resource_group}" -q >/dev/null 2>&1
+  else
+     ${IBMCLOUD_CLI} target -q
+  fi
 }
 
 ibm::k8s::list() {
@@ -47,7 +48,7 @@ ibm::k8s::update_kubeconfig() {
 
   ibm::cloud::target "${resource_group}"
 
-  ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" -q 2>/dev/null &&
+  BLUEMIX_CS_TIMEOUT=300 ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" -q 2>/dev/null &&
     cp -f "${HOME}/.kube/config" "${HOME}/.kube/${cluster_name}.yml" &&
     echo "${HOME}/.kube/${cluster_name}.yml updated!" &&
     rm -f "${HOME}/.kube/config"
