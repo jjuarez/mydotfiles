@@ -12,9 +12,6 @@ toggles::tfenv() {
 
 toggles::pyenv() {
   if [ $commands[pyenv] ]; then
-    export CFLAGS="-O2 -I$(brew --prefix openssl)/include"
-    export LDFLAGS="-L$(brew --prefix openssl)/lib"
-
     eval "$(pyenv init -)"
   fi
 }
