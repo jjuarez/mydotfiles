@@ -25,6 +25,8 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 export DOTFILES="${HOME}/.mydotfiles"
 export PATH=${DOTFILES}/bin:$(brew --prefix)/sbin:${PATH}
 
+[[ "${HOME}/.bin" ]] && export PATH="${HOME}/.bin:${PATH}"
+
 # zsh plugins
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
 
@@ -47,8 +49,8 @@ declare -A TOGGLES_CONFIGURATION=(
   [go]=true
   [krew]=true
   [nodenv]=true
-  [pyenv]=false
-  [rbenv]=false
+  [pyenv]=true
+  [rbenv]=true
   [tfenv]=true
   [travis]=true
 )
