@@ -21,6 +21,7 @@ Plugin 'pearofducks/ansible-vim'
 Plugin 'klen/python-mode'
 Plugin 'hashivim/vim-terraform'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'tpope/vim-markdown'
 
 call vundle#end()
 
@@ -144,6 +145,9 @@ let g:session_autosave='no'
 
 " PyMode
 let g:pymode_lint_ignore = "E501,W"
+
+"" Markdown
+let g:markdown_fenced_languages = ['html', 'python', 'yaml', 'bash=sh', 'go' ]
 
 " Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
