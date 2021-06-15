@@ -13,12 +13,12 @@ $ rake vim:plugins:install
 
 ### Install homebrew
 
-The latest documentation about this subject is [here|https://docs.brew.sh/Installation]
+The latest documentation about this subject is [here](https://docs.brew.sh/Installation)
 Explore others tasks that you have doing:
 
 ```bash
 $ cd mydotfiles
-$ rake -T
+$ rake --task
 ```
 
 ## License
