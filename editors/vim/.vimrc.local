@@ -16,3 +16,4 @@ nnoremap gx :call OpenURLUnderCursor()<CR>
 " Skeletons for well-known files
 autocmd BufNewFile README.md 0r ~/.skeletons/README.md
 autocmd BufNewFile *.sh 0r ~/.skeletons/bash.sh
+autocmd BufNewFile Makefile 0r ~/.skeletons/Makefile
