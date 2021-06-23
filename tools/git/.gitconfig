@@ -31,6 +31,9 @@
 
 [core]
   excludesfile = ~/.gitignore_global
+	fileMode = false
+	eol = lf
+	autocrlf = input
 
 [help]
   autocorrect = 0
