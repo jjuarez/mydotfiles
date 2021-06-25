@@ -1,6 +1,6 @@
 ---
 urls:
-  vundle: https://github.com/VundleVim/Vundle.vim.git
+  plug: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   zimfw:
     install: https://github.com/zimfw/zimfw#installation
     uninstall: https://github.com/zimfw/zimfw#uninstalling
@@ -20,6 +20,6 @@ dotfiles:
   - tools/mongodb/.mongorc.js
   - tools/.skeletons
   - langs/go/.gorc
-# - langs/ruby/.irbrc
-# - langs/ruby/.gemrc
-# - tools/cheat/conf.yml
+  - langs/ruby/.irbrc
+  - langs/ruby/.gemrc
+  - tools/cheat/conf.yml

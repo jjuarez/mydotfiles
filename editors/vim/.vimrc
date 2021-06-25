@@ -1,29 +1,28 @@
 set nocompatible " like -N parameter remember to suppres the shell alias
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Plug plugin management
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
+Plug 'tomasr/molokai'
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tomtom/tlib_vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale'
+Plug 'ryanoasis/vim-devicons'
+Plug 'ervandew/supertab'
+Plug 'fatih/vim-go'
+Plug 'pearofducks/ansible-vim'
+Plug 'klen/python-mode'
+Plug 'hashivim/vim-terraform'
+Plug 'leafgarland/typescript-vim'
+Plug 'tpope/vim-markdown'
 
-Plugin 'tomasr/molokai'
-Plugin 'itchyny/lightline.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tomtom/tlib_vim'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'w0rp/ale'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'ervandew/supertab'
-Plugin 'fatih/vim-go'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'klen/python-mode'
-Plugin 'hashivim/vim-terraform'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'tpope/vim-markdown'
+call plug#end()
 
-call vundle#end()
 
 if has('autocmd')
   filetype plugin indent on
