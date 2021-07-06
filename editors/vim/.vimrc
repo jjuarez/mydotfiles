@@ -20,6 +20,8 @@ Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-markdown'
+Plug 'cespare/vim-toml'
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
