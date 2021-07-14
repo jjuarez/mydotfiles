@@ -17,3 +17,4 @@ nnoremap gx :call OpenURLUnderCursor()<CR>
 autocmd BufNewFile README.md 0r ~/.skeletons/README.md
 autocmd BufNewFile *.sh 0r ~/.skeletons/bash.sh
 autocmd BufNewFile Makefile 0r ~/.skeletons/Makefile
+autocmd BufNewFile *.py 0r ~/.skeletons/python.py

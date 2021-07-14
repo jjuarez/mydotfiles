@@ -10,12 +10,12 @@ FOO="${FOO:-${DEFAULT_FOO}}"
 utils::console() {
   local -r message="${1}"
 
-  [[ -n "${message}" ]] && echo -e "${message}"
+  [[ -n "${message}" ]] && echo -e "${message}" >&2
 }
 
-utils::die() {
+utils::panic() {
+  local -ri exit_code="${1}"; shift
   local -r message="${1}"
-  local -ri exit_code="${2}"
 
   utils::console "${message}"
   exit "${exit_code}"
