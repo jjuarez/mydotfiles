@@ -1,5 +1,5 @@
 set nocompatible " like -N parameter remember to suppres the shell alias
-filetype off
+filetype plugin on
 
 " Plug plugin management
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
@@ -7,13 +7,13 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 Plug 'tomasr/molokai'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'tomtom/tlib_vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ervandew/supertab'
+Plug 'jiangmiao/auto-pairs'
 Plug 'fatih/vim-go'
 Plug 'pearofducks/ansible-vim'
 Plug 'klen/python-mode'
@@ -24,7 +24,6 @@ Plug 'cespare/vim-toml'
 Plug 'pangloss/vim-javascript'
 
 call plug#end()
-
 
 if has('autocmd')
   filetype plugin indent on
@@ -144,13 +143,14 @@ map <Leader>/ :nohlsearch<CR>
 set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.viminfo
 let g:session_autosave='no'
 
-" PyMode
+"" PyMode
 let g:pymode_lint_ignore = "E501,W"
 
 "" Markdown
 let g:markdown_fenced_languages = ['html', 'python', 'yaml', 'bash=sh', 'go' ]
 
-" Allow overriding these settings
+"" Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
