@@ -22,8 +22,9 @@ zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.gitlab.com'
 
 export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
 export DOTFILES="${HOME}/.mydotfiles"
-export PATH=${DOTFILES}/bin:$(brew --prefix)/sbin:${PATH}
+export PATH=${DOTFILES}/bin:/usr/local/sbin:${PATH}
 
 [[ "${HOME}/.bin" ]] && export PATH="${HOME}/.bin:${PATH}"
 
