@@ -14,15 +14,17 @@ Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ervandew/supertab'
 Plug 'junegunn/limelight.vim'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'fatih/vim-go'
 Plug 'pearofducks/ansible-vim'
 Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-markdown'
+Plug 'airblade/vim-gitgutter'
 Plug 'cespare/vim-toml'
 Plug 'pangloss/vim-javascript'
+Plug 'tsandall/vim-rego'
 
 call plug#end()
 
@@ -51,9 +53,13 @@ let g:is_posix = 1
 "" The Color Scheme
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
-colorscheme molokai
-let g:molokai_original=1
-let g:rehash256=1
+
+if isdirectory(expand("~/.vim/plugged/molokai"))
+  colorscheme molokai
+  let g:molokai_original=1
+  let g:rehash256=1
+endif
+
 execute "set colorcolumn=" . join(range(133,335), ',')
 
 "" Show trailing whitespace and spaces before a tab:
