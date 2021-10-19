@@ -20,7 +20,6 @@ Plug 'pearofducks/ansible-vim'
 Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'leafgarland/typescript-vim'
-Plug 'tpope/vim-markdown'
 Plug 'airblade/vim-gitgutter'
 Plug 'cespare/vim-toml'
 Plug 'pangloss/vim-javascript'
@@ -154,7 +153,13 @@ let g:session_autosave='no'
 let g:pymode_lint_ignore = "E501,W"
 
 "" Markdown
-let g:markdown_fenced_languages = ['html', 'python', 'yaml', 'bash=sh', 'go' ]
+let g:markdown_fenced_languages = [ 'python', 'yaml', 'bash=sh', 'go' ]
+
+"" Fix auto-indentation for YAML files
+augroup yaml_fix
+  autocmd!
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+augroup end
 
 "" Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
