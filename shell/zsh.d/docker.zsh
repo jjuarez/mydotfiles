@@ -1,21 +1,16 @@
 #set -u -o pipefail
 #set -x
 declare NODE_DOCKER_IMAGES=(
-  12.22.1
-  12.22.1-alpine3.13
-  14.16.1
-  14.16.1-alpine3.13
+  14.17.6-alpine3.14
+  16.10.0-alpine3.14
+  16.11.0-alpine3.14
 )
 declare ARTIFACTORY_DOCKER_REGISTRY="res-quantum-ci-docker-virtual.artifactory.swg-devops.com"
 declare ARTIFACTORY_DOCKER_IMAGES=(
-  busybox:latest
-  postgres:11-alpine
-  mongo:4.4
-  nats:2.1.9-alpine
-  nats-streaming:0.20.0-alpine
+  postgres:12.8-alpine3.14
+  nats:2.5.0-alpine3.14
   minio/minio:RELEASE.2021-02-14T04-01-33Z
-  redis:6.0.8-alpine
-  segment/mock:v0.0.2
+  redis:6.0.15-alpine3.14
 )
 
 # Docker clean exited images
