@@ -1,6 +1,7 @@
 #set -u -o pipefail
 #set -x
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
+KUBECONFIG_FILTER_TOOL=$(command -v ikscc 2>/dev/null)
 
 ibm::cloud::login() {
   [[ -x "${IBMCLOUD_CLI}"            ]] || return 1
@@ -23,50 +24,56 @@ ibm::cloud::target() {
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
 
   if [[ -n "${resource_group}" ]]; then
-     ${IBMCLOUD_CLI} target -g "${resource_group}" -q 
+    ${IBMCLOUD_CLI} target -g "${resource_group}" -q 
   else
-     ${IBMCLOUD_CLI} target -q
+    echo -e "You shoud specify a valid resource gruoup..."
+    ${IBMCLOUD_CLI} resource groups
   fi
 }
 
-ibm::k8s::list() {
-  local -r resource_group="${1}"
+ibm::k8s::ksconfig() {
+  local cluster_name="${1}"
+  local filter=${2:-'yes'}
 
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+  [[ -n "${cluster_name}" ]] || return 5
 
-  ${IBMCLOUD_CLI} ks cluster ls -q 2>/dev/null
+  echo "Updating ${cluster_name}..."
+  if [[ "${filter}" == "yes" && -x "${KUBECONFIG_FILTER_TOOL}" ]]; then
+    ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" --output yaml -q | ${KUBECONFIG_FILTER_TOOL} -f - >! "${HOME}/.kube/${cluster_name}.yml" || return 7
+  else
+    ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" --output yaml -q >! "${HOME}/.kube/${cluster_name}.yml" || return 7
+  fi
 }
 
-ibm::k8s::update_kubeconfig() {
+ibm::k8s::ksconfig_openshift() {
   local cluster_name="${1}"
 
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
   [[ -n "${cluster_name}" ]] || return 5
 
-  BLUEMIX_CS_TIMEOUT=300 ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" --output yaml -q >! "${HOME}/.kube/${cluster_name}.yml" &&
-  echo "${cluster_name} updated!"
+  echo "Updating ${cluster_name}..."
+  ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" --admin --output yaml -q >! "${HOME}/.kube/${cluster_name}.yml" || return 7
 }
 
-ibm::k8s::update_kubeconfig_fzf() {
-  [[ -x "${IBMCLOUD_CLI}"            ]] || return 1
-  [[ -n "${IBMCLOUD_RESOURCE_GROUP}" ]] || return 4
-
-  ${IBMCLOUD_CLI} ks cluster ls -q|grep ${IBMCLOUD_RESOURCE_GROUP}|awk '/./ { print $1 }'|fzf|xargs -I % sh -c 'ibmcloud ks cluster config --cluster % --output yaml -q >${HOME}/.kube/%.yml'
+ibm::k8s::ksconfig_all() {
+  ibm::cloud::target "Clusters Non-Prod" >/dev/null
+  ibm::k8s::ksconfig "apis-dev"
+  ibm::cloud::target "Experimental" >/dev/null
+  ibm::k8s::ksconfig "experimental-us"
+  ibm::cloud::target "IBM Satellite Clusters Non-Prod" >/dev/null
+  ibm::k8s::ksconfig_openshift "quantum-dc-ny-dev"
 }
 
 # autoloads
 autoload ibm::cloud::login
 autoload ibm::cloud::logout
 autoload ibm::cloud::target
-autoload ibm::k8s::list
-autoload ibm::k8s::update_kubeconfig
-autoload ibm::k8s::update_kubeconfig_fzf
+autoload ibm::k8s::ksconfig
+autoload ibm::k8s::ksconfig_all
 
 # aliases
 alias ic='ibmcloud'
 alias ic.li='ibm::cloud::login'
 alias ic.lo='ibm::cloud::logout'
 alias ic.t='ibm::cloud::target'
-alias ic.kls='ibm::k8s::list'
-alias ic.kku='ibm::k8s::update_kubeconfig'
-alias ic.kkui='ibm::k8s::update_kubeconfig_fzf'
