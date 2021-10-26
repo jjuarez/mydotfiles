@@ -4,8 +4,8 @@ set -eu -o pipefail
 #set -x
 
 declare -r DEFAULT_FOO="Foo value"
-
 FOO="${FOO:-${DEFAULT_FOO}}"
+
 
 utils::console() {
   local -r message="${1}"
@@ -14,11 +14,11 @@ utils::console() {
 }
 
 utils::panic() {
-  local -ri exit_code="${1}"; shift
   local -r message="${1}"
+  local -ri exit_code=${2:-0}
 
   utils::console "${message}"
-  exit "${exit_code}"
+  exit ${exit_code}
 }
 
 #
