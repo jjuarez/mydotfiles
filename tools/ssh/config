@@ -15,8 +15,19 @@ Host github.ibm.com
 Host us-south.git.cloud.ibm.com
   User Javier.Juarez.Martinez
 
+Host basin
+  Hostname basin.watson.ibm.com
+  User ES090008838
+  IdentityFile ~/.ssh/id_rsa.ibm.qss
+
+Host rte-test
+  Hostname rte-test.openq.local
+  Proxyjump basin
+  User sw_javier_juarez_martinez
+
 Host *
   User                  root
+  AddKeysToAgent        yes
   UserKnownHostsFile    /dev/null
 # IdentitiesOnly        yes
   StrictHostKeyChecking no
