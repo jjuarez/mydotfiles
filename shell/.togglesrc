@@ -19,9 +19,9 @@ toggles::pyenv() {
   fi
 }
 
-toggles::fnm() {
-  if [ $commands[fnm] ]; then
-    eval "$(fnm env)"
+toggles::nodenv() {
+  if [ $commands[nodenv] ]; then
+    eval "$(nodenv init -)"
   fi
 }
 

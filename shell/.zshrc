@@ -19,7 +19,8 @@ zmodload -F zsh/terminfo +p:terminfo
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.github.com' \
-                      'id_ed25519.gitlab.com'
+                      'id_ed25519.gitlab.com' \
+                      'id_rsa.javier.juarez.aot'
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
@@ -49,7 +50,7 @@ declare -A TOGGLES_CONFIGURATION=(
   [github]=true
   [go]=true
   [krew]=true
-  [fnm]=true
+  [nodenv]=true
   [pyenv]=true
   [rbenv]=true
   [tfenv]=true
