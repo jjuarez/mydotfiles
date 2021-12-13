@@ -133,6 +133,9 @@ set wildignore+=*.exe,*.o,*.obj,*.pyc,*.class,vendor/gems/*,*.swp,.DS_Store,.git
 set wildmenu
 set wildmode=list:longest,list:full
 
+"" List of hidden charts
+"" set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+
 "" Add guard around 'wildignorecase' to prevent terminal vim error
 if exists('&wildignorecase')
   set wildignorecase
