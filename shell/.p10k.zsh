@@ -1,5 +1,5 @@
 if [[ "${ZSH_THEME}" == "powerlevel10k" ]]; then
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir nodenv virtualenv kubecontext vcs)
+  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir nodenv pyenv virtualenv kubecontext vcs)
   POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
   POWERLEVEL9K_MODE="nerdfont-complete"
   POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
