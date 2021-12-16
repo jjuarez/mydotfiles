@@ -15,8 +15,12 @@ Host github.ibm.com
 Host us-south.git.cloud.ibm.com
   User Javier.Juarez.Martinez
 
+Host eriecanal.cloud9.ibm.com
+  HostName 9.47.161.61
+  User renierm
+  Port 8123
+
 Host *
-  User                  root
   AddKeysToAgent        yes
   UserKnownHostsFile    /dev/null
 # IdentitiesOnly        yes
