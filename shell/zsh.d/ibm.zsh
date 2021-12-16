@@ -59,10 +59,18 @@ ibm::k8s::ksconfig_openshift() {
 ibm::k8s::ksconfig_all() {
   ibm::cloud::target "Clusters Non-Prod" >/dev/null
   ibm::k8s::ksconfig "apis-dev"
+
+  ibm::cloud::target "Clusters" >/dev/null
+  ibm::k8s::ksconfig "apis-prod"
+
   ibm::cloud::target "Experimental" >/dev/null
   ibm::k8s::ksconfig "experimental-us"
+
   ibm::cloud::target "IBM Satellite Clusters Non-Prod" >/dev/null
   ibm::k8s::ksconfig_openshift "quantum-dc-ny-dev"
+
+  ibm::cloud::target "IBM Satellite Clusters" >/dev/null
+  ibm::k8s::ksconfig_openshift "sat-pok-qnet-prod"
 }
 
 # autoloads
