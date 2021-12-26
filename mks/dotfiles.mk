@@ -9,7 +9,7 @@ dotfiles/install: ## Install dotfiles
 	done \
 
 PHONY: dotfiles/uninstall
-dotfiles/uninstall: ## Install dotfiles
+dotfiles/uninstall: ## Uninstall dotfiles
 	@for f in $(FILES); do \
 		echo "Deleting: $${HOME}/`basename $${f}`" ; \
 		rm -f $${HOME}/`basename $${f}` ; \
