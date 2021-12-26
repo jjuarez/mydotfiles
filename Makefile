@@ -22,6 +22,7 @@ endef
 -include $(DOTFILES)/mks/brew.mk
 -include $(DOTFILES)/mks/dotfiles.mk
 -include $(DOTFILES)/mks/ssh.mk
+-include $(DOTFILES)/mks/zim.mk
 
 
 .PHONY: all
