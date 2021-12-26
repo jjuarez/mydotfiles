@@ -4,26 +4,27 @@ filetype plugin on
 " Plug plugin management
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
-Plug 'tomasr/molokai'
-Plug 'itchyny/lightline.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
-Plug 'ryanoasis/vim-devicons'
 Plug 'ervandew/supertab'
-Plug 'junegunn/limelight.vim'
+Plug 'airblade/vim-gitgutter'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'fatih/vim-go'
 Plug 'pearofducks/ansible-vim'
 Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
-Plug 'leafgarland/typescript-vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'cespare/vim-toml'
 Plug 'pangloss/vim-javascript'
-Plug 'tsandall/vim-rego'
+Plug 'leafgarland/typescript-vim'
+" Plug 'cespare/vim-toml'
+" Plug 'tsandall/vim-rego'
+" Plug 'tomasr/molokai'
+Plug 'dracula/vim', {'as':'dracula'}
+Plug 'ryanoasis/vim-devicons'
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/limelight.vim'
 
 call plug#end()
 
@@ -50,14 +51,17 @@ set rtp+=/usr/local/opt/fzf
 let g:is_posix = 1
 
 "" The Color Scheme
-let &t_ZH="\e[3m"
-let &t_ZR="\e[23m"
+" let &t_ZH="\e[3m"
+" let &t_ZR="\e[23m"
+"
+" if isdirectory(expand("~/.vim/plugged/molokai"))
+"   colorscheme molokai
+"   let g:molokai_original=1
+"   let g:rehash256=1
+" endif
 
-if isdirectory(expand("~/.vim/plugged/molokai"))
-  colorscheme molokai
-  let g:molokai_original=1
-  let g:rehash256=1
-endif
+colorscheme dracula
+let g:colorscheme_bg='dark'
 
 execute "set colorcolumn=" . join(range(133,335), ',')
 
