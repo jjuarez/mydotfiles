@@ -7,8 +7,7 @@
 ```bash
 $ git clone https://jjuarez@github.com/jjuarez/mydotfiles.git .mydotfiles
 $ cd .mydotfiles
-$ rake dotfiles:install
-$ rake vim:plugins:install
+$ make dotfiles/install
 ```
 
 ### Install homebrew
@@ -17,8 +16,8 @@ The latest documentation about this subject is [here](https://docs.brew.sh/Insta
 Explore others tasks that you have doing:
 
 ```bash
-$ cd mydotfiles
-$ rake --task
+$ cd ${DOTFILES}
+$ make help
 ```
 
 ## License
