@@ -1,35 +1,36 @@
 #!/usr/bin/env make
 
-CONFIG_FILE ?= dotfiles.cfg
--include $(CONFIG_FILE)
+DOTFILES    ?= $(HOME)/.mydotfiles
+CONFIG_FILE ?= $(DOTFILES)/config.yml
 
 .DEFAULT_GOAL  := help
 .DEFAULT_SHELL := /bin/bash
 
-BREW_FILE := $(DOTFILES)/tools/brew/Brewfile
 
+define assert-set
+	@$(if $($1),,$(error $(1) environment variable is not defined))
+endef
+
+define assert-command
+	@$(if $(shell command -v $1 2>/dev/null),,$(error $(1) command not found))
+endef
+
+define assert-file
+	@$(if $(wildcard $($1) 2>/dev/null),,$(error $($1) does not exist))
+endef
+
+-include $(DOTFILES)/mks/brew.mk
+-include $(DOTFILES)/mks/dotfiles.mk
+-include $(DOTFILES)/mks/ssh.mk
+
+
+.PHONY: all
+all: help
+
+.PHONY: test
+test:
+	$(warning Just to pass the Makefile lint)
 
 .PHONY: help
 help:
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nTargets:\n"} /^[a-zA-Z//_-]+:.*?##/ { printf " %-20s %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
-
-
-.PHONY: brew/dump
-brew/dump: ## Save a snapshot of your formulas, casks, taps, etc
-	@brew bundle dump --force --file $(BREW_FILE)
-.PHONY: brew/install
-brew/install: ## Save a snapshot of your formulas, casks, taps, etc
-	@brew bundle --file $(BREW_FILE)
-
-.PHONY: brew/install
-brew/uninstall: ## Show the help to install homebrew
-	@echo "To uninstall the homebrew support, just take a look here: $(HOME_BREW_URL)"
-
-
-.PHONY: dotfiles/install
-dotfiles/install: ## Install the dotfiles
-	@echo dotfiles/install
-
-.PHONY: dotfiles/uninstall
-dotfiles/uninstall: ## Uninstall the dotfiles
-	@echo dotfiles/uninstall
