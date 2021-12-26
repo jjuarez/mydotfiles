@@ -20,7 +20,7 @@ zmodload -F zsh/terminfo +p:terminfo
 zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.github.com' \
                       'id_ed25519.gitlab.com' \
-                      'id_rsa.javier.juarez.aot'
+                      'id_ed25519.ibm-aot' \
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
