@@ -17,13 +17,11 @@ Host us-south.git.cloud.ibm.com
 
 Host eriecanal.cloud9.ibm.com
   HostName 9.47.161.61
-  User renierm
-  Port 8123
+  User fjjuarez
 
 Host *
   AddKeysToAgent        yes
   UserKnownHostsFile    /dev/null
-# IdentitiesOnly        yes
   StrictHostKeyChecking no
   VerifyHostKeyDNS      no
   TCPKeepAlive          yes
