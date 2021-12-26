@@ -24,6 +24,7 @@ endef
 -include $(DOTFILES)/mks/ssh.mk
 -include $(DOTFILES)/mks/zim.mk
 -include $(DOTFILES)/mks/homebrew.mk
+-include $(DOTFILES)/mks/vim.mk
 
 
 .PHONY: all
