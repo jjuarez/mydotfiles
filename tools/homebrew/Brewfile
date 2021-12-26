@@ -28,7 +28,6 @@ brew "buildkit"
 brew "caddy", restart_service: true
 brew "gettext"
 brew "cfssl"
-brew "cheat"
 brew "container-diff"
 brew "ctags"
 brew "datree"
