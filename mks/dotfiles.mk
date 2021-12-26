@@ -1,4 +1,4 @@
-FILES := $(shell yq e '.dotfiles' $(DOTFILES)/config.yml|sed -e 's/\- //g')
+FILES := $(shell yq e '.dotfiles' $(CONFIG_FILE)|sed -e 's/\- //g')
 
 
 PHONY: dotfiles/install
