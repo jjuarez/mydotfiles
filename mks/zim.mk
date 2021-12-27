@@ -1,10 +1,12 @@
-ZIM_INSTALL_URL   := $(shell yq e '.urls.zim.install' $(CONFIG_FILE))
-ZIM_UNINSTALL_URL := $(shell yq e '.urls.zim.uninstall' $(CONFIG_FILE))
+ZIM_INSTALL_URL := $(shell yq e '.urls.zim.install' $(CONFIG_FILE))
+
 
 .PHONY: zim/install
 zim/install: ## zim install
-	@echo "This task is not automated, take a look here: $(ZIM_INSTALL_URL)"
+	@echo "This task is not fully automated, take a look here: $(ZIM_INSTALL_URL)"
+	@curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+	@echo "Open a new terminal and execute: zimfw install and then make dotfiles/install"
 
 .PHONY: zim/uninstall
 zim/uninstall: ## zim uninstall
-	@echo "This task is not automated, take a look here: $(ZIM_UNINSTALL_URL)"
+	@rm -fr $(HOME)/.zim
