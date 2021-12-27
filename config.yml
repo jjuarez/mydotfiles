@@ -4,7 +4,6 @@ urls:
     plug: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   zim:
     install: https://github.com/zimfw/zimfw#installation
-    uninstall: https://github.com/zimfw/zimfw#uninstalling
   homebrew:
     install: https://github.com/homebrew/install#install-homebrew
     uninstall: https://github.com/homebrew/install#uninstall-homebrew
@@ -12,6 +11,7 @@ dotfiles:
   - shell/.zshenv
   - shell/.zprofile
   - shell/.zshrc
+  - shell/.zimrc
   - shell/.p10k.zsh
   - shell/.togglesrc
   - tools/.gitconfig
