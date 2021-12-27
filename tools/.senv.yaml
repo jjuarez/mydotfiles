@@ -1,0 +1,5 @@
+---
+redact:
+  - .*_API_KEY
+  - .*_APIKEY
+  - .*_TOKEN
