@@ -1,5 +1,5 @@
-ZIM_INSTALL_URL   := $(shell yq e '.urls.zimfw.install' $(CONFIG_FILE))
-ZIM_UNINSTALL_URL := $(shell yq e '.urls.zimfw.uninstall' $(CONFIG_FILE))
+ZIM_INSTALL_URL   := $(shell yq e '.urls.zim.install' $(CONFIG_FILE))
+ZIM_UNINSTALL_URL := $(shell yq e '.urls.zim.uninstall' $(CONFIG_FILE))
 
 .PHONY: zim/install
 zim/install: ## zim install
