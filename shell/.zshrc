@@ -38,8 +38,8 @@ if [[ -r "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%)}:-%n}.zsh"
 fi
 
 # zsh theme
-ZSH_THEME="powerlevel10k"
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+ZSH_THEME="powerlevel10k"
 [[ -L "${HOME}/.p10k.zsh" ]] && source "${HOME}/.p10k.zsh"
 
 # Custom configurations
