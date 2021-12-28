@@ -22,8 +22,9 @@ zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.gitlab.com' \
                       'id_ed25519.ibm-aot' \
 
-export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
+[[ "${HOME}/.homebrewrc" ]] && source "${HOME}/.homebrewrc"
+
 export DOTFILES="${HOME}/.mydotfiles"
 export PATH=${DOTFILES}/bin:/usr/local/sbin:${PATH}
 
@@ -31,11 +32,6 @@ export PATH=${DOTFILES}/bin:/usr/local/sbin:${PATH}
 
 # zsh plugins
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
-
-# Instant prompt
-if [[ -r "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%)}:-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%)}:-%n}.zsh"
-fi
 
 # zsh theme
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true

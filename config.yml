@@ -14,6 +14,7 @@ dotfiles:
   - shell/.zimrc
   - shell/.p10k.zsh
   - shell/.togglesrc
+  - shell/.homebrewrc
   - tools/.gitconfig
   - tools/.gitignore_global
   - tools/.githubrc
