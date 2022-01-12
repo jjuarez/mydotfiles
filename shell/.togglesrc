@@ -35,6 +35,10 @@ toggles::go() {
   [[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
 }
 
+toggles::rust() {
+  [[ -s "${HOME}/.cargo/env" ]] && source "${HOME}/.cargo/env"
+}
+
 toggles::github() {
   [[ -d "${HOME}/.githubrc" ]] && source "${HOME}/.githubrc"
 }
