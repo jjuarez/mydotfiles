@@ -49,8 +49,8 @@ declare -A TOGGLES_CONFIGURATION=(
   [krew]=true
   [nodenv]=true
   [pyenv]=true
-  [rbenv]=true
-  [tfenv]=true
+  [rbenv]=false
+  [tfenv]=false
   [travis]=true
 )
 
@@ -58,3 +58,5 @@ declare -A TOGGLES_CONFIGURATION=(
 [[ -f "${DOTFILES}/shell/.togglesrc"   ]] && source "${DOTFILES}/shell/.togglesrc"
 [[ -f "${DOTFILES}/shell/.functionsrc" ]] && source "${DOTFILES}/shell/.functionsrc"
 [[ -f "${DOTFILES}/shell/.aliasesrc"   ]] && source "${DOTFILES}/shell/.aliasesrc"
+
+export PATH="/Users/jjuarez/.deta/bin:$PATH"
