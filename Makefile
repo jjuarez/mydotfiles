@@ -26,12 +26,10 @@ endef
 -include $(DOTFILES)/mks/homebrew.mk
 
 
-.PHONY: all
-all: help
-
 .PHONY: test
 test:
-	$(warning Just to pass the Makefile lint)
+	$(call assert-set,DOTFILES)
+	$(call assert-file,DOTFILES)
 
 .PHONY: help
 help:
