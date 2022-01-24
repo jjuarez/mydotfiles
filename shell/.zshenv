@@ -13,3 +13,5 @@ fpath=(
 # General User environment
 export EDITOR='vim'
 export TERM="xterm-256color"
+
+# Loadable environments
