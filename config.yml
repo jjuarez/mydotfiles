@@ -22,4 +22,4 @@ dotfiles:
   - tools/.senv.yaml
   - tools/.mongorc.js
   - tools/.skeletons
-  - languages/.gorc
+  - languages/go/.gorc
