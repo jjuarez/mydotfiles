@@ -50,7 +50,7 @@ declare -A TOGGLES_CONFIGURATION=(
   [nodenv]=true
   [pyenv]=true
   [rbenv]=false
-  [tfenv]=false
+  [tfenv]=true
   [travis]=true
 )
 
