@@ -7,7 +7,6 @@ declare BACKUP_DRYRUN
 TAR="$(brew --prefix)/bin/gtar"
 DATE=$(date +"%Y-%m-%d-%H:%M")
 BACKUP_DIRECTORIES=(
-  codelytv
   ibm
   src
 )
