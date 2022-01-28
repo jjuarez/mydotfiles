@@ -166,6 +166,9 @@ let g:session_autosave='no'
 "" PyMode
 let g:pymode_lint_ignore = "E501,W"
 
+"" NERDTree
+let NERDTreeShowHidden=1
+
 "" Markdown
 let g:markdown_fenced_languages = [ 'python', 'yaml', 'bash=sh', 'go' ]
 
