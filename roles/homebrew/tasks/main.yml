@@ -1,0 +1,12 @@
+---
+- name: Install
+  ansible.builtin.debug:
+    msg: "To install homebrew take a look here: {{ homebrew_install_url }}"
+  tags:
+    - homebrew
+
+- name: Uninstall
+  ansible.builtin.debug:
+    msg: "To uninstall homebrew take a look here: {{ homebrew_uninstall_url }}"
+  tags:
+    - homebrew

@@ -5,3 +5,5 @@ git/gitconfig
 *.swp
 *.rbc
 .vscode
+.venv
+.python-version

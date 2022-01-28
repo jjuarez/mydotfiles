@@ -1,0 +1,7 @@
+---
+home_directory: "{{ lookup('env', 'HOME') }}"
+url: https://raw.githubusercontent.com/zimfw/install/master/install.zsh
+files:
+  - .zimrc
+  - .zlogin
+  - .p10k.zsh

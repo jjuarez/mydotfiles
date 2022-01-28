@@ -1,7 +1,0 @@
-# Load all the custom plugins over the current shell
-# TODO: Change this for a proper fpath
-declare -r FUNCTIONS_DIRECTORY="${DOTFILES}/shell/zsh.d"
-
-for ffile in ${FUNCTIONS_DIRECTORY}/*.zsh; do
-  source "${ffile}"
-done 2>/dev/null

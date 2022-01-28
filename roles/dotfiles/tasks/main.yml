@@ -1,0 +1,141 @@
+---
+- name: Shell zsh configuration
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/shell/zsh/{{ item }}"
+    dest: "{{ home_directory }}/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - "{{ zsh.files }}"
+  tags:
+    - dotfiles
+    - zsh
+
+
+- name: RC files
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/shell/rc/{{ item }}"
+    dest: "{{ home_directory }}/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - "{{ rc.files }}"
+  tags:
+    - dotfiles
+    - rc
+
+
+- name: Skeleton templates
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/skeletons"
+    dest: "{{ home_directory }}/.skeletons"
+    state: link
+    force: yes
+  tags:
+    - dotfiles
+    - skeletons
+
+
+- name: Tools configuration files
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/tools/{{ item }}"
+    dest: "{{ home_directory }}/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - "{{ tools.files }}"
+  tags:
+    - dotfiles
+    - rc
+
+
+- name: Scripts directory
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.bin"
+    state: directory
+  tags:
+    - dotfiles
+    - scripts
+
+- name: Scripts directory stat
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.bin"
+  register: scripts_bin_directory
+  tags:
+    - dotfiles
+    - scripts
+
+- name: Scripts
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/shell/scripts/{{ item }}"
+    dest: "{{ home_directory }}/.bin/{{ item }}"
+    mode: a+x
+  when: scripts_bin_directory.stat.exists
+  with_items:
+    - "{{ scripts }}"
+  tags:
+    - dotfiles
+    - scripts
+
+
+- name: SSH directory
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.ssh"
+    state: directory
+  tags:
+    - dotfiles
+    - ssh
+
+- name: SSH directory stat
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.ssh"
+  register: ssh_directory
+  tags:
+    - dotfiles
+    - ssh
+
+- name: SSH config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/ssh/config"
+    dest: "{{ home_directory }}/.ssh/config"
+    state: link
+    force: yes
+  when: ssh_directory.stat.exists
+  tags:
+    - dotfiles
+    - ssh
+
+
+- name: golang support
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/languages/go/.gorc"
+    dest: "{{ home_directory }}/.gorc"
+    state: link
+    force: yes
+  tags:
+    - dotfiles
+    - languages
+    - golang
+
+
+- name: rust cargo directory
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.cargo"
+  register: cargo_directory
+  tags:
+    - dotfiles
+    - languages
+    - rust
+
+- name: rust support
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/languages/rust/env"
+    dest: "{{ home_directory }}/.cargo/env"
+    state: link
+    force: yes
+  when: cargo_directory.stat.exists
+  tags:
+    - dotfiles
+    - languages
+    - rust
+

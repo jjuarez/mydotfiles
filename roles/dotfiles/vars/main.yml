@@ -1,0 +1,33 @@
+---
+home_directory: "{{ lookup('env', 'HOME') }}"
+
+zsh:
+  files:
+    - .zshenv
+    - .zprofile
+    - .zshrc
+
+rc:
+  files:
+    - .tooglesrc
+    - .homebrewrc
+    - .aliasesrc
+
+tools:
+  files:
+    - .gitconfig
+    - .gitignore_global
+    - .githubrc
+    - .tmux.conf
+    - .senv.yaml
+    - .mongorc.js
+
+scripts:
+  - backup.sh
+  - ssh_tunnel.sh
+
+languages:
+  go:
+    - .gorc
+  rust:
+    - env

@@ -1,10 +1,10 @@
 #!/usr/bin/env make
 
-DOTFILES    ?= $(HOME)/.mydotfiles
-CONFIG_FILE ?= $(DOTFILES)/config.yml
-
 .DEFAULT_GOAL  := help
 .DEFAULT_SHELL := /bin/bash
+
+DOTFILES      ?= $(HOME)/.mydotfiles
+HOMEBREW_FILE := $(DOTFILES)/backups/homebrew/Brewfile
 
 
 define assert-set
@@ -19,12 +19,6 @@ define assert-file
 	@$(if $(wildcard $($1) 2>/dev/null),,$(error $($1) does not exist))
 endef
 
--include $(DOTFILES)/mks/zim.mk
--include $(DOTFILES)/mks/dotfiles.mk
--include $(DOTFILES)/mks/ssh.mk
--include $(DOTFILES)/mks/vim.mk
--include $(DOTFILES)/mks/homebrew.mk
-
 
 .PHONY: test
 test:
@@ -34,3 +28,12 @@ test:
 .PHONY: help
 help:
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nTargets:\n"} /^[a-zA-Z//_-]+:.*?##/ { printf " %-20s %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
+
+.PHONY: homebrew/dump
+homebrew/dump: ## Save a snapshot of your formulas, casks, taps, etc
+	@brew bundle dump --force --file $(HOMEBREW_FILE)
+
+.PHONY: homebrew/load
+homebrew/load: ## Load and install a snapshot of your formulas, casks, taps, etc
+	$(call assert-file,HOMEBREW_FILE)
+	@brew bundle --file $(HOMEBREW_FILE)
