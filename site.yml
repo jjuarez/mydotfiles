@@ -5,7 +5,5 @@
     gather_facts: true
     roles:
       - dotfiles
-  #   - homebrew
-  #   - ssh
-  #   - vim
-  #   - zim
+      - homebrew
+      - vim
