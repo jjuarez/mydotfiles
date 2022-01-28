@@ -3,8 +3,10 @@
 .DEFAULT_GOAL  := help
 .DEFAULT_SHELL := /bin/bash
 
-DOTFILES      ?= $(HOME)/.mydotfiles
-HOMEBREW_FILE := $(DOTFILES)/backups/homebrew/Brewfile
+PIPENV_VENV_IN_PROJECT := 1
+PIPENV_VERSION         := 2022.1.8
+DOTFILES               ?= $(HOME)/.mydotfiles
+HOMEBREW_FILE          := $(DOTFILES)/backups/homebrew/Brewfile
 
 
 define assert-set
@@ -19,19 +21,25 @@ define assert-file
 	@$(if $(wildcard $($1) 2>/dev/null),,$(error $($1) does not exist))
 endef
 
-.PHONY: setup
-setup:
-	@test -d .venv || python -m venv .venv
-	@. .venv/bin/activate && pip install -r requirements.txt
+
+.PHONY: help
+help:
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nTargets:\n"} /^[a-zA-Z//_-]+:.*?##/ { printf " %-20s %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
 .PHONY: test
 test:
 	$(call assert-set,DOTFILES)
 	$(call assert-file,DOTFILES)
 
-.PHONY: help
-help:
-	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nTargets:\n"} /^[a-zA-Z//_-]+:.*?##/ { printf " %-20s %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
+.PHONY: ansible/setup
+ansible/setup:
+	@pip install --upgrade pip
+	@pip install pipenv==${PIPENV_VERSION}
+	@pipenv install 
+
+.PHONY: ansible
+ansible/run: ansible/setup ## Setup all the configurations
+	@pipenv run ansible-playbook site.yml
 
 .PHONY: homebrew/dump
 homebrew/dump: ## Save a snapshot of your formulas, casks, taps, etc
