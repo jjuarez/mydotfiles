@@ -19,6 +19,10 @@ define assert-file
 	@$(if $(wildcard $($1) 2>/dev/null),,$(error $($1) does not exist))
 endef
 
+.PHONY: setup
+setup:
+	@test -d .venv || python -m venv .venv
+	@. .venv/bin/activate && pip install -r requirements.txt
 
 .PHONY: test
 test:
