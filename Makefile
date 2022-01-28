@@ -4,7 +4,7 @@
 .DEFAULT_SHELL := /bin/bash
 
 DOTFILES      ?= $(HOME)/.mydotfiles
-HOMEBREW_FILE := $(DOTFILES)/tools/homebrew/Brewfile
+HOMEBREW_FILE := $(DOTFILES)/backups/homebrew/Brewfile
 
 
 define assert-set
