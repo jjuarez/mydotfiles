@@ -4,6 +4,7 @@
     connection: local
     gather_facts: true
     roles:
+      - zimfw
       - dotfiles
-      - homebrew
       - vim
+      - homebrew

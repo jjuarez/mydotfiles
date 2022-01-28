@@ -7,13 +7,6 @@ zsh:
     - .zprofile
     - .zshrc
 
-zimfw:
-  url: https://zimfw.sh/docs/install
-  files:
-    - .zimrc
-    - .zlogin
-    - .p10k.zsh
-
 rc:
   files:
     - .tooglesrc

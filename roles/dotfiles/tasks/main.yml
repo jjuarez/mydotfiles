@@ -12,26 +12,6 @@
     - zsh
 
 
-- name: Shell zimfw configuration
-  ansible.builtin.file:
-    src: "{{ role_path }}/files/shell/zimfw/{{ item }}"
-    dest: "{{ home_directory }}/{{ item }}"
-    state: link
-    force: yes
-  with_items:
-    - "{{ zimfw.files }}"
-  register: zimfw_config_files
-  tags:
-    - dotfiles
-    - zimfw
-
-- name: Shell zimfw installation
-  ansible.builtin.debug:
-    msg: "If you want to install zimfw from scratch, take a look here: {{ zimfw.url }}"
-  tags:
-    - dotfiles
-    - zimfw
-
 - name: RC files
   ansible.builtin.file:
     src: "{{ role_path }}/files/shell/rc/{{ item }}"

@@ -1,0 +1,37 @@
+---
+- name: .zimrc check
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.zimrc"
+  register: zimrc
+  tags:
+    - zimfw
+    - install
+
+- name: .zim check
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.zim"
+  register: zim
+  tags:
+    - zimfw
+    - install
+
+- name: zimfw installation
+  ansible.builtin.shell: "curl -fsSL {{ url }} | zsh"
+  args:
+    warn: no
+  when: zimrc.stat.exists == False and zim.stat.exists == False
+  tags:
+    - zimfw
+    - install
+
+- name: zimfw configuration
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ home_directory }}/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - "{{ files }}"
+  tags:
+    - zimfw
+    - config
