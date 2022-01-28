@@ -1,2 +1,2 @@
 ---
-# defaults file for dotfiles
+local_installation_script_path: /tmp/zimfw.sh

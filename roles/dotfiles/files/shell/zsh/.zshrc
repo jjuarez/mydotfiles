@@ -26,9 +26,10 @@ export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
 [[ "${HOME}/.homebrewrc" ]] && source "${HOME}/.homebrewrc"
 
 export DOTFILES="${HOME}/.mydotfiles"
-export PATH=${DOTFILES}/bin:/usr/local/sbin:${PATH}
 
-[[ "${HOME}/.bin" ]] && export PATH="${HOME}/.bin:${PATH}"
+[[ -d "${HOME}/.bin" ]] && export PATH=${HOME}/.bin:${PATH}
+
+export PATH=/usr/local/sbin:${PATH}
 
 # zsh plugins
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
@@ -54,14 +55,12 @@ declare -A TOGGLES_CONFIGURATION=(
   [travis]=true
 )
 
-[[ -f "${DOTFILES}/shell/.togglesrc"   ]] && source "${DOTFILES}/shell/.togglesrc"
+[[ -f "${HOME}/.tooglesrc" ]] && source "${HOME}/.tooglesrc"
 
 # Custonm functions
-FUNCTIONS_DIRECTORY="${DOTFILES}/shell/zsh.d"
-
-for ff in ${FUNCTIONS_DIRECTORY}/*.zsh; do
+for ff in ${HOME}/.zsh.d/*.zsh; do
   source "${ff}"
 done 2>/dev/null
 
 # Utilities and aliases
-[[ -f "${DOTFILES}/shell/.aliasesrc"   ]] && source "${DOTFILES}/shell/.aliasesrc"
+[[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"

@@ -19,6 +19,12 @@ Host eriecanal.cloud9.ibm.com
   HostName 9.47.161.61
   User fjjuarez
 
+Host *.cloud9.ibm.com
+  User javier-juarez-martinez
+
+Host *.watson.ibm.com
+  User javier-juarez-martinez
+
 Host *
   AddKeysToAgent        yes
   UserKnownHostsFile    /dev/null

@@ -19,15 +19,32 @@ tools:
     - .gitignore_global
     - .githubrc
     - .tmux.conf
-    - .senv.yaml
     - .mongorc.js
-
-scripts:
-  - backup.sh
-  - ssh_tunnel.sh
 
 languages:
   go:
     - .gorc
   rust:
     - env
+
+homebrew:
+  install:
+    url: https://github.com/homebrw/install#install-homebrew
+  uninstall:
+    url: https://github.com/homebrw/install#uninstall-homebrew
+
+vim:
+  plug:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  config:
+    files:
+      - .vimrc
+      - .vimrc.local
+
+zimfw:
+  url: https://raw.githubusercontent.com/zimfw/install/master/install.zsh
+  files:
+    - .zimrc
+    - .zlogin
+    - .p10k.zsh

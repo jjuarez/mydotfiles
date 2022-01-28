@@ -1,4 +1,47 @@
 ---
+#
+# zim framework
+#
+- name: .zimrc check
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.zimrc"
+  register: zimrc
+  tags:
+    - zimfw
+    - install
+
+- name: .zim check
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.zim"
+  register: zim
+  tags:
+    - zimfw
+    - install
+
+- name: zimfw installation
+  ansible.builtin.shell: "curl -fsSL {{ zimfw.url }} | zsh"
+  args:
+    warn: no
+  when: zimrc.stat.exists == False and zim.stat.exists == False
+  tags:
+    - zimfw
+    - install
+
+- name: zimfw configuration
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/zimfw/{{ item }}"
+    dest: "{{ home_directory }}/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - "{{ zimfw.files }}"
+  tags:
+    - zimfw
+    - config
+
+#
+# zsh configuration
+#
 - name: Shell zsh configuration
   ansible.builtin.file:
     src: "{{ role_path }}/files/shell/zsh/{{ item }}"
@@ -11,7 +54,19 @@
     - dotfiles
     - zsh
 
+- name: Shell zsh custom functions
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/shell/zsh.d"
+    dest: "{{ home_directory }}/.zsh.d"
+    state: link
+    force: yes
+  tags:
+    - dotfiles
+    - zsh
 
+#
+# RC files
+#
 - name: RC files
   ansible.builtin.file:
     src: "{{ role_path }}/files/shell/rc/{{ item }}"
@@ -24,18 +79,9 @@
     - dotfiles
     - rc
 
-
-- name: Skeleton templates
-  ansible.builtin.file:
-    src: "{{ role_path }}/files/skeletons"
-    dest: "{{ home_directory }}/.skeletons"
-    state: link
-    force: yes
-  tags:
-    - dotfiles
-    - skeletons
-
-
+#
+# Tools
+#
 - name: Tools configuration files
   ansible.builtin.file:
     src: "{{ role_path }}/files/tools/{{ item }}"
@@ -46,33 +92,30 @@
     - "{{ tools.files }}"
   tags:
     - dotfiles
-    - rc
+    - tools
 
-
-- name: Scripts directory
+#
+# Templates
+#
+- name: Skeleton templates
   ansible.builtin.file:
-    path: "{{ home_directory }}/.bin"
-    state: directory
+    src: "{{ role_path }}/files/skeletons"
+    dest: "{{ home_directory }}/.skeletons"
+    state: link
+    force: yes
   tags:
     - dotfiles
-    - scripts
+    - skeletons
 
-- name: Scripts directory stat
-  ansible.builtin.stat:
-    path: "{{ home_directory }}/.bin"
-  register: scripts_bin_directory
-  tags:
-    - dotfiles
-    - scripts
-
-- name: Scripts
-  ansible.builtin.copy:
-    src: "{{ role_path }}/files/shell/scripts/{{ item }}"
-    dest: "{{ home_directory }}/.bin/{{ item }}"
-    mode: a+x
-  when: scripts_bin_directory.stat.exists
-  with_items:
-    - "{{ scripts }}"
+#
+# Scripts
+#
+- name: Custom Scripts directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/shell/scripts"
+    dest: "{{ home_directory }}/.bin"
+    state: link
+    force: yes
   tags:
     - dotfiles
     - scripts
@@ -105,7 +148,9 @@
     - dotfiles
     - ssh
 
-
+#
+# Languages
+#
 - name: golang support
   ansible.builtin.file:
     src: "{{ role_path }}/files/languages/go/.gorc"
@@ -116,7 +161,6 @@
     - dotfiles
     - languages
     - golang
-
 
 - name: rust cargo directory
   ansible.builtin.stat:
@@ -139,3 +183,47 @@
     - languages
     - rust
 
+# 
+# Homebrew
+#
+- name: Homebrew install
+  ansible.builtin.debug:
+    msg: "How to install: {{ homebrew.install.url }}"
+  tags:
+    - dotfiles
+    - homebrew
+
+- name: Homebrew uninstall
+  ansible.builtin.debug:
+    msg: "How to uninstall: {{ homebrew.uninstall.url }}"
+  tags:
+    - dotfiles
+    - homebrew
+
+#
+# vim
+#
+- name: vim config files
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/vim/{{ item }}"
+    dest: "{{ home_directory }}/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - "{{ vim.config.files }}"
+  tags:
+    - dotfiles
+    - vim
+
+- name: vim plug installation
+  ansible.builtin.shell: "curl -sfLo {{ home_directory }}/.vim/autoload/plug.vim --create-dirs {{ vim.plug.url }}"
+  tags:
+    - dotfiles
+    - vim
+
+- name: vim plug plugins installation
+  ansible.builtin.debug:
+    msg: "To complete the installation of your plugins you must execute: 'vim +PlugUpdate'"
+  tags:
+    - dotfiles
+    - vim
