@@ -10,6 +10,13 @@
     - zimfw
     - install
 
+- name: .zimrc cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.zimrc"
+    state: absent
+  tags:
+    - never
+
 - name: .zim check
   ansible.builtin.stat:
     path: "{{ home_directory }}/.zim"
@@ -39,6 +46,15 @@
     - zimfw
     - config
 
+- name: zimfw configuration cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/{{ item }}"
+    state: absent
+  with_items:
+    - "{{ zimfw.files }}"
+  tags:
+    - never
+
 #
 # zsh configuration
 #
@@ -54,6 +70,15 @@
     - dotfiles
     - zsh
 
+- name: Shell zsh configuration cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/{{ item }}"
+    state: absent
+  with_items:
+    - "{{ zsh.files }}"
+  tags:
+    - never
+
 - name: Shell zsh custom functions
   ansible.builtin.file:
     src: "{{ role_path }}/files/shell/zsh.d"
@@ -63,6 +88,13 @@
   tags:
     - dotfiles
     - zsh
+
+- name: Shell zsh custom functions cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.zsh.d"
+    state: absent
+  tags:
+    - never
 
 #
 # RC files
@@ -79,6 +111,15 @@
     - dotfiles
     - rc
 
+- name: RC files cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/{{ item }}"
+    state: absent
+  with_items:
+    - "{{ rc.files }}"
+  tags:
+    - never
+
 #
 # Tools
 #
@@ -94,6 +135,15 @@
     - dotfiles
     - tools
 
+- name: Tools configuration files cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/{{ item }}"
+    state: absent
+  with_items:
+    - "{{ tools.files }}"
+  tags:
+    - never
+
 #
 # Templates
 #
@@ -106,6 +156,13 @@
   tags:
     - dotfiles
     - skeletons
+
+- name: Skeleton templates cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.skeletons"
+    state: absent
+  tags:
+    - never
 
 #
 # Scripts
@@ -120,7 +177,16 @@
     - dotfiles
     - scripts
 
+- name: Custom Scripts directory cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.bin"
+    state: absent
+  tags:
+    - never
 
+#
+# SSH
+#
 - name: SSH directory
   ansible.builtin.file:
     path: "{{ home_directory }}/.ssh"
@@ -148,10 +214,17 @@
     - dotfiles
     - ssh
 
+- name: SSH config cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.ssh/config"
+    state: absent
+  tags:
+    - never
+
 #
 # Languages
 #
-- name: golang support
+- name: golang
   ansible.builtin.file:
     src: "{{ role_path }}/files/languages/go/.gorc"
     dest: "{{ home_directory }}/.gorc"
@@ -162,7 +235,14 @@
     - languages
     - golang
 
-- name: rust cargo directory
+- name: golang cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.gorc"
+    state: absent
+  tags:
+    - never
+
+- name: cargo directory
   ansible.builtin.stat:
     path: "{{ home_directory }}/.cargo"
   register: cargo_directory
@@ -171,7 +251,7 @@
     - languages
     - rust
 
-- name: rust support
+- name: rust
   ansible.builtin.file:
     src: "{{ role_path }}/files/languages/rust/env"
     dest: "{{ home_directory }}/.cargo/env"
@@ -182,6 +262,13 @@
     - dotfiles
     - languages
     - rust
+
+- name: rust cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.cargo/env"
+    state: absent
+  tags:
+    - never
 
 # 
 # Homebrew
@@ -215,11 +302,27 @@
     - dotfiles
     - vim
 
+- name: vim config files cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/{{ item }}"
+    state: absent
+  with_items:
+    - "{{ vim.config.files }}"
+  tags:
+    - never
+
 - name: vim plug installation
   ansible.builtin.shell: "curl -sfLo {{ home_directory }}/.vim/autoload/plug.vim --create-dirs {{ vim.plug.url }}"
   tags:
     - dotfiles
     - vim
+
+- name: vim plug installation cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.vim"
+    state: absent
+  tags:
+    - never
 
 - name: vim plug plugins installation
   ansible.builtin.debug:
