@@ -1,0 +1,11 @@
+---
+  - name: Apply a set of roles to localhost
+    hosts: localhost
+    connection: local
+    gather_facts: true
+    roles:
+      - dotfiles
+  #   - homebrew
+  #   - ssh
+  #   - vim
+  #   - zim
