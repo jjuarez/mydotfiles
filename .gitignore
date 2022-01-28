@@ -6,3 +6,4 @@ git/gitconfig
 *.rbc
 .vscode
 .venv
+.python-version
