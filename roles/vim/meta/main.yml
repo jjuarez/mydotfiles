@@ -1,0 +1,17 @@
+galaxy_info:
+  author: Javier Juarez
+  description: This role sets up my custom vim configuration
+  company: IBM Research
+
+  issue_tracker_url: http://github.com/jjuarez/mydotfiles/issues
+
+  license: MIT
+  min_ansible_version: 2.1
+
+  galaxy_tags:
+    - config
+    - tools
+    - vim
+    - dotfiles
+
+dependencies: []
