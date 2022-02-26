@@ -1,4 +1,4 @@
 export GOBIN=/usr/local/bin/go
 export GOENV="${HOME}/.gorc"
 export GOPATH="${HOME}/go"
-export PATH="${PATH}:${GOPATH}"
+export PATH="${PATH}:${GOPATH}/bin"
