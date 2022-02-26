@@ -1,15 +1,14 @@
 #set -u -o pipefail
 #set -x
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
-KUBECONFIG_FILTER_TOOL=$(command -v ikscc 2>/dev/null)
+IKSCC=$(command -v ikscc 2>/dev/null)
 
-typeset -A IBM_CLUSTERS_RESOURCEGROUP
-IBM_CLUSTERS_RESOURCEGROUP[apis-dev]="Clusters Non-Prod|iks"
-IBM_CLUSTERS_RESOURCEGROUP[experimental-us]="Experimental|iks"
-IBM_CLUSTERS_RESOURCEGROUP[apis-prod]="Clusters|iks"
-IBM_CLUSTERS_RESOURCEGROUP[quantum-dc-ny-dev]="IBM Satellite Clusters Non-Prod|openshift"
-IBM_CLUSTERS_RESOURCEGROUP[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
-
+typeset -A IBM_CLUSTERS
+IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
+IBM_CLUSTERS[experimental-us]="Experimental|iks"
+IBM_CLUSTERS[apis-prod]="Clusters|iks"
+IBM_CLUSTERS[quantum-dc-ny-dev]="IBM Satellite Clusters Non-Prod|openshift"
+IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
 
 ibm::cloud::login() {
   [[ -x "${IBMCLOUD_CLI}"            ]] || return 1
@@ -29,52 +28,33 @@ ibm::cloud::logout() {
 ibm::cloud::target() {
   local -r resource_group="${1}"
 
-  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
-
-  if [[ -n "${resource_group}" ]]; then
-    ${IBMCLOUD_CLI} target -g "${resource_group}" -q 
-  else
-    echo -e "You shoud specify a valid resource group..."
-    ${IBMCLOUD_CLI} resource groups
-  fi
+  [[ -x "${IBMCLOUD_CLI}"   ]] || return 1
+  [[ -n "${resource_group}" ]] && ${IBMCLOUD_CLI} target -g "${resource_group}" -q >/dev/null
 }
 
-ibm::k8s::ksconfig_iks() {
-  local cluster_name="${1}"
-  local filter=${2:-'yes'}
+ibm::k8s::ksconfig() {
+  local -r cluster_name="${1}"
+  local -r kind="${2}"
 
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+  [[ -x "${IKSCC}"        ]] || return 1
   [[ -n "${cluster_name}" ]] || return 5
 
-  echo "Updating IKS cluster: ${cluster_name}..."
-  if [[ "${filter}" == "yes" && -x "${KUBECONFIG_FILTER_TOOL}" ]]; then
-    ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" --output yaml -q | ${KUBECONFIG_FILTER_TOOL} -f - >! "${HOME}/.kube/${cluster_name}.yml" || return 7
-  else
-    ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" --output yaml -q >! "${HOME}/.kube/${cluster_name}.yml" || return 7
-  fi
+  case ${kind} in
+    openshift) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster_name} --output yaml -q --admin | ${IKSCC} -f - >! "${HOME}/.kube/${cluster_name}.yml" || return 7 ;;
+          iks) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster_name} --output yaml -q | ${IKSCC} -f - >! "${HOME}/.kube/${cluster_name}.yml" || return 7 ;;
+            *) echo "Unknown cluster kind: ${kind}"; return 8  ;;
+  esac
 }
 
-ibm::k8s::ksconfig_openshift() {
-  local cluster_name="${1}"
+ibm::k8s::update() {
+  for cluster data in ${(kv)IBM_CLUSTERS}; do
+    local resource_group=$(echo ${data}|awk -F"|" '{ print $1 }')
+    local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
 
-  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
-  [[ -n "${cluster_name}" ]] || return 5
-
-  echo "Updating OpenShift cluster: ${cluster_name}..."
-  ${IBMCLOUD_CLI} ks cluster config --cluster "${cluster_name}" --admin --output yaml -q >! "${HOME}/.kube/${cluster_name}.yml" || return 7
-}
-
-ibm::k8s::ksconfig_all() {
-  for cluster data in ${(kv)IBM_CLUSTERS_RESOURCEGROUP}; do
-    local rg=$(echo $data|awk -F"|" '{ print $1 }')
-    local kind=$(echo $data|awk -F"|" '{ print $2 }')
-
-    ibm::cloud::target ${rg} >/dev/null
-
-    case ${kind} in
-      iks|openshift) ibm::k8s::ksconfig_${kind} ${cluster} ;;
-      *) echo "Unknown k8s cluster type: ${kind}..." ;;
-    esac
+    echo "Cluster=${cluster}, kind=${kind}, rg='${resource_group}'"
+    ibm::cloud::target ${resource_group}
+    ibm::k8s::ksconfig ${cluster} ${kind}
   done
 }
 
@@ -82,13 +62,9 @@ ibm::k8s::ksconfig_all() {
 autoload ibm::cloud::login
 autoload ibm::cloud::logout
 autoload ibm::cloud::target
-autoload ibm::k8s::ksconfig_iks
-autoload ibm::k8s::ksconfig_openshift
-autoload ibm::k8s::ksconfig_all
+autoload ibm::k8s::update
 
 # aliases
 alias ic='ibmcloud'
 alias ic.li='ibm::cloud::login'
 alias ic.lo='ibm::cloud::logout'
-alias ic.t='ibm::cloud::target'
-alias ic.ksall='ibm::k8s::ksconfig_all'
