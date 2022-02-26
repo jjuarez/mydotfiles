@@ -13,4 +13,5 @@ zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-syntax-highlighting
 # Themes
 zmodule romkatv/powerlevel10k
+#zmodule minimal
 # }}} End configuration added by Zim install
