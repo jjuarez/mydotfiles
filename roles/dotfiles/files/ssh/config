@@ -16,14 +16,31 @@ Host us-south.git.cloud.ibm.com
   User Javier.Juarez.Martinez
 
 Host eriecanal.cloud9.ibm.com
-  HostName 9.47.161.61
+  HostName 9.47.161.61 #  eriecanal.cloud9.ibm.com DNS issues
   User fjjuarez
 
 Host *.cloud9.ibm.com
   User javier-juarez-martinez
 
+Host elmira.watson.ibm.com
+  HostName 9.2.84.24
+  User javier-juarez-martinez
+
+Host basin.watson.ibm.com
+  HostName 9.2.84.46
+  User javier-juarez-martinez
+
 Host *.watson.ibm.com
   User javier-juarez-martinez
+
+Host *.openq.local
+  User      javier-juarez-martinez
+  ProxyJump eriecanal.cloud9ibm.com
+
+Host pok*sat*.qnet.local
+  User ansible
+  IdentityFile ~/.ssh/id_rsa.qss.production
+  ProxyJump    eriecanal.cloud9.ibm.com
 
 Host *
   AddKeysToAgent        yes
@@ -39,3 +56,4 @@ Host *
   CheckHostIP           no
   LogLevel              quiet
   Port                  22
+  SetEnv                LC_ALL=en_US.UTF8
