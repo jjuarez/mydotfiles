@@ -7,5 +7,9 @@
 .python-version
 .dev.env
 .ropeproject/**
+.vscode
 .gems
+.envrc
+.venv
+venv
 push_environment.sh
