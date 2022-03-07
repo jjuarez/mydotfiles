@@ -7,9 +7,13 @@ case "${OS}" in
     alias ls='ls -h -G'
     alias netstat='netstat -an -p tcp -f inet'
 
-    [[ -x "${HOMEBREW_PREFIX}/bin/gtar"  ]] && alias tar="${HOMEBREW_PREFIX}/bin/gtar"
+    [[ -x "${HOMEBREW_PREFIX}/bin/gtar" ]] && alias tar="${HOMEBREW_PREFIX}/bin/gtar"
     [[ -x "${HOMEBREW_PREFIX}/bin/gfind" ]] && alias find="${HOMEBREW_PREFIX}/bin/gfind"
-    [[ -x "${HOMEBREW_PREFIX}/bin/gsed"  ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
+    [[ -x "${HOMEBREW_PREFIX}/bin/gsed" ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
+   #[[ -x "${HOMEBREW_PREFIX}/bin/kubectl" ]] && alias k='kubectl'
+    [[ -x "${HOMEBREW_PREFIX}/bin/kubecolor" ]] && alias k='kubecolor' # Override
+    [[ -x "${HOMEBREW_PREFIX}/bin/exa" ]] && alias ls='exa' # Override
+    [[ -x "${HOMEBREW_PREFIX}/bin/jq" ]] && alias jsontidy='pbpaste|jq '.'|pbcopy'
   ;;
 esac
 
