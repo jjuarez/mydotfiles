@@ -27,6 +27,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/limelight.vim'
+Plug 'szw/vim-maximizer'
 
 call plug#end()
 
@@ -170,13 +171,16 @@ let g:pymode_lint_ignore = "E501,W"
 let NERDTreeShowHidden=1
 
 "" Markdown
-let g:markdown_fenced_languages = [ 'python', 'yaml', 'bash=sh', 'go' ]
+let g:markdown_fenced_languages = [ 'python', 'yaml', 'bash=sh', 'go', 'rust' ]
 
 "" Fix auto-indentation for YAML files
 augroup yaml_fix
   autocmd!
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 augroup end
+
+"" Maximize  urrent split or retunr to previous
+noremap <C-w>m :MaximizerToggle<CR>
 
 "" Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
