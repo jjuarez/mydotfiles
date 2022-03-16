@@ -1,15 +1,18 @@
+# General
 .DS_Store
-*.pyc
 **.swp
+.envrc
+# IDEs
+.vscode
+.idea
+# Python
+*.py[cod]
+.venv
+venv
+.python-version
+# ruby
 .ruby-version
 .ruby-gemset
 .rubocop.yaml
-.python-version
-.dev.env
 .ropeproject/**
-.vscode
 .gems
-.envrc
-.venv
-venv
-push_environment.sh
