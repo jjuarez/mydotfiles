@@ -15,7 +15,10 @@ toggles::pyenv() {
   export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 
   if [ $commands[pyenv] ]; then
-    eval "$(pyenv init -)"
+    export PYENV_ROOT="${HOME}/.pyenv"
+    export PATH="${PYENV_ROOT}/bin:${PATH}"
+
+    eval "$(pyenv init --path)"
   fi
 }
 
