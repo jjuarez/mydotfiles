@@ -1,5 +1,3 @@
 # .zprofile
-export PYENV_ROOT="${HOME}/.pyenv"
-export PATH="${PYENV_ROOT}/bin:${PATH}"
-
-eval "$(pyenv init --path)"
+ulimit -u 5568
+ulimit -n 2048
