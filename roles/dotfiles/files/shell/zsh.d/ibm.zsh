@@ -3,6 +3,8 @@
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 
+[[ -n "${IBMCLOUD_DEFAULT_REGION}" ]] && readonly IBMCLOUD_DEFAULT_REGION="us-south"
+
 typeset -A IBM_CLUSTERS
 IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
 IBM_CLUSTERS[experimental-us]="Experimental|iks"
@@ -10,6 +12,8 @@ IBM_CLUSTERS[apis-prod]="Clusters|iks"
 IBM_CLUSTERS[quantum-dc-ny-dev]="IBM Satellite Clusters Non-Prod|openshift"
 IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
 IBM_CLUSTERS[processing-staging]="Clusters Non-Prod|iks"
+IBM_CLUSTERS[dev-forum-22-tekton]="Support Services|openshift"
+
 
 ibm::cloud::login() {
   [[ -x "${IBMCLOUD_CLI}"            ]] || return 1
@@ -28,9 +32,15 @@ ibm::cloud::logout() {
 
 ibm::cloud::target() {
   local -r resource_group="${1}"
+  local -r region="${2:-${IBMCLOUD_DEFAULT_REGION}}"
 
   [[ -x "${IBMCLOUD_CLI}"   ]] || return 1
-  [[ -n "${resource_group}" ]] && ${IBMCLOUD_CLI} target -g "${resource_group}" -q >/dev/null
+  [[ -n "${resource_group}" ]] && ${IBMCLOUD_CLI} target -r "${region}" -g "${resource_group}" -q >/dev/null || ${IBMCLOUD_CLI} target
+}
+
+ibm::cloud::target_clean() {
+  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+  ${IBMCLOUD_CLI} target -r '' -g '' -q >/dev/null
 }
 
 ibm::k8s::ksconfig() {
@@ -63,9 +73,12 @@ ibm::k8s::update() {
 autoload ibm::cloud::login
 autoload ibm::cloud::logout
 autoload ibm::cloud::target
+autoload ibm::cloud::target_clean
 autoload ibm::k8s::update
 
 # aliases
 alias ic='ibmcloud'
 alias ic.li='ibm::cloud::login'
 alias ic.lo='ibm::cloud::logout'
+alias ic.t='ibm::cloud::target'
+alias ic.tc='ibm::cloud::target_clean'
