@@ -42,6 +42,19 @@ Host pok*sat*.qnet.local
   IdentityFile ~/.ssh/id_rsa.qss.production
   ProxyJump    eriecanal.cloud9.ibm.com
 
+Host koshiba.sk.jp.ibm.com koshiba 9.116.12.201
+  HostName 9.116.12.201
+  User Javier-Juarez-Martinez
+
+Host *.sk.local
+  ProxyJump koshiba
+  User Javier-Juarez-Martinez
+
+Host sk-sat-*.sk.local 10.6.8.*
+  ProxyJump koshiba
+  User root
+  IdentityFile ~/.ssh/id_ed25519
+
 Host *
   AddKeysToAgent        yes
   UserKnownHostsFile    /dev/null
