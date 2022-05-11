@@ -18,12 +18,12 @@ Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
-Plug 'vim-ruby/vim-ruby'
+" Plug 'vim-ruby/vim-ruby'
 Plug 'cespare/vim-toml'
 Plug 'tsandall/vim-rego'
 Plug 'rust-lang/rust.vim'
 Plug 'tomasr/molokai'
-Plug 'dracula/vim', {'as':'dracula'}
+" Plug 'dracula/vim', {'as':'dracula'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
@@ -55,22 +55,22 @@ set rtp+=/usr/local/opt/fzf
 let g:is_posix = 1
 
 "" The Color Scheme
-" try
-"   colorscheme molokai
-"   let g:molokai_original=1
-"   let g:rehash256=1
-"   let &t_ZH="\e[3m"
-"   let &t_ZR="\e[23m"
-"   let g:colorscheme_bg='dark'
-" catch
-"    colorscheme default
-" endtry
-
 try
-  colorscheme dracula
+  colorscheme molokai
+  let g:molokai_original=1
+  let g:rehash256=1
+  let &t_ZH="\e[3m"
+  let &t_ZR="\e[23m"
+  let g:colorscheme_bg='dark'
 catch
-  colorscheme default
+   colorscheme default
 endtry
+
+" try
+"   colorscheme dracula
+" catch
+"   colorscheme default
+" endtry
 
 execute "set colorcolumn=" . join(range(133,335), ',')
 
