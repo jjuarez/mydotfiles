@@ -1,0 +1,106 @@
+#
+# zim framework
+#
+- name: .zimrc stat
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.zimrc"
+  register: zimrc
+  tags:
+    - zsh
+    - zshcleanup
+
+- name: .zim stat
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.zim"
+  register: zim
+  tags:
+    - zsh
+    - zshcleanup
+
+- name: zimfw installation
+  ansible.builtin.shell: "set -o pipefail && curl -fsSL {{ zimfw.url }} | zsh"
+  args:
+    warn: false
+  when: not zimrc.stat.exists and not zim.stat.exists
+  tags:
+    - zsh
+
+- name: .zimrc cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.zimrc"
+    state: absent
+  when: zimrc.stat.exists
+  tags:
+    - zshcleanup
+    - never
+
+- name: .zim cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.zim"
+    state: absent
+  when: zimrc.stat.exists
+  tags:
+    - zshcleanup
+    - never
+
+- name: zimfw configuration
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/zimfw/{{ item }}"
+    dest: "{{ home_directory }}/{{ item }}"
+    state: link
+    force: true
+  loop:
+    "{{ zimfw.files|flatten(levels=1) }}"
+  tags:
+    - zsh
+
+- name: zimfw configuration cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/{{ item }}"
+    state: absent
+  loop:
+    "{{ zimfw.files|flatten(levels=1) }}"
+  tags:
+    - zshcleanup
+    - never
+      
+#
+# zsh configuration
+#
+- name: zsh configuration
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/shell/zsh/{{ item }}"
+    dest: "{{ home_directory }}/{{ item }}"
+    state: link
+    force: true
+  loop:
+    "{{ zsh.files|flatten(levels=1) }}"
+  tags:
+    - zsh
+
+- name: zsh configuration cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/{{ item }}"
+    state: absent
+  loop:
+    "{{ zsh.files|flatten(levels=1) }}"
+  tags:
+    - zshcleanup
+    - never
+
+- name: zsh custom functions
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/shell/zsh.d"
+    dest: "{{ home_directory }}/.zsh.d"
+    state: link
+    force: true
+  tags:
+    - zsh
+
+- name: zsh custom functions cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.zsh.d"
+    state: absent
+  tags:
+    - zshcleanup
+    - never

@@ -1,16 +1,17 @@
+---
 galaxy_info:
   author: Javier Juarez
   description: This role sets up my custom dotfiles
   company: IBM Research
-
   issue_tracker_url: http://github.com/jjuarez/mydotfiles/issues
-
+  min_ansible_version: 2.4
+  platforms:
+    - name: Darwin
+      versions:
+        - all
   license: MIT
-  min_ansible_version: 2.1
-
   galaxy_tags:
     - config
     - shell
     - dotfiles
-
 dependencies: []

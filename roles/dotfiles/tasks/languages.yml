@@ -1,0 +1,54 @@
+#
+# Languages
+#
+- name: golang
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/languages/go/.gorc"
+    dest: "{{ home_directory }}/.gorc"
+    state: link
+    force: true
+  tags:
+    - languages
+
+- name: golang cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.gorc"
+    state: absent
+  tags:
+    - languagescleanup
+    - never
+
+- name: cargo directory
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.cargo"
+    mode: 0750
+    state: directory
+  tags:
+    - languages
+
+- name: cargo directory stat
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.cargo"
+  register: cargo_directory
+  tags:
+    - languages
+    - languagescleanup
+
+- name: rust
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/languages/rust/env"
+    dest: "{{ home_directory }}/.cargo/env"
+    state: link
+    force: true
+  when: cargo_directory.stat.exists
+  tags:
+    - languages
+
+- name: rust cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.cargo"
+    state: absent
+  when: cargo_directory.stat.exists
+  tags:
+    - languagescleanup
+    - never

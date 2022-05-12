@@ -1,0 +1,28 @@
+#
+# Scripts
+#
+- name: Scripts directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/shell/scripts"
+    dest: "{{ home_directory }}/.bin"
+    state: link
+    force: true
+  tags:
+    - scripts
+
+- name: Scripts directory stat
+  ansible.builtin.stat:
+    path: "{{ home_directory }}/.bin"
+  register: scripts_directory
+  tags:
+    - scripts
+    - scriptscleanup
+
+- name: Scripts directory cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.bin"
+    state: absent
+  when: scripts_directory.stat.exists
+  tags:
+    - scriptscleanup
+    - never
