@@ -163,7 +163,11 @@ map ; :Buffers<CR>
 map <Leader>/ :nohlsearch<CR>
 
 "" viminfo sessions
-set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.viminfo
+if !has('nvim')
+  set viminfo+=n~/.vim/.viminfo
+else
+  set viminfo+=n~/.local/shared/nvim/.shada
+endif
 let g:session_autosave='no'
 
 "" PyMode
