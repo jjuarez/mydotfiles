@@ -191,6 +191,7 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/.ssh"
     state: directory
+  register: ssh_directory
   tags:
     - dotfiles
     - ssh
@@ -330,3 +331,37 @@
   tags:
     - dotfiles
     - vim
+
+#
+# neovim
+#
+- name: configuration directory
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.config"
+    state: directory
+  register: config_directory
+  tags:
+    - dotfiles
+    - nvim
+
+- name: neovim configuration directories
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.config/nvim"
+    state: directory
+  when:
+    - config_directory is defined
+  register: neovim_config_directory
+  tags:
+    - dotfiles
+    - nvim
+
+- name: neovim configuration file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/neovim/init.vim"
+    dest: "{{ home_directory }}/.config/nvim/init.vim"
+    state: link
+  when:
+    - neovim_config_directory is defined
+  tags:
+    - dotfiles
+    - nvim
