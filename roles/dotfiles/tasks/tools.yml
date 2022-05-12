@@ -1,0 +1,23 @@
+#
+# Tools
+#
+- name: Tools configuration files
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/tools/{{ item }}"
+    dest: "{{ home_directory }}/{{ item }}"
+    state: link
+    force: true
+  loop:
+    "{{ tools.files|flatten(levels=1) }}"
+  tags:
+    - tools
+
+- name: Tools configuration files cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/{{ item }}"
+    state: absent
+  loop:
+    "{{ tools.files|flatten(levels=1) }}"
+  tags:
+    - toolscleanup
+    - never
