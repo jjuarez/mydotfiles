@@ -7,11 +7,11 @@ IKSCC=$(command -v ikscc 2>/dev/null)
 
 typeset -A IBM_CLUSTERS
 IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
-IBM_CLUSTERS[experimental-us]="Experimental|iks"
 IBM_CLUSTERS[apis-prod]="Clusters|iks"
 IBM_CLUSTERS[quantum-dc-ny-dev]="IBM Satellite Clusters Non-Prod|openshift"
 IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
-IBM_CLUSTERS[processing-staging]="Clusters Non-Prod|iks"
+#IBM_CLUSTERS[processing-staging]="Clusters Non-Prod|iks"
+#IBM_CLUSTERS[experimental-us]="Experimental|iks"
 #IBM_CLUSTERS[dev-forum-22-tekton]="Support Services|openshift"
 
 
