@@ -26,10 +26,10 @@
     - install
 
 - name: zimfw installation
-  ansible.builtin.shell: "curl -fsSL {{ zimfw.url }} | zsh"
+  ansible.builtin.shell: "set -o pipefail && curl -fsSL {{ zimfw.url }} | zsh"
   args:
-    warn: no
-  when: zimrc.stat.exists == False and zim.stat.exists == False
+    warn: false
+  when: not zimrc.stat.exists and not zim.stat.exists
   tags:
     - zimfw
     - install
@@ -39,9 +39,9 @@
     src: "{{ role_path }}/files/zimfw/{{ item }}"
     dest: "{{ home_directory }}/{{ item }}"
     state: link
-    force: yes
-  with_items:
-    - "{{ zimfw.files }}"
+    force: true
+  loop:
+    - "{{ zimfw.files|flatten(levels=1) }}"
   tags:
     - zimfw
     - config
@@ -50,8 +50,8 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/{{ item }}"
     state: absent
-  with_items:
-    - "{{ zimfw.files }}"
+  loop:
+    - "{{ zimfw.files|flatten(levels=1) }}"
   tags:
     - never
 
@@ -63,9 +63,9 @@
     src: "{{ role_path }}/files/shell/zsh/{{ item }}"
     dest: "{{ home_directory }}/{{ item }}"
     state: link
-    force: yes
-  with_items:
-    - "{{ zsh.files }}"
+    force: true
+  loop:
+    - "{{ zsh.files|flatten(levels=1) }}"
   tags:
     - dotfiles
     - zsh
@@ -74,8 +74,8 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/{{ item }}"
     state: absent
-  with_items:
-    - "{{ zsh.files }}"
+  loop:
+    - "{{ zsh.files|flatten(levels=1) }}"
   tags:
     - never
 
@@ -84,7 +84,7 @@
     src: "{{ role_path }}/files/shell/zsh.d"
     dest: "{{ home_directory }}/.zsh.d"
     state: link
-    force: yes
+    force: true
   tags:
     - dotfiles
     - zsh
@@ -104,8 +104,8 @@
     src: "{{ role_path }}/files/shell/rc/{{ item }}"
     dest: "{{ home_directory }}/{{ item }}"
     state: link
-    force: yes
-  with_items:
+    force: true
+  loop:
     - "{{ rc.files }}"
   tags:
     - dotfiles
@@ -115,7 +115,7 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/{{ item }}"
     state: absent
-  with_items:
+  loop:
     - "{{ rc.files }}"
   tags:
     - never
@@ -128,8 +128,8 @@
     src: "{{ role_path }}/files/tools/{{ item }}"
     dest: "{{ home_directory }}/{{ item }}"
     state: link
-    force: yes
-  with_items:
+    force: true
+  loop:
     - "{{ tools.files }}"
   tags:
     - dotfiles
@@ -139,7 +139,7 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/{{ item }}"
     state: absent
-  with_items:
+  loop:
     - "{{ tools.files }}"
   tags:
     - never
@@ -152,7 +152,7 @@
     src: "{{ role_path }}/files/skeletons"
     dest: "{{ home_directory }}/.skeletons"
     state: link
-    force: yes
+    force: true
   tags:
     - dotfiles
     - skeletons
@@ -172,7 +172,7 @@
     src: "{{ role_path }}/files/shell/scripts"
     dest: "{{ home_directory }}/.bin"
     state: link
-    force: yes
+    force: true
   tags:
     - dotfiles
     - scripts
@@ -190,6 +190,7 @@
 - name: SSH directory
   ansible.builtin.file:
     path: "{{ home_directory }}/.ssh"
+    mode: 0750
     state: directory
   register: ssh_directory
   tags:
@@ -209,7 +210,7 @@
     src: "{{ role_path }}/files/ssh/config"
     dest: "{{ home_directory }}/.ssh/config"
     state: link
-    force: yes
+    force: true
   when: ssh_directory.stat.exists
   tags:
     - dotfiles
@@ -230,7 +231,7 @@
     src: "{{ role_path }}/files/languages/go/.gorc"
     dest: "{{ home_directory }}/.gorc"
     state: link
-    force: yes
+    force: true
   tags:
     - dotfiles
     - languages
@@ -257,7 +258,7 @@
     src: "{{ role_path }}/files/languages/rust/env"
     dest: "{{ home_directory }}/.cargo/env"
     state: link
-    force: yes
+    force: true
   when: cargo_directory.stat.exists
   tags:
     - dotfiles
@@ -271,7 +272,7 @@
   tags:
     - never
 
-# 
+#
 # Homebrew
 #
 - name: Homebrew install
@@ -296,8 +297,8 @@
     src: "{{ role_path }}/files/vim/{{ item }}"
     dest: "{{ home_directory }}/{{ item }}"
     state: link
-    force: yes
-  with_items:
+    force: true
+  loop:
     - "{{ vim.config.files }}"
   tags:
     - dotfiles
@@ -307,13 +308,26 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/{{ item }}"
     state: absent
-  with_items:
+  loop:
     - "{{ vim.config.files }}"
   tags:
     - never
 
+- name: vim config directories
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.vim/autoload"
+    mode: 0750
+    state: directory
+  register: vim_config_directory
+  tags:
+    - dotfiles
+    - vim
+
 - name: vim plug installation
-  ansible.builtin.shell: "curl -sfLo {{ home_directory }}/.vim/autoload/plug.vim --create-dirs {{ vim.plug.url }}"
+  ansible.builtin.get_url:
+    url: "{{ vim.plug.url }}"
+    dest: "{{ home_directory }}/.vim/autoload/plug.vim"
+    mode: 0750
   tags:
     - dotfiles
     - vim
@@ -335,22 +349,12 @@
 #
 # neovim
 #
-- name: configuration directory
-  ansible.builtin.file:
-    path: "{{ home_directory }}/.config"
-    state: directory
-  register: config_directory
-  tags:
-    - dotfiles
-    - nvim
-
-- name: neovim configuration directories
+- name: nvim configuration directory
   ansible.builtin.file:
     path: "{{ home_directory }}/.config/nvim"
+    mode: 0750
     state: directory
-  when:
-    - config_directory is defined
-  register: neovim_config_directory
+  register: nvim_config_directory
   tags:
     - dotfiles
     - nvim
@@ -360,8 +364,24 @@
     src: "{{ role_path }}/files/neovim/init.vim"
     dest: "{{ home_directory }}/.config/nvim/init.vim"
     state: link
+    force: true
   when:
     - neovim_config_directory is defined
   tags:
     - dotfiles
     - nvim
+
+- name: neovim configuration file cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.config/nvim/init.vim"
+    state: absent
+    force: true
+  tags:
+    - never
+
+- name: neovim configuration directories cleanup
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.config/nvim"
+    state: absent
+  tags:
+    - never
