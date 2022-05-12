@@ -4,10 +4,11 @@
 .DEFAULT_SHELL := /bin/bash
 
 PIPENV_VENV_IN_PROJECT := 1
-PIPENV_VERSION         := 2022.1.8
+PIPENV_VERSION         := 2022.5.2
 DOTFILES               ?= $(HOME)/.mydotfiles
 HOMEBREW_FILE          := $(DOTFILES)/backups/homebrew/Brewfile
-
+ANSIBLE_OPTS           ?=
+ANSIBLE_TAGS           ?=
 
 define assert-set
 	@$(if $($1),,$(error $(1) environment variable is not defined))
@@ -38,8 +39,8 @@ ansible/setup:
 	@pipenv install 
 
 .PHONY: ansible
-ansible/run: ansible/setup ## Setup all the configurations
-	@pipenv run ansible-playbook site.yml
+ansible/run: ## Setup all the configurations
+	@pipenv run ansible-playbook $(ANSIBLE_OPTS) site.yml $(ANSIBLE_TAGS)
 
 .PHONY: homebrew/dump
 homebrew/dump: ## Save a snapshot of your formulas, casks, taps, etc
