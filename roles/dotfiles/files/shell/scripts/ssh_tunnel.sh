@@ -27,7 +27,7 @@ utils::exit() {
 }
 
 utils::help() {
-  utils::exit "Usage: ${0}.sh (up|down|status)" 0
+  utils::exit "Usage: ${0} (up|down|status)" 0
 }
 
 
