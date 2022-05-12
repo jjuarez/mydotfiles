@@ -33,10 +33,6 @@ export PATH=/usr/local/sbin:${PATH}
 
 # zsh plugins
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
-
-# zsh theme
-# [[ -x "$(command -v starship)" ]] && [[ -s "${HOME}/.config/starship.toml" ]] && eval "$(starship init zsh)"
-
 ZSH_THEME="powerlevel10k"
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 [[ -L "${HOME}/.p10k.zsh" ]] && source "${HOME}/.p10k.zsh"
