@@ -16,7 +16,6 @@
   tags:
     - neovim
     - neovimcleanup
-    - never
 
 - name: neovim configuration directory cleanup
   ansible.builtin.file:
