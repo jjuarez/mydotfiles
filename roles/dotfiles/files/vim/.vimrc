@@ -3,7 +3,6 @@ filetype plugin on
 
 " Plug plugin management
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
-
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -11,7 +10,6 @@ Plug 'w0rp/ale'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 Plug 'airblade/vim-gitgutter'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'jjo/vim-cue'
 Plug 'fatih/vim-go'
 Plug 'pearofducks/ansible-vim'
@@ -19,18 +17,15 @@ Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
-" Plug 'vim-ruby/vim-ruby'
 Plug 'cespare/vim-toml'
 Plug 'tsandall/vim-rego'
 Plug 'rust-lang/rust.vim'
 Plug 'tomasr/molokai'
-" Plug 'dracula/vim', {'as':'dracula'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/limelight.vim'
 Plug 'szw/vim-maximizer'
-
 call plug#end()
 
 if has('autocmd')
@@ -57,21 +52,15 @@ let g:is_posix = 1
 
 "" The Color Scheme
 try
+  " colorscheme dracula
   colorscheme molokai
-  let g:molokai_original=1
   let g:rehash256=1
+  let g:colorscheme_bg='dark'
   let &t_ZH="\e[3m"
   let &t_ZR="\e[23m"
-  let g:colorscheme_bg='dark'
 catch
    colorscheme default
 endtry
-
-" try
-"   colorscheme dracula
-" catch
-"   colorscheme default
-" endtry
 
 execute "set colorcolumn=" . join(range(133,335), ',')
 
@@ -100,7 +89,6 @@ set cuc cul"
 
 "" multiple windows
 set hidden
-set laststatus=2
 set switchbuf=usetab
 set helpheight=30   
 
@@ -170,8 +158,16 @@ else
 endif
 let g:session_autosave='no'
 
+"" lightline configuration
+set laststatus=2
+set noshowmode
+if !has('gui_running')
+  set t_Co=256
+endif
+let g:lightline = { 'colorscheme': 'wombat' }
+
 "" PyMode
-let g:pymode_lint_ignore = "E501,W"
+let g:pymode_lint_ignore = "E501"
 
 "" NERDTree
 let NERDTreeShowHidden=1
@@ -192,4 +188,3 @@ noremap <C-w>m :MaximizerToggle<CR>
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
-
