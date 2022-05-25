@@ -66,6 +66,16 @@ ssh::status() {
   fi
 }
 
+ssh::config() {
+  local -r socket="${1}"
+
+  if [[ -S "${socket}" ]]; then 
+    utils::exit "export HTTPS_PROXY=\"socks5://localhost:${SSH_LOCAL_PORT}\"" 0
+  else
+    utils::exit "The SSH tunnel is stopped" 1
+  fi
+}
+
 main() {
   local -r command=${1:-'none'}
   
@@ -73,6 +83,7 @@ main() {
         up) ssh::up "${SOCKET}" ;;
       down) ssh::down "${SOCKET}" ;;
     status) ssh::status "${SOCKET}" ;;
+    config) ssh::config "${SOCKET}" ;;
          *) utils::help ;;
   esac
 }
