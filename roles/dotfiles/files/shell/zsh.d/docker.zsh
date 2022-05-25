@@ -9,7 +9,9 @@ docker::containers::clean() {
 }
 
 docker::images::clean() {
-  docker image rm $(docker image list --filter "dangling=true" -q)
+  local -r docker_dangling_images=$(docker image list --filter "dangling=true" -q)
+
+  [[ -n "${docker_dangling_images}" ]] && docker image rm $(docker image list --filter "dangling=true" -q)
 }
 
 # autoloads
