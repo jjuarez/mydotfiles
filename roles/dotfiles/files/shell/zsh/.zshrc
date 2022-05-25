@@ -62,3 +62,6 @@ done 2>/dev/null
 
 # Utilities and aliases
 [[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
+
+# iTerm Shell integration
+[[ "${HOME}/.iterm2_shell_integration.zsh" ]] && source "${HOME}/.iterm2_shell_integration.zsh"
