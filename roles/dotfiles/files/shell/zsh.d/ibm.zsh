@@ -3,7 +3,7 @@
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 
-[[ -n "${IBMCLOUD_DEFAULT_REGION}" ]] && readonly IBMCLOUD_DEFAULT_REGION="us-south"
+[[ -n "${DEFAULT_IBMCLOUD_DEBUG}"  ]] && readonly DEFAULT_IBMCLOUD_DEBUG="false"
 
 typeset -A IBM_CLUSTERS
 IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
@@ -21,7 +21,10 @@ ibm::cloud::login() {
   [[ -n "${IBMCLOUD_REGION}"         ]] || return 3
   [[ -n "${IBMCLOUD_RESOURCE_GROUP}" ]] || return 4
 
-  ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -g "${IBMCLOUD_RESOURCE_GROUP}" -q >/dev/null 2>&1
+  case "${IBMCLOUD_DEBUG}" in
+    true) ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -g "${IBMCLOUD_RESOURCE_GROUP}" ;;
+       *) ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -g "${IBMCLOUD_RESOURCE_GROUP}" -q >/dev/null 2>&1 ;;
+  esac
 }
 
 ibm::cloud::logout() {
@@ -32,10 +35,14 @@ ibm::cloud::logout() {
 
 ibm::cloud::target() {
   local -r resource_group="${1}"
-  local -r region="${2:-${IBMCLOUD_DEFAULT_REGION}}"
+  local -r region="${2:-${DEFAULT_IBMCLOUD_REGION}}"
 
   [[ -x "${IBMCLOUD_CLI}"   ]] || return 1
-  [[ -n "${resource_group}" ]] && ${IBMCLOUD_CLI} target -r "${region}" -g "${resource_group}" -q >/dev/null || ${IBMCLOUD_CLI} target
+
+  case "${IBMCLOUD_DEBUG}" in
+    true) [[ -n "${resource_group}" ]] && ${IBMCLOUD_CLI} target -g "${resource_group}" -r "${region}" -q >/dev/null || ${IBMCLOUD_CLI} target ;;
+       *) [[ -n "${resource_group}" ]] && ${IBMCLOUD_CLI} target -g "${resource_group}" -r "${region}" || ${IBMCLOUD_CLI} target ;;
+  esac
 }
 
 ibm::cloud::target_clean() {
