@@ -35,11 +35,11 @@ Host *.watson.ibm.com
 
 Host *.openq.local
   User      javier-juarez-martinez
-  ProxyJump eriecanal.cloud9ibm.com
+  ProxyJump eriecanal.cloud9.ibm.com
 
 Host pok*sat*.qnet.local
   User ansible
-  IdentityFile ~/.ssh/id_rsa.qss.production
+  IdentityFile ~/.ssh/id_ed25519
   ProxyJump    eriecanal.cloud9.ibm.com
 
 Host koshiba.sk.jp.ibm.com koshiba 9.116.12.201
@@ -51,9 +51,9 @@ Host *.sk.local
   User Javier-Juarez-Martinez
 
 Host sk-sat-*.sk.local 10.6.8.*
-  ProxyJump koshiba
   User root
   IdentityFile ~/.ssh/id_ed25519
+  ProxyJump koshiba
 
 Host *
   AddKeysToAgent        yes
