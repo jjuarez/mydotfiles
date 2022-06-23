@@ -6,17 +6,17 @@ IKSCC=$(command -v ikscc 2>/dev/null)
 [[ -n "${DEFAULT_IBMCLOUD_DEBUG}"  ]] && readonly DEFAULT_IBMCLOUD_DEBUG="false"
 
 typeset -A IBM_CLUSTERS
-IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
 IBM_CLUSTERS[apis-dev-de]="Clusters Non-Prod - DE|iks"
-IBM_CLUSTERS[apis-prod]="Clusters|iks"
+IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
 IBM_CLUSTERS[apis-prod-de]="Clusters - DE|iks"
-IBM_CLUSTERS[apps-staging-us]="Clusters Non-Prod|iks"
+IBM_CLUSTERS[apis-prod]="Clusters|iks"
 IBM_CLUSTERS[apps-prod-us]="Clusters|iks"
-IBM_CLUSTERS[quantum-dc-ny-dev]="IBM Satellite Clusters Non-Prod|openshift"
-IBM_CLUSTERS[sat-pok-qnet-staging]="IBM Satellite Clusters Non-Prod|openshift"
-IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
-IBM_CLUSTERS[experimental-us]="Experimental|iks"
+IBM_CLUSTERS[apps-staging-us]="Clusters Non-Prod|iks"
 IBM_CLUSTERS[dev-forum-22-tekton]="Support Services|openshift"
+IBM_CLUSTERS[experimental-us]="Experimental|iks"
+IBM_CLUSTERS[quantum-dc-ny-dev]="IBM Satellite Clusters Non-Prod|openshift"
+IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
+IBM_CLUSTERS[sat-pok-qnet-staging]="IBM Satellite Clusters Non-Prod|openshift"
 
 
 ibm::cloud::login() {
@@ -49,11 +49,6 @@ ibm::cloud::target() {
   esac
 }
 
-ibm::cloud::target_clean() {
-  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
-  ${IBMCLOUD_CLI} target -r '' -g '' -q >/dev/null
-}
-
 ibm::k8s::ksconfig() {
   local -r cluster_name="${1}"
   local -r kind="${2}"
@@ -70,14 +65,20 @@ ibm::k8s::ksconfig() {
 }
 
 ibm::k8s::update() {
-  ibm::cloud::target_clean
+  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+  [[ -x "${IKSCC}"        ]] || return 1
 
+  ${IBMCLOUD_CLI} target -r '' -g '' -q >/dev/null
+  echo "Loading cluster configs..."
   for cluster data in ${(kv)IBM_CLUSTERS}; do
-    local resource_group=$(echo ${data}|awk -F"|" '{ print $1 }')
     local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
 
-    echo "Cluster=${cluster}, kind=${kind}, rg='${resource_group}'"
-    ibm::k8s::ksconfig ${cluster} ${kind}
+    echo "${kind}: ${cluster}"
+    case ${kind} in
+      openshift) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin | ${IKSCC} -f - >! "${HOME}/.kube/${cluster_name}.yml" || return 7 ;;
+            iks) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q | ${IKSCC} -f - >! "${HOME}/.kube/${cluster_name}.yml" || return 7 ;;
+              *) echo "Unknown cluster kind: ${kind}"; return 8  ;;
+    esac
   done
 }
 
@@ -85,7 +86,6 @@ ibm::k8s::update() {
 autoload ibm::cloud::login
 autoload ibm::cloud::logout
 autoload ibm::cloud::target
-autoload ibm::cloud::target_clean
 autoload ibm::k8s::update
 
 # aliases
@@ -93,5 +93,4 @@ alias ic='ibmcloud'
 alias ic.li='ibm::cloud::login'
 alias ic.lo='ibm::cloud::logout'
 alias ic.t='ibm::cloud::target'
-alias ic.tc='ibm::cloud::target_clean'
 alias ic.ks.up='ibm::k8s::update'
