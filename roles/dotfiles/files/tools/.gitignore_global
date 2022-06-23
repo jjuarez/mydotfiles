@@ -16,3 +16,5 @@ venv
 .rubocop.yaml
 .ropeproject/**
 .gems
+# nodeJS
+.node-version
