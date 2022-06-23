@@ -18,4 +18,5 @@ autocmd BufNewFile README.md 0r ~/.skeletons/README.md
 autocmd BufNewFile *.sh 0r ~/.skeletons/bash.sh
 autocmd BufNewFile Makefile 0r ~/.skeletons/Makefile
 autocmd BufNewFile *.py 0r ~/.skeletons/python.py
+autocmd BufNewFile test_*.py 0r ~/.skeletons/pytest.py
 autocmd BufNewFile Dockerfile 0r ~/.skeletons/Dockerfile.nodejs
