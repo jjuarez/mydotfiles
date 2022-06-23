@@ -7,13 +7,16 @@ IKSCC=$(command -v ikscc 2>/dev/null)
 
 typeset -A IBM_CLUSTERS
 IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
+IBM_CLUSTERS[apis-dev-de]="Clusters Non-Prod - DE|iks"
 IBM_CLUSTERS[apis-prod]="Clusters|iks"
+IBM_CLUSTERS[apis-prod-de]="Clusters - DE|iks"
+IBM_CLUSTERS[apps-staging-us]="Clusters Non-Prod|iks"
 IBM_CLUSTERS[apps-prod-us]="Clusters|iks"
 IBM_CLUSTERS[quantum-dc-ny-dev]="IBM Satellite Clusters Non-Prod|openshift"
 IBM_CLUSTERS[sat-pok-qnet-staging]="IBM Satellite Clusters Non-Prod|openshift"
 IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
 IBM_CLUSTERS[experimental-us]="Experimental|iks"
-#IBM_CLUSTERS[dev-forum-22-tekton]="Support Services|openshift"
+IBM_CLUSTERS[dev-forum-22-tekton]="Support Services|openshift"
 
 
 ibm::cloud::login() {
@@ -67,12 +70,13 @@ ibm::k8s::ksconfig() {
 }
 
 ibm::k8s::update() {
+  ibm::cloud::target_clean
+
   for cluster data in ${(kv)IBM_CLUSTERS}; do
     local resource_group=$(echo ${data}|awk -F"|" '{ print $1 }')
     local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
 
     echo "Cluster=${cluster}, kind=${kind}, rg='${resource_group}'"
-    ibm::cloud::target ${resource_group}
     ibm::k8s::ksconfig ${cluster} ${kind}
   done
 }
