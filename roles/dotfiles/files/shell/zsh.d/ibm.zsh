@@ -12,7 +12,6 @@ IBM_CLUSTERS[apis-prod-de]="Clusters - DE|iks"
 IBM_CLUSTERS[apis-prod]="Clusters|iks"
 IBM_CLUSTERS[apps-prod-us]="Clusters|iks"
 IBM_CLUSTERS[apps-staging-us]="Clusters Non-Prod|iks"
-IBM_CLUSTERS[dev-forum-22-tekton]="Support Services|openshift"
 IBM_CLUSTERS[experimental-us]="Experimental|iks"
 IBM_CLUSTERS[quantum-dc-ny-dev]="IBM Satellite Clusters Non-Prod|openshift"
 IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
@@ -49,21 +48,6 @@ ibm::cloud::target() {
   esac
 }
 
-ibm::k8s::ksconfig() {
-  local -r cluster_name="${1}"
-  local -r kind="${2}"
-
-  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
-  [[ -x "${IKSCC}"        ]] || return 1
-  [[ -n "${cluster_name}" ]] || return 5
-
-  case ${kind} in
-    openshift) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster_name} --output yaml -q --admin | ${IKSCC} -f - >! "${HOME}/.kube/${cluster_name}.yml" || return 7 ;;
-          iks) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster_name} --output yaml -q | ${IKSCC} -f - >! "${HOME}/.kube/${cluster_name}.yml" || return 7 ;;
-            *) echo "Unknown cluster kind: ${kind}"; return 8  ;;
-  esac
-}
-
 ibm::k8s::update() {
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
   [[ -x "${IKSCC}"        ]] || return 1
@@ -75,9 +59,9 @@ ibm::k8s::update() {
 
     echo "${kind}: ${cluster}"
     case ${kind} in
-      openshift) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin | ${IKSCC} -f - >! "${HOME}/.kube/${cluster_name}.yml" || return 7 ;;
-            iks) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q | ${IKSCC} -f - >! "${HOME}/.kube/${cluster_name}.yml" || return 7 ;;
-              *) echo "Unknown cluster kind: ${kind}"; return 8  ;;
+      openshift) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 7 ;;
+            iks) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 7 ;;
+              *) echo "Unknown cluster kind: ${kind}"; return 8 ;;
     esac
   done
 }
