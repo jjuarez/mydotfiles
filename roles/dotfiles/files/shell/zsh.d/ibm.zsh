@@ -1,14 +1,12 @@
 #set -u -o pipefail
 #set -x
+
+# IBMCLOUD_DEBUG="true"
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 
-[[ -n "${DEFAULT_IBMCLOUD_DEBUG}"  ]] && readonly DEFAULT_IBMCLOUD_DEBUG="false"
-
 typeset -A IBM_CLUSTERS
-IBM_CLUSTERS[apis-dev-de]="Clusters Non-Prod - DE|iks"
 IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
-IBM_CLUSTERS[apis-prod-de]="Clusters - DE|iks"
 IBM_CLUSTERS[apis-prod]="Clusters|iks"
 IBM_CLUSTERS[apps-prod-us]="Clusters|iks"
 IBM_CLUSTERS[apps-staging-us]="Clusters Non-Prod|iks"
@@ -19,32 +17,34 @@ IBM_CLUSTERS[sat-pok-qnet-staging]="IBM Satellite Clusters Non-Prod|openshift"
 
 
 ibm::cloud::login() {
-  [[ -x "${IBMCLOUD_CLI}"            ]] || return 1
-  [[ -n "${IBMCLOUD_API_KEY}"        ]] || return 2
-  [[ -n "${IBMCLOUD_REGION}"         ]] || return 3
-  [[ -n "${IBMCLOUD_RESOURCE_GROUP}" ]] || return 4
+  [[ -x "${IBMCLOUD_CLI}"     ]] || return 1
+  [[ -n "${IBMCLOUD_API_KEY}" ]] || return 2
+  [[ -n "${IBMCLOUD_REGION}"  ]] || IBMCLOUD_REGION='us-south'
 
   case "${IBMCLOUD_DEBUG}" in
-    true) ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -g "${IBMCLOUD_RESOURCE_GROUP}" ;;
-       *) ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -g "${IBMCLOUD_RESOURCE_GROUP}" -q >/dev/null 2>&1 ;;
+    true) ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} ;;
+       *) ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -q >/dev/null 2>&1 ;;
   esac
 }
 
 ibm::cloud::logout() {
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
 
-  ${IBMCLOUD_CLI} logout -q >/dev/null 2>&1
+  case "${IBMCLOUD_DEBUG}" in
+    true) ${IBMCLOUD_CLI} logout ;;
+       *) ${IBMCLOUD_CLI} logout -q >/dev/null 2>&1 ;;
+  esac
 }
 
 ibm::cloud::target() {
-  local -r resource_group="${1}"
-  local -r region="${2:-${DEFAULT_IBMCLOUD_REGION}}"
+  local -r resource_group=${1:-''}
+  local -r region=${2:-''}
 
-  [[ -x "${IBMCLOUD_CLI}"   ]] || return 1
+  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
 
   case "${IBMCLOUD_DEBUG}" in
-    true) [[ -n "${resource_group}" ]] && ${IBMCLOUD_CLI} target -g "${resource_group}" -r "${region}" || ${IBMCLOUD_CLI} target ;;
-       *) [[ -n "${resource_group}" ]] && ${IBMCLOUD_CLI} target -g "${resource_group}" -r "${region}" -q >/dev/null || ${IBMCLOUD_CLI} target ;;
+    true) ${IBMCLOUD_CLI} target -g "${resource_group}" -r "${region}" ;;
+       *) ${IBMCLOUD_CLI} target -g "${resource_group}" -r "${region}" -q >/dev/null ;;
   esac
 }
 
@@ -61,7 +61,7 @@ ibm::k8s::update() {
     case ${kind} in
       openshift) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 7 ;;
             iks) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 7 ;;
-              *) echo "Unknown cluster kind: ${kind}"; return 8 ;;
+              *) return 8 ;;
     esac
   done
 }
