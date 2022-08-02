@@ -14,6 +14,7 @@ IBM_CLUSTERS[experimental-us]="Experimental|iks"
 IBM_CLUSTERS[quantum-dc-ny-dev]="IBM Satellite Clusters Non-Prod|openshift"
 IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
 IBM_CLUSTERS[sat-pok-qnet-staging]="IBM Satellite Clusters Non-Prod|openshift"
+#IBM_CLUSTERS[cicd-production]="Infrastructure Core|openshift"
 
 
 ibm::cloud::login() {
