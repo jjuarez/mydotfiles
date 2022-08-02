@@ -26,6 +26,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/limelight.vim'
 Plug 'szw/vim-maximizer'
+Plug 'dagger/cuelsp'
 call plug#end()
 
 if has('autocmd')
