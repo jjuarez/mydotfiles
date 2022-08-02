@@ -27,7 +27,7 @@ utils::exit() {
 }
 
 utils::help() {
-  utils::exit "Usage: ${0} (up|down|status)" 0
+  utils::exit "Usage: ${0} (up|down|status|config)" 0
 }
 
 
@@ -45,7 +45,7 @@ ssh::up() {
     -oDynamicForward="localhost:${SSH_LOCAL_PORT}" \
     -oUser="${SSH_REMOTE_USER}" \
     ${SSH_REMOTE_HOST} &&
-  utils::console "Remember to execute: 'export HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}'"
+  utils::console "Remember to execute: \nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n"
 }
 
 ssh::down() {
@@ -80,11 +80,11 @@ main() {
   local -r command=${1:-'none'}
   
   case "${command}" in
-        up) ssh::up "${SOCKET}" ;;
-      down) ssh::down "${SOCKET}" ;;
-    status) ssh::status "${SOCKET}" ;;
-    config) ssh::config "${SOCKET}" ;;
-         *) utils::help ;;
+         up|start) ssh::up "${SOCKET}" ;;
+        down|stop) ssh::down "${SOCKET}" ;;
+           status) ssh::status "${SOCKET}" ;;
+           config) ssh::config "${SOCKET}" ;;
+                *) utils::help ;;
   esac
 }
 
