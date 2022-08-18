@@ -7,26 +7,20 @@ Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
-Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
+" Plug 'dagger/cuelsp'
 Plug 'jjo/vim-cue'
+" Plug 'klen/python-mode'
+" Plug 'hashivim/vim-terraform'
+" Plug 'pearofducks/ansible-vim'
+" Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
-Plug 'pearofducks/ansible-vim'
-Plug 'klen/python-mode'
-Plug 'hashivim/vim-terraform'
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'cespare/vim-toml'
-Plug 'tsandall/vim-rego'
-Plug 'rust-lang/rust.vim'
 Plug 'tomasr/molokai'
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'junegunn/limelight.vim'
 Plug 'szw/vim-maximizer'
-Plug 'dagger/cuelsp'
 call plug#end()
 
 if has('autocmd')
@@ -167,8 +161,11 @@ if !has('gui_running')
 endif
 let g:lightline = { 'colorscheme': 'wombat' }
 
+"" Ale
+let g:ale_python_flake8_options = '--max-line-length=132'
+
 "" PyMode
-let g:pymode_lint_ignore = "E501"
+let g:pymode_lint_ignore = "E501,W"
 
 "" NERDTree
 let NERDTreeShowHidden=1
@@ -182,7 +179,7 @@ augroup yaml_fix
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 augroup end
 
-"" Maximize  urrent split or retunr to previous
+"" Maximize current split or return to previous
 noremap <C-w>m :MaximizerToggle<CR>
 
 "" Allow overriding these settings
