@@ -6,35 +6,30 @@ IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 
 typeset -A IBM_CLUSTERS
-IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
-IBM_CLUSTERS[apis-prod]="Clusters|iks"
-IBM_CLUSTERS[apps-prod-us]="Clusters|iks"
-IBM_CLUSTERS[apps-staging-us]="Clusters Non-Prod|iks"
-IBM_CLUSTERS[experimental-us]="Experimental|iks"
-IBM_CLUSTERS[quantum-dc-ny-dev]="IBM Satellite Clusters Non-Prod|openshift"
-IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
-IBM_CLUSTERS[sat-pok-qnet-staging]="IBM Satellite Clusters Non-Prod|openshift"
-#IBM_CLUSTERS[cicd-production]="Infrastructure Core|openshift"
 
+
+ibm::cloud::load_cluster_configs() {
+  echo "Loading cluser configurations..."
+  IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
+  IBM_CLUSTERS[apis-prod]="Clusters|iks"
+  IBM_CLUSTERS[experimental-us]="Experimental|iks"
+ #IBM_CLUSTERS[yk-dev]="IBM Satellite Clusters Non-Prod|openshift"
+  IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
+  IBM_CLUSTERS[sat-pok-qnet-staging]="IBM Satellite Clusters Non-Prod|openshift"
+}
 
 ibm::cloud::login() {
   [[ -x "${IBMCLOUD_CLI}"     ]] || return 1
   [[ -n "${IBMCLOUD_API_KEY}" ]] || return 2
   [[ -n "${IBMCLOUD_REGION}"  ]] || IBMCLOUD_REGION='us-south'
 
-  case "${IBMCLOUD_DEBUG}" in
-    true) ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} ;;
-       *) ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -q >/dev/null 2>&1 ;;
-  esac
+  ${IBMCLOUD_CLI} login -r ${IBMCLOUD_REGION} -q >/dev/null 2>&1
 }
 
 ibm::cloud::logout() {
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
 
-  case "${IBMCLOUD_DEBUG}" in
-    true) ${IBMCLOUD_CLI} logout ;;
-       *) ${IBMCLOUD_CLI} logout -q >/dev/null 2>&1 ;;
-  esac
+  ${IBMCLOUD_CLI} logout -q >/dev/null 2>&1
 }
 
 ibm::cloud::target() {
@@ -43,18 +38,16 @@ ibm::cloud::target() {
 
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
 
-  case "${IBMCLOUD_DEBUG}" in
-    true) ${IBMCLOUD_CLI} target -g "${resource_group}" -r "${region}" ;;
-       *) ${IBMCLOUD_CLI} target -g "${resource_group}" -r "${region}" -q >/dev/null ;;
-  esac
+  ${IBMCLOUD_CLI} target -g "${resource_group}" -r "${region}" -q >/dev/null
 }
 
 ibm::k8s::update() {
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
   [[ -x "${IKSCC}"        ]] || return 1
 
-  ${IBMCLOUD_CLI} target -r '' -g '' -q >/dev/null
-  echo "Loading cluster configs..."
+  ibm::cloud::target
+  ibm::cloud::load_cluster_configs
+
   for cluster data in ${(kv)IBM_CLUSTERS}; do
     local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
 
