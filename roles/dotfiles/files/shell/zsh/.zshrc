@@ -45,12 +45,12 @@ declare -A TOGGLES_CONFIGURATION=(
   [fzf]=true
   [github]=true
   [go]=true
-  [rust]=true
-  [krew]=true
+  [rust]=false
+  [krew]=false
   [nodenv]=true
   [pyenv]=true
   [rbenv]=false
-  [tfenv]=true
+  [tfenv]=false
   [travis]=true
 )
 
