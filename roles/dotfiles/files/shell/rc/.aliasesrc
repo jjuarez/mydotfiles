@@ -28,6 +28,9 @@ fi
 
 # Commons
 alias cat='bat'
+alias tree='tree -a -I .git'
+
+# path traversal
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
