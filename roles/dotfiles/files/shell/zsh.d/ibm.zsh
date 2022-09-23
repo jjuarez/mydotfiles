@@ -12,6 +12,8 @@ ibm::cloud::load_cluster_configs() {
   echo "Loading cluser configurations..."
   IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
   IBM_CLUSTERS[apis-prod]="Clusters|iks"
+  IBM_CLUSTERS[apis-dev-de]="Clusters Non-Prod - DE|iks"
+  IBM_CLUSTERS[apis-prod-de]="Clusters - DE|iks"
   IBM_CLUSTERS[experimental-us]="Experimental|iks"
  #IBM_CLUSTERS[yk-dev]="IBM Satellite Clusters Non-Prod|openshift"
   IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
