@@ -21,6 +21,7 @@ zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.github.com' \
                       'id_ed25519.gitlab.com' \
                       'id_ed25519.ibm-aot' \
+                      'id_rsa.ibm.runtimedeployusr.openq' \
 
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
 [[ "${HOME}/.homebrewrc" ]] && source "${HOME}/.homebrewrc"
