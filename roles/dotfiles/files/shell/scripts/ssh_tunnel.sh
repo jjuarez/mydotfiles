@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
-set -eu -o pipefail
+set -e -o pipefail
 
 declare -r SSH="/usr/bin/ssh"
 declare -r SOCKET_PREFIX=".ssh-tunnel"
 
-SSH_REMOTE_USER="fjjuarez"
-SSH_REMOTE_HOST="9.47.161.61"  # The VPN DNS doesn't work very well eriecanal.cloud9.ibm.com"
-SSH_REMOTE_PORT=22
-SSH_LOCAL_PORT=8228
-SOCKET="/tmp/${SOCKET_PREFIX}-${SSH_LOCAL_PORT}"
+DEBUG="false"
+
+# Configuration
+SSH_REMOTE_USER=""
+SSH_REMOTE_HOST=""
+SSH_REMOTE_PORT=""
+SSH_LOCAL_PORT=""
+SOCKET=""
 
 
 utils::console() {
@@ -27,31 +30,53 @@ utils::exit() {
 }
 
 utils::help() {
-  utils::exit "Usage: ${0} (up|down|status|config)" 0
+  utils::exit "Usage: ${0} --network (qnet|openq) --command (start|stop|status)" 0
 }
 
+ssh::config() {
+  local -r network="${1}"
 
-ssh::up() {
+  case ${network} in
+     qnet) SSH_REMOTE_USER="fjjuarez"
+           SSH_REMOTE_HOST="9.47.161.61" # eriecanal.cloud9.ibm.com
+           SSH_REMOTE_PORT=22
+           SSH_LOCAL_PORT=8228
+           SOCKET="/tmp/${SOCKET_PREFIX}-${SSH_LOCAL_PORT}" ;;
+
+    openq) SSH_REMOTE_USER="runtimedeployusr"
+           SSH_REMOTE_HOST="champlaincanal-nat.watson.ibm.com"
+           SSH_REMOTE_PORT=22
+           SSH_LOCAL_PORT=8229
+           SOCKET="/tmp/${SOCKET_PREFIX}-${SSH_LOCAL_PORT}" ;;
+        *) return 1 ;;
+  esac
+}
+
+ssh::start() {
   local -r socket="${1}"
+  local ssh_extra_opts=""
 
   [[ -S "${socket}" ]] && utils::exit "A SSH tunnel is already running" 1
 
+  [[ "${DEBUG}" == "true" ]] && ssh_extra_opts="-v"
+
   ${SSH} -fN \
+    ${ssh_extra_opts} \
     -oStrictHostKeyChecking=no \
     -oUserKnownHostsFile=/dev/null \
     -oControlMaster=yes \
     -oPort="${SSH_REMOTE_PORT}" \
-    -oControlPath="${SOCKET}" \
+    -oControlPath="${socket}" \
     -oDynamicForward="localhost:${SSH_LOCAL_PORT}" \
     -oUser="${SSH_REMOTE_USER}" \
     ${SSH_REMOTE_HOST} &&
   utils::console "Remember to execute: \nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n"
 }
 
-ssh::down() {
+ssh::stop() {
   local -r socket="${1}"
 
-  [[ -S "${socket}" ]] || utils::console "There's no SSH tunnel running" 2
+  [[ -S "${socket}" ]] || utils::exit "There's no SSH tunnel running" 2
 
   ${SSH} -S ${SOCKET} -O exit ${SSH_REMOTE_HOST} >/dev/null 2>&1
 }
@@ -66,26 +91,38 @@ ssh::status() {
   fi
 }
 
-ssh::config() {
-  local -r socket="${1}"
-
-  if [[ -S "${socket}" ]]; then 
-    utils::exit "export HTTPS_PROXY=\"socks5://localhost:${SSH_LOCAL_PORT}\"" 0
-  else
-    utils::exit "The SSH tunnel is stopped" 1
-  fi
-}
-
 main() {
-  local -r command=${1:-'none'}
-  
+  local network=""
+  local command=""
+
+  while [[ "${1}" =~ ^- && ! "${1}" == "--" ]]; do
+    case "${1}" in
+      -n | --network) shift
+                      network="${1}"
+                      ;;
+      -c | --command) shift
+                      command="${1}"
+                      ;;
+        -d | --debug) DEBUG="true"
+                      ;;
+         -h | --help) utils::help
+                      ;;
+    esac
+    shift
+  done
+
+  [[ "${DEBUG}" == "true" ]] && utils::console "Target network: ${network}, command: ${command}"
+
+  ssh::config "${network}" || utils::help
   case "${command}" in
-         up|start) ssh::up "${SOCKET}" ;;
-        down|stop) ssh::down "${SOCKET}" ;;
-           status) ssh::status "${SOCKET}" ;;
-           config) ssh::config "${SOCKET}" ;;
-                *) utils::help ;;
+         start) ssh::start "${SOCKET}" ;;
+          stop) ssh::stop "${SOCKET}" ;;
+        status) ssh::status "${SOCKET}" ;;
+             *) utils::help ;;
   esac
 }
 
+#
+# ::main::
+#
 main "${@}"
