@@ -12,6 +12,3 @@ ssh::load_keys() {
 
 # autoloads
 autoload ssh::load_keys
-
-# aliases
-alias sshlk='ssh::load_keys'
