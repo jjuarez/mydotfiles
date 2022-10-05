@@ -22,9 +22,11 @@ Host eriecanal.cloud9.ibm.com
   HostName 9.47.161.61 #  eriecanal.cloud9.ibm.com DNS issues
   User     fjjuarez
 
+Host stockholm-nat.watson.ibm.com
+  User aotdeployusr
+
 Host champlaincanal-nat.watson.ibm.com
-  HostName champlaincanal-nat.watson.ibm.com
-  User     runtimedeployusr
+  User runtimedeployusr
 
 ##
 ## QSS datacenter configuraiton (not used yet)
