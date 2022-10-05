@@ -22,6 +22,7 @@ zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
                       'id_ed25519.gitlab.com' \
                       'id_ed25519.ibm-aot' \
                       'id_rsa.ibm.runtimedeployusr.openq' \
+                      'id_rsa.ibm.aotdeployusr.qnet' \
 
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
 [[ "${HOME}/.homebrewrc" ]] && source "${HOME}/.homebrewrc"
@@ -45,6 +46,7 @@ declare -A TOGGLES_CONFIGURATION=(
   [direnv]=true
   [fzf]=true
   [github]=true
+  [ghe]=true
   [go]=true
   [rust]=false
   [krew]=false
@@ -56,6 +58,9 @@ declare -A TOGGLES_CONFIGURATION=(
 )
 
 [[ -f "${HOME}/.tooglesrc" ]] && source "${HOME}/.tooglesrc"
+
+# Porter (experimental support)
+[[ -d "${HOME}/.porter" ]] && export PATH=${HOME}/.porter:${PATH}
 
 # Custonm functions
 for ff in ${HOME}/.zsh.d/*.zsh; do

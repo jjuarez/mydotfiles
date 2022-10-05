@@ -43,7 +43,11 @@ toggles::rust() {
 }
 
 toggles::github() {
-  [[ -d "${HOME}/.githubrc" ]] && source "${HOME}/.githubrc"
+  [[ -s "${HOME}/.githubrc" ]] && source "${HOME}/.githubrc"
+}
+
+toggles::ghe() {
+  [[ -s "${HOME}/.env.IBM.ghe" ]] && source "${HOME}/.env.IBM.ghe"
 }
 
 toggles::travis() {
