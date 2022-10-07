@@ -12,15 +12,16 @@ Host gitlab.com
 Host github.ibm.com
   User javier-juarez-martinez
 
-Host us-south.git.cloud.ibm.com
-  User Javier.Juarez.Martinez
-
 ##
 ## SSH jump host for QNet and OpenQ networks
 ##
 Host eriecanal.cloud9.ibm.com
-  HostName 9.47.161.61 #  eriecanal.cloud9.ibm.com DNS issues
+  HostName 9.47.161.61
   User     fjjuarez
+
+Host frogger.qnet.local
+  ProxyJump eriecanal.cloud9.ibm.com
+  User javier-juarez-martinez
 
 Host stockholm-nat.watson.ibm.com
   User aotdeployusr
@@ -28,44 +29,6 @@ Host stockholm-nat.watson.ibm.com
 Host champlaincanal-nat.watson.ibm.com
   User runtimedeployusr
 
-##
-## QSS datacenter configuraiton (not used yet)
-##
-# Host *.cloud9.ibm.com
-#   User javier-juarez-martinez
-#
-# Host elmira.watson.ibm.com
-#   HostName 9.2.84.24
-#   User javier-juarez-martinez
-#
-# Host basin.watson.ibm.com
-#   HostName 9.2.84.46
-#   User javier-juarez-martinez
-#
-# Host *.watson.ibm.com
-#   User javier-juarez-martinez
-#
-# Host *.openq.local
-#   User      javier-juarez-martinez
-#   ProxyJump eriecanal.cloud9.ibm.com
-#
-# Host pok*sat*.qnet.local
-#   User ansible
-#   IdentityFile ~/.ssh/id_ed25519
-#   ProxyJump    eriecanal.cloud9.ibm.com
-#
-# Host koshiba.sk.jp.ibm.com koshiba 9.116.12.201
-#   HostName 9.116.12.201
-#   User Javier-Juarez-Martinez
-#
-# Host *.sk.local
-#   ProxyJump koshiba
-#   User Javier-Juarez-Martinez
-#
-# Host sk-sat-*.sk.local 10.6.8.*
-#   User root
-#   IdentityFile ~/.ssh/id_ed25519
-#   ProxyJump koshiba
 
 Host *
   AddKeysToAgent        yes
