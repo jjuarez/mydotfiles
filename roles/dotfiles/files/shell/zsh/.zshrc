@@ -1,3 +1,11 @@
+# SSH keys to load by the agent
+zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
+                      'id_ed25519.github.com' \
+                      'id_ed25519.gitlab.com' \
+                      'id_ed25519.ibm-aot' \
+                      'id_rsa.ibm.runtimedeployusr.openq' \
+                      'id_rsa.ibm.aotdeployusr.qnet'
+
 # Start configuration added by Zim install {{{
 # zimfw configuration
 export HISTFILE="${HOME}/.zsh_history"  # Try to share the shell history across subshells
@@ -16,13 +24,6 @@ source ${ZIM_HOME}/init.zsh
 zmodload -F zsh/terminfo +p:terminfo
 # }}} End configuration added by Zim install
 
-# SSH keys to load by the agent
-zstyle ':zim:ssh' ids 'id_ed25519.github.ibm.com' \
-                      'id_ed25519.github.com' \
-                      'id_ed25519.gitlab.com' \
-                      'id_ed25519.ibm-aot' \
-                      'id_rsa.ibm.runtimedeployusr.openq' \
-                      'id_rsa.ibm.aotdeployusr.qnet' \
 
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
 [[ "${HOME}/.homebrewrc" ]] && source "${HOME}/.homebrewrc"
@@ -52,8 +53,7 @@ declare -A TOGGLES_CONFIGURATION=(
   [krew]=false
   [nodenv]=true
   [pyenv]=true
-  [rbenv]=false
-  [tfenv]=false
+  [tfenv]=true
   [travis]=true
 )
 
