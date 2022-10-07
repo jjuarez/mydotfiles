@@ -28,12 +28,6 @@ toggles::nodenv() {
   fi
 }
 
-toggles::rbenv() {
-  if [ $commands[rbenv] ]; then
-    eval "$(rbenv init -)"
-  fi
-}
-
 toggles::go() {
   [[ -s "${HOME}/.gorc" ]] && source "${HOME}/.gorc"
 }
