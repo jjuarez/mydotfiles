@@ -5,6 +5,8 @@ zmodule input
 zmodule environment
 # Quick directory change
 zmodule agkozak/zsh-z
+# SSH agent helper
+zmodule ssh
 # Additional completion definitions for Zsh.
 zmodule completion
 zmodule fzf
@@ -13,5 +15,4 @@ zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-syntax-highlighting
 # Themes
 zmodule romkatv/powerlevel10k
-#zmodule minimal
 # }}} End configuration added by Zim install
