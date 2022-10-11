@@ -85,7 +85,7 @@ ssh::status() {
   local -r socket="${1}"
 
   if [[ -S "${socket}" ]]; then 
-    utils::exit "The SSH tunnel is running" 0
+    utils::exit "The SSH tunnel is running\nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n" 0
   else
     utils::exit "The SSH tunnel is stopped" 1
   fi
