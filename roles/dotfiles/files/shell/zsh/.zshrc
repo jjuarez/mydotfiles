@@ -35,12 +35,6 @@ export DOTFILES="${HOME}/.mydotfiles"
 
 export PATH=/usr/local/sbin:${PATH}
 
-# zsh plugins
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
-ZSH_THEME="powerlevel10k"
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-[[ -L "${HOME}/.p10k.zsh" ]] && source "${HOME}/.p10k.zsh"
-
 # Custom configurations
 TOGGLES_VERBOSE=true
 declare -A TOGGLES_CONFIGURATION=(
@@ -48,19 +42,26 @@ declare -A TOGGLES_CONFIGURATION=(
   [fzf]=true
   [github]=true
   [ghe]=true
+  [ibmcloud]=true
   [go]=true
   [rust]=false
   [krew]=false
-  [nodenv]=true
+  [nvm]=true
+  [nodenv]=false
   [pyenv]=true
   [tfenv]=true
   [travis]=true
+  [porter]=true
 )
 
 [[ -f "${HOME}/.tooglesrc" ]] && source "${HOME}/.tooglesrc"
 
-# Porter (experimental support)
-[[ -d "${HOME}/.porter" ]] && export PATH=${HOME}/.porter:${PATH}
+# zsh plugins
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
+ZSH_THEME="powerlevel10k"
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+
+[[ -L "${HOME}/.p10k.zsh" ]] && source "${HOME}/.p10k.zsh"
 
 # Custonm functions
 for ff in ${HOME}/.zsh.d/*.zsh; do
