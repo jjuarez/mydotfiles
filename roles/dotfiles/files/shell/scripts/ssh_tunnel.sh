@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+: '
+This shell script will help you to manage the needed SSH tunnels to acces host deployed in the OpenQ and QNet.
+
+# Usage:
+
+## Requirements
+ - Having a functional installation of the SSH agent
+ - Having your private SSH keys loaded in the SSH agent
+
+## How to open a SSH tunnel to access to OpenQ network
+ - ssh_tunnel.sh --network openq --command start
+ - export the HTTPS_PROXY environment variable usign the value provided by the start command
+ - Try a simple operation to reach, for example, the API endpoint of an OpenShift cluster doing: kubectl cluster-info, of course,
+   before to execute this you should have access to the cluster, and having the kubeconfig configuration available.
+'
+
 set -e -o pipefail
 
 declare -r SSH="/usr/bin/ssh"
@@ -93,7 +109,7 @@ ssh::status() {
 
 main() {
   local network=""
-  local command=""
+  local cmd=""
 
   while [[ "${1}" =~ ^- && ! "${1}" == "--" ]]; do
     case "${1}" in
@@ -101,7 +117,7 @@ main() {
                       network="${1}"
                       ;;
       -c | --command) shift
-                      command="${1}"
+                      cmd="${1}"
                       ;;
         -d | --debug) DEBUG="true"
                       ;;
@@ -114,7 +130,7 @@ main() {
   [[ "${DEBUG}" == "true" ]] && utils::console "Target network: ${network}, command: ${command}"
 
   ssh::config "${network}" || utils::help
-  case "${command}" in
+  case "${cmd}" in
          start) ssh::start "${SOCKET}" ;;
           stop) ssh::stop "${SOCKET}" ;;
         status) ssh::status "${SOCKET}" ;;
