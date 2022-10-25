@@ -4,11 +4,13 @@
 .DEFAULT_SHELL := /bin/bash
 
 PIPENV_VENV_IN_PROJECT := 1
-PIPENV_VERSION         := 2022.5.2
+PIPENV_VERSION         := 2022.10.12
 DOTFILES               ?= $(HOME)/.mydotfiles
 HOMEBREW_FILE          := $(DOTFILES)/backups/homebrew/Brewfile
+ANSIBLE_INVENTORY      ?= site.yml
 ANSIBLE_OPTS           ?=
 ANSIBLE_TAGS           ?=
+
 
 define assert-set
 	@$(if $($1),,$(error $(1) environment variable is not defined))
@@ -38,9 +40,13 @@ ansible/setup:
 	@pip install pipenv==${PIPENV_VERSION}
 	@pipenv install 
 
-.PHONY: ansible
-ansible/run: ## Setup all the configurations
-	@pipenv run ansible-playbook $(ANSIBLE_OPTS) site.yml $(ANSIBLE_TAGS)
+.PHONY: ansible/check
+ansible/check: ## Run the ansible playbooks in check mode
+	@pipenv run ansible-playbook --check $(ANSIBLE_OPTS) $(ANSIBLE_INVENTORY) $(ANSIBLE_TAGS)
+
+.PHONY: ansible/run
+ansible/run: ## Run the ansible playbooks
+	@pipenv run ansible-playbook $(ANSIBLE_OPTS) $(ANSIBLE_INVENTORY) $(ANSIBLE_TAGS)
 
 .PHONY: homebrew/dump
 homebrew/dump: ## Save a snapshot of your formulas, casks, taps, etc
