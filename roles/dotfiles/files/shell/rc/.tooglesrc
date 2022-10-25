@@ -85,8 +85,8 @@ toggles::porter() {
 }
 
 toggles::ibmcloud() {
-  if [ -s "${HOME}/.env.IBM.cloud.Q.apikey" ]; then
-    source "${HOME}/.env.IBM.Cloud.Q.apikey"
+  if [ -s "${HOME}/.env.IBM.cloud.Quantum.apikey" ]; then
+    source "${HOME}/.env.IBM.Cloud.Quantum.apikey"
   fi
 }
 
