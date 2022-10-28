@@ -45,13 +45,13 @@ declare -A TOGGLES_CONFIGURATION=(
   [ibmcloud]=true
   [go]=true
   [rust]=false
-  [krew]=false
+  [krew]=true
   [nvm]=true
   [nodenv]=false
   [pyenv]=true
   [tfenv]=true
   [travis]=true
-  [porter]=true
+  [porter]=false
 )
 
 [[ -f "${HOME}/.tooglesrc" ]] && source "${HOME}/.tooglesrc"
