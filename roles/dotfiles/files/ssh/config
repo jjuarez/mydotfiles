@@ -16,19 +16,16 @@ Host github.ibm.com
 ## SSH jump host for QNet and OpenQ networks
 ##
 Host eriecanal.cloud9.ibm.com
-  HostName 9.47.161.61
-  User     fjjuarez
-
-Host frogger.qnet.local
-  ProxyJump eriecanal.cloud9.ibm.com
-  User javier-juarez-martinez
+  User         fjjuarez
+  # IdentityFile ~/.ssh/id_ed25519.ibm.fjjuarez.qnet
 
 Host stockholm-nat.watson.ibm.com
   User aotdeployusr
+  # IdentityFile ~/.ssh/id_rsa.ibm.aotdeployusr.qnet
 
 Host champlaincanal-nat.watson.ibm.com
   User runtimedeployusr
-
+  # IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.openq
 
 Host *
   AddKeysToAgent        yes
