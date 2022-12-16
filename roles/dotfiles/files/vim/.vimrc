@@ -8,13 +8,9 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
-" Plug 'airblade/vim-gitgutter'
-" Plug 'dagger/cuelsp'
 Plug 'jjo/vim-cue'
 Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
-" Plug 'pearofducks/ansible-vim'
-" Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
 Plug 'tomasr/molokai'
 Plug 'ryanoasis/vim-devicons'
@@ -47,7 +43,6 @@ let g:is_posix = 1
 
 "" The Color Scheme
 try
-  " colorscheme dracula
   colorscheme molokai
   let g:rehash256=1
   let g:colorscheme_bg='dark'
@@ -164,14 +159,8 @@ let g:lightline = { 'colorscheme': 'wombat' }
 "" Ale
 let g:ale_python_flake8_options = '--max-line-length=132'
 
-"" PyMode
-let g:pymode_lint_ignore = "E501,W"
-
 "" NERDTree
 let NERDTreeShowHidden=1
-
-"" Markdown
-let g:markdown_fenced_languages = [ 'python', 'yaml', 'bash=sh', 'go', 'rust' ]
 
 "" Fix auto-indentation for YAML files
 augroup yaml_fix
