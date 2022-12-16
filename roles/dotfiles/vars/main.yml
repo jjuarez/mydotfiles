@@ -19,7 +19,6 @@ tools:
     - .gitignore_global
     - .githubrc
     - .tmux.conf
-    - .mongorc.js
 
 languages:
   go:
