@@ -9,23 +9,23 @@ typeset -A IBM_CLUSTERS
 
 
 ibm::cloud::load_cluster_configs() {
-  echo "Loading cluser configurations..."
-  IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
-  IBM_CLUSTERS[apis-prod]="Clusters|iks"
-  IBM_CLUSTERS[apis-dev-de]="Clusters Non-Prod - DE|iks"
-  IBM_CLUSTERS[apis-prod-de]="Clusters - DE|iks"
-  IBM_CLUSTERS[apps-staging-de]="Clusters Non-Prod - DE|iks"
-  IBM_CLUSTERS[apps-staging-us]="Clusters Non-Prod|iks"
-  IBM_CLUSTERS[apps-prod-us]="Clusters|iks"
-  IBM_CLUSTERS[processing-staging]="Clusters Non-Prod|iks"
-  IBM_CLUSTERS[processing-staging-de]="Clusters Non-Prod - DE|iks"
-  IBM_CLUSTERS[processing-prod]="Clusters|iks"
-  IBM_CLUSTERS[processing-production-de]="Clusters - DE|iks"
-  IBM_CLUSTERS[experimental-us]="Experimental|iks"
+# IBM_CLUSTERS[apis-dev]="Clusters Non-Prod|iks"
+# IBM_CLUSTERS[apis-prod]="Clusters|iks"
+# IBM_CLUSTERS[apis-dev-de]="Clusters Non-Prod - DE|iks"
+# IBM_CLUSTERS[apis-prod-de]="Clusters - DE|iks"
+# IBM_CLUSTERS[apps-staging-de]="Clusters Non-Prod - DE|iks"
+# IBM_CLUSTERS[apps-staging-us]="Clusters Non-Prod|iks"
+# IBM_CLUSTERS[apps-prod-us]="Clusters|iks"
+# IBM_CLUSTERS[processing-staging]="Clusters Non-Prod|iks"
+# IBM_CLUSTERS[processing-staging-de]="Clusters Non-Prod - DE|iks"
+# IBM_CLUSTERS[processing-prod]="Clusters|iks"
+# IBM_CLUSTERS[processing-production-de]="Clusters - DE|iks"
+# IBM_CLUSTERS[experimental-us]="Experimental|iks"
   IBM_CLUSTERS[sat-ykt-openq-dev]="IBM Satellite Clusters Non-Prod|openshift"
   IBM_CLUSTERS[sat-pok-qnet-prod]="IBM Satellite Clusters|openshift"
   IBM_CLUSTERS[sat-pok-qnet-staging]="IBM Satellite Clusters Non-Prod|openshift"
   IBM_CLUSTERS[cicd-production]="Infrastructure Core|openshift"
+  IBM_CLUSTERS[cicd-tools]="CI-CD Services|openshift"
 }
 
 ibm::cloud::login() {
@@ -61,7 +61,7 @@ ibm::k8s::update() {
   for cluster data in ${(kv)IBM_CLUSTERS}; do
     local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
 
-    echo "${kind}: ${cluster}"
+    echo "${cluster}"
     case ${kind} in
       openshift) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 7 ;;
             iks) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 7 ;;
@@ -70,11 +70,25 @@ ibm::k8s::update() {
   done
 }
 
+ibm::k8s::show() {
+  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+  [[ -x "${IKSCC}"        ]] || return 1
+
+  ibm::cloud::target
+  ibm::cloud::load_cluster_configs
+
+  for cluster data in ${(kv)IBM_CLUSTERS}; do
+    local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
+    echo "Cluster: ${cluster} (${kind})"
+  done
+}
+
 # autoloads
 autoload ibm::cloud::login
 autoload ibm::cloud::logout
 autoload ibm::cloud::target
 autoload ibm::k8s::update
+autoload ibm::k8s::show
 
 # aliases
 alias ic='ibmcloud'
