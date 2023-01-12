@@ -21,7 +21,7 @@
   unstage    = reset HEAD --
   tree       = log --oneline --decorate --graph
   ts         = tag --sort=-committerdate
-  lg         = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso8601-strict
+  lg         = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso8601-strict
 
 [github]
   user = jjuarez
