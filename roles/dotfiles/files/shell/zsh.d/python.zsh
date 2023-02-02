@@ -1,4 +1,4 @@
-#set -u -o pipefail
+set -o pipefail
 #set -x
 
 
@@ -8,16 +8,23 @@ python::clean() {
 }
 
 python::venv::activate() {
+  local -r default_venv_directory="venv"
   local venv_directory="./venv"
 
-  [[ -d ./.venv ]] && venv_directory="./.venv"
-  deactivate &>/dev/null; source "${venv_directory}/bin/activate"
+  if [[ -d "./.venv" ]]; then
+    deactivate >/dev/null 2>&1
+    source ./.venv/bin/activate
+  elif [[ -d "./venv" ]]; then
+    deactivate >/dev/null 2>&1
+    source "${venv_directory}/bin/activate"
+  fi
 }
 
 # autoloads
 autoload python::clean
+autoload python::venv::active
 
 # aliases
 alias pyclean='python::clean'
-alias ae='python::venv::activate'
-alias de='deactivate'
+alias pyae='python::venv::activate'
+alias pyde='deactivate'
