@@ -1,28 +1,28 @@
 #
 # vim
 #
-- name: vim config files
+- name: VIM config files
   ansible.builtin.file:
     src: "{{ role_path }}/files/vim/{{ item }}"
     dest: "{{ home_directory }}/{{ item }}"
     state: link
     force: true
   loop:
-    "{{ vim.config.files|flatten(levels=1) }}"
+    "{{ vim.config.files | flatten(levels=1) }}"
   tags:
     - vim
 
-- name: vim config files cleanup
+- name: VIM config files cleanup
   ansible.builtin.file:
     path: "{{ home_directory }}/{{ item }}"
     state: absent
   loop:
-    "{{ vim.config.files|flatten(levels=1) }}"
+    "{{ vim.config.files | flatten(levels=1) }}"
   tags:
     - vimcleanup
     - never
 
-- name: vim config directory
+- name: VIM config directory
   ansible.builtin.file:
     path: "{{ home_directory }}/.vim"
     mode: 0750
@@ -31,7 +31,7 @@
   tags:
     - vim
 
-- name: vim config directory stat
+- name: VIM config directory stat
   ansible.builtin.stat:
     path: "{{ home_directory }}/.vim"
   register: vim_config_directory_stat
@@ -39,7 +39,7 @@
     - vimcleanup
     - never
 
-- name: vim autoload directory
+- name: VIM autoload directory
   ansible.builtin.file:
     path: "{{ home_directory }}/.vim/autoload"
     mode: 0750
@@ -49,7 +49,7 @@
   tags:
     - vim
 
-- name: vim plug installation
+- name: VIM plug installation
   ansible.builtin.get_url:
     url: "{{ vim.plug.url }}"
     dest: "{{ home_directory }}/.vim/autoload/plug.vim"
@@ -57,7 +57,7 @@
   tags:
     - vim
 
-- name: vim plug installation cleanup
+- name: VIM plug installation cleanup
   ansible.builtin.file:
     path: "{{ home_directory }}/.vim"
     state: absent
@@ -66,7 +66,7 @@
     - vimcleanup
     - never
 
-- name: vim plug plugins installation
+- name: VIM plug plugins installation
   ansible.builtin.debug:
     msg: "To complete the installation of your plugins you must execute: 'vim +PlugUpdate'"
   tags:

@@ -8,7 +8,7 @@
     state: link
     force: true
   loop:
-    "{{ tools.files|flatten(levels=1) }}"
+    "{{ tools.files | flatten(levels=1) }}"
   tags:
     - tools
 
@@ -17,7 +17,7 @@
     path: "{{ home_directory }}/{{ item }}"
     state: absent
   loop:
-    "{{ tools.files|flatten(levels=1) }}"
+    "{{ tools.files | flatten(levels=1) }}"
   tags:
     - toolscleanup
     - never

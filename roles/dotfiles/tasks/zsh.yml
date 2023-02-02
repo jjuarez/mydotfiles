@@ -17,7 +17,7 @@
     - zsh
     - zshcleanup
 
-- name: zimfw installation
+- name: ZIMfw installation
   ansible.builtin.shell: "set -o pipefail && curl -fsSL {{ zimfw.url }} | zsh"
   args:
     warn: false
@@ -43,52 +43,52 @@
     - zshcleanup
     - never
 
-- name: zimfw configuration
+- name: ZIMfw configuration
   ansible.builtin.file:
     src: "{{ role_path }}/files/zimfw/{{ item }}"
     dest: "{{ home_directory }}/{{ item }}"
     state: link
     force: true
   loop:
-    "{{ zimfw.files|flatten(levels=1) }}"
+    "{{ zimfw.files | flatten(levels=1) }}"
   tags:
     - zsh
 
-- name: zimfw configuration cleanup
+- name: ZIMfw configuration cleanup
   ansible.builtin.file:
     path: "{{ home_directory }}/{{ item }}"
     state: absent
   loop:
-    "{{ zimfw.files|flatten(levels=1) }}"
+    "{{ zimfw.files | flatten(levels=1) }}"
   tags:
     - zshcleanup
     - never
-      
+
 #
 # zsh configuration
 #
-- name: zsh configuration
+- name: ZSH configuration
   ansible.builtin.file:
     src: "{{ role_path }}/files/shell/zsh/{{ item }}"
     dest: "{{ home_directory }}/{{ item }}"
     state: link
     force: true
   loop:
-    "{{ zsh.files|flatten(levels=1) }}"
+    "{{ zsh.files | flatten(levels=1) }}"
   tags:
     - zsh
 
-- name: zsh configuration cleanup
+- name: ZSH configuration cleanup
   ansible.builtin.file:
     path: "{{ home_directory }}/{{ item }}"
     state: absent
   loop:
-    "{{ zsh.files|flatten(levels=1) }}"
+    "{{ zsh.files | flatten(levels=1) }}"
   tags:
     - zshcleanup
     - never
 
-- name: zsh custom functions
+- name: ZSH custom functions
   ansible.builtin.file:
     src: "{{ role_path }}/files/shell/zsh.d"
     dest: "{{ home_directory }}/.zsh.d"
@@ -97,7 +97,7 @@
   tags:
     - zsh
 
-- name: zsh custom functions cleanup
+- name: ZSH custom functions cleanup
   ansible.builtin.file:
     path: "{{ home_directory }}/.zsh.d"
     state: absent

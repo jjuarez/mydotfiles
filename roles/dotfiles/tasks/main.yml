@@ -1,50 +1,50 @@
 ---
 - name: RC files
-  import_tasks: rcfiles.yml
+  ansible.builtin.import_tasks: rcfiles.yml
   tags:
     - dotfiles
 
 - name: Tools support
-  import_tasks: tools.yml
+  ansible.builtin.import_tasks: tools.yml
   tags:
     - dotfiles
 
 - name: Skeletons support
-  import_tasks: skeletons.yml
+  ansible.builtin.import_tasks: skeletons.yml
   tags:
     - dotfiles
 
 - name: Scripts support
-  import_tasks: scripts.yml
+  ansible.builtin.import_tasks: scripts.yml
   tags:
     - dotfiles
 
 - name: SSH support
-  import_tasks: ssh.yml
+  ansible.builtin.import_tasks: ssh.yml
   tags:
     - dotfiles
 
-- name: languages support
-  import_tasks: languages.yml
+- name: Languages support
+  ansible.builtin.import_tasks: languages.yml
   tags:
     - dotfiles
 
-- name: homebrew support
-  import_tasks: homebrew.yml
+- name: Homebrew support
+  ansible.builtin.import_tasks: homebrew.yml
   tags:
     - dotfiles
 
-- name: zsh support
-  import_tasks: zsh.yml
+- name: ZSH support
+  ansible.builtin.import_tasks: zsh.yml
   tags:
     - dotfiles
 
-- name: vim support
-  import_tasks: vim.yml
+- name: VIM support
+  ansible.builtin.import_tasks: vim.yml
   tags:
     - dotfiles
 
-- name: neovim support
-  import_tasks: neovim.yml
+- name: Neovim support
+  ansible.builtin.import_tasks: neovim.yml
   tags:
     - dotfiles

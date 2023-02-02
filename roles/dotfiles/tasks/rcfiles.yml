@@ -8,7 +8,7 @@
     state: link
     force: true
   loop:
-    "{{ rc.files|flatten(levels=1) }}"
+    "{{ rc.files | flatten(levels=1) }}"
   tags:
     - rcfiles
 
@@ -17,7 +17,7 @@
     path: "{{ home_directory }}/{{ item }}"
     state: absent
   loop:
-    "{{ rc.files|flatten(levels=1) }}"
+    "{{ rc.files | flatten(levels=1) }}"
   tags:
     - rcfilescleanup
     - never
