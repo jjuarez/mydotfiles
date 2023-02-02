@@ -127,7 +127,7 @@ main() {
     shift
   done
 
-  [[ "${DEBUG}" == "true" ]] && utils::console "Target network: ${network}, command: ${command}"
+  [[ "${DEBUG}" == "true" ]] && utils::console "Target network: ${network}, command: ${cmd}"
 
   ssh::config "${network}" || utils::help
   case "${cmd}" in
