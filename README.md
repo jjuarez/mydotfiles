@@ -1,14 +1,16 @@
-# My . Files: A collection of my favorite tips & tricks to setup your environment
+# My (dot) Files
+
+A collection of my favorite tips & tricks to setup your environment
 
 ## Installing
 
 ### Install from GitHub the latest version:
 
 ```bash
-$ git clone https://jjuarez@github.com/jjuarez/mydotfiles.git .mydotfiles
-$ cd .mydotfiles
-$ make ansible/setup
-$ make ansible/run
+git clone https://jjuarez@github.com/jjuarez/mydotfiles.git .mydotfiles
+cd .mydotfiles
+make ansible/setup
+make ansible/run
 ```
 
 #### Contents
@@ -21,7 +23,7 @@ The project, after some back and forth is now strongly based on [ansible](https:
 * Another goodies:
   - Skeleton/template management for several types of files
   - SSH configuration
-  - Toogles/fflags
+  - Toogles
 * Management of all the [Homebrew](https://brew.sh) packages, casks, taps, etc
 
 ### Install all the homebrew stuff
@@ -29,8 +31,8 @@ The project, after some back and forth is now strongly based on [ansible](https:
 The latest documentation about this subject is [here](https://docs.brew.sh/Installation)
 
 ```bash
-$ cd ${DOTFILES}
-$ make homebrew/load
+cd ${DOTFILES}
+make homebrew/load
 ```
 
 ## License
