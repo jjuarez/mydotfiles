@@ -16,7 +16,7 @@ Host github.ibm.com
 ## SSH jump host for QNet and OpenQ networks
 ##
 Host eriecanal.cloud9.ibm.com
-  User         fjjuarez
+  User fjjuarez
   # IdentityFile ~/.ssh/id_ed25519.ibm.fjjuarez.qnet
 
 Host stockholm-nat.watson.ibm.com
@@ -26,6 +26,12 @@ Host stockholm-nat.watson.ibm.com
 Host champlaincanal-nat.watson.ibm.com
   User runtimedeployusr
   # IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.openq
+
+Host ibmq-bastion.cloud9.ibm.com
+  HostName ibmq-bastion.cloud9.ibm.com
+
+Host *.ccf.local
+  ProxyJump ibmq-bastion
 
 Host *
   AddKeysToAgent        yes
