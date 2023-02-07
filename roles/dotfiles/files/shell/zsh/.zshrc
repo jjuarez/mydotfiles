@@ -69,5 +69,5 @@ done 2>/dev/null
 # Utilities and aliases
 [[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
 
-# iTerm Shell integration
-[[ "${HOME}/.iterm2_shell_integration.zsh" ]] && source "${HOME}/.iterm2_shell_integration.zsh"
+# IBMCloud accounts
+[[ -f "${HOME}/.env.IBM.Cloud.accounts" ]] && source "${HOME}/.env.IBM.Cloud.accounts"
