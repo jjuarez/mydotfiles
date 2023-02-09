@@ -73,8 +73,8 @@ ibm::k8s::update() {
     echo "Cluster: ${cluster} (${account},${kind})"
 
     case ${kind} in
-      openshift) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin --endpoint link | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 3 ;;
-            iks) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 3 ;;
+      openshift) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin --endpoint link | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 3 ;;
+            iks) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 3 ;;
               *) return 4 ;;
     esac
   done
