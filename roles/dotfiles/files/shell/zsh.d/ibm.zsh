@@ -4,11 +4,8 @@ set -o pipefail
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 
-typeset -A IBM_ACCOUNTS=(
-  ["qc-master"]="3f0eacee15cc4551a4b51313a4a1f2d2"
-  ["qs-staging"]="f3e7d1b7a7044d7abf45f5be9821782a"
-  ["qs-production"]="b947c1c5e9344d64aed96696e4d76e0e"
-)
+TEMPD=$(mktemp -d)
+
 typeset -A IBM_CLUSTERS=(
 # Quantum Master
   [apis-dev]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
@@ -50,17 +47,39 @@ ibm::cloud::switch_account() {
   esac
 }
 
+ibm::k8s::save_configuration() {
+  local -r cluster="${1}"
+  local -r command="${2}"
+  local local_file=""
+
+  [[ -n "${cluster}" ]] || return 2
+  [[ -n "${command}" ]] || return 2
+
+  local_file="${TEMPD}/${cluster}.yml"
+
+  if [[ -x "${IKSCC}" ]]; then
+    # Cleanup
+    eval "${command}" 2>/dev/null | ${IKSCC} -f - > "${local_file}"
+  else
+    eval "${command}" 2>/dev/null> "${local_file}"
+  fi
+
+  echo "saving: ${HOME}/.kube/${cluster}.yml"
+  cp -f "${local_file}" "${HOME}/.kube/${cluster}.yml"
+}
+
 ibm::k8s::update() {
   local current_account=""
 
+  # set -x
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
-  [[ -x "${IKSCC}" ]] || return 1
 
   ${IBMCLOUD_CLI} target -g '' -r '' -q >/dev/null 2>&1
 
   for cluster data in ${(kv)IBM_CLUSTERS}; do
     local account=$(echo ${data}|awk -F"|" '{ print $1 }')
     local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
+    local command=""
 
     if [[ -z "${current_account}" ]]; then
       ibm::cloud::switch_account "${account}" &&
@@ -70,14 +89,15 @@ ibm::k8s::update() {
       current_account="${account}"
     fi
 
-    echo "Cluster: ${cluster} (${account},${kind})"
-
+    echo -n "Cluster: ${cluster} (${account},${kind})... "
     case ${kind} in
-      openshift) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin --endpoint link | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 3 ;;
-            iks) ${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q | ${IKSCC} -f - >! "${HOME}/.kube/${cluster}.yml" || return 3 ;;
-              *) return 4 ;;
+      openshift) command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin --endpoint link" ;;
+            iks) command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q" ;;
+              *) echo "Unknown type of cluster" ;;
     esac
+    ibm::k8s::save_configuration "${cluster}" "${command}"
   done
+  # set +x
 }
 
 # autoloads
