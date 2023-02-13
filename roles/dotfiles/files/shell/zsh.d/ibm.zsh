@@ -10,26 +10,27 @@ typeset -A IBM_CLUSTERS=(
 # Quantum Master
   [apis-dev]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
   [apis-prod]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [apis-dev-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [apis-prod-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [apps-staging-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
+  # [apis-dev-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
+  # [apis-prod-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
+  # [apps-staging-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
   [apps-staging-us]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
   [apps-prod-us]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [processing-staging]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [processing-staging-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [processing-prod]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [processing-production-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
+  # [processing-staging]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
+  # [processing-staging-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
+  # [processing-prod]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
+  # [processing-production-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
   [experimental-us]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
   [sat-ykt-openq-dev]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
   [sat-pok-qnet-prod]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
   [sat-pok-qnet-staging]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
   [cicd-production]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
   [cicd-tools]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
+  [sat-shinkawasaki-sk-prod]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
 # Quantum Services - staging
-  [qc-apis-staging-us-east]="f3e7d1b7a7044d7abf45f5be9821782a|iks"
-  [qc-apis-testing-us-east]="f3e7d1b7a7044d7abf45f5be9821782a|iks"
-  [qc-pok-qnet-staging]="f3e7d1b7a7044d7abf45f5be9821782a|openshift"
-  [qc-simulators-staging-us-east]="f3e7d1b7a7044d7abf45f5be9821782a|openshift"
+  # [qc-apis-staging-us-east]="f3e7d1b7a7044d7abf45f5be9821782a|iks"
+  # [qc-apis-testing-us-east]="f3e7d1b7a7044d7abf45f5be9821782a|iks"
+  # [qc-pok-qnet-staging]="f3e7d1b7a7044d7abf45f5be9821782a|openshift"
+  # [qc-simulators-staging-us-east]="f3e7d1b7a7044d7abf45f5be9821782a|openshift"
 # Quantum Services - production
   [sat-ccf-prod]="b947c1c5e9344d64aed96696e4d76e0e|openshift"
 )
@@ -59,13 +60,14 @@ ibm::k8s::save_configuration() {
 
   if [[ -x "${IKSCC}" ]]; then
     # Cleanup
-    eval "${command}" 2>/dev/null | ${IKSCC} -f - > "${local_file}"
+    eval "${command}" 2>/dev/null | ${IKSCC} -f - >! "${local_file}"
   else
-    eval "${command}" 2>/dev/null> "${local_file}"
+    eval "${command}" 2>/dev/null >! "${local_file}"
   fi
 
   echo "saving: ${HOME}/.kube/${cluster}.yml"
-  cp -f "${local_file}" "${HOME}/.kube/${cluster}.yml"
+  cp -f "${local_file}" "${HOME}/.kube/${cluster}.yml" &&
+  rm -f "${local_file}"
 }
 
 ibm::k8s::update() {
