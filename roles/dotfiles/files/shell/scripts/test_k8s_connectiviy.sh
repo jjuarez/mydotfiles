@@ -9,24 +9,45 @@ declare -r KUBECONFIG_PATTERN="yml"
 CLUSTER_KUBECONFIG_LIST=""
 
 
+utils::console() {
+  local message="${1}"
+
+  [[ -n "${message}" ]] && 2>&1 echo -en "${message}"
+}
+
+utils::panic() {
+  local message="${1}"
+  local exit_code="${2}"
+
+  [[ -n "${message}" ]] && {
+    2>&1 echo -en "${message}"
+    exit "${exit_code}"
+  }
+}
+
 clusters::load_configs() {
   CLUSTER_KUBECONFIG_LIST=$(find "${KUBECONFIG_DIRECTORY}" -type f -name "*.${KUBECONFIG_PATTERN}" -print)
 }
 
+clusters::test_connectivity() {
+  local cluster_config="${1}"
 
-clusters::test() {
-  [[ -n "${CLUSTER_KUBECONFIG_LIST}" ]] && {
-    for ckc in ${CLUSTER_KUBECONFIG_LIST}; do
-      cluster_pretty_name=$(basename -s ".${KUBECONFIG_PATTERN}" "${ckc}")
-      echo ">>> Cluster: ${cluster_pretty_name}"
-      KUBECONFIG=${ckc} "kubectl" cluster-info || echo "Error connecting"
-    done
-  }
+  [[ -f "${cluster_config}" ]] && KUBECONFIG=${cluster_config} "kubectl" cluster-info
 }
 
+main() {
+  clusters::load_configs
+
+  [[ -n "${CLUSTER_KUBECONFIG_LIST}" ]] || utils::panic "No clusters to test" 1
+
+  for ckc in ${CLUSTER_KUBECONFIG_LIST}; do
+    cluster_pretty_name=$(basename -s ".${KUBECONFIG_PATTERN}" "${ckc}")
+    utils::console "*** Cluster: ${cluster_pretty_name} ***\n"
+    clusters::test_connectivity "${ckc}"
+  done
+}
 
 #
 # ::main::
 #
-clusters::load_configs
-clusters::test
+main
