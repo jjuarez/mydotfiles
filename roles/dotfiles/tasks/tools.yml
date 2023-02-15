@@ -12,12 +12,29 @@
   tags:
     - tools
 
+- name: Kubie configuration
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/tools/kubie.yaml"
+    path: "{{ home_directory }}/.kube/kubie.yaml"
+    state: link
+    force: true
+  tags:
+    - tools
+
 - name: Tools configuration files cleanup
   ansible.builtin.file:
     path: "{{ home_directory }}/{{ item }}"
     state: absent
   loop:
     "{{ tools.files | flatten(levels=1) }}"
+  tags:
+    - toolscleanup
+    - never
+
+- name: Kubie cleanup configuration
+  ansible.builtin.file:
+    path: "{{ home_directory }}/.kube/kubie.yaml"
+    state: absent
   tags:
     - toolscleanup
     - never

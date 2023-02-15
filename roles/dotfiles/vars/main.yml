@@ -19,6 +19,8 @@ tools:
     - .gitignore_global
     - .githubrc
     - .tmux.conf
+  kubie:
+    - kubie.yaml
 
 languages:
   go:
