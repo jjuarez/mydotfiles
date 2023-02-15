@@ -37,6 +37,7 @@ test:
 
 $(VENV):
 	@python -m venv $(VENV)
+	@pip install --upgrade pip
 	@pip install --disable-pip-version-check --requirement $(REQUIREMENT_FILE)
 
 .PHONY: venv/activate
@@ -73,4 +74,6 @@ homebrew/load: ## Load and install a snapshot of your formulas, casks, taps, et
 
 .PHONY: clean
 clean:
+	@find . -type f -name "*.py[co]" -delete
+	@find . -type d -name "__pycache__" -delete
 	@rm -fr $(VENV)
