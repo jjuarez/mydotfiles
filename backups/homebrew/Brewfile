@@ -200,9 +200,3 @@ cask "vagrant"
 cask "virtualbox"
 cask "visual-studio-code"
 cask "vlc"
-mas "HP Smart", id: 1474276998
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Session", id: 1521432881
-mas "Webcam Settings", id: 533696630
