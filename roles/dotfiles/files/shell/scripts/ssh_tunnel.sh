@@ -20,6 +20,7 @@ set -e -o pipefail
 
 declare -r SSH="/usr/bin/ssh"
 declare -r SOCKET_PREFIX=".ssh-tunnel"
+declare -r TEMPORAL_DIRECTORY=${TEMPORAL_DIRECTORY:-'/tmp'}
 
 DEBUG="false"
 
@@ -46,7 +47,7 @@ utils::exit() {
 }
 
 utils::help() {
-  utils::exit "Usage: ${0} --network (qnet|openq) --command (start|stop|status)" 0
+  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq) (-c|--command) (start|stop|status)" 0
 }
 
 ssh::config() {
@@ -57,36 +58,51 @@ ssh::config() {
            SSH_REMOTE_HOST="saimaa.cloud9.ibm.com"
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8228
-           SOCKET="/tmp/${SOCKET_PREFIX}-${SSH_LOCAL_PORT}" ;;
+           SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-qnet-${SSH_LOCAL_PORT}" ;;
 
     openq) SSH_REMOTE_USER="runtimedeployusr"
            SSH_REMOTE_HOST="champlaincanal-nat.watson.ibm.com"
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8229
-           SOCKET="/tmp/${SOCKET_PREFIX}-${SSH_LOCAL_PORT}" ;;
+           SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-openq-${SSH_LOCAL_PORT}" ;;
         *) return 1 ;;
   esac
 }
 
 ssh::start() {
   local -r socket="${1}"
-  local ssh_extra_opts=""
 
   [[ -S "${socket}" ]] && utils::exit "A SSH tunnel is already running" 1
 
-  [[ "${DEBUG}" == "true" ]] && ssh_extra_opts="-v"
+  case "${DEBUG}" in
+    true)
+      ${SSH} -fN \
+        -oStrictHostKeyChecking=no \
+        -oUserKnownHostsFile=/dev/null \
+        -oControlMaster=yes \
+        -oPort="${SSH_REMOTE_PORT}" \
+        -oControlPath="${socket}" \
+        -oDynamicForward="localhost:${SSH_LOCAL_PORT}" \
+        -oUser="${SSH_REMOTE_USER}" \
+        -oLogLevel=DEBUG \
+        ${SSH_REMOTE_HOST} &&
+      utils::console "Remember to execute: \nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n"
+    ;;
 
-  ${SSH} -fN \
-    ${ssh_extra_opts} \
-    -oStrictHostKeyChecking=no \
-    -oUserKnownHostsFile=/dev/null \
-    -oControlMaster=yes \
-    -oPort="${SSH_REMOTE_PORT}" \
-    -oControlPath="${socket}" \
-    -oDynamicForward="localhost:${SSH_LOCAL_PORT}" \
-    -oUser="${SSH_REMOTE_USER}" \
-    ${SSH_REMOTE_HOST} &&
-  utils::console "Remember to execute: \nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n"
+    *)
+      ${SSH} -fN \
+        -oStrictHostKeyChecking=no \
+        -oUserKnownHostsFile=/dev/null \
+        -oControlMaster=yes \
+        -oPort="${SSH_REMOTE_PORT}" \
+        -oControlPath="${socket}" \
+        -oDynamicForward="localhost:${SSH_LOCAL_PORT}" \
+        -oUser="${SSH_REMOTE_USER}" \
+        -oLogLevel=QUIET \
+        ${SSH_REMOTE_HOST} &&
+      utils::console "Remember to execute: \nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n"
+    ;;
+  esac
 }
 
 ssh::stop() {
@@ -94,7 +110,7 @@ ssh::stop() {
 
   [[ -S "${socket}" ]] || utils::exit "There's no SSH tunnel running" 2
 
-  ${SSH} -S ${SOCKET} -O exit ${SSH_REMOTE_HOST} >/dev/null 2>&1
+  ${SSH} -S "${SOCKET}" -O exit "${SSH_REMOTE_HOST}" >/dev/null 2>&1
 }
 
 ssh::status() {
