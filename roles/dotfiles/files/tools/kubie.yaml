@@ -19,6 +19,6 @@ prompt:
     xonsh_use_right_prompt: false
 
 behavior:
-    validate_namespaces: true
-    print_context_in_exec: auto
+    validate_namespaces: false
+    print_context_in_exec: never
 ...
