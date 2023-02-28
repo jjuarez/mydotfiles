@@ -53,8 +53,8 @@ ssh::config() {
   local -r network="${1}"
 
   case ${network} in
-     qnet) SSH_REMOTE_USER="fjjuarez"
-           SSH_REMOTE_HOST="9.47.161.61" # eriecanal.cloud9.ibm.com
+     qnet) SSH_REMOTE_USER="runtimedeployusr"
+           SSH_REMOTE_HOST="saimaa.cloud9.ibm.com"
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8228
            SOCKET="/tmp/${SOCKET_PREFIX}-${SSH_LOCAL_PORT}" ;;
