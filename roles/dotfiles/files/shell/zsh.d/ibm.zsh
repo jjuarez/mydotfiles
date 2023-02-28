@@ -1,10 +1,13 @@
 set -o pipefail
 #set -x
 
+
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
-
 TEMPD=$(mktemp -d)
+
+[[ -z "${DEFAULT_OPENSHIFT_USE_LINK}" ]] && declare -r DEFAULT_OPENSHIFT_USE_LINK="true"
+OPENSHIFT_USE_LINK=${OPENSHIFT_USE_LINK:-${DEFAULT_OPENSHIFT_USE_LINK}}
 
 typeset -A IBM_CLUSTERS=(
 # Quantum Master (dev)
@@ -96,9 +99,15 @@ ibm::k8s::update() {
 
     echo -n "Cluster: ${cluster} (${account},${kind})... "
     case ${kind} in
-      openshift) command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin --endpoint link" ;;
-            iks) command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q" ;;
-              *) echo "Unknown type of cluster" ;;
+      openshift) command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin"
+                 if [[ "${OPENSHIFT_USE_LINK}" == "true" ]]; then
+                   command+=" --endpoint link"
+                 fi
+                 ;;
+            iks) command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q"
+                 ;;
+              *) echo "Unknown type of cluster"
+                 ;;
     esac
     ibm::k8s::save_configuration "${cluster}" "${command}"
   done
@@ -106,8 +115,7 @@ ibm::k8s::update() {
 }
 
 # autoloads
-autoload ibm::cloud::switch_account
+# ...
 
 # aliases
 alias ic='ibmcloud'
-alias ic.sa='ibm::cloud::switch_account'
