@@ -32,7 +32,11 @@ clusters::load_configs() {
 clusters::test_connectivity() {
   local cluster_config="${1}"
 
-  [[ -f "${cluster_config}" ]] && KUBECONFIG=${cluster_config} "kubectl" cluster-info
+  if [[ -f "${cluster_config}" ]]; then
+    KUBECONFIG=${cluster_config} "kubectl" cluster-info
+  else
+    return 1
+  fi
 }
 
 main() {
