@@ -43,6 +43,6 @@ Host *
   ServerAliveCountMax   4
   Compression           yes
   CheckHostIP           no
-  LogLevel              verbose
+  LogLevel              INFO
   Port                  22
   SetEnv                LC_ALL=en_US.UTF8
