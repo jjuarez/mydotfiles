@@ -3,9 +3,11 @@
 set -eu -o pipefail
 #set -x
 
+declare -r DEFAULT_CLUSTER_TEST_COMMAND="kubectl cluster-info"
 declare -r KUBECONFIG_DIRECTORY="${HOME}/.kube"
 declare -r KUBECONFIG_PATTERN="yml"
 
+CLUSTER_TEST_COMMAND=${CLUSTER_TEST_COMMAND:-${DEFAULT_CLUSTER_TEST_COMMAND}}
 CLUSTER_KUBECONFIG_LIST=""
 
 
@@ -31,9 +33,10 @@ clusters::load_configs() {
 
 clusters::test_connectivity() {
   local cluster_config="${1}"
+  local cluster_test_command="${2:-${CLUSTER_TEST_COMMAND}}"
 
   if [[ -f "${cluster_config}" ]]; then
-    KUBECONFIG=${cluster_config} "kubectl" cluster-info
+    KUBECONFIG="${cluster_config}" eval "${cluster_test_command}"
   else
     return 1
   fi
