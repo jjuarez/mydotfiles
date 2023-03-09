@@ -1,13 +1,16 @@
 set -o pipefail
 #set -x
 
+[[ -z "${DEFAULT_OPENSHIFT_USE_LINK}" ]] && declare -r DEFAULT_OPENSHIFT_USE_LINK="true"
+OPENSHIFT_USE_LINK=${OPENSHIFT_USE_LINK:-${DEFAULT_OPENSHIFT_USE_LINK}}
+
+[[ -s "${HOME}/.env.IBM.Cloud.account.ids" ]] || echo "Warning: I couldn't load the IBMCloud accound ids from: ${HOME}/.env.IBM.Cloud.account.ids"
+source "${HOME}/.env.IBM.Cloud.account.ids"
 
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 TEMPD=$(mktemp -d)
 
-[[ -z "${DEFAULT_OPENSHIFT_USE_LINK}" ]] && declare -r DEFAULT_OPENSHIFT_USE_LINK="true"
-OPENSHIFT_USE_LINK=${OPENSHIFT_USE_LINK:-${DEFAULT_OPENSHIFT_USE_LINK}}
 
 typeset -A IBM_CLUSTERS=(
 # Quantum Master (dev)
@@ -31,8 +34,7 @@ typeset -A IBM_CLUSTERS=(
 # Quantum Master (cross)
   [cicd-production]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
   [experimental-us]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-# [cicd-tools]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
-# Quantum Services (production)
+# c tQuantum Services (production)
   [sat-ccf-prod]="b947c1c5e9344d64aed96696e4d76e0e|openshift"
   # Quantum Services (staging)
   [qc-apis-staging-us-east]="f3e7d1b7a7044d7abf45f5be9821782a|iks"
@@ -42,15 +44,23 @@ typeset -A IBM_CLUSTERS=(
 )
 
 
-ibm::cloud::switch_account() {
-  local -r account_id="${1}"
+ibm::cloud::login() {
 
-  [[ -n "${account_id}" ]] || return 1
+  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+
+  "${IBMCLOUD_CLI}" login --no-region --sso -c "${QCMASTER_IBMCLOUD_ID}"
+}
+
+ibm::cloud::switch_account() {
+  local -r account_name="${1}"
+
   [[ -x "${IBMCLOUD_CLI}" ]] || return 1
 
-  case ${IBMCLOUD_DEBUG} in
-    true) ${IBMCLOUD_CLI} target -c "${account_id}" ;;
-       *) ${IBMCLOUD_CLI} target -c "${account_id}" -q >/dev/null 2>&1 ;;
+  case "${account_name}" in
+        master) "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" ;;
+       staging) "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" ;;
+    production) "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" ;;
+             *) return 2
   esac
 }
 
@@ -115,7 +125,11 @@ ibm::k8s::update() {
 }
 
 # autoloads
-# ...
+autoload ibm:cloud::login
+autoload ibm:cloud::switch_account
 
 # aliases
 alias ic='ibmcloud'
+alias ic.li='ibm::cloud::login'
+alias ic.t='ibmcloud target'
+alias ic.sa='ibm::cloud::switch_account'
