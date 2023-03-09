@@ -47,7 +47,7 @@ utils::exit() {
 }
 
 utils::help() {
-  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq) (-c|--command) (start|stop|status)" 0
+  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq|ccf) (-c|--command) (start|stop|status)" 0
 }
 
 ssh::config() {
@@ -65,6 +65,11 @@ ssh::config() {
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8229
            SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-openq-${SSH_LOCAL_PORT}" ;;
+      ccf) SSH_REMOTE_USER="runtimedeployusr"
+           SSH_REMOTE_HOST="ibmq-bastion.cloud9.ibm.com"
+           SSH_REMOTE_PORT=22
+           SSH_LOCAL_PORT=8230
+           SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-ccf-${SSH_LOCAL_PORT}" ;;
         *) return 1 ;;
   esac
 }
