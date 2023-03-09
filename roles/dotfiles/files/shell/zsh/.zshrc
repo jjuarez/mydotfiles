@@ -1,8 +1,9 @@
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.com' \
                       'id_ed25519.github.ibm.com' \
-                      'id_rsa.ibm.runtimedeployusr.qnet' \
-                      'id_rsa.ibm.runtimedeployusr.openq'
+                      'id_rsa.IBM.runtimedeployusr.qnet' \
+                      'id_rsa.IBM.runtimedeployusr.openq' \
+                      'id_rsa.IBM.runtimedeployusr.ccf'
 
 # Start configuration added by Zim install {{{
 # zimfw configuration
@@ -67,6 +68,3 @@ done 2>/dev/null
 
 # Utilities and aliases
 [[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
-
-# IBMCloud accounts
-[[ -f "${HOME}/.env.IBM.Cloud.accounts" ]] && source "${HOME}/.env.IBM.Cloud.accounts"
