@@ -18,15 +18,14 @@ Host github.ibm.com
 Host saimaa
   Hostname saimaa.cloud9.ibm.com
   User runtimedeployusr
-  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.qnet
 
 Host champlaincanal
   Hostname champlaincanal-nat.watson.ibm.com
   User runtimedeployusr
-  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.openq
 
-Host ibmq-bastion.cloud9.ibm.com
+Host ibmq-bastion
   HostName ibmq-bastion.cloud9.ibm.com
+  User runtimedeployusr
 
 Host *.ccf.local
   ProxyJump ibmq-bastion
@@ -43,6 +42,6 @@ Host *
   ServerAliveCountMax   4
   Compression           yes
   CheckHostIP           no
-  LogLevel              INFO
   Port                  22
   SetEnv                LC_ALL=en_US.UTF8
+  LogLevel              INFO
