@@ -1,52 +1,44 @@
 set -o pipefail
-#set -x
+
+#
+# Switches
+#
+[[ -z "${DEFAULT_IKSCC_FEATURE}" ]] && declare -r DEFAULT_IKSCC_FEATURE="true"
+IKSCC_FEATURE=${IKSCC_FEATURE:-${DEFAULT_IKSCC_FEATURE}}
 
 [[ -z "${DEFAULT_OPENSHIFT_USE_LINK}" ]] && declare -r DEFAULT_OPENSHIFT_USE_LINK="true"
 OPENSHIFT_USE_LINK=${OPENSHIFT_USE_LINK:-${DEFAULT_OPENSHIFT_USE_LINK}}
 
-[[ -s "${HOME}/.env.IBM.Cloud.account.ids" ]] || echo "Warning: I couldn't load the IBMCloud accound ids from: ${HOME}/.env.IBM.Cloud.account.ids"
+#
+# General utilities
+#
+utils::panic() {
+  local -r message="${1}"
+  local -r exit_code="${2}"
+
+  [[ -n "${message}" ]] && echo "${message}"
+  return "${exit_code}"
+}
+
+#
+# Configurations
+#
+[[ -s "${HOME}/.env.IBM.Cloud.account.ids" ]] || utils::panic "Warning: I couldn't load the IBMCloud accound ids from: ${HOME}/.env.IBM.Cloud.account.ids" 1
 source "${HOME}/.env.IBM.Cloud.account.ids"
 
+[[ -s "${HOME}/.env.IBM.Cloud.clusters"    ]] || utils::panic "Warning: I couldn't load the IBMCloud cluster list from: ${HOME}/.env.IBM.Cloud.clusters" 2
+source "${HOME}/.env.IBM.Cloud.clusters"
+
+#
+# Tools
+#
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 TEMPD=$(mktemp -d)
 
 
-typeset -A IBM_CLUSTERS=(
-# Quantum Master (dev)
-  [apis-dev]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [apis-dev-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [sat-ykt-openq-dev]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
-# Quantum Master (staging)
-  [apps-staging-us]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [apps-staging-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [processing-staging]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [sat-pok-qnet-staging]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
-  [processing-staging-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-# Quantum Master (production)
-  [apis-prod]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [apps-prod-us]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [apis-prod-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [processing-prod]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [processing-production-de]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-  [sat-pok-qnet-prod]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
-  [sat-shinkawasaki-sk-prod]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
-# Quantum Master (cross)
-  [cicd-production]="3f0eacee15cc4551a4b51313a4a1f2d2|openshift"
-  [experimental-us]="3f0eacee15cc4551a4b51313a4a1f2d2|iks"
-# c tQuantum Services (production)
-  [sat-ccf-prod]="b947c1c5e9344d64aed96696e4d76e0e|openshift"
-  # Quantum Services (staging)
-  [qc-apis-staging-us-east]="f3e7d1b7a7044d7abf45f5be9821782a|iks"
-  [qc-apis-testing-us-east]="f3e7d1b7a7044d7abf45f5be9821782a|iks"
-  [qc-pok-qnet-staging]="f3e7d1b7a7044d7abf45f5be9821782a|openshift"
-  [qc-simulators-staging-us-east]="f3e7d1b7a7044d7abf45f5be9821782a|openshift"
-)
-
-
 ibm::cloud::login() {
-
-  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   "${IBMCLOUD_CLI}" login --no-region --sso -c "${QCMASTER_IBMCLOUD_ID}"
 }
@@ -54,50 +46,25 @@ ibm::cloud::login() {
 ibm::cloud::switch_account() {
   local -r account_name="${1}"
 
-  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
+  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   case "${account_name}" in
-        master) "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" ;;
-       staging) "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" ;;
-    production) "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" ;;
-             *) return 2
+        master) [[ -n "${QCMASTER_IBMCLOUD_ID}"     ]] && "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1;;
+       staging) [[ -n "${QCSTAGING_IBMCLOUD_ID}"    ]] && "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1;;
+    production) [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]] && "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1;;
+             *) utils::panic "Unkown account: ${account_name}" 5
   esac
-}
-
-ibm::k8s::save_configuration() {
-  local -r cluster="${1}"
-  local -r command="${2}"
-  local local_file=""
-
-  [[ -n "${cluster}" ]] || return 2
-  [[ -n "${command}" ]] || return 2
-
-  local_file="${TEMPD}/${cluster}.yml"
-
-  if [[ -x "${IKSCC}" ]]; then
-    # Cleanup
-    eval "${command}" 2>/dev/null | ${IKSCC} -f - >! "${local_file}"
-  else
-    eval "${command}" 2>/dev/null >! "${local_file}"
-  fi
-
-  echo "saving: ${HOME}/.kube/${cluster}.yml"
-  cp -f "${local_file}" "${HOME}/.kube/${cluster}.yml" &&
-  rm -f "${local_file}"
 }
 
 ibm::k8s::update() {
   local current_account=""
 
-  # set -x
-  [[ -x "${IBMCLOUD_CLI}" ]] || return 1
-
-  ${IBMCLOUD_CLI} target -g '' -r '' -q >/dev/null 2>&1
+  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   for cluster data in ${(kv)IBM_CLUSTERS}; do
     local account=$(echo ${data}|awk -F"|" '{ print $1 }')
     local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
-    local command=""
+    local command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q"
 
     if [[ -z "${current_account}" ]]; then
       ibm::cloud::switch_account "${account}" &&
@@ -107,21 +74,29 @@ ibm::k8s::update() {
       current_account="${account}"
     fi
 
-    echo -n "Cluster: ${cluster} (${account},${kind})... "
+    echo "Cluster: ${cluster} (${account},${kind})... "
     case ${kind} in
-      openshift) command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q --admin"
-                 if [[ "${OPENSHIFT_USE_LINK}" == "true" ]]; then
-                   command+=" --endpoint link"
-                 fi
-                 ;;
-            iks) command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q"
-                 ;;
-              *) echo "Unknown type of cluster"
-                 ;;
+      openshift)
+        if [[ "${OPENSHIFT_USE_LINK}" == "true" ]]; then
+          command+=" --endpoint link"
+        fi
+        command+=" --admin"
+        ;;
     esac
-    ibm::k8s::save_configuration "${cluster}" "${command}"
+
+    case "${IKSCC_FEATURE}" in
+      true)
+        if [[ -x "${IKSCC}" ]]; then
+          eval "${command}"|${IKSCC} -f ->! "${HOME}/.kube/${cluster}.yml"
+        else
+          echo "Warning: No ${IKSCC} tool installed"
+        fi
+        ;;
+      *)
+        eval "${command}" >! "${HOME}/.kube/${cluster}.yml"
+        ;;
+    esac
   done
-  # set +x
 }
 
 # autoloads
