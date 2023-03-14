@@ -49,10 +49,9 @@ ibm::cloud::switch_account() {
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   case "${account_name}" in
-        master) [[ -n "${QCMASTER_IBMCLOUD_ID}"     ]] && "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1;;
-       staging) [[ -n "${QCSTAGING_IBMCLOUD_ID}"    ]] && "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1;;
-    production) [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]] && "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1;;
-             *) utils::panic "Unkown account: ${account_name}" 5
+       staging|stg) [[ -n "${QCSTAGING_IBMCLOUD_ID}"    ]] && "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
+    production|pro) [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]] && "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
+                 *) [[ -n "${QCMASTER_IBMCLOUD_ID}"     ]] && "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;  # By default go to the QCMaster account
   esac
 }
 
