@@ -1,14 +1,23 @@
+##
+## Local LAN stuff
+##
 Host pi.local
   HostName     192.168.1.64
   User         pi
   IdentityFile ~/.ssh/id_ed25519.pi
 
+##
+## Development
+##
 Host github.com
   User jjuarez
 
 Host gitlab.com
   User jjuarez
 
+##
+## GHE IBM
+##
 Host github.ibm.com
   User javier-juarez-martinez
 
@@ -27,9 +36,9 @@ Host ibmq-bastion
   HostName ibmq-bastion.cloud9.ibm.com
   User runtimedeployusr
 
-Host *.ccf.local
-  ProxyJump ibmq-bastion
-
+##
+## Global options
+##
 Host *
   AddKeysToAgent        yes
   UserKnownHostsFile    /dev/null
@@ -44,4 +53,4 @@ Host *
   CheckHostIP           no
   Port                  22
   SetEnv                LC_ALL=en_US.UTF8
-  LogLevel              INFO
+  LogLevel              QUIET
