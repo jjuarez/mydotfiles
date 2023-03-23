@@ -81,7 +81,7 @@ ssh::start() {
 
   case "${DEBUG}" in
     true)
-      ${SSH} -fN \
+      ${SSH} -Nf \
         -oStrictHostKeyChecking=no \
         -oUserKnownHostsFile=/dev/null \
         -oControlMaster=yes \
@@ -95,7 +95,7 @@ ssh::start() {
     ;;
 
     *)
-      ${SSH} -fN \
+      ${SSH} -Nf \
         -oStrictHostKeyChecking=no \
         -oUserKnownHostsFile=/dev/null \
         -oControlMaster=yes \
