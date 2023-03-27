@@ -20,13 +20,16 @@ python::venv::activate() {
   fi
 }
 
+python::venv() {
+  python -m venv .venv && source .venv/bin/activate
+}
+
 # autoloads
 autoload python::clean
 autoload python::venv::active
 
 # aliases
 alias pyclean='python::clean'
+alias pyenv='python::venv'
 alias pyae='python::venv::activate'
 alias pyde='deactivate'
-alias ae='python::venv::activate'
-alias de='deactivate'
