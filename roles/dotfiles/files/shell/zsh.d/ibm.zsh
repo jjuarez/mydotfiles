@@ -49,9 +49,9 @@ ibm::cloud::switch_account() {
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   case "${account_name}" in
-       staging|stg) [[ -n "${QCSTAGING_IBMCLOUD_ID}"    ]] && "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
-    production|pro) [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]] && "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
-                 *) [[ -n "${QCMASTER_IBMCLOUD_ID}"     ]] && "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;  # By default go to the QCMaster account
+       staging) [[ -n "${QCSTAGING_IBMCLOUD_ID}"    ]] && "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
+    production) [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]] && "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
+             *) [[ -n "${QCMASTER_IBMCLOUD_ID}"     ]] && "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;  # By default go to the QCMaster account
   esac
 }
 
@@ -60,7 +60,7 @@ ibm::k8s::update() {
 
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
-  for cluster data in ${(kv)IBM_CLUSTERS}; do
+  for cluster data in ${(kv)IBMCLOUD_CLUSTERS}; do
     local account=$(echo ${data}|awk -F"|" '{ print $1 }')
     local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
     local command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q"
@@ -98,9 +98,24 @@ ibm::k8s::update() {
   done
 }
 
+ibm::k8s::list() {
+  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
+
+  for cluster data in ${(kv)IBMCLOUD_CLUSTERS}; do
+    local account=$(echo ${data}|awk -F"|" '{ print $1 }')
+    local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
+
+    echo "Cluster: ${cluster}, account: ${account}(${IBMCLOUD_ACCOUNTS_IDS[${account}]}), type: ${kind}"
+  done
+}
+
+
 # autoloads
 autoload ibm:cloud::login
 autoload ibm:cloud::switch_account
+autoload ibm::k8s::update
+autoload ibm::k8s::list
+
 
 # aliases
 alias ic='ibmcloud'
