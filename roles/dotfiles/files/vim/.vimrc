@@ -19,6 +19,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'szw/vim-maximizer'
+Plug 'alpertuna/vim-header'
 call plug#end()
 
 if has('autocmd')
@@ -172,6 +173,11 @@ augroup end
 
 "" Maximize current split or return to previous
 noremap <C-w>m :MaximizerToggle<CR>
+
+"" vim-header configuration
+let g:header_field_author = "Javier Juarez"
+let g:header_field_author_email = "jj@chainedto.cloud"
+""map <F4> :AddHeader<CR>
 
 "" Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
