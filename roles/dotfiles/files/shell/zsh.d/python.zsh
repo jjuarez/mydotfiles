@@ -30,6 +30,5 @@ autoload python::venv::active
 
 # aliases
 alias pyclean='python::clean'
-alias pyenv='python::venv'
 alias pyae='python::venv::activate'
 alias pyde='deactivate'
