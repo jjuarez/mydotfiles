@@ -24,16 +24,25 @@ Host github.ibm.com
 ##
 ## SSH jump host for QNet and OpenQ networks
 ##
+Host elmira
+  HostName elmira.watson.ibm.com
+  User runtimedeployusr
+
 Host saimaa
-  Hostname saimaa.cloud9.ibm.com
+  HostName saimaa.cloud9.ibm.com
   User runtimedeployusr
 
 Host champlaincanal
-  Hostname champlaincanal-nat.watson.ibm.com
+  HostName champlaincanal-nat.watson.ibm.com
   User runtimedeployusr
 
 Host ibmq-bastion
   HostName ibmq-bastion.cloud9.ibm.com
+  User runtimedeployusr
+
+Host koshiba
+# HostName koshiba.sk.jp.ibm.com
+  HostName 9.116.12.201
   User runtimedeployusr
 
 ##
