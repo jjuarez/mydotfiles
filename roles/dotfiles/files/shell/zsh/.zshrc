@@ -57,6 +57,8 @@ declare -A TOGGLES_CONFIGURATION=(
 
 # zsh plugins
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
+
+# themes
 ZSH_THEME="powerlevel10k"
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
