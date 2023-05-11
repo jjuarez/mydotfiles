@@ -70,6 +70,11 @@ ssh::config() {
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8230
            SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-ccf-${SSH_LOCAL_PORT}" ;;
+      sk)  SSH_REMOTE_USER="runtimedeployusr"
+           SSH_REMOTE_HOST="9.116.12.201" # koshiba.sk.jb.ibm-com
+           SSH_REMOTE_PORT=22
+           SSH_LOCAL_PORT=8231
+           SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-sk-${SSH_LOCAL_PORT}" ;;
         *) return 1 ;;
   esac
 }
