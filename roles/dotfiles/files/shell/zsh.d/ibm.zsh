@@ -49,31 +49,26 @@ ibm::cloud::switch_account() {
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   case "${account_name}" in
-       staging) [[ -n "${QCSTAGING_IBMCLOUD_ID}"    ]] && "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
-    production) [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]] && "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
-             *) [[ -n "${QCMASTER_IBMCLOUD_ID}"     ]] && "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;  # By default go to the QCMaster account
+       stg|staging) [[ -n "${QCSTAGING_IBMCLOUD_ID}"    ]] && "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
+    pro|production) [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]] && "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
+            master) [[ -n "${QCMASTER_IBMCLOUD_ID}"     ]] && "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;  # By default go to the QCMaster account
+                 *) utils::panic "The valid account names are: str, pro, master" 6
   esac
 }
 
-ibm::k8s::update() {
-  local current_account=""
+ibm::k8s::_update_cluster() {
+  local -r cluster_name=${1}
 
-  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
+  if [[ -z "${IBMCLOUD_CLUSTERS[$cluster_name]}" ]]; then
+    utils::panic "Unkown cluster: ${cluster_name}" 5
+  else
+    local account=$(echo ${IBMCLOUD_CLUSTERS[$cluster_name]}|awk -F"|" '{ print $1 }')
+    local kind=$(echo ${IBMCLOUD_CLUSTERS[$cluster_name]}|awk -F"|" '{ print $2 }')
+    local command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster_name} --output yaml -q"
 
-  for cluster data in ${(kv)IBMCLOUD_CLUSTERS}; do
-    local account=$(echo ${data}|awk -F"|" '{ print $1 }')
-    local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
-    local command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster} --output yaml -q"
+    ibm::cloud::switch_account "${account}"
 
-    if [[ -z "${current_account}" ]]; then
-      ibm::cloud::switch_account "${account}" &&
-      current_account="${account}"
-    elif [[ "${current_account}" != "${account}" ]]; then
-      ibm::cloud::switch_account "${account}" &&
-      current_account="${account}"
-    fi
-
-    echo "Cluster: ${cluster} (${account},${kind})... "
+    echo "Cluster: ${cluster_name} (${account},${kind})... "
     case ${kind} in
       openshift)
         if [[ "${OPENSHIFT_USE_LINK}" == "true" ]]; then
@@ -95,7 +90,21 @@ ibm::k8s::update() {
         eval "${command}" >! "${HOME}/.kube/${cluster}.yml"
         ;;
     esac
-  done
+  fi
+}
+
+ibm::k8s::update() {
+  local -r cluster_name=${1}
+
+  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
+
+  if [[ -n "${cluster_name}" ]]; then
+    ibm::k8s::_update_cluster ${cluster_name}
+  else
+    for cluster in ${(k)IBMCLOUD_CLUSTERS}; do
+      ibm::k8s::_update_cluster ${cluster}
+    done
+  fi
 }
 
 ibm::k8s::list() {
