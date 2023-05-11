@@ -23,6 +23,7 @@ declare -A SSH_PRIVATE_KEYS=(
 
 main() {
   for dst src in ${(kv)SSH_PRIVATE_KEYS}; do
+    [[ -d "${dst}" ]] && rm -fr "${dst}"
     [[ -f "${src}" ]] && cp -avf "${src}" "${dst}"
   done
 }
