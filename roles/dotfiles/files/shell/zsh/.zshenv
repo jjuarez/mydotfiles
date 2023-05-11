@@ -6,7 +6,6 @@
 
 fpath=(
   /usr/local/share/zsh/site-functions
-  ${DOTFILES}/shell/functions
   ${fpath}
 )
 
