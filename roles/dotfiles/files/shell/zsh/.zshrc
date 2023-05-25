@@ -1,6 +1,7 @@
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.com' \
                       'id_ed25519.github.ibm.com' \
+                      'id_ed25519.snip.sh' \
                       'id_rsa.ibm.runtimedeployusr.qnet' \
                       'id_rsa.ibm.runtimedeployusr.openq' \
                       'id_rsa.ibm.runtimedeployusr.ccf' \
@@ -46,7 +47,8 @@ declare -A TOGGLES_CONFIGURATION=(
   [go]=true
   [rust]=false
   [krew]=true
-  [nvm]=true
+  [nvm]=false
+  [volta]=true
   [pyenv]=true
   [tfenv]=true
   [travis]=true

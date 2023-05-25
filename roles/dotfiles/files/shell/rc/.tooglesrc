@@ -22,26 +22,12 @@ toggles::pyenv() {
   fi
 }
 
-toggles::nvm() {
-  if [ -s /usr/local/opt/nvm/nvm.sh ]; then
-    export NVM_DIR="${HOME}/.nvm"
-
-    source /usr/local/opt/nvm/nvm.sh
-  fi
-}
-
 toggles::volta() {
   if [ $command[volta] ]; then
     if [ -d "${HOME}/.volta" ]; then
       export VOLTA_HOME="${HOME}/.volta"
       export PATH="${VOLTA_HOME}/bin:${PATH}"
     fi
-  fi
-}
-
-toggles::nodenv() {
-  if [ $commands[nodenv] ]; then
-    eval "$(nodenv init -)"
   fi
 }
 
@@ -84,12 +70,6 @@ toggles::direnv() {
 toggles::krew() {
   if [ -d "${HOME}/.krew" ]; then
     export PATH="${PATH}:${HOME}/.krew/bin"
-  fi
-}
-
-toggles::porter() {
-  if [ -d "${HOME}/.porter" ]; then
-    export PATH="${PATH}:${HOME}/.porter"
   fi
 }
 
