@@ -129,5 +129,6 @@ autoload ibm::k8s::list
 # aliases
 alias ic='ibmcloud'
 alias ic.li='ibm::cloud::login'
+alias ic.lo='ibmcloud logout'
 alias ic.t='ibmcloud target'
 alias ic.sa='ibm::cloud::switch_account'
