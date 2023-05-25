@@ -15,6 +15,10 @@ Host github.com
 Host gitlab.com
   User jjuarez
 
+Host ships.sh
+  User         jjuarez
+  IdentityFile ~/.ssh/id_ed25519.snips.sh
+
 ##
 ## GHE IBM
 ##
