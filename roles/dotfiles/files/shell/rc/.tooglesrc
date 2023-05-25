@@ -30,6 +30,15 @@ toggles::nvm() {
   fi
 }
 
+toggles::volta() {
+  if [ $command[volta] ]; then
+    if [ -d "${HOME}/.volta" ]; then
+      export VOLTA_HOME="${HOME}/.volta"
+      export PATH="${VOLTA_HOME}/bin:${PATH}"
+    fi
+  fi
+}
+
 toggles::nodenv() {
   if [ $commands[nodenv] ]; then
     eval "$(nodenv init -)"
