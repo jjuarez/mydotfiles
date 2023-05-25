@@ -1,24 +1,21 @@
 ---
 shell: zsh
-
 # Configure where to look for kubernetes config files.
 configs:
-    include:
-        - ~/.kube/config
-        - ~/.kube/*.yml
-        - ~/.kube/*.yaml
-    exclude:
-        - ~/.kube/kubie.yaml
-
+  include:
+    - ~/.kube/config
+    - ~/.kube/*.yml
+    - ~/.kube/*.yaml
+  exclude:
+    - ~/.kube/kubie.yaml
 # Prompt settings.
 prompt:
-    disable: true
-    show_depth: true
-    zsh_use_rps1: false
-    fish_use_rprompt: false
-    xonsh_use_right_prompt: false
-
+  disable: true
+  show_depth: false
+  zsh_use_rps1: false
+  fish_use_rprompt: false
+  xonsh_use_right_prompt: false
 behavior:
-    validate_namespaces: false
-    print_context_in_exec: never
+  validate_namespaces: true
+  print_context_in_exec: never
 ...
