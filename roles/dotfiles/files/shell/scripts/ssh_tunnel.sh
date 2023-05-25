@@ -47,7 +47,7 @@ utils::exit() {
 }
 
 utils::help() {
-  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq|ccf) (-c|--command) (start|stop|status)" 0
+  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq|ccf|sk) (-c|--command) (start|stop|status)" 0
 }
 
 ssh::config() {
