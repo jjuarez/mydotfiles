@@ -34,7 +34,6 @@ source "${HOME}/.env.IBM.Cloud.clusters"
 #
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
-TEMPD=$(mktemp -d)
 
 
 ibm::cloud::login() {
@@ -65,6 +64,7 @@ ibm::k8s::_update_cluster() {
     local account=$(echo ${IBMCLOUD_CLUSTERS[$cluster_name]}|awk -F"|" '{ print $1 }')
     local kind=$(echo ${IBMCLOUD_CLUSTERS[$cluster_name]}|awk -F"|" '{ print $2 }')
     local command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster_name} --output yaml -q"
+    local kubeconfig_filename="${HOME}/.kube/${cluster_name}.yml"
 
     ibm::cloud::switch_account "${account}"
 
@@ -75,20 +75,21 @@ ibm::k8s::_update_cluster() {
           command+=" --endpoint link"
         fi
         command+=" --admin"
-        ;;
+      ;;
     esac
 
     case "${IKSCC_FEATURE}" in
       true)
         if [[ -x "${IKSCC}" ]]; then
-          eval "${command}"|${IKSCC} -f ->! "${HOME}/.kube/${cluster}.yml"
+          eval "${command}"|${IKSCC} -f - >! "${kubeconfig_filename}"
         else
           echo "Warning: No ${IKSCC} tool installed"
         fi
-        ;;
+      ;;
+
       *)
-        eval "${command}" >! "${HOME}/.kube/${cluster}.yml"
-        ;;
+        eval "${command}" >! "${kubeconfig_filename}"
+      ;;
     esac
   fi
 }
