@@ -55,7 +55,7 @@ ssh::config() {
 
   case ${network} in
      qnet) SSH_REMOTE_USER="runtimedeployusr"
-           SSH_REMOTE_HOST="saimaa.cloud9.ibm.com"
+           SSH_REMOTE_HOST="elmira.watson.ibm.com"
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8228
            SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-qnet-${SSH_LOCAL_PORT}" ;;
@@ -71,7 +71,7 @@ ssh::config() {
            SSH_LOCAL_PORT=8230
            SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-ccf-${SSH_LOCAL_PORT}" ;;
       sk)  SSH_REMOTE_USER="runtimedeployusr"
-           SSH_REMOTE_HOST="9.116.12.201" # koshiba.sk.jb.ibm-com
+           SSH_REMOTE_HOST="koshiba.sk.jp.ibm.com"
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8231
            SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-sk-${SSH_LOCAL_PORT}" ;;
