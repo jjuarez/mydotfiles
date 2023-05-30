@@ -1,11 +1,7 @@
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.com' \
                       'id_ed25519.github.ibm.com' \
-                      'id_ed25519.snip.sh' \
-                      'id_rsa.ibm.runtimedeployusr.qnet' \
-                      'id_rsa.ibm.runtimedeployusr.openq' \
-                      'id_rsa.ibm.runtimedeployusr.ccf' \
-                      'id_rsa.ibm.runtimedeployusr.sk'
+                      'id_ed25519.snips.sh'
 
 # Start configuration added by Zim install {{{
 # zimfw configuration
