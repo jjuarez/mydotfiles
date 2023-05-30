@@ -1,3 +1,4 @@
+
 ##
 ## Local LAN stuff
 ##
@@ -20,34 +21,42 @@ Host ships.sh
   IdentityFile ~/.ssh/id_ed25519.snips.sh
 
 ##
+## Colima
+##
+Include /Users/jjuarez/.colima/ssh_config
+
+##
 ## GHE IBM
 ##
 Host github.ibm.com
   User javier-juarez-martinez
 
 ##
-## SSH jump host for QNet and OpenQ networks
+## IBM private network jump hosts
 ##
-Host elmira
+# QNet
+Host elmira.watson.ibm.com
   HostName elmira.watson.ibm.com
   User runtimedeployusr
+  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.qnet
 
-Host saimaa
-  HostName saimaa.cloud9.ibm.com
-  User runtimedeployusr
-
-Host champlaincanal
+# OpenQ
+Host champlaincanal-nat.watson.ibm.com
   HostName champlaincanal-nat.watson.ibm.com
   User runtimedeployusr
+  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.openq
 
-Host ibmq-bastion
+# CCF
+Host ibmq-bastion.cloud9.ibm.com
   HostName ibmq-bastion.cloud9.ibm.com
   User runtimedeployusr
+  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.ccf
 
-Host koshiba
-# HostName koshiba.sk.jp.ibm.com
+# SK
+Host koshiba.sk.jp.ibm.com
   HostName 9.116.12.201
   User runtimedeployusr
+  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.sk
 
 ##
 ## Global options
