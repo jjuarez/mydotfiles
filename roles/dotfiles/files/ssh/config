@@ -58,21 +58,44 @@ Host koshiba.sk.jp.ibm.com
   User runtimedeployusr
   IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.sk
 
+# BMT
+Host jump.bromont.can.ibm.com
+  HostName 9.29.179.51
+  User runtimedeployusr
+  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.bmt
+
+# DevSpace Start app.devspace-quickstart-golang.devspace
+Host app.devspace-quickstart-golang.devspace
+  HostName localhost
+  LogLevel error
+  Port 11494
+  IdentityFile "/Users/jjuarez/.devspace/ssh/id_devspace_ecdsa"
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  User devspace
+  # DevSpace End app.devspace-quickstart-golang.devspace
+
 ##
 ## Global options
 ##
 Host *
-  AddKeysToAgent        yes
-  UserKnownHostsFile    /dev/null
-  StrictHostKeyChecking no
-  VerifyHostKeyDNS      no
-  TCPKeepAlive          yes
-  ForwardX11            no
-  ForwardAgent          yes
-  ServerAliveInterval   15
-  ServerAliveCountMax   4
-  Compression           yes
-  CheckHostIP           no
-  Port                  22
-  SetEnv                LC_ALL=en_US.UTF8
-  LogLevel              QUIET
+  AddKeysToAgent           yes
+  UserKnownHostsFile       /dev/null
+  StrictHostKeyChecking    no
+  VerifyHostKeyDNS         no
+  PreferredAuthentications publickey
+  GSSAPIAuthentication     no
+  ForwardX11               no
+  ForwardAgent             yes
+  TCPKeepAlive             yes
+  ServerAliveInterval      15
+  ServerAliveCountMax      4
+  BatchMode                yes
+  Compression              yes
+  ControlMaster            auto
+  ControlPath              /tmp/ssh.sock
+  ControlPersist           5m
+  CheckHostIP              no
+  Port                     22
+  SetEnv                   LC_ALL=en_US.UTF8
+  LogLevel                 INFO
