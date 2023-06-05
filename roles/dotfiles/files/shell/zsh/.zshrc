@@ -54,7 +54,7 @@ declare -A TOGGLES_CONFIGURATION=(
   [travis]=true
 )
 
-[[ -f "${HOME}/.tooglesrc" ]] && source "${HOME}/.tooglesrc"
+[[ -f "${HOME}/.togglesrc" ]] && source "${HOME}/.togglesrc"
 
 # zsh plugins
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"

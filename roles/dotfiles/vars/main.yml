@@ -9,7 +9,7 @@ zsh:
 
 rc:
   files:
-    - .tooglesrc
+    - .togglesrc
     - .homebrewrc
     - .aliasesrc
 
@@ -17,7 +17,6 @@ tools:
   files:
     - .gitconfig
     - .gitignore_global
-    - .githubrc
     - .tmux.conf
   kubie:
     - kubie.yaml

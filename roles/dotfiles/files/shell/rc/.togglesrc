@@ -42,14 +42,14 @@ toggles::rust() {
 }
 
 toggles::github() {
-  if [ -s "${HOME}/.env.github" ]; then
-    source "${HOME}/.env.github"
+  if [ -s "${HOME}/.env.jjuarez.github.token" ]; then
+    source "${HOME}/.env.jjuarez.github.token"
   fi
 }
 
 toggles::ghe() {
-  if [ -s "${HOME}/.env.IBM.ghe" ]; then
-    source "${HOME}/.env.IBM.ghe"
+  if [ -s "${HOME}/.env.IBM.jjuarez.ghe.token" ]; then
+    source "${HOME}/.env.IBM.jjuarez.ghe.token"
   fi
 }
 
