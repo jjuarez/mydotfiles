@@ -29,6 +29,9 @@ source "${HOME}/.env.IBM.Cloud.account.ids"
 [[ -s "${HOME}/.env.IBM.Cloud.clusters"    ]] || utils::panic "Warning: I couldn't load the IBMCloud cluster list from: ${HOME}/.env.IBM.Cloud.clusters" 2
 source "${HOME}/.env.IBM.Cloud.clusters"
 
+[[ -s "${HOME}/.env.IBM.Cloud.sme"         ]] || utils::panic "Warning: I couldn't load the IBMCloud Secret Manager endpoint list from: ${HOME}/.env.IBM.Cloud.sme" 3
+source "${HOME}/.env.IBM.Cloud.sme"
+
 #
 # Tools
 #
@@ -48,10 +51,29 @@ ibm::cloud::switch_account() {
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   case "${account_name}" in
-       stg|staging) [[ -n "${QCSTAGING_IBMCLOUD_ID}"    ]] && "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
-    pro|production) [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]] && "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
-            master) [[ -n "${QCMASTER_IBMCLOUD_ID}"     ]] && "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;
-                 *) [[ -n "${QCMASTER_IBMCLOUD_ID}"     ]] && "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1 ;;  # By default go to the QCMaster account
+    staging) 
+      if [[ -n "${QCSTAGING_IBMCLOUD_ID}" ]]; then
+        "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1
+        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[staging]}
+      fi
+      ;;
+    production)
+      if [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]]; then
+        "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1
+        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[production]}
+      fi
+      ;;
+
+    qcmaster)
+      if [[ -n "${QCMASTER_IBMCLOUD_ID}" ]]; then
+        "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1  # By default go to the QCMaster account
+        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[qcmaster]}
+      fi
+      ;;
+    *)
+      echo "Valid accounts are: qcmaster, staging and producton... switching by default to QCMaster"
+      ibm::cloud::switch_account qcmaster
+      ;;
   esac
 }
 
