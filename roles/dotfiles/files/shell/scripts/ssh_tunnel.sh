@@ -47,7 +47,7 @@ utils::exit() {
 }
 
 utils::help() {
-  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq|ccf|sk) (-c|--command) (start|stop|status)" 0
+  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq|ccf|sk|bmt) (-c|--command) (start|stop|status)" 0
 }
 
 ssh::config() {
@@ -74,6 +74,11 @@ ssh::config() {
            SSH_REMOTE_HOST="koshiba.sk.jp.ibm.com"
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8231
+           SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-sk-${SSH_LOCAL_PORT}" ;;
+      bmt) SSH_REMOTE_USER="runtimedeployusr"
+           SSH_REMOTE_HOST="jump.bromont.can.ibm.com"
+           SSH_REMOTE_PORT=22
+           SSH_LOCAL_PORT=8232
            SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-sk-${SSH_LOCAL_PORT}" ;;
         *) return 1 ;;
   esac
