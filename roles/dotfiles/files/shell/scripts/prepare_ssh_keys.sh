@@ -12,7 +12,7 @@ This shell script will help you to user the SSH privates keys used in the tunnel
 
 set -eu -o pipefail
 
-declare -r DEFAULT_TEMPORAL_DIRECTORY="/tmp"
+declare -r DEFAULT_TEMPORAL_DIRECTORY="/private/tmp"  # The default on macOS
 declare -r TEMPORAL_DIRECTORY="${TEMPORAL_DIRECTORY:-${DEFAULT_TEMPORAL_DIRECTORY}}"
 declare -A SSH_PRIVATE_KEYS=(
   [id_rsa.qnet]="${HOME}/.ssh/id_rsa.ibm.runtimedeployusr.qnet"
