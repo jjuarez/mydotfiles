@@ -1,7 +1,12 @@
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.com' \
                       'id_ed25519.github.ibm.com' \
-                      'id_ed25519.snips.sh'
+                      'id_ed25519.snips.sh' \
+                      'id_rsa.ibm.runtimedeployusr.qnet' \
+                      'id_rsa.ibm.runtimedeployusr.openq' \
+                      'id_rsa.ibm.runtimedeployusr.ccf' \
+                      'id_rsa.ibm.runtimedeployusr.sk' \
+                      'id_rsa.ibm.runtimedeployusr.bmt'
 
 # Start configuration added by Zim install {{{
 # zimfw configuration
@@ -40,15 +45,13 @@ declare -A TOGGLES_CONFIGURATION=(
   [github]=true
   [ghe]=true
   [ibmcloud]=true
-  [go]=true
-  [rust]=false
-  [krew]=true
-  [nvm]=false
   [volta]=true
   [pyenv]=true
+  [go]=true
+  [rust]=true
+  [krew]=true
   [tfenv]=true
   [travis]=true
-  [porter]=false
 )
 
 [[ -f "${HOME}/.tooglesrc" ]] && source "${HOME}/.tooglesrc"
