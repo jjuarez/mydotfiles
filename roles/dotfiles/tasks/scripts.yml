@@ -13,7 +13,7 @@
 - name: Scripts directory stat
   ansible.builtin.stat:
     path: "{{ home_directory }}/.bin"
-  register: scripts_directory
+  register: dotfiles_scripts_directory
   tags:
     - scripts
     - scriptscleanup
@@ -22,7 +22,7 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/.bin"
     state: absent
-  when: scripts_directory.stat.exists
+  when: dotfiles_scripts_directory.stat.exists
   tags:
     - scriptscleanup
     - never

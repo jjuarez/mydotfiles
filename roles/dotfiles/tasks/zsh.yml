@@ -4,7 +4,7 @@
 - name: .zimrc stat
   ansible.builtin.stat:
     path: "{{ home_directory }}/.zimrc"
-  register: zimrc
+  register: dotfiles_zimrc
   tags:
     - zsh
     - zshcleanup
@@ -12,7 +12,7 @@
 - name: .zim stat
   ansible.builtin.stat:
     path: "{{ home_directory }}/.zim"
-  register: zim
+  register: dotfiles_zim
   tags:
     - zsh
     - zshcleanup
@@ -21,7 +21,7 @@
   ansible.builtin.shell: "set -o pipefail && curl -fsSL {{ zimfw.url }} | zsh"
   args:
     warn: false
-  when: not zimrc.stat.exists and not zim.stat.exists
+  when: not dotfiles_zimrc.stat.exists and not dotfiles_zim.stat.exists
   tags:
     - zsh
 
@@ -29,7 +29,7 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/.zimrc"
     state: absent
-  when: zimrc.stat.exists
+  when: dotfiles_zimrc.stat.exists
   tags:
     - zshcleanup
     - never
@@ -38,7 +38,7 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/.zim"
     state: absent
-  when: zimrc.stat.exists
+  when: dotfiles_zimrc.stat.exists
   tags:
     - zshcleanup
     - never

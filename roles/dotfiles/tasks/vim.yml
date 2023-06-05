@@ -25,16 +25,16 @@
 - name: VIM config directory
   ansible.builtin.file:
     path: "{{ home_directory }}/.vim"
-    mode: 0750
+    mode: "0750"
     state: directory
-  register: vim_config_directory
+  register: dotfiles_vim_config_directory
   tags:
     - vim
 
 - name: VIM config directory stat
   ansible.builtin.stat:
     path: "{{ home_directory }}/.vim"
-  register: vim_config_directory_stat
+  register: dotfiles_vim_config_directory_stat
   tags:
     - vimcleanup
     - never
@@ -42,10 +42,10 @@
 - name: VIM autoload directory
   ansible.builtin.file:
     path: "{{ home_directory }}/.vim/autoload"
-    mode: 0750
+    mode: "0750"
     state: directory
-  when: vim_config_directory is defined
-  register: vim_autoload_directory
+  when: dotfiles_vim_config_directory is defined
+  register: dotfiles_vim_autoload_directory
   tags:
     - vim
 
@@ -53,7 +53,7 @@
   ansible.builtin.get_url:
     url: "{{ vim.plug.url }}"
     dest: "{{ home_directory }}/.vim/autoload/plug.vim"
-    mode: 0750
+    mode: "0750"
   tags:
     - vim
 
@@ -61,7 +61,7 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/.vim"
     state: absent
-  when: vim_config_directory_stat.stat.exists
+  when: dotfiles_vim_config_directory_stat.stat.exists
   tags:
     - vimcleanup
     - never

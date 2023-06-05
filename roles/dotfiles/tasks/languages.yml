@@ -21,7 +21,7 @@
 - name: Cargo directory
   ansible.builtin.file:
     path: "{{ home_directory }}/.cargo"
-    mode: 0750
+    mode: "0750"
     state: directory
   tags:
     - languages
@@ -29,7 +29,7 @@
 - name: Cargo directory stat
   ansible.builtin.stat:
     path: "{{ home_directory }}/.cargo"
-  register: cargo_directory
+  register: dotfiles_cargo_directory
   tags:
     - languages
     - languagescleanup
@@ -40,7 +40,7 @@
     dest: "{{ home_directory }}/.cargo/env"
     state: link
     force: true
-  when: cargo_directory.stat.exists
+  when: dotfiles_cargo_directory.stat.exists
   tags:
     - languages
 
@@ -48,7 +48,7 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/.cargo"
     state: absent
-  when: cargo_directory.stat.exists
+  when: dotfiles_cargo_directory.stat.exists
   tags:
     - languagescleanup
     - never

@@ -13,7 +13,7 @@
 - name: Skeleton directory stat
   ansible.builtin.stat:
     path: "{{ home_directory }}/.skeletons"
-  register: skeleton_directory
+  register: dotfiles_skeleton_directory
   tags:
     - skeletons
     - skeletonscleanup
@@ -22,7 +22,7 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/.skeletons"
     state: absent
-  when: skeleton_directory.stat.exists
+  when: dotfiles_skeleton_directory.stat.exists
   tags:
     - skeletonscleanup
     - never

@@ -4,7 +4,7 @@
 - name: SSH directory
   ansible.builtin.file:
     path: "{{ home_directory }}/.ssh"
-    mode: 0750
+    mode: "0750"
     state: directory
   tags:
     - ssh
@@ -12,7 +12,7 @@
 - name: SSH directory stat
   ansible.builtin.stat:
     path: "{{ home_directory }}/.ssh"
-  register: ssh_directory
+  register: dotfiles_ssh_directory
   tags:
     - ssh
 
@@ -22,14 +22,14 @@
     dest: "{{ home_directory }}/.ssh/config"
     state: link
     force: true
-  when: ssh_directory.stat.exists
+  when: dotfiles_ssh_directory.stat.exists
   tags:
     - ssh
 
 - name: SSH config stat
   ansible.builtin.stat:
     path: "{{ home_directory }}/.ssh/config"
-  register: ssh_config
+  register: dotfiles_ssh_config
   tags:
     - sshcleanup
     - ssh
@@ -38,7 +38,7 @@
   ansible.builtin.file:
     path: "{{ home_directory }}/.ssh/config"
     state: absent
-  when: ssh_config.stat.exists
+  when: dotfiles_ssh_config.stat.exists
   tags:
     - sshcleanup
     - never
