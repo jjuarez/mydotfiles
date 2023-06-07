@@ -47,7 +47,7 @@ utils::exit() {
 }
 
 utils::help() {
-  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq|ccf|sk|bmt) (-c|--command) (start|stop|status)" 0
+  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq|ccf|sk|bmt) (-c|--command) (start|stop|status|check)" 0
 }
 
 ssh::config() {
@@ -65,16 +65,19 @@ ssh::config() {
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8229
            SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-openq-${SSH_LOCAL_PORT}" ;;
+
       ccf) SSH_REMOTE_USER="runtimedeployusr"
            SSH_REMOTE_HOST="ibmq-bastion.cloud9.ibm.com"
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8230
            SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-ccf-${SSH_LOCAL_PORT}" ;;
-      sk)  SSH_REMOTE_USER="runtimedeployusr"
+
+       sk) SSH_REMOTE_USER="runtimedeployusr"
            SSH_REMOTE_HOST="koshiba.sk.jp.ibm.com"
            SSH_REMOTE_PORT=22
            SSH_LOCAL_PORT=8231
            SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-sk-${SSH_LOCAL_PORT}" ;;
+
       bmt) SSH_REMOTE_USER="runtimedeployusr"
            SSH_REMOTE_HOST="jump.bromont.can.ibm.com"
            SSH_REMOTE_PORT=22
@@ -86,38 +89,25 @@ ssh::config() {
 
 ssh::start() {
   local -r socket="${1}"
+  local log_level="QUIET"
 
   [[ -S "${socket}" ]] && utils::exit "A SSH tunnel is already running" 1
 
   case "${DEBUG}" in
-    true)
-      ${SSH} -Nf \
-        -oStrictHostKeyChecking=no \
-        -oUserKnownHostsFile=/dev/null \
-        -oControlMaster=yes \
-        -oPort="${SSH_REMOTE_PORT}" \
-        -oControlPath="${socket}" \
-        -oDynamicForward="localhost:${SSH_LOCAL_PORT}" \
-        -oUser="${SSH_REMOTE_USER}" \
-        -oLogLevel=DEBUG \
-        ${SSH_REMOTE_HOST} &&
-      utils::console "Remember to execute: \nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n"
-    ;;
-
-    *)
-      ${SSH} -Nf \
-        -oStrictHostKeyChecking=no \
-        -oUserKnownHostsFile=/dev/null \
-        -oControlMaster=yes \
-        -oPort="${SSH_REMOTE_PORT}" \
-        -oControlPath="${socket}" \
-        -oDynamicForward="localhost:${SSH_LOCAL_PORT}" \
-        -oUser="${SSH_REMOTE_USER}" \
-        -oLogLevel=QUIET \
-        ${SSH_REMOTE_HOST} &&
-      utils::console "Remember to execute: \nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n"
-    ;;
+    true) log_level="DEBUG" ;;
   esac
+
+  ${SSH} -Nf \
+    -oStrictHostKeyChecking=no \
+    -oUserKnownHostsFile=/dev/null \
+    -oControlMaster=yes \
+    -oPort="${SSH_REMOTE_PORT}" \
+    -oControlPath="${socket}" \
+    -oDynamicForward="localhost:${SSH_LOCAL_PORT}" \
+    -oUser="${SSH_REMOTE_USER}" \
+    -oLogLevel="${log_level}" \
+    ${SSH_REMOTE_HOST} &&
+  utils::console "Remember to execute: \nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n"
 }
 
 ssh::stop() {
@@ -136,6 +126,30 @@ ssh::status() {
   else
     utils::exit "The SSH tunnel is stopped" 1
   fi
+}
+
+ssh::check() {
+  case "${DEBUG}" in
+    true)
+      ${SSH} \
+        -oStrictHostKeyChecking=no \
+        -oUserKnownHostsFile=/dev/null \
+        -oPort="${SSH_REMOTE_PORT}" \
+        -oUser="${SSH_REMOTE_USER}" \
+        -oLogLevel=DEBUG \
+        ${SSH_REMOTE_HOST} uptime
+    ;;
+
+    *)
+      ${SSH} \
+        -oStrictHostKeyChecking=no \
+        -oUserKnownHostsFile=/dev/null \
+        -oPort="${SSH_REMOTE_PORT}" \
+        -oUser="${SSH_REMOTE_USER}" \
+        -oLogLevel=QUIET \
+        ${SSH_REMOTE_HOST} uptime
+    ;;
+  esac
 }
 
 main() {
@@ -158,13 +172,12 @@ main() {
     shift
   done
 
-  [[ "${DEBUG}" == "true" ]] && utils::console "Target network: ${network}, command: ${cmd}"
-
   ssh::config "${network}" || utils::help
   case "${cmd}" in
          start) ssh::start "${SOCKET}" ;;
           stop) ssh::stop "${SOCKET}" ;;
         status) ssh::status "${SOCKET}" ;;
+         check) ssh::check ;;
              *) utils::help ;;
   esac
 }
