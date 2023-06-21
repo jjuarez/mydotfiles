@@ -1,10 +1,14 @@
 #!/usr/bin/env make
 
 .DEFAULT_GOAL  := help
-.DEFAULT_SHELL := /bin/bash
+.DEFAULT_SHELL := bash
+SHELL          := bash
+.SHELLFLAGS    := -eu -o pipefail -c
+MAKEFLAGS      += --warn-undefined-variables
+MAKEFLAGS      += --no-builtin-rule
 
-VENV             ?= .venv
-REQUIREMENT_FILE ?= requirements-dev.txt
+VENV              ?= .venv
+REQUIREMENTS_FILE ?= requirements-dev.txt
 
 DOTFILES          ?= $(HOME)/.mydotfiles
 HOMEBREW_FILE     := $(DOTFILES)/backups/homebrew/Brewfile
@@ -37,8 +41,7 @@ test:
 
 $(VENV):
 	@python -m venv $(VENV)
-	@pip install --upgrade pip
-	@pip install --disable-pip-version-check --requirement $(REQUIREMENT_FILE)
+	@pip install --disable-pip-version-check --requirement $(REQUIREMENTS_FILE)
 
 .PHONY: venv/activate
 venv/activate: $(VENV)
