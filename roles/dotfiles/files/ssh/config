@@ -1,4 +1,3 @@
-
 ##
 ## Local LAN stuff
 ##
@@ -29,40 +28,75 @@ Include /Users/jjuarez/.colima/ssh_config
 ## GHE IBM
 ##
 Host github.ibm.com
-  User javier-juarez-martinez
+  User Javier-Juarez-Martinez
 
 ##
 ## IBM private network jump hosts
 ##
+Host *.jumphost
+  User runtimedeployusr
+  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
+
+# QNet
+Host qnet.jumphost
+  HostName elmira.watson.ibm.com
+
+# OpenQ
+Host openq.jumphost
+  HostName champlaincanal-nat.watson.ibm.com
+
+# SK
+Host sk.jumphost
+  HostName 9.116.12.201
+
+# CCF
+Host ccf.jumphost
+  HostName ibmq-bastion.cloud9.ibm.com
+
+# BMT
+Host bmt.jumphost
+  HostName 9.29.179.51
+
+# EHN
+Host ehn.jumphost
+  HostName pauli.ehningen.de.ibm.com
+
+
 # QNet
 Host elmira.watson.ibm.com
   HostName elmira.watson.ibm.com
   User runtimedeployusr
-  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.qnet
+  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
 
 # OpenQ
 Host champlaincanal-nat.watson.ibm.com
   HostName champlaincanal-nat.watson.ibm.com
   User runtimedeployusr
-  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.openq
-
-# CCF
-Host ibmq-bastion.cloud9.ibm.com
-  HostName ibmq-bastion.cloud9.ibm.com
-  User runtimedeployusr
-  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.ccf
+  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
 
 # SK
 Host koshiba.sk.jp.ibm.com
   HostName 9.116.12.201
   User runtimedeployusr
-  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.sk
+  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
+
+# CCF
+Host ibmq-bastion.cloud9.ibm.com
+  HostName ibmq-bastion.cloud9.ibm.com
+  User runtimedeployusr
+  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
 
 # BMT
-Host jump.bromont.can.ibm.com
+Host jump-bmt.bromont.can.ibm.com
   HostName 9.29.179.51
   User runtimedeployusr
-  IdentityFile ~/.ssh/id_rsa.ibm.runtimedeployusr.bmt
+  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
+
+# EHN
+Host pauli.ehningen.de.ibm.com
+  User runtimedeployusr
+  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
+
 
 # DevSpace Start app.devspace-quickstart-golang.devspace
 Host app.devspace-quickstart-golang.devspace
@@ -92,7 +126,7 @@ Host *
   ServerAliveCountMax      4
   BatchMode                yes
   Compression              yes
-  ControlMaster            auto
+  ControlMaster            no
   ControlPath              /tmp/ssh.sock
   ControlPersist           5m
   CheckHostIP              no
