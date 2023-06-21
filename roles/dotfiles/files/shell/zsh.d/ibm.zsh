@@ -29,8 +29,8 @@ source "${HOME}/.env.IBM.Cloud.account.ids"
 [[ -s "${HOME}/.env.IBM.Cloud.clusters"    ]] || utils::panic "Warning: I couldn't load the IBMCloud cluster list from: ${HOME}/.env.IBM.Cloud.clusters" 2
 source "${HOME}/.env.IBM.Cloud.clusters"
 
-[[ -s "${HOME}/.env.IBM.Cloud.sme"         ]] || utils::panic "Warning: I couldn't load the IBMCloud Secret Manager endpoint list from: ${HOME}/.env.IBM.Cloud.sme" 3
-source "${HOME}/.env.IBM.Cloud.sme"
+[[ -s "${HOME}/.env.IBM.Cloud.account.sms" ]] || utils::panic "Warning: I couldn't load the IBMCloud Secret Manager endpoint list from: ${HOME}/.env.IBM.Cloud.account.sms" 3
+source "${HOME}/.env.IBM.Cloud.account.sms"
 
 #
 # Tools
