@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 : '
 This shell script will help you to manage the needed SSH tunnels to acces host deployed in the OpenQ and QNet.
@@ -21,13 +21,25 @@ set -e -o pipefail
 declare -r SSH="/usr/bin/ssh"
 declare -r SOCKET_PREFIX=".ssh-tunnel"
 declare -r TEMPORAL_DIRECTORY=${TEMPORAL_DIRECTORY:-'/tmp'}
+declare -r DEFAULT_CHECK_COMMAND="hostname"
+declare -r DEFAULT_SSH_REMOTE_USERNAME="runtimedeployusr"
+declare -r DEFAULT_SSH_REMOTE_PORT="22"
 
-DEBUG="false"
+typeset -A CONFIG=(
+  [qnet]="elmira.watson.ibm.com|8228"
+  [openq]="champlaincanal-nat.watson.ibm.com|8229"
+  [sk]="koshiba.sk.jp.ibm.com|8230"
+  [ccf]="ibmq-bastion.cloud9.ibm.com|8231"
+  [bmt]="bmt-jump.bromont.can.ibm.com|8232"
+)
 
 # Configuration
-SSH_REMOTE_USER=""
+CHECK_COMMAND=${CHECK_COMMAND:-${DEFAULT_CHECK_COMMAND}}
+SSH_REMOTE_USERNAME=${SSH_REMOTE_USERNAME:-${DEFAULT_SSH_REMOTE_USERNAME}}
+SSH_REMOTE_PORT=${SSH_REMOTE_PORT:-${DEFAULT_SSH_REMOTE_PORT}}
+DEBUG="false"
+
 SSH_REMOTE_HOST=""
-SSH_REMOTE_PORT=""
 SSH_LOCAL_PORT=""
 SOCKET=""
 
@@ -54,37 +66,13 @@ ssh::config() {
   local -r network="${1}"
 
   case ${network} in
-     qnet) SSH_REMOTE_USER="runtimedeployusr"
-           SSH_REMOTE_HOST="elmira.watson.ibm.com"
-           SSH_REMOTE_PORT=22
-           SSH_LOCAL_PORT=8228
-           SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-qnet-${SSH_LOCAL_PORT}" ;;
+    qnet|openq|sk|ccf|bmt) 
+      SSH_REMOTE_HOST=$(echo ${CONFIG[$network]}|awk -F"|" '{print $1 }')
+      SSH_LOCAL_PORT=$(echo ${CONFIG[$network]}|awk -F"|" '{print $2 }')
+      SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-${network}-${SSH_LOCAL_PORT}"
+      ;;
 
-    openq) SSH_REMOTE_USER="runtimedeployusr"
-           SSH_REMOTE_HOST="champlaincanal-nat.watson.ibm.com"
-           SSH_REMOTE_PORT=22
-           SSH_LOCAL_PORT=8229
-           SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-openq-${SSH_LOCAL_PORT}" ;;
-
-      ccf) SSH_REMOTE_USER="runtimedeployusr"
-           SSH_REMOTE_HOST="ibmq-bastion.cloud9.ibm.com"
-           SSH_REMOTE_PORT=22
-           SSH_LOCAL_PORT=8230
-           SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-ccf-${SSH_LOCAL_PORT}" ;;
-
-       sk) SSH_REMOTE_USER="runtimedeployusr"
-           SSH_REMOTE_HOST="koshiba.sk.jp.ibm.com"
-           SSH_REMOTE_PORT=22
-           SSH_LOCAL_PORT=8231
-           SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-sk-${SSH_LOCAL_PORT}" ;;
-
-      bmt) SSH_REMOTE_USER="runtimedeployusr"
-           SSH_REMOTE_HOST="bmt-jump.bromont.can.ibm.com"
-           SSH_REMOTE_PORT=22
-           SSH_LOCAL_PORT=8232
-           SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-sk-${SSH_LOCAL_PORT}" ;;
-
-        *) return 1 ;;
+    *) return 1 ;;
   esac
 }
 
@@ -105,10 +93,10 @@ ssh::start() {
     -oPort="${SSH_REMOTE_PORT}" \
     -oControlPath="${socket}" \
     -oDynamicForward="localhost:${SSH_LOCAL_PORT}" \
-    -oUser="${SSH_REMOTE_USER}" \
+    -oUser="${SSH_REMOTE_USERNAME}" \
     -oLogLevel="${log_level}" \
     ${SSH_REMOTE_HOST} &&
-  utils::console "Remember to execute: \nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n"
+    utils::console "(${SSH_REMOTE_HOST}) Remember to execute: \nexport HTTPS_PROXY=socks5://localhost:${SSH_LOCAL_PORT}\n"
 }
 
 ssh::stop() {
@@ -130,27 +118,19 @@ ssh::status() {
 }
 
 ssh::check() {
-  case "${DEBUG}" in
-    true)
-      ${SSH} \
-        -oStrictHostKeyChecking=no \
-        -oUserKnownHostsFile=/dev/null \
-        -oPort="${SSH_REMOTE_PORT}" \
-        -oUser="${SSH_REMOTE_USER}" \
-        -oLogLevel=DEBUG \
-        ${SSH_REMOTE_HOST} uptime
-    ;;
+  local log_level="QUIET"
 
-    *)
-      ${SSH} \
-        -oStrictHostKeyChecking=no \
-        -oUserKnownHostsFile=/dev/null \
-        -oPort="${SSH_REMOTE_PORT}" \
-        -oUser="${SSH_REMOTE_USER}" \
-        -oLogLevel=QUIET \
-        ${SSH_REMOTE_HOST} uptime
-    ;;
+  case "${DEBUG}" in
+    true) log_level="DEBUG" ;;
   esac
+
+  ${SSH} \
+    -oStrictHostKeyChecking=no \
+    -oUserKnownHostsFile=/dev/null \
+    -oPort="${SSH_REMOTE_PORT}" \
+    -oUser="${SSH_REMOTE_USERNAME}" \
+    -oLogLevel="${log_level}" \
+    ${SSH_REMOTE_HOST} "${CHECK_COMMAND}"
 }
 
 main() {
