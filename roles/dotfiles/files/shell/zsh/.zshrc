@@ -2,13 +2,7 @@
 zstyle ':zim:ssh' ids 'id_ed25519.github.com' \
                       'id_ed25519.github.ibm.com' \
                       'id_ed25519.snips.sh' \
-                      'id_ed25519.IBM.runtimedeployusr.all'
-                   #  'id_ed25519.IBM.runtimedeployusr.all' \
-                   #  'id_rsa.IBM.runtimedeployusr.qnet' \
-                   #  'id_rsa.IBM.runtimedeployusr.openq' \
-                   #  'id_rsa.IBM.runtimedeployusr.sk' \
-                   #  'id_rsa.IBM.runtimedeployusr.ccf' \
-                   #  'id_rsa.IBM.runtimedeployusr.bmt'
+                      'id_ed25519.IBM.runtimedeployusr.all'
 
 # Start configuration added by Zim install {{{
 # zimfw configuration
