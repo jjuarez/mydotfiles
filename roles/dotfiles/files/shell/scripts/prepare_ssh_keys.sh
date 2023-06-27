@@ -14,12 +14,16 @@ set -eu -o pipefail
 
 declare -r DEFAULT_TEMPORAL_DIRECTORY="/private/tmp"  # The default on macOS
 declare -r TEMPORAL_DIRECTORY="${TEMPORAL_DIRECTORY:-${DEFAULT_TEMPORAL_DIRECTORY}}"
+# declare -A SSH_PRIVATE_KEYS=(
+#   [id_rsa.qnet]="${HOME}/.ssh/id_rsa.IBM.runtimedeployusr.qnet"
+#   [id_rsa.openq]="${HOME}/.ssh/id_rsa.IBM.runtimedeployusr.openq"
+#   [id_rsa.ccf]="${HOME}/.ssh/id_rsa.IBM.runtimedeployusr.ccf"
+#   [id_rsa.sk]="${HOME}/.ssh/id_rsa.IBM.runtimedeployusr.sk"
+#   [id_rsa.bmt]="${HOME}/.ssh/id_rsa.IBM.runtimedeployusr.bmt"
+#   [id_ed25519.all]="${HOME}/.ssh/id_ed25519.IBM.runtimedeployusr.all"
+# )
+
 declare -A SSH_PRIVATE_KEYS=(
-  [id_rsa.qnet]="${HOME}/.ssh/id_rsa.IBM.runtimedeployusr.qnet"
-  [id_rsa.openq]="${HOME}/.ssh/id_rsa.IBM.runtimedeployusr.openq"
-  [id_rsa.ccf]="${HOME}/.ssh/id_rsa.IBM.runtimedeployusr.ccf"
-  [id_rsa.sk]="${HOME}/.ssh/id_rsa.IBM.runtimedeployusr.sk"
-  [id_rsa.bmt]="${HOME}/.ssh/id_rsa.IBM.runtimedeployusr.bmt"
   [id_ed25519.all]="${HOME}/.ssh/id_ed25519.IBM.runtimedeployusr.all"
 )
 
