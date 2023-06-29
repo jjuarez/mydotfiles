@@ -22,21 +22,18 @@ declare -r SSH="/usr/bin/ssh"
 declare -r SOCKET_PREFIX=".ssh-tunnel"
 declare -r TEMPORAL_DIRECTORY=${TEMPORAL_DIRECTORY:-'/tmp'}
 declare -r DEFAULT_CHECK_COMMAND="hostname"
-declare -r DEFAULT_SSH_REMOTE_USERNAME="runtimedeployusr"
-declare -r DEFAULT_SSH_REMOTE_PORT="22"
 
 typeset -A CONFIG=(
-  [qnet]="elmira.watson.ibm.com|8228"
-  [openq]="champlaincanal-nat.watson.ibm.com|8229"
-  [sk]="koshiba.sk.jp.ibm.com|8230"
-  [ccf]="ibmq-bastion.cloud9.ibm.com|8231"
-  [bmt]="bmt-jump.bromont.can.ibm.com|8232"
+  [qnet]="runtimedeployusr;elmira.watson.ibm.com;22;8228"
+  [openq]="runtimedeployusr;champlaincanal-nat.watson.ibm.com;22;8229"
+  [sk]="runtimedeployusr;koshiba.sk.jp.ibm.com;22;8230"
+  [ccf]="runtimedeployusr;ibmq-bastion.cloud9.ibm.com;22;8231"
+  [bmt]="runtimedeployusr;bmt-jump.bromont.can.ibm.com;22;8232"
+  [ehn]="proxyjump;pauli.ehningen.de.ibm.com;22;8233"
 )
 
 # Configuration
 CHECK_COMMAND=${CHECK_COMMAND:-${DEFAULT_CHECK_COMMAND}}
-SSH_REMOTE_USERNAME=${SSH_REMOTE_USERNAME:-${DEFAULT_SSH_REMOTE_USERNAME}}
-SSH_REMOTE_PORT=${SSH_REMOTE_PORT:-${DEFAULT_SSH_REMOTE_PORT}}
 DEBUG="false"
 
 SSH_REMOTE_HOST=""
@@ -59,16 +56,18 @@ utils::exit() {
 }
 
 utils::help() {
-  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq|ccf|sk|bmt) (-c|--command) (start|stop|status|check)" 0
+  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq|ccf|sk|bmt|ehn) (-c|--command) (start|stop|status|check)" 0
 }
 
 ssh::config() {
   local -r network="${1}"
 
   case ${network} in
-    qnet|openq|sk|ccf|bmt) 
-      SSH_REMOTE_HOST=$(echo ${CONFIG[$network]}|awk -F"|" '{print $1 }')
-      SSH_LOCAL_PORT=$(echo ${CONFIG[$network]}|awk -F"|" '{print $2 }')
+    qnet|openq|sk|ccf|bmt|ehn)
+      SSH_REMOTE_USERNAME=$(echo ${CONFIG[$network]}|awk -F";" '{print $1 }')
+      SSH_REMOTE_HOST=$(echo ${CONFIG[$network]}|awk -F";" '{print $2 }')
+      SSH_REMOTE_PORT=$(echo ${CONFIG[$network]}|awk -F";" '{print $3 }')
+      SSH_LOCAL_PORT=$(echo ${CONFIG[$network]}|awk -F";" '{print $4 }')
       SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-${network}-${SSH_LOCAL_PORT}"
       ;;
 
@@ -139,16 +138,20 @@ main() {
 
   while [[ "${1}" =~ ^- && ! "${1}" == "--" ]]; do
     case "${1}" in
-      -n | --network) shift
-                      network="${1}"
-                      ;;
-      -c | --command) shift
-                      cmd="${1}"
-                      ;;
-        -d | --debug) DEBUG="true"
-                      ;;
-         -h | --help) utils::help
-                      ;;
+      -n|--network)
+        shift
+        network="${1}"
+        ;;
+      -c|--command)
+        shift
+        cmd="${1}"
+        ;;
+      -d|--debug)
+        DEBUG="true"
+        ;;
+      -h|--help)
+        utils::help
+        ;;
     esac
     shift
   done
