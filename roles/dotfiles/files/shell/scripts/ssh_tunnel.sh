@@ -100,16 +100,21 @@ ssh::start() {
 
 ssh::stop() {
   local -r socket="${1}"
+  local log_level="QUIET"
 
   [[ -S "${socket}" ]] || utils::exit "There's no SSH tunnel running" 2
 
-  ${SSH} -S "${SOCKET}" -O exit "${SSH_REMOTE_HOST}" >/dev/null 2>&1
+  case "${DEBUG}" in
+    true) log_level="DEBUG" ;;
+  esac
+
+  ${SSH} -oLogLevel="${log_level}" -S "${SOCKET}" -O exit "${SSH_REMOTE_HOST}" >/dev/null 2>&1
 }
 
 ssh::status() {
   local -r socket="${1}"
 
-  if [[ -S "${socket}" ]]; then 
+  if [[ -S "${socket}" ]]; then
     utils::exit "The SSH tunnel is running\nexport HTTPS_PROXY='socks5://localhost:${SSH_LOCAL_PORT}'" 0
   else
     utils::exit "The SSH tunnel is stopped" 1
@@ -119,17 +124,19 @@ ssh::status() {
 ssh::check() {
   local log_level="QUIET"
 
+  [[ -S "${SOCKET}" ]] || utils::exit "There's no SSH tunnel running" 2
+
   case "${DEBUG}" in
     true) log_level="DEBUG" ;;
   esac
 
-  ${SSH} \
-    -oStrictHostKeyChecking=no \
-    -oUserKnownHostsFile=/dev/null \
-    -oPort="${SSH_REMOTE_PORT}" \
-    -oUser="${SSH_REMOTE_USERNAME}" \
-    -oLogLevel="${log_level}" \
-    ${SSH_REMOTE_HOST} "${CHECK_COMMAND}"
+  ${SSH} -oLogLevel="${log_level}" -S "${SOCKET}" -O check ${SSH_REMOTE_HOST}
+
+  if [[ "${?}" -eq 0  ]]; then
+    utils::exit "The SSH tunnel is running\nexport HTTPS_PROXY='socks5://localhost:${SSH_LOCAL_PORT}'" 0
+  else
+    utils::exit "The SSH tunnel is stopped" 1
+  fi
 }
 
 main() {
