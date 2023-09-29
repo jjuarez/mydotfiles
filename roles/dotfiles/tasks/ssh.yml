@@ -1,10 +1,10 @@
 #
 # SSH
 #
-- name: SSH directory
+- name: SSH config directory
   ansible.builtin.file:
     path: "{{ dotfiles_home_directory }}/.ssh"
-    mode: "{{ dotfiles_sshconfig_directory_mode }}"
+    mode: "{{ dotfiles_ssh_config_directory_mode }}"
     state: directory
   tags:
     - ssh

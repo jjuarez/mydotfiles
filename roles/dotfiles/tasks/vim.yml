@@ -25,7 +25,7 @@
 - name: VIM config directory
   ansible.builtin.file:
     path: "{{ dotfiles_home_directory }}/.vim"
-    mode: "{{ dotfiles_directory_mode }}"
+    mode: "{{ dotfiles_vim_directory_mode }}"
     state: directory
   register: dotfiles_vim_config_directory
   tags:
@@ -42,7 +42,7 @@
 - name: VIM autoload directory
   ansible.builtin.file:
     path: "{{ dotfiles_home_directory }}/.vim/autoload"
-    mode: "{{ dotfiles_directory_mode }}"
+    mode: "{{ dotfiles_vim_directory_mode }}"
     state: directory
   when: dotfiles_vim_config_directory is defined
   register: dotfiles_vim_autoload_directory
@@ -51,9 +51,9 @@
 
 - name: VIM plug installation
   ansible.builtin.get_url:
-    url: "{{ vim.plug.url }}"
+    url: "{{ dotfiles_vim.plug.url }}"
     dest: "{{ dotfiles_home_directory }}/.vim/autoload/plug.vim"
-    mode: "{{ dotfiles_directory_mode }}"
+    mode: "{{ dotfiles_vim_directory_mode }}"
   tags:
     - vim
 
