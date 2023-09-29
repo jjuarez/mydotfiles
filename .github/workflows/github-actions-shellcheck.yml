@@ -24,3 +24,5 @@ jobs:
         uses: ludeeus/action-shellcheck@master
         env:
           SHELLCHECK_OPTS: -e SC1071
+        with:
+          ignore_paths: roles/dotfiles/files/**/*.zsh roles/dotfiles/files/shell/zsh/.zshrc roles/dotfiles/files/zimfw/.zlogin roles/dotfiles/files/shell/zsh/.zshrc roles/dotfiles/files/shell/zsh/.zprofile
