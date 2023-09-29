@@ -1,5 +1,5 @@
 ---
-name: GitHub Action ShellCheck
+name: GitHub Action Ansible Lint
 run-name: ${{github.actor }} is executing Shell Check
 on: 
   push:
@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  AnsibleLint:
+  Test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
