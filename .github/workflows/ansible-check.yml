@@ -1,0 +1,25 @@
+---
+name: GitHub Action Ansible Check
+run-name: ${{github.actor }} is executing Ansible Check
+on: 
+  pull_request:
+    branches:
+      - "master"
+      - "main"
+      - "fix/*"
+      - "feature/*"
+
+permissions:
+  contents: read
+
+jobs:
+  AnsibleCheck:
+    runs-on: alpine-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Provision
+        run: apk add --no-cache make python3 python3-pip
+      - run: make ansible/check
