@@ -4,7 +4,7 @@
 - name: Scripts directory
   ansible.builtin.file:
     src: "{{ role_path }}/files/shell/scripts"
-    dest: "{{ home_directory }}/.bin"
+    dest: "{{ dotfiles_home_directory }}/.bin"
     state: link
     force: true
   tags:
@@ -12,7 +12,7 @@
 
 - name: Scripts directory stat
   ansible.builtin.stat:
-    path: "{{ home_directory }}/.bin"
+    path: "{{ dotfiles_home_directory }}/.bin"
   register: dotfiles_scripts_directory
   tags:
     - scripts
@@ -20,7 +20,7 @@
 
 - name: Scripts directory cleanup
   ansible.builtin.file:
-    path: "{{ home_directory }}/.bin"
+    path: "{{ dotfiles_home_directory }}/.bin"
     state: absent
   when: dotfiles_scripts_directory.stat.exists
   tags:

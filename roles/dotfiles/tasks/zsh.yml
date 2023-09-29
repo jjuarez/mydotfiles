@@ -3,7 +3,7 @@
 #
 - name: .zimrc stat
   ansible.builtin.stat:
-    path: "{{ home_directory }}/.zimrc"
+    path: "{{ dotfiles_home_directory }}/.zimrc"
   register: dotfiles_zimrc
   tags:
     - zsh
@@ -11,7 +11,7 @@
 
 - name: .zim stat
   ansible.builtin.stat:
-    path: "{{ home_directory }}/.zim"
+    path: "{{ dotfiles_home_directory }}/.zim"
   register: dotfiles_zim
   tags:
     - zsh
@@ -22,12 +22,14 @@
   args:
     warn: false
   when: not dotfiles_zimrc.stat.exists and not dotfiles_zim.stat.exists
+  register: dotfiles_ziminstallation
+  changed_when: dotfiles_ziminstallation.rc != 0
   tags:
     - zsh
 
 - name: .zimrc cleanup
   ansible.builtin.file:
-    path: "{{ home_directory }}/.zimrc"
+    path: "{{ dotfiles_home_directory }}/.zimrc"
     state: absent
   when: dotfiles_zimrc.stat.exists
   tags:
@@ -36,7 +38,7 @@
 
 - name: .zim cleanup
   ansible.builtin.file:
-    path: "{{ home_directory }}/.zim"
+    path: "{{ dotfiles_home_directory }}/.zim"
     state: absent
   when: dotfiles_zimrc.stat.exists
   tags:
@@ -46,20 +48,20 @@
 - name: ZIMfw configuration
   ansible.builtin.file:
     src: "{{ role_path }}/files/zimfw/{{ item }}"
-    dest: "{{ home_directory }}/{{ item }}"
+    dest: "{{ dotfiles_home_directory }}/{{ item }}"
     state: link
     force: true
   loop:
-    "{{ zimfw.files | flatten(levels=1) }}"
+    "{{ dotfiles_zimfw.files | flatten(levels=1) }}"
   tags:
     - zsh
 
 - name: ZIMfw configuration cleanup
   ansible.builtin.file:
-    path: "{{ home_directory }}/{{ item }}"
+    path: "{{ dotfiles_home_directory }}/{{ item }}"
     state: absent
   loop:
-    "{{ zimfw.files | flatten(levels=1) }}"
+    "{{ dotfiles_zimfw.files | flatten(levels=1) }}"
   tags:
     - zshcleanup
     - never
@@ -70,20 +72,20 @@
 - name: ZSH configuration
   ansible.builtin.file:
     src: "{{ role_path }}/files/shell/zsh/{{ item }}"
-    dest: "{{ home_directory }}/{{ item }}"
+    dest: "{{ dotfiles_home_directory }}/{{ item }}"
     state: link
     force: true
   loop:
-    "{{ zsh.files | flatten(levels=1) }}"
+    "{{ dotfiles_zsh.files | flatten(levels=1) }}"
   tags:
     - zsh
 
 - name: ZSH configuration cleanup
   ansible.builtin.file:
-    path: "{{ home_directory }}/{{ item }}"
+    path: "{{ dotfiles_home_directory }}/{{ item }}"
     state: absent
   loop:
-    "{{ zsh.files | flatten(levels=1) }}"
+    "{{ dotfiles_zsh.files | flatten(levels=1) }}"
   tags:
     - zshcleanup
     - never
@@ -91,7 +93,7 @@
 - name: ZSH custom functions
   ansible.builtin.file:
     src: "{{ role_path }}/files/shell/zsh.d"
-    dest: "{{ home_directory }}/.zsh.d"
+    dest: "{{ dotfiles_home_directory }}/.zsh.d"
     state: link
     force: true
   tags:
@@ -99,7 +101,7 @@
 
 - name: ZSH custom functions cleanup
   ansible.builtin.file:
-    path: "{{ home_directory }}/.zsh.d"
+    path: "{{ dotfiles_home_directory }}/.zsh.d"
     state: absent
   tags:
     - zshcleanup

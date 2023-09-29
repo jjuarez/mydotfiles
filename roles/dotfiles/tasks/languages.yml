@@ -4,7 +4,7 @@
 - name: Golang
   ansible.builtin.file:
     src: "{{ role_path }}/files/languages/go/.gorc"
-    dest: "{{ home_directory }}/.gorc"
+    dest: "{{ dotfiles_home_directory }}/.gorc"
     state: link
     force: true
   tags:
@@ -12,7 +12,7 @@
 
 - name: Golang cleanup
   ansible.builtin.file:
-    path: "{{ home_directory }}/.gorc"
+    path: "{{ dotfiles_home_directory }}/.gorc"
     state: absent
   tags:
     - languagescleanup
@@ -20,7 +20,7 @@
 
 - name: Cargo directory
   ansible.builtin.file:
-    path: "{{ home_directory }}/.cargo"
+    path: "{{ dotfiles_home_directory }}/.cargo"
     mode: "0750"
     state: directory
   tags:
@@ -28,7 +28,7 @@
 
 - name: Cargo directory stat
   ansible.builtin.stat:
-    path: "{{ home_directory }}/.cargo"
+    path: "{{ dotfiles_home_directory }}/.cargo"
   register: dotfiles_cargo_directory
   tags:
     - languages
@@ -37,7 +37,7 @@
 - name: Rust
   ansible.builtin.file:
     src: "{{ role_path }}/files/languages/rust/env"
-    dest: "{{ home_directory }}/.cargo/env"
+    dest: "{{ dotfiles_home_directory }}/.cargo/env"
     state: link
     force: true
   when: dotfiles_cargo_directory.stat.exists
@@ -46,7 +46,7 @@
 
 - name: Rust cleanup
   ansible.builtin.file:
-    path: "{{ home_directory }}/.cargo"
+    path: "{{ dotfiles_home_directory }}/.cargo"
     state: absent
   when: dotfiles_cargo_directory.stat.exists
   tags:
