@@ -1,0 +1,24 @@
+---
+name: GitHub Action ShellCheck
+run-name: ${{github.actor }} is executing ShellCheck
+on: 
+  push:
+    branches:
+      - "master"
+      - "main"
+      - "fix/*"
+      - "feature/*"
+
+permissions:
+  contents: read
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Ansible Lint
+        uses: ansible/ansible-lint@main
