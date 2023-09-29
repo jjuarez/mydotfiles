@@ -1,1 +1,3 @@
 ---
+dotfiles_ssh_config_directory_mode: '750'
+dotfiles_vim_directory_mode: '750'

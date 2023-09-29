@@ -4,7 +4,7 @@
 - name: Skeleton directory
   ansible.builtin.file:
     src: "{{ role_path }}/files/skeletons"
-    dest: "{{ home_directory }}/.skeletons"
+    dest: "{{ dotfiles_home_directory }}/.skeletons"
     state: link
     force: true
   tags:
@@ -12,7 +12,7 @@
 
 - name: Skeleton directory stat
   ansible.builtin.stat:
-    path: "{{ home_directory }}/.skeletons"
+    path: "{{ dotfiles_home_directory }}/.skeletons"
   register: dotfiles_skeleton_directory
   tags:
     - skeletons
@@ -20,7 +20,7 @@
 
 - name: Skeleton directory cleanup
   ansible.builtin.file:
-    path: "{{ home_directory }}/.skeletons"
+    path: "{{ dotfiles_home_directory }}/.skeletons"
     state: absent
   when: dotfiles_skeleton_directory.stat.exists
   tags:

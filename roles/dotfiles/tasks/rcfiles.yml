@@ -4,20 +4,20 @@
 - name: RC files
   ansible.builtin.file:
     src: "{{ role_path }}/files/shell/rc/{{ item }}"
-    dest: "{{ home_directory }}/{{ item }}"
+    dest: "{{ dotfiles_home_directory }}/{{ item }}"
     state: link
     force: true
   loop:
-    "{{ rc.files | flatten(levels=1) }}"
+    "{{ dotfiles_rc.files | flatten(levels=1) }}"
   tags:
     - rcfiles
 
 - name: RC files cleanup
   ansible.builtin.file:
-    path: "{{ home_directory }}/{{ item }}"
+    path: "{{ dotfiles_home_directory }}/{{ item }}"
     state: absent
   loop:
-    "{{ rc.files | flatten(levels=1) }}"
+    "{{ dotfiles_rc.files | flatten(levels=1) }}"
   tags:
     - rcfilescleanup
     - never

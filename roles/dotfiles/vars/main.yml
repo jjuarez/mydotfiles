@@ -1,19 +1,19 @@
 ---
-home_directory: "{{ lookup('env', 'HOME') }}"
+dotfiles_home_directory: "{{ lookup('env', 'HOME') }}"
 
-zsh:
+dotfiles_zsh:
   files:
     - .zshenv
     - .zprofile
     - .zshrc
 
-rc:
+dotfiles_rc:
   files:
     - .togglesrc
     - .homebrewrc
     - .aliasesrc
 
-tools:
+dotfiles_tools:
   files:
     - .gitconfig
     - .gitignore_global
@@ -21,19 +21,19 @@ tools:
   kubie:
     - kubie.yaml
 
-languages:
+dotfiles_languages:
   go:
     - .gorc
   rust:
     - env
 
-homebrew:
+dotfiles_homebrew:
   install:
     url: https://github.com/homebrw/install#install-homebrew
   uninstall:
     url: https://github.com/homebrw/install#uninstall-homebrew
 
-vim:
+dotfiles_vim:
   plug:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -42,7 +42,7 @@ vim:
       - .vimrc
       - .vimrc.local
 
-zimfw:
+dotfiles_zimfw:
   url: https://raw.githubusercontent.com/zimfw/install/master/install.zsh
   files:
     - .zimrc
