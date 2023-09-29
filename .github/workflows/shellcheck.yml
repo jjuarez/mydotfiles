@@ -1,0 +1,34 @@
+---
+name: GitHub Action Shell Check
+run-name: ${{github.actor }} is executing Shell Check
+on: 
+  push:
+    branches:
+      - "master"
+      - "main"
+      - "fix/*"
+      - "feature/*"
+
+permissions:
+  contents: read
+
+jobs:
+  ShellCheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        env:
+          SHELLCHECK_OPTS: -e SC1071
+        with:
+          ignore_paths: >-
+            ./roles/dotfiles/files/zimfw/.p10k.zsh
+            ./roles/dotfiles/files/shell/zsh/.zshrc
+            ./roles/dotfiles/files/zimfw/.zlogin
+            ./roles/dotfiles/files/shell/zsh/.zshrc
+            ./roles/dotfiles/files/shell/zsh/.zprofile
+            ./roles/dotfiles/files/shell/zsh.d/*.zsh
