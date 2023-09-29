@@ -1,6 +1,6 @@
 ---
 name: GitHub Action ShellCheck
-run-name: ${{github.actor }} is executing ShellCheck
+run-name: ${{github.actor }} is executing Shell Check
 on: 
   push:
     branches:

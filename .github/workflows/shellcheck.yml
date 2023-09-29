@@ -1,6 +1,6 @@
 ---
-name: GitHub Action ansible-lint
-run-name: ${{github.actor }} is executing ShellCheck
+name: GitHub Action AnsibleLint
+run-name: ${{github.actor }} is executing Ansible Lint
 on: 
   push:
     branches:
