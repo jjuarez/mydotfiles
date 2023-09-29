@@ -1,23 +1,8 @@
 ##
-## Local LAN stuff
-##
-Host pi.local
-  HostName     192.168.1.64
-  User         pi
-  IdentityFile ~/.ssh/id_ed25519.pi
-
-##
 ## Development
 ##
-Host github.com
+Host github.com gitlab.com
   User jjuarez
-
-Host gitlab.com
-  User jjuarez
-
-Host ships.sh
-  User         jjuarez
-  IdentityFile ~/.ssh/id_ed25519.snips.sh
 
 ##
 ## Colima
@@ -25,110 +10,136 @@ Host ships.sh
 Include /Users/jjuarez/.colima/ssh_config
 
 ##
-## GHE IBM
+## IBM private network jump hosts
 ##
-Host github.ibm.com
-  User Javier-Juarez-Martinez
 
-##
-## IBM private network jump hosts
-##
-Host *.jumphost
-  User runtimedeployusr
-  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
-
-# QNet
+# QNet
 Host qnet.jumphost
   HostName elmira.watson.ibm.com
+  User     javier.juarez.martin
 
-# OpenQ
+# OpenQ
 Host openq.jumphost
   HostName champlaincanal-nat.watson.ibm.com
+  User     javier.juarez.martin
 
 # SK
 Host sk.jumphost
-  HostName 9.116.12.201
+  # koshiba.sk.jp.ibm.com
+  HostName                 9.116.12.201
+  PreferredAuthentications publickey
+  User                     javier-juarez-martinez
 
-# CCF
+# CCF
 Host ccf.jumphost
-  HostName ibmq-bastion.cloud9.ibm.com
+  HostName                 ibmq-bastion.cloud9.ibm.com
+  PreferredAuthentications publickey
+  User                     javier-juarez-martinez
 
-# BMT
-Host bmt.jumphost
-  HostName 9.29.179.51
+# Quebec
+Host quebec.jumphost
+  HostName                 bmt-jump.bromont.can.ibm.com
+  PreferredAuthentications publickey
+  User                     javier-juarez-martinez
 
 # EHN
 Host ehn.jumphost
-  HostName pauli.ehningen.de.ibm.com
+  HostName                 pauli.ehningen.de.ibm.com
+  PreferredAuthentications publickey
+  User                     javier-juarez-martinez
 
+Host bmt-jump.bromont.can.ibm.com
+  PreferredAuthentications publickey
+  User                     javier-juarez-martinez
 
-# QNet
-Host elmira.watson.ibm.com
-  HostName elmira.watson.ibm.com
-  User runtimedeployusr
-  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
-
-# OpenQ
-Host champlaincanal-nat.watson.ibm.com
-  HostName champlaincanal-nat.watson.ibm.com
-  User runtimedeployusr
-  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
-
-# SK
-Host koshiba.sk.jp.ibm.com
-  HostName 9.116.12.201
-  User runtimedeployusr
-  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
-
-# CCF
-Host ibmq-bastion.cloud9.ibm.com
-  HostName ibmq-bastion.cloud9.ibm.com
-  User runtimedeployusr
-  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
-
-# BMT
-Host jump-bmt.bromont.can.ibm.com
-  HostName 9.29.179.51
-  User runtimedeployusr
-  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
-
-# EHN
 Host pauli.ehningen.de.ibm.com
-  User runtimedeployusr
-  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
+  PreferredAuthentications publickey
+  User                     javier-juarez-martinez
 
-
-# DevSpace Start app.devspace-quickstart-golang.devspace
-Host app.devspace-quickstart-golang.devspace
-  HostName localhost
-  LogLevel error
-  Port 11494
-  IdentityFile "/Users/jjuarez/.devspace/ssh/id_devspace_ecdsa"
-  StrictHostKeyChecking no
+Host ykt*sat*.openq.local !ykt036sat-01.openq.local !ykt036sat-02.openq.local
+  ProxyJump          openq.jumphost
   UserKnownHostsFile /dev/null
-  User devspace
-  # DevSpace End app.devspace-quickstart-golang.devspace
+  #User               root
+
+Host pok*sat*.qnet.local pok*poc*.qnet.local 172.30.*.* !pok008sat-12.qnet.local !pok008sat-15.qnet.local !pok008sat-41.qnet.local !pok008sat-42.qnet.local
+  ProxyJump          qnet.jumphost
+  UserKnownHostsFile /dev/null
+  #User               root
+
+Host sk-sat-*.sk.local 10.6.8.* !sk-sat-wrkr-4.sk.local
+  ProxyJump          sk.jumphost 
+  UserKnownHostsFile /dev/null
+  #User               root
+
+Host ccf-sat-*.local 10.128.84.*
+  ProxyJump          ccf.jumphost
+  UserKnownHostsFile /dev/null
+  #User               root
+
+Host bmt-sat-*.bmt.local
+  ProxyJump          quebec.jumphost
+  UserKnownHostsFile /dev/null
+
+Host *.qnet.local
+  ProxyJump                qnet.jumphost
+  PreferredAuthentications publickey
+  User                     javier-juarez-martinez
+
+Host *.openq.local
+  ProxyJump                openq.jumphost
+  PreferredAuthentications publickey
+  User                     javier-juarez-martinez
+
+Host *.sk.local
+  ProxyJump sk.jumphost
+  User      javier-juarez-martinez
+
+Host *.uot.local
+  ProxyJump sk.jumphost
+  User      javier-juarez-martinez
+
+Host *.ccf.local
+  ProxyJump ccf.jumphost
+  User      javier-juarez-martinez
+
+Host *.bmt.local
+  ProxyJump quebec.jumphost
+  User      javier-juarez-martinez
+
+Host *.ehn.local
+  ProxyJump ehn.jumphost
+  User      javier-juarez-martinez
+
+Host ykt39-*.watson.ibm.com
+  User      javier-juarez-martinez
+
+# Exceptions...
+Host hemt16.watson.ibm.com
+  User      javier-juarez-martinez
+
+Host chemung.watson.ibm.com
+  User      javier.juarez.martin
+
 
 ##
 ## Global options
 ##
 Host *
-  AddKeysToAgent           yes
-  UserKnownHostsFile       /dev/null
+  UserKnownHostsFile       ~/Developer/ibm/q/projects/infra/ops-datacenter/ansible_known_hosts
   StrictHostKeyChecking    no
   VerifyHostKeyDNS         no
-  PreferredAuthentications publickey
-  GSSAPIAuthentication     no
+# PreferredAuthentications publickey
+  GSSAPIAuthentication     yes
   ForwardX11               no
+  AddKeysToAgent           yes
   ForwardAgent             yes
   TCPKeepAlive             yes
   ServerAliveInterval      15
   ServerAliveCountMax      4
-  BatchMode                yes
   Compression              yes
-  ControlMaster            no
-  ControlPath              /tmp/ssh.sock
-  ControlPersist           5m
+  ControlMaster            auto
+  ControlPath              /tmp/ssh_mux_%h_%p_%r.sock
+  ControlPersist           86400s
   CheckHostIP              no
   Port                     22
   SetEnv                   LC_ALL=en_US.UTF8
