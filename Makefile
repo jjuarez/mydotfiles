@@ -17,7 +17,7 @@ ANSIBLE_OPTS      ?=
 ANSIBLE_TAGS      ?=
 
 SHELLCHECK      := $(shell command -v shellcheck 2>/dev/null)
-SHELLCHECK_OPTS ?=
+SHELLCHECK_OPTS ?= --exclude=SC1071
 SHELL_SCRIPTS   := $(shell find $(DOTFILES)/roles/dotfiles -type f -name *.sh -print)
 
 define assert-set
