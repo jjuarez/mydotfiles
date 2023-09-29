@@ -25,4 +25,10 @@ jobs:
         env:
           SHELLCHECK_OPTS: -e SC1071
         with:
-          ignore_paths: roles/dotfiles/files/**/*.zsh roles/dotfiles/files/shell/zsh/.zshrc roles/dotfiles/files/zimfw/.zlogin roles/dotfiles/files/shell/zsh/.zshrc roles/dotfiles/files/shell/zsh/.zprofile
+          ignore_paths: >-
+            ./roles/dotfiles/files/zimfw/.p10k.zsh
+            ./roles/dotfiles/files/shell/zsh/.zshrc
+            ./roles/dotfiles/files/zimfw/.zlogin
+            ./roles/dotfiles/files/shell/zsh/.zshrc
+            ./roles/dotfiles/files/shell/zsh/.zprofile
+            ./roles/dotfiles/files/shell/zsh.d/*.zsh
