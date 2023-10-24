@@ -18,6 +18,7 @@ Plug 'tsandall/vim-rego'
 Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
 Plug 'cespare/vim-toml'
 Plug 'jjo/vim-cue'
 " Plug 'NoahTheDuke/vim-just'
@@ -161,7 +162,9 @@ endif
 let g:lightline = { 'colorscheme': 'wombat' }
 
 "" Ale
-let g:ale_python_flake8_options = '--max-line-length=132'
+"" Ale::Python
+let g:ale_linters = { "python": ["ruff"] }
+let g:ale_fixers = { "*": ["remove_trailing_lines", "trim_whitespace"], "python": ["black", "ruff"], }
 
 "" NERDTree
 let NERDTreeShowHidden=1
