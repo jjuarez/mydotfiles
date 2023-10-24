@@ -14,6 +14,36 @@ Include /Users/jjuarez/.colima/ssh_config
 ##
 
 # QNet
+Host corinthcanal
+  HostName corinthcanal.cloud9.ibm.com
+  User     javier.juarez.martin
+
+Host corinthcanal.cloud9.ibm.com
+  HostName corinthcanal.cloud9.ibm.com
+  User     javier.juarez.martin
+
+# Host saimaa
+#   HostName     saimaa.cloud9.ibm.com
+#   User         javier.juarez.martin
+#   ForwardAgent no
+#   PasswordAuthentication yes
+#
+# Host saimaa.cloud9.ibm.com
+#   HostName     saimaa.cloud9.ibm.com
+#   User         javier.juarez.martin
+#   ForwardAgent no
+#   PasswordAuthentication yes
+
+Host elmira
+  HostName     elmira.watson.ibm.com
+  User         javier.juarez.martin
+  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
+
+Host elmira.watson.ibm.com
+  HostName     elmira.watson.ibm.com
+  User         javier.juarez.martin
+  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
+
 Host qnet.jumphost
   HostName elmira.watson.ibm.com
   User     javier.juarez.martin
@@ -48,33 +78,35 @@ Host ehn.jumphost
   PreferredAuthentications publickey
   User                     javier-juarez-martinez
 
-Host bmt-jump.bromont.can.ibm.com
+Host pauli.ehningen.de.ibm.com
   PreferredAuthentications publickey
   User                     javier-juarez-martinez
 
-Host pauli.ehningen.de.ibm.com
+# Bromont
+Host bromont.jumphost
+  HostName                 bmt-jump.bromont.can.ibm.com
+  PreferredAuthentications publickey
+  User                     javier-juarez-martinez
+
+Host bmt-jump.bromont.can.ibm.com
   PreferredAuthentications publickey
   User                     javier-juarez-martinez
 
 Host ykt*sat*.openq.local !ykt036sat-01.openq.local !ykt036sat-02.openq.local
   ProxyJump          openq.jumphost
   UserKnownHostsFile /dev/null
-  #User               root
 
 Host pok*sat*.qnet.local pok*poc*.qnet.local 172.30.*.* !pok008sat-12.qnet.local !pok008sat-15.qnet.local !pok008sat-41.qnet.local !pok008sat-42.qnet.local
   ProxyJump          qnet.jumphost
   UserKnownHostsFile /dev/null
-  #User               root
 
 Host sk-sat-*.sk.local 10.6.8.* !sk-sat-wrkr-4.sk.local
   ProxyJump          sk.jumphost 
   UserKnownHostsFile /dev/null
-  #User               root
 
 Host ccf-sat-*.local 10.128.84.*
   ProxyJump          ccf.jumphost
   UserKnownHostsFile /dev/null
-  #User               root
 
 Host bmt-sat-*.bmt.local
   ProxyJump          quebec.jumphost
@@ -119,6 +151,11 @@ Host hemt16.watson.ibm.com
 
 Host chemung.watson.ibm.com
   User      javier.juarez.martin
+
+# iRIS box to test Network
+Host qai
+  HostName qai.sl.cloud9.ibm.com
+  User     root
 
 
 ##

@@ -51,12 +51,20 @@ ibm::cloud::switch_account() {
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   case "${account_name}" in
+    qcmaster)
+      if [[ -n "${QCMASTER_IBMCLOUD_ID}" ]]; then
+        "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1  # By default go to the QCMaster account
+        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[qcmaster]}
+      fi
+      ;;
+
     staging) 
       if [[ -n "${QCSTAGING_IBMCLOUD_ID}" ]]; then
         "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1
         export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[staging]}
       fi
       ;;
+
     production)
       if [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]]; then
         "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1
@@ -64,12 +72,13 @@ ibm::cloud::switch_account() {
       fi
       ;;
 
-    qcmaster)
-      if [[ -n "${QCMASTER_IBMCLOUD_ID}" ]]; then
-        "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1  # By default go to the QCMaster account
-        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[qcmaster]}
+    experimental)
+      if [[ -n "${QCEXPERIMENTAL_IBMCLOUD_ID}" ]]; then
+        "${IBMCLOUD_CLI}" target -c "${QCEXPERIMENTAL_IBMCLOUD_ID}" -q >/dev/null 2>&1
+        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[expermiental]}
       fi
       ;;
+
     *)
       echo "Valid accounts are: qcmaster, staging and producton... switching by default to QCMaster"
       ibm::cloud::switch_account qcmaster
