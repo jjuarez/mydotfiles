@@ -14,149 +14,59 @@ Include /Users/jjuarez/.colima/ssh_config
 ##
 
 # QNet
-Host corinthcanal
-  HostName corinthcanal.cloud9.ibm.com
-  User     javier.juarez.martin
-
-Host corinthcanal.cloud9.ibm.com
-  HostName corinthcanal.cloud9.ibm.com
-  User     javier.juarez.martin
-
-# Host saimaa
-#   HostName     saimaa.cloud9.ibm.com
-#   User         javier.juarez.martin
-#   ForwardAgent no
-#   PasswordAuthentication yes
-#
-# Host saimaa.cloud9.ibm.com
-#   HostName     saimaa.cloud9.ibm.com
-#   User         javier.juarez.martin
-#   ForwardAgent no
-#   PasswordAuthentication yes
-
-Host elmira
-  HostName     elmira.watson.ibm.com
-  User         javier.juarez.martin
-  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
-
-Host elmira.watson.ibm.com
-  HostName     elmira.watson.ibm.com
-  User         javier.juarez.martin
-  IdentityFile ~/.ssh/id_ed25519.IBM.runtimedeployusr.all
-
 Host qnet.jumphost
-  HostName elmira.watson.ibm.com
-  User     javier.juarez.martin
-
+  HostName       elmira.watson.ibm.com
+  User           javier.juarez.martin  # The AD username
+  ControlMaster  auto
+# ControlPath    /tmp/ssh_mux_%r@%h:%p.sock
+  ControlPath    /tmp/ssh_mux_qnet.sock
+  ControlPersist 8h
+ 
 # OpenQ
 Host openq.jumphost
-  HostName champlaincanal-nat.watson.ibm.com
-  User     javier.juarez.martin
+  HostName       champlaincanal-nat.watson.ibm.com
+  User           javier.juarez.martin  # The AD username
+  ControlMaster  auto
+# ControlPath    /tmp/ssh_mux_%r@%h:%p.sock
+  ControlPath    /tmp/ssh_mux_openq.sock
+  ControlPersist 8h
 
 # SK
 Host sk.jumphost
-  # koshiba.sk.jp.ibm.com
-  HostName                 9.116.12.201
-  PreferredAuthentications publickey
-  User                     javier-juarez-martinez
+  HostName 9.116.12.201
 
 # CCF
 Host ccf.jumphost
-  HostName                 ibmq-bastion.cloud9.ibm.com
-  PreferredAuthentications publickey
-  User                     javier-juarez-martinez
-
-# Quebec
-Host quebec.jumphost
-  HostName                 bmt-jump.bromont.can.ibm.com
-  PreferredAuthentications publickey
-  User                     javier-juarez-martinez
+  HostName ibmq-bastion.cloud9.ibm.com
 
 # EHN
 Host ehn.jumphost
-  HostName                 pauli.ehningen.de.ibm.com
-  PreferredAuthentications publickey
-  User                     javier-juarez-martinez
+  HostName pauli.ehningen.de.ibm.com
 
-Host pauli.ehningen.de.ibm.com
-  PreferredAuthentications publickey
-  User                     javier-juarez-martinez
-
-# Bromont
+# Quebec/Bromont
 Host bromont.jumphost
-  HostName                 bmt-jump.bromont.can.ibm.com
-  PreferredAuthentications publickey
-  User                     javier-juarez-martinez
-
-Host bmt-jump.bromont.can.ibm.com
-  PreferredAuthentications publickey
-  User                     javier-juarez-martinez
-
-Host ykt*sat*.openq.local !ykt036sat-01.openq.local !ykt036sat-02.openq.local
-  ProxyJump          openq.jumphost
-  UserKnownHostsFile /dev/null
-
-Host pok*sat*.qnet.local pok*poc*.qnet.local 172.30.*.* !pok008sat-12.qnet.local !pok008sat-15.qnet.local !pok008sat-41.qnet.local !pok008sat-42.qnet.local
-  ProxyJump          qnet.jumphost
-  UserKnownHostsFile /dev/null
-
-Host sk-sat-*.sk.local 10.6.8.* !sk-sat-wrkr-4.sk.local
-  ProxyJump          sk.jumphost 
-  UserKnownHostsFile /dev/null
-
-Host ccf-sat-*.local 10.128.84.*
-  ProxyJump          ccf.jumphost
-  UserKnownHostsFile /dev/null
-
-Host bmt-sat-*.bmt.local
-  ProxyJump          quebec.jumphost
-  UserKnownHostsFile /dev/null
+  HostName bmt-jump.bromont.can.ibm.com
 
 Host *.qnet.local
-  ProxyJump                qnet.jumphost
-  PreferredAuthentications publickey
-  User                     javier-juarez-martinez
+  ProxyJump qnet.jumphost
 
 Host *.openq.local
-  ProxyJump                openq.jumphost
-  PreferredAuthentications publickey
-  User                     javier-juarez-martinez
+  ProxyJump openq.jumphost
 
 Host *.sk.local
-  ProxyJump sk.jumphost
-  User      javier-juarez-martinez
+  ProxyJump sk.jumphost 
 
 Host *.uot.local
-  ProxyJump sk.jumphost
-  User      javier-juarez-martinez
+  ProxyJump sk.jumphost 
 
 Host *.ccf.local
   ProxyJump ccf.jumphost
-  User      javier-juarez-martinez
 
 Host *.bmt.local
-  ProxyJump quebec.jumphost
-  User      javier-juarez-martinez
+  ProxyJump bromont.jumphost
 
 Host *.ehn.local
   ProxyJump ehn.jumphost
-  User      javier-juarez-martinez
-
-Host ykt39-*.watson.ibm.com
-  User      javier-juarez-martinez
-
-# Exceptions...
-Host hemt16.watson.ibm.com
-  User      javier-juarez-martinez
-
-Host chemung.watson.ibm.com
-  User      javier.juarez.martin
-
-# iRIS box to test Network
-Host qai
-  HostName qai.sl.cloud9.ibm.com
-  User     root
-
 
 ##
 ## Global options
@@ -174,10 +84,7 @@ Host *
   ServerAliveInterval      15
   ServerAliveCountMax      4
   Compression              yes
-  ControlMaster            auto
-  ControlPath              /tmp/ssh_mux_%h_%p_%r.sock
-  ControlPersist           86400s
   CheckHostIP              no
   Port                     22
   SetEnv                   LC_ALL=en_US.UTF8
-  LogLevel                 INFO
+  User                     javier-juarez-martinez
