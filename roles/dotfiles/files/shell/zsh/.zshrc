@@ -1,7 +1,6 @@
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.com' \
-                      'id_ed25519.github.ibm.com' \
-                      'id_ed25519.IBM.runtimedeployusr.all'
+                      'id_ed25519.github.ibm.com'
 
 # Start configuration added by Zim install {{{
 # zimfw configuration
