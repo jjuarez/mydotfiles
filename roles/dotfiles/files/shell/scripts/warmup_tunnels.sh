@@ -22,7 +22,7 @@ activate::qnet() {
 
   if [[ ! -S "${QNET_MUX_SOCKET}" ]]; then
     echo "Activating QNet jumphost with 2FA..."
-    ${SSH} -oLogLevel=${log_level} ${QNET_JUMP_HOST} ${CHECK_COMMAND} || return 1
+    ${SSH} -oLogLevel="${log_level}" "${QNET_JUMP_HOST}" "${CHECK_COMMAND}" || return 1
   fi
 }
 
@@ -31,7 +31,7 @@ activate::openq() {
 
   if [[ ! -S "${OPENQ_MUX_SOCKET}" ]]; then
     echo "Activating OpenQ jumphost with 2FA..."
-    ${SSH} -oLogLevel=${log_level} ${OPENQ_JUMP_HOST} ${CHECK_COMMAND} || return 1
+    ${SSH} -oLogLevel="${log_level}" "${OPENQ_JUMP_HOST}" "${CHECK_COMMAND}" || return 1
   fi
 }
 
