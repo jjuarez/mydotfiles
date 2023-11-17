@@ -16,5 +16,4 @@ jobs:
   AnsibleCheck:
     runs-on: ubuntu-latest
     steps:
-      - name: Check
       - run: echo "Not implemented yet"
