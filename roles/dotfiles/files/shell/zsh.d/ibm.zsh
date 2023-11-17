@@ -126,17 +126,18 @@ ibm::k8s::_update_cluster() {
 }
 
 ibm::k8s::update() {
-  local -r cluster_name=${1}
+  local -r cluster_names="${@}"
+  local cluster_list="${(k)IBMCLOUD_CLUSTERS}"
 
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
-  if [[ -n "${cluster_name}" ]]; then
-    ibm::k8s::_update_cluster ${cluster_name}
-  else
-    for cluster in ${(k)IBMCLOUD_CLUSTERS}; do
-      ibm::k8s::_update_cluster ${cluster}
-    done
+  if [[ -n "${cluster_names}" ]]; then
+    cluster_list="${cluster_names}"
   fi
+
+  for cluster in $(echo ${cluster_list} | tr ' ' '\n'); do
+    ibm::k8s::_update_cluster ${cluster}
+  done
 }
 
 ibm::k8s::list() {
