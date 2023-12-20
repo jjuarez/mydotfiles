@@ -18,7 +18,6 @@ Host qnet.jumphost
   HostName       elmira.watson.ibm.com
   User           javier.juarez.martin  # The AD username
   ControlMaster  auto
-# ControlPath    /tmp/ssh_mux_%r@%h:%p.sock
   ControlPath    /tmp/ssh_mux_qnet.sock
   ControlPersist 8h
  
@@ -27,7 +26,6 @@ Host openq.jumphost
   HostName       champlaincanal-nat.watson.ibm.com
   User           javier.juarez.martin  # The AD username
   ControlMaster  auto
-# ControlPath    /tmp/ssh_mux_%r@%h:%p.sock
   ControlPath    /tmp/ssh_mux_openq.sock
   ControlPersist 8h
 
@@ -48,24 +46,31 @@ Host bromont.jumphost
   HostName bmt-jump.bromont.can.ibm.com
 
 Host *.qnet.local
+  User javier-juarez-martinez
   ProxyJump qnet.jumphost
 
 Host *.openq.local
+  User javier-juarez-martinez
   ProxyJump openq.jumphost
 
 Host *.sk.local
+  User javier-juarez-martinez
   ProxyJump sk.jumphost 
 
 Host *.uot.local
   ProxyJump sk.jumphost 
+  User javier-juarez-martinez
 
 Host *.ccf.local
+  User javier-juarez-martinez
   ProxyJump ccf.jumphost
 
 Host *.bmt.local
+  User javier-juarez-martinez
   ProxyJump bromont.jumphost
 
 Host *.ehn.local
+  User javier-juarez-martinez
   ProxyJump ehn.jumphost
 
 ##
@@ -87,4 +92,3 @@ Host *
   CheckHostIP              no
   Port                     22
   SetEnv                   LC_ALL=en_US.UTF8
-  User                     javier-juarez-martinez
