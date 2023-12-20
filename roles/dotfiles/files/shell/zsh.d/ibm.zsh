@@ -75,12 +75,12 @@ ibm::cloud::switch_account() {
     experimental)
       if [[ -n "${QCEXPERIMENTAL_IBMCLOUD_ID}" ]]; then
         "${IBMCLOUD_CLI}" target -c "${QCEXPERIMENTAL_IBMCLOUD_ID}" -q >/dev/null 2>&1
-        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[expermiental]}
+        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[experimental]}
       fi
       ;;
 
     *)
-      echo "Valid accounts are: qcmaster, staging and producton... switching by default to QCMaster"
+      echo "Valid accounts are: qcmaster, staging, producton, and experimental... switching by default to QCMaster"
       ibm::cloud::switch_account qcmaster
       ;;
   esac
