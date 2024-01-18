@@ -36,16 +36,16 @@ TOGGLES_VERBOSE=true
 declare -A TOGGLES_CONFIGURATION=(
   [direnv]=true
   [fzf]=true
-  [github]=true
   [ghe]=true
-  [ibmcloud]=true
-  [volta]=true
-  [pyenv]=true
+  [github]=true
   [go]=true
-  [rust]=true
+  [ibmcloud]=true
   [krew]=true
+  [mcfly]=true
+  [pyenv]=true
+  [rust]=false
   [tfenv]=true
-  [travis]=true
+  [volta]=true
 )
 
 [[ -f "${HOME}/.togglesrc" ]] && source "${HOME}/.togglesrc"
