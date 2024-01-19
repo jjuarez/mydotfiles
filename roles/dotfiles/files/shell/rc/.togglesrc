@@ -32,14 +32,6 @@ toggles::pyenv() {
   fi
 }
 
-toggles::mcfly() {
-  if [[ $commands[mcfly] ]]; then
-    eval "$(mcfly init zsh)"
-  else
-    return 1
-  fi
-}
-
 toggles::volta() {
   if [[ -d "${HOME}/.volta" ]]; then
     export VOLTA_HOME="${HOME}/.volta"

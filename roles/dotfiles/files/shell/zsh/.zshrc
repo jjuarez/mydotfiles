@@ -41,7 +41,6 @@ declare -A TOGGLES_CONFIGURATION=(
   [go]=true
   [ibmcloud]=true
   [krew]=true
-  [mcfly]=true
   [pyenv]=true
   [rust]=false
   [tfenv]=true
