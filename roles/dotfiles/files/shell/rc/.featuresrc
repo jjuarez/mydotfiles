@@ -97,12 +97,12 @@ utils::log() {
 }
 
 main() {
-  utils::log "features: ["
+  utils::log "Features:[ "
 
   for toggle activated in ${(kv)FEATURES_CONFIGURATION}; do
     if [ "${activated}" = true ]; then
       if typeset -f features::${toggle} >/dev/null; then
-        utils::log "${toggle} " && features::${toggle}
+        utils::log "${toggle}:" && features::${toggle}
         if [[ ${?} -eq 0 ]]; then
           utils::log "✨ "
         else
