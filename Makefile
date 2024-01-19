@@ -72,7 +72,7 @@ homebrew/dump: venv/activate ## Save a snapshot of your formulas, casks, taps, 
 	@brew bundle dump --force --file $(HOMEBREW_FILE)
 
 .PHONY: homebrew/load
-homebrew/load: ## Load and install a snapshot of your formulas, casks, taps, etc
+homebrew/load:
 	@brew bundle --file $(HOMEBREW_FILE)
 
 .PHONY: clean
