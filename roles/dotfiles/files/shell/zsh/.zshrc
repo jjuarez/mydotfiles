@@ -32,8 +32,8 @@ export DOTFILES="${HOME}/.mydotfiles"
 export PATH=/usr/local/sbin:${PATH}
 
 # Custom configurations
-TOGGLES_VERBOSE=true
-declare -A TOGGLES_CONFIGURATION=(
+FEATURES_VERBOSE=true
+declare -A FEATURES_CONFIGURATION=(
   [direnv]=true
   [fzf]=true
   [ghe]=true
@@ -47,7 +47,7 @@ declare -A TOGGLES_CONFIGURATION=(
   [volta]=true
 )
 
-[[ -f "${HOME}/.togglesrc" ]] && source "${HOME}/.togglesrc"
+[[ -f "${HOME}/.featuresrc" ]] && source "${HOME}/.featuresrc"
 
 # zsh plugins
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
