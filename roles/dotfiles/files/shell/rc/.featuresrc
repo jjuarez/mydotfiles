@@ -1,0 +1,118 @@
+features::fzf() {
+  utils::check_command "fzf" || return 1
+  utils::check_file "${HOME}/.fzf.zsh" || return 1
+  source "${HOME}/.fzf.zsh"
+}
+
+features::tfenv() {
+  utils::check_command "tfenv" || return 1
+  export PATH="${HOME}/.tfenv/bin:${PATH}"
+}
+
+features::pyenv() {
+  export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+  export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+
+  utils::check_command "pyenv" || return 1
+  export PYENV_ROOT="${HOME}/.pyenv"
+  export PATH="${PYENV_ROOT}/bin:${PATH}"
+  eval "$(pyenv init --path)"
+}
+
+features::volta() {
+  utils::check_directory "${HOME}/.volta" || return 1
+  export VOLTA_HOME="${HOME}/.volta"
+  export PATH="${VOLTA_HOME}/bin:${PATH}"
+}
+
+features::go() {
+  utils::check_file "${HOME}/.gorc" || return 1
+  source "${HOME}/.gorc"
+}
+
+features::rust() {
+  utils::check_file "${HOME}/.cargo/env" || return 1
+  source "${HOME}/.cargo/env"
+}
+
+features::github() {
+  utils::check_file "${HOME}/.env.github.jjuarez.token" || return 1
+  source "${HOME}/.env.github.jjuarez.token"
+}
+
+features::ghe() {
+  utils::check_file "${HOME}/.env.IBM.GHE.Javier-Juarez-Martinez.token" || return 1
+  source "${HOME}/.env.IBM.GHE.Javier-Juarez-Martinez.token"
+}
+
+features::krew() {
+  utils::check_directory "${HOME}/.krew" || return 1
+  export PATH="${PATH}:${HOME}/.krew/bin"
+}
+
+features::ibmcloud() {
+  utils::check_file "${HOME}/.env.IBM.Cloud.QCMaster.javier.juarez.martinez@ibm.com.apikey" || return 1
+  source "${HOME}/.env.IBM.Cloud.QCMaster.javier.juarez.martinez@ibm.com.apikey"
+}
+
+features::direnv() {
+  utils::check_command "direnv" || return 1
+  eval "$(direnv hook zsh)"
+}
+
+utils::check_file() {
+  local file="${1:-'none'}"
+
+  case ${file} in
+    none) return 1 ;;
+       *) test -s "${file}" ;;
+  esac
+}
+
+utils::check_directory() {
+  local directory="${1:-'none'}"
+
+  case ${directory} in
+    none) return 1 ;;
+       *) test -d "${directory}" ;;
+  esac
+}
+
+utils::check_command() {
+  local command="${1:-'none'}"
+
+  case ${command} in
+    none) return 1 ;;
+       *) return ${command[${command}]} ;;
+  esac
+}
+
+utils::log() {
+  local message="${1}"
+
+  case "${FEATURES_VERBOSE}" in
+    True|true)
+      [[ -n "${message}" ]] && echo -en "${message}";;
+  esac
+}
+
+main() {
+  utils::log "features: ["
+
+  for toggle activated in ${(kv)FEATURES_CONFIGURATION}; do
+    if [ "${activated}" = true ]; then
+      if typeset -f features::${toggle} >/dev/null; then
+        utils::log "${toggle} " && features::${toggle}
+        if [[ ${?} -eq 0 ]]; then
+          utils::log "✨ "
+        else
+          utils::log "❗️ "
+        fi
+      fi
+    fi
+  done
+  utils::log "]\n"
+}
+
+# ::main::
+main

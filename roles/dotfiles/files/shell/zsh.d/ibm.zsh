@@ -3,11 +3,8 @@ set -o pipefail
 #
 # Switches
 #
-[[ -z "${DEFAULT_IKSCC_FEATURE}" ]] && declare -r DEFAULT_IKSCC_FEATURE="true"
-IKSCC_FEATURE=${IKSCC_FEATURE:-${DEFAULT_IKSCC_FEATURE}}
-
-[[ -z "${DEFAULT_OPENSHIFT_USE_LINK}" ]] && declare -r DEFAULT_OPENSHIFT_USE_LINK="true"
-OPENSHIFT_USE_LINK=${OPENSHIFT_USE_LINK:-${DEFAULT_OPENSHIFT_USE_LINK}}
+IKSCC_FEATURE=${IKSCC_FEATURE:-"true"}
+OPENSHIFT_USE_LINK=${OPENSHIFT_USE_LINK:-"true"}
 
 #
 # General utilities
@@ -38,12 +35,6 @@ source "${HOME}/.env.IBM.Cloud.account.sms"
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 
-
-ibm::cloud::login() {
-  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
-
-  "${IBMCLOUD_CLI}" login --no-region --sso -c "${QCMASTER_IBMCLOUD_ID}"
-}
 
 ibm::cloud::switch_account() {
   local -r account_name="${1}"
@@ -84,6 +75,13 @@ ibm::cloud::switch_account() {
       ibm::cloud::switch_account qcmaster
       ;;
   esac
+}
+
+ibm::cloud::login() {
+  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
+
+  "${IBMCLOUD_CLI}" login --no-region --sso -c "${QCMASTER_IBMCLOUD_ID}" &&
+  ibm::cloud::switch_account qcmaster # To ensure that we're pointing to the right SM instance
 }
 
 ibm::k8s::_update_cluster() {

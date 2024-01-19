@@ -21,7 +21,7 @@ Plug 'fatih/vim-go'
 Plug 'leafgarland/typescript-vim'
 Plug 'cespare/vim-toml'
 Plug 'jjo/vim-cue'
-" Plug 'NoahTheDuke/vim-just'
+Plug 'chase/vim-ansible-yaml'
 call plug#end()
 
 if has('autocmd')
@@ -162,8 +162,7 @@ endif
 let g:lightline = { 'colorscheme': 'wombat' }
 
 "" Ale
-"" Ale::Python
-let g:ale_linters = { "python": ["ruff"] }
+let g:ale_linters = { "python": ["ruff"], "ansible": ["ansible-lint"], }
 let g:ale_fixers = { "*": ["remove_trailing_lines", "trim_whitespace"], "python": ["black", "ruff"], }
 
 "" NERDTree

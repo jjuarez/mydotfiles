@@ -9,7 +9,7 @@ dotfiles_zsh:
 
 dotfiles_rc:
   files:
-    - .togglesrc
+    - .featuresrc
     - .homebrewrc
     - .aliasesrc
 
