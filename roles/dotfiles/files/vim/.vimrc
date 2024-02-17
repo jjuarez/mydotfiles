@@ -22,6 +22,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'cespare/vim-toml'
 Plug 'jjo/vim-cue'
 Plug 'chase/vim-ansible-yaml'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'terrastruct/d2-vim'
 call plug#end()
 
 if has('autocmd')
