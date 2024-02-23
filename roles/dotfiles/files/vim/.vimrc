@@ -4,27 +4,20 @@ filetype plugin on
 " Plug plugin management
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 Plug 'tomtom/tcomment_vim'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
 Plug 'ervandew/supertab'
 Plug 'tomasr/molokai'
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'szw/vim-maximizer'
 Plug 'w0rp/ale'
 Plug 'tsandall/vim-rego'
 Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
-Plug 'leafgarland/typescript-vim'
 Plug 'cespare/vim-toml'
 Plug 'jjo/vim-cue'
 Plug 'chase/vim-ansible-yaml'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'terrastruct/d2-vim'
 call plug#end()
 
 if has('autocmd')
@@ -39,9 +32,6 @@ let mapleader=","
 
 "" This configuration helps with the slowliness of ruby plugin
 set regexpengine=1
-
-"" fzf
-set rtp+=/usr/local/opt/fzf
 
 " Assume that filetype=sh are posix and therefore will support proper `$(...)`
 " See:
@@ -165,17 +155,8 @@ endif
 let g:lightline = { 'colorscheme': 'wombat' }
 
 "" Ale
-let g:ale_linters = { "python": ["ruff"], "ansible": ["ansible-lint"], }
-let g:ale_fixers = { "*": ["remove_trailing_lines", "trim_whitespace"], "python": ["black", "ruff"], }
-
-"" NERDTree
-let NERDTreeShowHidden=1
-
-"" Fix auto-indentation for YAML files
-augroup yaml_fix
-  autocmd!
-  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
-augroup end
+let g:ale_linters = { "python": ["ruff"] }
+let g:ale_fixers = { "python": ["ruff"] }
 
 "" Maximize current split or return to previous
 noremap <C-w>m :MaximizerToggle<CR>
