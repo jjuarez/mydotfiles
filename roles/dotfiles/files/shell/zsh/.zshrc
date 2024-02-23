@@ -1,5 +1,5 @@
-# ZSH profiling
-#zmodload zsh/zprof
+# ZSH Profiling BEGIN
+# zmodload zsh/zprof
 
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.com' \
@@ -37,9 +37,9 @@ export PATH=/usr/local/sbin:${PATH}
 # Custom configurations
 FEATURES_VERBOSE=true
 declare -A FEATURES_CONFIGURATION=(
-  [atuin]=false
+  [atuin]=true
   [direnv]=true
-  [fzf]=true
+  [fzf]=false
   [ghe]=true
   [github]=true
   [go]=true
@@ -70,5 +70,5 @@ done 2>/dev/null
 # Utilities and aliases
 [[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
 
-# ZSH profiling
+# ZSH Profiling END
 #zprof
