@@ -47,8 +47,8 @@
   pretty = oneline
 
 [user]
-	name = javier.juarez
-	email = Javier.Juarez.Martinez@ibm.com
+	name = JJ
+	email = javier.juarez.martinez@ibm.com
 
 [github]
   user = jjuarez
@@ -64,3 +64,7 @@
 
 [push]
   default = matching
+[commit]
+	gpgsign = false
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2
