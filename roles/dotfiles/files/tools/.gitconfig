@@ -1,15 +1,3 @@
-[user]
-	name = javier.juarez
-	email = Javier.Juarez.Martinez@ibm.com
-
-[color]
-  diff        = auto
-  status      = auto
-  branch      = auto
-  interactive = auto
-  ui          = true
-  pager       = true
-
 [alias]
   ci         = commit
   co         = checkout
@@ -23,11 +11,16 @@
   ts         = tag --sort=-committerdate
   lg         = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso8601-strict
 
-[github]
-  user = jjuarez
+[branch]
+# sort = -committerdate
 
-[push]
-  default = matching
+[color]
+  diff        = auto
+  status      = auto
+  branch      = auto
+  interactive = auto
+  ui          = true
+  pager       = true
 
 [core]
   excludesfile = ~/.gitignore_global
@@ -35,11 +28,8 @@
 	eol = lf
 	autocrlf = input
 
-[help]
-  autocorrect = 0
-
-[colour]
-  ui = 1
+[credential]
+  helper = cache
 
 [diff]
   tool = vimdiff
@@ -47,19 +37,34 @@
 [difftool]
   prompt = false
 
-[credential]
-  helper = cache
-
-[format]
-  pretty = oneline
-
-[pull]
-	rebase = true
-
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-	required = true
+  required = true
+
+[format]
+  pretty = oneline
+
+[user]
+	name = JJ
+	email = javier.juarez.martinez@ibm.com
+
+[github]
+  user = jjuarez
+
+[help]
+  autocorrect = 0
+
 [init]
-	defaultBranch = master
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[push]
+  default = matching
+[commit]
+	gpgsign = false
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2

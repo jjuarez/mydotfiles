@@ -3,14 +3,11 @@
 # Sets sane Zsh built-in environment options.
 zmodule input
 zmodule environment
-# Quick directory change
 zmodule agkozak/zsh-z
-# SSH agent helper
 zmodule ssh
-# Additional completion definitions for Zsh.
 zmodule completion
-zmodule fzf
-zmodule zsh-users/zsh-completions
+# zmodule fzf
+# zmodule zsh-users/zsh-completions
 zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-syntax-highlighting
 # Themes
