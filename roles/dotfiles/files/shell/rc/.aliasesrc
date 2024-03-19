@@ -10,7 +10,6 @@ case "${OS}" in
     [[ -x "${HOMEBREW_PREFIX}/bin/gfind"     ]] && alias find="${HOMEBREW_PREFIX}/bin/gfind"
     [[ -x "${HOMEBREW_PREFIX}/bin/gsed"      ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
     [[ -x "${HOMEBREW_PREFIX}/bin/kubecolor" ]] && alias k='kubecolor'
-    [[ -x "${HOMEBREW_PREFIX}/bin/eza"       ]] && alias ls='eza'
   ;;
 esac
 
