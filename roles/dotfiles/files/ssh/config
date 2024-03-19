@@ -30,32 +30,30 @@ Host openq.jumphost
   ControlPersist 8h
 
 # SK
-Host 9.116.12.201 # koshiba
-  User javier-juarez-martinez
-
 Host sk.jumphost
-  HostName 9.116.12.201
+  HostName 9.116.12.201  # koshiba
+  User javier-juarez-martinez
 
 # CCF
-Host ibmq-bastion.cloud9.ibm.com
-  User javier-juarez-martinez
-
 Host ccf.jumphost
   HostName ibmq-bastion.cloud9.ibm.com
-
-# EHN
-Host pauli.ehningen.de.ibm.com
   User javier-juarez-martinez
 
+# EHN
 Host ehn.jumphost
   HostName pauli.ehningen.de.ibm.com
+  User javier-juarez-martinez
 
 # Bromont
 Host bromont.jumphost
   HostName bmt-jump.bromont.can.ibm.com
-
-Host bmt-jump.bromont.can.ibm.com
   User javier-juarez-martinez
+
+# RPI
+Host rpi.jumphost
+  HostName ibmq-bastion.cloud9.ibm.com
+  User javier-juarez-martinez
+
 
 Host *.qnet.local
   User javier-juarez-martinez
@@ -65,11 +63,7 @@ Host *.openq.local
   User javier-juarez-martinez
   ProxyJump openq.jumphost
 
-Host *.sk.local
-  User javier-juarez-martinez
-  ProxyJump sk.jumphost 
-
-Host *.uot.local
+Host *.sk.local *.uot.local
   ProxyJump sk.jumphost 
   User javier-juarez-martinez
 
@@ -85,25 +79,26 @@ Host *.ehn.local
   User javier-juarez-martinez
   ProxyJump ehn.jumphost
 
-Host gw.infra.quantum.ibm.com:
-  User root
+Host *.rpi.local
+  User javier-juarez-martinez
+  ProxyJump rpi.jumphost
 
 # ansible development
-Host ykt39-01.watson.ibm.com
+Host ykt39-0?.watson.ibm.com
   User javier-juarez-martinez
 
-Host ykt39-02.watson.ibm.com
-  User javier-juarez-martinez
-
+# Wireguard GW
+Host gw.infra.quantum.ibm.com:
+  User root
 
 ##
 ## Global options
 ##
 Host *
-  UserKnownHostsFile       ~/Developer/ibm/q/projects/infra/ops-datacenter/ansible_known_hosts
+  # UserKnownHostsFile       ~/Workspace/ibm/q/projects/infra/ops-datacenter/ansible_known_hosts
+  UserKnownHostsFile       /dev/null
   StrictHostKeyChecking    no
   VerifyHostKeyDNS         no
-# PreferredAuthentications publickey
   GSSAPIAuthentication     yes
   ForwardX11               no
   AddKeysToAgent           yes
@@ -113,6 +108,5 @@ Host *
   ServerAliveCountMax      4
   Compression              yes
   CheckHostIP              no
-  Port                     22
   SetEnv                   LC_ALL=en_US.UTF8
   User                     javier-juarez-martinez
