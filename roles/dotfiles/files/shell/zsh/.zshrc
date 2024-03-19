@@ -39,7 +39,7 @@ FEATURES_VERBOSE=true
 declare -A FEATURES_CONFIGURATION=(
   [atuin]=true
   [direnv]=true
-  [fzf]=false
+  [fzf]=true
   [ghe]=true
   [github]=true
   [go]=true
@@ -49,6 +49,7 @@ declare -A FEATURES_CONFIGURATION=(
   [rust]=false
   [tfenv]=true
   [volta]=true
+  [zoxide]=true
 )
 
 [[ -f "${HOME}/.featuresrc" ]] && source "${HOME}/.featuresrc"

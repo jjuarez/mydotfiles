@@ -67,6 +67,11 @@ features::atuin() {
   eval "$(atuin init zsh)"
 }
 
+features::zoxide() {
+  utils::check_command "zoxide" || return 1
+  eval "$(zoxide init --cmd cd zsh)"
+}
+
 utils::check_file() {
   local file="${1:-'none'}"
 
