@@ -3,8 +3,9 @@
 # Sets sane Zsh built-in environment options.
 zmodule input
 zmodule environment
-zmodule agkozak/zsh-z
 zmodule ssh
+zmodule exa
+# zmodule agkozak/zsh-z
 zmodule completion
 # zmodule fzf
 # zmodule zsh-users/zsh-completions
