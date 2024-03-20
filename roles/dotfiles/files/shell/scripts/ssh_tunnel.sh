@@ -18,6 +18,8 @@ This shell script will help you to manage the needed SSH tunnels to acces host d
 
 set -e -o pipefail
 
+declare -r PING_TIMEOUT=1
+declare -r VPN_TARGET_IP=9.0.0.1
 declare -r SSH="/usr/bin/ssh"
 declare -r SOCKET_PREFIX=".ssh-tunnel"
 declare -r TEMPORAL_DIRECTORY=${TEMPORAL_DIRECTORY:-'/tmp'}
@@ -30,6 +32,7 @@ typeset -A CONFIG=(
   [ccf]="javier-juarez-martinez;ibmq-bastion.cloud9.ibm.com;22;8126"
   [bmt]="javier-juarez-martinez;bmt-jump.bromont.can.ibm.com;22;8127"
   [ehn]="javier-juarez-martinez;pauli.ehningen.de.ibm.com;22;8128"
+  [rpi]="javier-juarez-martinez;ibmq-bastion.cloud9.ibm.com;22;8129"
 )
 
 # Configuration
@@ -56,23 +59,25 @@ utils::exit() {
 }
 
 utils::help() {
-  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (qnet|openq|ccf|sk|bmt|ehn) (-c|--command) (start|stop|status|check)" 0
+  local networks="$(echo ${(k)CONFIG} | sort | tr ' ' '|')"
+
+  utils::exit "Usage: ${0} [-d|--debug] (-n|--network) (${networks}) (-c|--command) (start|stop|status|check)" 0
+}
+
+utils::check_vpn_connection() {
+  ping -t ${PING_TIMEOUT} -c 1 ${VPN_TARGET_IP} &>/dev/null || utils::exit "You should be connected to the IBM VPN" 2
 }
 
 ssh::config() {
   local -r network="${1}"
 
-  case ${network} in
-    qnet|openq|sk|ccf|bmt|ehn)
-      SSH_REMOTE_USERNAME=$(echo ${CONFIG[$network]}|awk -F";" '{print $1 }')
-      SSH_REMOTE_HOST=$(echo ${CONFIG[$network]}|awk -F";" '{print $2 }')
-      SSH_REMOTE_PORT=$(echo ${CONFIG[$network]}|awk -F";" '{print $3 }')
-      SSH_LOCAL_PORT=$(echo ${CONFIG[$network]}|awk -F";" '{print $4 }')
-      SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-${network}-${SSH_LOCAL_PORT}"
-      ;;
+  [[ -n "${CONFIG[$network]}" ]] || return 1
 
-    *) return 1 ;;
-  esac
+  SSH_REMOTE_USERNAME=$(echo ${CONFIG[$network]}|awk -F";" '{print $1 }')
+  SSH_REMOTE_HOST=$(echo ${CONFIG[$network]}|awk -F";" '{print $2 }')
+  SSH_REMOTE_PORT=$(echo ${CONFIG[$network]}|awk -F";" '{print $3 }')
+  SSH_LOCAL_PORT=$(echo ${CONFIG[$network]}|awk -F";" '{print $4 }')
+  SOCKET="${TEMPORAL_DIRECTORY}/${SOCKET_PREFIX}-${network}-${SSH_LOCAL_PORT}"
 }
 
 ssh::start() {
@@ -142,6 +147,8 @@ ssh::check() {
 main() {
   local network=""
   local cmd=""
+
+  utils::check_vpn_connection
 
   while [[ "${1}" =~ ^- && ! "${1}" == "--" ]]; do
     case "${1}" in
