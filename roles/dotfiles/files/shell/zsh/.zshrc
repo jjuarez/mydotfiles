@@ -1,5 +1,5 @@
 # ZSH Profiling BEGIN
-# zmodload zsh/zprof
+#zmodload zsh/zprof
 
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_ed25519.github.com' \

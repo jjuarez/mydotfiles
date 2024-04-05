@@ -1,13 +1,13 @@
 # vim: ft=zsh
 
 features::fzf() {
-  utils::check_command "fzf" || return 1
+  utils::check_command "fzf" || return 1
   utils::check_file "${HOME}/.fzf.zsh" || return 1
   source "${HOME}/.fzf.zsh"
 }
 
 features::tfenv() {
-  utils::check_command "tfenv" || return 1
+  utils::check_command "tfenv" || return 1
   export PATH="${HOME}/.tfenv/bin:${PATH}"
 }
 
@@ -15,7 +15,7 @@ features::pyenv() {
   export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
   export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 
-  utils::check_command "pyenv" || return 1
+  utils::check_command "pyenv" || return 1
   export PYENV_ROOT="${HOME}/.pyenv"
   export PATH="${PYENV_ROOT}/bin:${PATH}"
   eval "$(pyenv init --path)"
@@ -43,12 +43,12 @@ features::github() {
 }
 
 features::ghe() {
-  utils::check_file "${HOME}/.env.IBM.GHE.Javier-Juarez-Martinez.token" || return 1
+  utils::check_file "${HOME}/.env.IBM.GHE.Javier-Juarez-Martinez.token" || return 1
   source "${HOME}/.env.IBM.GHE.Javier-Juarez-Martinez.token"
 }
 
 features::krew() {
-  utils::check_directory "${HOME}/.krew" || return 1
+  utils::check_directory "${HOME}/.krew" || return 1
   export PATH="${PATH}:${HOME}/.krew/bin"
 }
 
@@ -58,7 +58,7 @@ features::ibmcloud() {
 }
 
 features::direnv() {
-  utils::check_command "direnv" || return 1
+  utils::check_command "direnv" || return 1
   eval "$(direnv hook zsh)"
 }
 
@@ -99,31 +99,21 @@ utils::check_command() {
   esac
 }
 
-utils::log() {
-  local message="${1}"
-
-  case "${FEATURES_VERBOSE}" in
-    True|true)
-      [[ -n "${message}" ]] && echo -en "${message}";;
-  esac
-}
-
 main() {
-  utils::log "Features:[ "
-
+  echo -n "Features:[ "
   for toggle activated in ${(kv)FEATURES_CONFIGURATION}; do
-    if [ "${activated}" = true ]; then
-      if typeset -f features::${toggle} >/dev/null; then
-        utils::log "${toggle}:" && features::${toggle}
-        if [[ ${?} -eq 0 ]]; then
-          utils::log "✨ "
-        else
-          utils::log "❗️ "
+    case "${activated}" in
+      true)
+        if typeset -f features::${toggle} > /dev/null 2>&1; then
+          features::${toggle} && echo -n "${toggle}: ✨ " || echo -n "${toggle}: ❗️ "
         fi
-      fi
-    fi
+        ;;
+      *) 
+        echo -n "${toggle}: 💔  "
+        ;;
+    esac
   done
-  utils::log "]\n"
+  echo "]"
 }
 
 # ::main::
