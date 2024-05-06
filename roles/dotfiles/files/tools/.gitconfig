@@ -10,6 +10,7 @@
   tree       = log --oneline --decorate --graph
   ts         = tag --sort=-committerdate
   lg         = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso8601-strict
+  dft        = difftool
 
 [branch]
 	sort = -committerdate
@@ -31,11 +32,19 @@
 [credential]
   helper = cache
 
+
 [diff]
-  tool = vimdiff
+  # tool = vimdiff
+  tool = difftastic
 
 [difftool]
   prompt = false
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+  difftool = true
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
