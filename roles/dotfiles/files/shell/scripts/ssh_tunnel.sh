@@ -26,8 +26,8 @@ declare -r TEMPORAL_DIRECTORY=${TEMPORAL_DIRECTORY:-'/tmp'}
 declare -r DEFAULT_CHECK_COMMAND="hostname"
 
 typeset -A CONFIG=(
-  [qnet]="javier-juarez-martinez;elmira.watson.ibm.com;22;8123"
-  [openq]="javier-juarez-martinez;champlaincanal-nat.watson.ibm.com;22;8124"
+  [qnet]="javier-juarez-martin;elmira.watson.ibm.com;22;8123"
+  [openq]="javier-juarez-martin;champlaincanal-nat.watson.ibm.com;22;8124"
   [sk]="javier-juarez-martinez;9.116.12.201;22;8125"
   [ccf]="javier-juarez-martinez;ibmq-bastion.cloud9.ibm.com;22;8126"
   [bmt]="javier-juarez-martinez;bmt-jump.bromont.can.ibm.com;22;8127"
