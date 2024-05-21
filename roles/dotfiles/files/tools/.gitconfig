@@ -1,6 +1,7 @@
 [alias]
   ci         = commit
   co         = checkout
+  sw         = switch
   st         = status -sb
   branches   = branch -a
   merged     = branch --remotes --merged
