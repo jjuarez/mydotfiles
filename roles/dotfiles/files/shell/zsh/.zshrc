@@ -37,6 +37,7 @@ export PATH=/usr/local/sbin:${PATH}
 # Custom configurations
 FEATURES_VERBOSE=true
 declare -A FEATURES_CONFIGURATION=(
+  [artifactory]=true
   [atuin]=true
   [direnv]=true
   [fzf]=true
@@ -46,7 +47,7 @@ declare -A FEATURES_CONFIGURATION=(
   [ibmcloud]=true
   [krew]=true
   [pyenv]=true
-  [rust]=false
+  [rust]=true
   [tfenv]=true
   [volta]=true
   [zoxide]=true

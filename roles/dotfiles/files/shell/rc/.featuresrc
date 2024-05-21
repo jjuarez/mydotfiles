@@ -1,14 +1,49 @@
 # vim: ft=zsh
 
+features::artifactory() {
+  utils::check_file "${HOME}/.env.IBM.Artifactory.token" || return 1
+  source "${HOME}/.env.IBM.Artifactory.token"
+}
+
+features::atuin() {
+  utils::check_command "autin" || return 1
+  eval "$(atuin init zsh)"
+}
+
+features::direnv() {
+  utils::check_command "direnv" || return 1
+  eval "$(direnv hook zsh)"
+}
+
 features::fzf() {
   utils::check_command "fzf" || return 1
   utils::check_file "${HOME}/.fzf.zsh" || return 1
   source "${HOME}/.fzf.zsh"
 }
 
-features::tfenv() {
-  utils::check_command "tfenv" || return 1
-  export PATH="${HOME}/.tfenv/bin:${PATH}"
+features::ghe() {
+  utils::check_file "${HOME}/.env.IBM.GHE.token" || return 1
+  source "${HOME}/.env.IBM.GHE.token"
+}
+
+features::github() {
+  utils::check_file "${HOME}/.env.github.jjuarez.token" || return 1
+  source "${HOME}/.env.github.jjuarez.token"
+}
+
+features::go() {
+  utils::check_file "${HOME}/.gorc" || return 1
+  source "${HOME}/.gorc"
+}
+
+features::ibmcloud() {
+  utils::check_file "${HOME}/.env.IBM.Cloud.QCMaster.apikey" || return 1
+  source "${HOME}/.env.IBM.Cloud.QCMaster.apikey"
+}
+
+features::krew() {
+  utils::check_directory "${HOME}/.krew" || return 1
+  export PATH="${PATH}:${HOME}/.krew/bin"
 }
 
 features::pyenv() {
@@ -21,50 +56,21 @@ features::pyenv() {
   eval "$(pyenv init --path)"
 }
 
+features::rust() {
+  utils::check_file "${HOME}/.cargo/env" || return 1
+  source "${HOME}/.cargo/env"
+  export PATH="${HOME}/.cargo/bin:${PATH}"
+}
+
+features::tfenv() {
+  utils::check_command "tfenv" || return 1
+  export PATH="${HOME}/.tfenv/bin:${PATH}"
+}
+
 features::volta() {
   utils::check_directory "${HOME}/.volta" || return 1
   export VOLTA_HOME="${HOME}/.volta"
   export PATH="${VOLTA_HOME}/bin:${PATH}"
-}
-
-features::go() {
-  utils::check_file "${HOME}/.gorc" || return 1
-  source "${HOME}/.gorc"
-}
-
-features::rust() {
-  utils::check_file "${HOME}/.cargo/env" || return 1
-  source "${HOME}/.cargo/env"
-}
-
-features::github() {
-  utils::check_file "${HOME}/.env.github.jjuarez.token" || return 1
-  source "${HOME}/.env.github.jjuarez.token"
-}
-
-features::ghe() {
-  utils::check_file "${HOME}/.env.IBM.GHE.Javier-Juarez-Martinez.token" || return 1
-  source "${HOME}/.env.IBM.GHE.Javier-Juarez-Martinez.token"
-}
-
-features::krew() {
-  utils::check_directory "${HOME}/.krew" || return 1
-  export PATH="${PATH}:${HOME}/.krew/bin"
-}
-
-features::ibmcloud() {
-  utils::check_file "${HOME}/.env.IBM.Cloud.QCMaster.javier.juarez.martinez@ibm.com.apikey" || return 1
-  source "${HOME}/.env.IBM.Cloud.QCMaster.javier.juarez.martinez@ibm.com.apikey"
-}
-
-features::direnv() {
-  utils::check_command "direnv" || return 1
-  eval "$(direnv hook zsh)"
-}
-
-features::atuin() {
-  utils::check_command "autin" || return 1
-  eval "$(atuin init zsh)"
 }
 
 features::zoxide() {
@@ -72,12 +78,15 @@ features::zoxide() {
   eval "$(zoxide init --cmd cd zsh)"
 }
 
-utils::check_file() {
-  local file="${1:-'none'}"
+#
+# Utils
+#
+utils::check_command() {
+  local command="${1:-'none'}"
 
-  case ${file} in
+  case ${command} in
     none) return 1 ;;
-       *) test -s "${file}" ;;
+       *) return ${command[${command}]} ;;
   esac
 }
 
@@ -90,15 +99,18 @@ utils::check_directory() {
   esac
 }
 
-utils::check_command() {
-  local command="${1:-'none'}"
+utils::check_file() {
+  local file="${1:-'none'}"
 
-  case ${command} in
+  case ${file} in
     none) return 1 ;;
-       *) return ${command[${command}]} ;;
+       *) test -s "${file}" ;;
   esac
 }
 
+#
+# ::main::
+#
 main() {
   echo -n "Features:[ "
   for toggle activated in ${(kv)FEATURES_CONFIGURATION}; do

@@ -29,3 +29,6 @@ alias tree='tree -a -I .git'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+# Tools
+alias tf='terraform'
