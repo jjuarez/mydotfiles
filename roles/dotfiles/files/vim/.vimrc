@@ -10,14 +10,10 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'szw/vim-maximizer'
 Plug 'w0rp/ale'
-" Plug 'tsandall/vim-rego'
 Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
-" Plug 'cespare/vim-toml'
-" Plug 'jjo/vim-cue'
 Plug 'chase/vim-ansible-yaml'
-" Plug 'godlygeek/tabular'
 call plug#end()
 
 if has('autocmd')
