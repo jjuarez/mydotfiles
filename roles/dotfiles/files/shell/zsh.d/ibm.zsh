@@ -49,7 +49,7 @@ ibm::cloud::switch_account() {
       fi
       ;;
 
-    staging) 
+    staging)
       if [[ -n "${QCSTAGING_IBMCLOUD_ID}" ]]; then
         "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1
         export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[staging]}

@@ -20,3 +20,6 @@ autocmd BufNewFile Makefile 0r ~/.skeletons/Makefile
 autocmd BufNewFile *.py 0r ~/.skeletons/python.py
 autocmd BufNewFile test_*.py 0r ~/.skeletons/pytest.py
 autocmd BufNewFile Dockerfile 0r ~/.skeletons/Dockerfile.nodejs
+
+" Configuration for the .envrc files using bash syntax
+autocmd BufRead,BufNewFile .envrc setf bash
