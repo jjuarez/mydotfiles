@@ -1,6 +1,7 @@
 #set -u -o pipefail
 #set -x
 
+
 git::xlog() {
   git log \
     --graph \
@@ -32,9 +33,23 @@ git::squash_branch() {
 EOF
 }
 
+
+git::refresh() {
+  local default_branch=$(git branch --remote --list '*/HEAD'|awk -F/ '{ print $NF }')
+
+  if git tag >/dev/null 2>&1; then
+    git fetch --append --prune &&
+    git switch ${default_branch} &&
+    git pull origin ${default_branch} &&
+    git switch -
+  fi
+}
+
+
 # autoloads
 autoload git::xlog
 autoload git::squash_branch
+autoload git::refresh
 
 # aliases
 alias gxlg='git::xlog'
