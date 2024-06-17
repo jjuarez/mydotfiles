@@ -12,22 +12,34 @@ Include /Users/jjuarez/.colima/ssh_config
 ##
 ## IBM private network jump hosts
 ##
+Host elmira.watson.ibm.com
+  User javier.juarez.martin
+
+Host champlaincanal-nat.watson.ibm.com
+  User javier.juarez.martin
+
+Host neversink-nat.watson.ibm.com
+  User javier.juarez.martin
+
+Host corinthcanal.cloud9.ibm.com
+  User javier.juarez.martin
 
 # QNet
 Host qnet.jumphost
-  HostName       elmira.watson.ibm.com
+ #HostName       elmira.watson.ibm.com
+  HostName       corinthcanal.cloud9.ibm.com
   User           javier.juarez.martin  # The AD username
   ControlMaster  auto
   ControlPath    /tmp/ssh_mux_qnet.sock
-  ControlPersist 8h
- 
+  ControlPersist 2h
+
 # OpenQ
 Host openq.jumphost
   HostName       champlaincanal-nat.watson.ibm.com
   User           javier.juarez.martin  # The AD username
   ControlMaster  auto
   ControlPath    /tmp/ssh_mux_openq.sock
-  ControlPersist 8h
+  ControlPersist 2h
 
 # SK
 Host sk.jumphost
@@ -54,7 +66,6 @@ Host rpi.jumphost
   HostName ibmq-bastion.cloud9.ibm.com
   User javier-juarez-martinez
 
-
 Host *.qnet.local
   User javier-juarez-martinez
   ProxyJump qnet.jumphost
@@ -64,7 +75,7 @@ Host *.openq.local
   ProxyJump openq.jumphost
 
 Host *.sk.local *.uot.local
-  ProxyJump sk.jumphost 
+  ProxyJump sk.jumphost
   User javier-juarez-martinez
 
 Host *.ccf.local
@@ -95,7 +106,7 @@ Host gw.infra.quantum.ibm.com:
 ## Global options
 ##
 Host *
-  # UserKnownHostsFile       ~/Workspace/ibm/q/projects/infra/ops-datacenter/ansible_known_hosts
+# UserKnownHostsFile       ~/Workspace/ibm/q/projects/infra/ops-datacenter/ansible_known_hosts
   UserKnownHostsFile       /dev/null
   StrictHostKeyChecking    no
   VerifyHostKeyDNS         no
@@ -108,5 +119,5 @@ Host *
   ServerAliveCountMax      4
   Compression              yes
   CheckHostIP              no
-  SetEnv                   LC_ALL=en_US.UTF8
+# SetEnv                   LC_ALL="UTF8"
   User                     javier-juarez-martinez
