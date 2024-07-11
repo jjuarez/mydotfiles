@@ -35,6 +35,11 @@ source "${HOME}/.env.IBM.Cloud.account.sms"
 IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 
+#
+# Status
+#
+CURRENT_ACCOUNT="none"
+
 
 ibm::cloud::switch_account() {
   local -r account_name="${1}"
@@ -49,14 +54,14 @@ ibm::cloud::switch_account() {
       fi
       ;;
 
-    staging)
+    qsstaging|staging)
       if [[ -n "${QCSTAGING_IBMCLOUD_ID}" ]]; then
         "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1
         export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[staging]}
       fi
       ;;
 
-    production)
+    qsproduction|production)
       if [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]]; then
         "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1
         export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[production]}
@@ -95,11 +100,14 @@ ibm::k8s::_update_cluster() {
     local command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster_name} --output yaml -q"
     local kubeconfig_filename="${HOME}/.kube/${cluster_name}.yml"
 
-    ibm::cloud::switch_account "${account}"
+    if [[ "${CURRENT_ACCOUNT}" != "${account}" ]]; then
+      ibm::cloud::switch_account "${account}"
+      CURRENT_ACCOUNT="${account}"
+    fi
 
-    echo "Cluster: ${cluster_name} (${account},${kind})... "
+    echo "Cluster: ${cluster_name} (${account}:${kind})..."
     case ${kind} in
-      openshift)
+      openshift|ocp)
         if [[ "${OPENSHIFT_USE_LINK}" == "true" ]]; then
           command+=" --endpoint link"
         fi
