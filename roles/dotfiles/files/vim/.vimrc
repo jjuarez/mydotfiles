@@ -14,6 +14,7 @@ Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
 Plug 'chase/vim-ansible-yaml'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 if has('autocmd')
