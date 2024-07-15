@@ -85,6 +85,9 @@ ibm::cloud::switch_account() {
 ibm::cloud::login() {
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
+  # To take the advantage of automatic OTPs
+  "${IBMCLOUD_CLI}" config --sso-otp auto
+
   "${IBMCLOUD_CLI}" login --no-region --sso -c "${QCMASTER_IBMCLOUD_ID}" &&
   ibm::cloud::switch_account qcmaster # To ensure that we're pointing to the right SM instance
 }
