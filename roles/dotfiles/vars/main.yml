@@ -12,6 +12,7 @@ dotfiles_rc:
     - .featuresrc
     - .homebrewrc
     - .aliasesrc
+    - .terraform-pre-commit-config.yaml
 
 dotfiles_tools:
   files:
