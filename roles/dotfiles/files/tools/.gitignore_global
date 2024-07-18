@@ -18,3 +18,4 @@ venv
 .gems
 # nodeJS
 .node-version
+.pre-commit-config.yaml
