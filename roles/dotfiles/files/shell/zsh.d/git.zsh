@@ -38,9 +38,11 @@ git::refresh() {
   local default_branch=$(git branch --remote --list '*/HEAD'|awk -F/ '{ print $NF }')
 
   if git tag >/dev/null 2>&1; then
-    git fetch --append --prune &&
     git switch ${default_branch} &&
+    git fetch --append --prune &&
     git pull origin ${default_branch} &&
+    git-delete-merged-branches &&
+    git-delete-squashed-branches &&
     git switch -
   fi
 }
