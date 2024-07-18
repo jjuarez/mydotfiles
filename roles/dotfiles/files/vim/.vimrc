@@ -10,7 +10,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'szw/vim-maximizer'
 Plug 'w0rp/ale'
-Plug 'klen/python-mode'
+" Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
 Plug 'chase/vim-ansible-yaml'
@@ -157,11 +157,6 @@ let g:ale_fixers = { "python": ["ruff"] }
 
 "" Maximize current split or return to previous
 noremap <C-w>m :MaximizerToggle<CR>
-
-"" vim-header configuration
-let g:header_field_author = "Javier Juarez"
-let g:header_field_author_email = "jj@chainedto.cloud"
-""map <F4> :AddHeader<CR>
 
 "" Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))

@@ -41,7 +41,8 @@ test:
 
 $(VENV):
 	@python -m venv $(VENV)
-	@pip install --disable-pip-version-check --requirement $(REQUIREMENTS_FILE)
+	@pip install --upgrade --quiet pip
+	@pip install --disable-pip-version-check --quiet --requirement $(REQUIREMENTS_FILE)
 
 .PHONY: venv/activate
 venv/activate: $(VENV)
