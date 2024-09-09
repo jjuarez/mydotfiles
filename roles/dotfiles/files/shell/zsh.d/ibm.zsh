@@ -77,7 +77,6 @@ ibm::cloud::switch_account() {
 
     *)
       echo "Valid accounts are: qcmaster, staging, producton, and experimental... switching by default to QCMaster"
-      ibm::cloud::switch_account qcmaster
       ;;
   esac
 }
