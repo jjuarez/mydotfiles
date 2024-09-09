@@ -39,6 +39,12 @@ features::go() {
 features::ibmcloud() {
   utils::check_file "${HOME}/.env.IBM.Cloud.QCMaster.apikey" || return 1
   source "${HOME}/.env.IBM.Cloud.QCMaster.apikey"
+
+  utils::check_file "${HOME}/.env.IBM.Cloud.QSStaging.apikey" || return 1
+  source "${HOME}/.env.IBM.Cloud.QSStaging.apikey"
+
+  utils::check_file "${HOME}/.env.IBM.Cloud.QSProduction.apikey" || return 1
+  source "${HOME}/.env.IBM.Cloud.QSProduction.apikey"
 }
 
 features::krew() {
