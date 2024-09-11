@@ -48,36 +48,35 @@ ibm::cloud::switch_account() {
 
   case "${account_name}" in
     qcmaster)
-      if [[ -n "${QCMASTER_IBMCLOUD_ID}" ]]; then
-        "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1  # By default go to the QCMaster account
+      [[ -n "${QCMASTER_IBMCLOUD_ID}" ]] &&  {
+        "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" --unset-resource-group --unset-region -q >/dev/null 2>&1  # By default go to the QCMaster account
         export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[qcmaster]}
-      fi
+      }
       ;;
 
     qsstaging|staging)
-      if [[ -n "${QCSTAGING_IBMCLOUD_ID}" ]]; then
-        "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" -q >/dev/null 2>&1
+      [[ -n "${QCSTAGING_IBMCLOUD_ID}" ]] &&  {
+        "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" --unset-resource-group --unset-region -q >/dev/null 2>&1
         export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[staging]}
-      fi
+      }
       ;;
 
     qsproduction|production)
-      if [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]]; then
-        "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" -q >/dev/null 2>&1
+      [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]] && {
+        "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" --unset-resource-group --unset-region -q >/dev/null 2>&1
         export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[production]}
-      fi
+      }
       ;;
 
     experimental)
-      if [[ -n "${QCEXPERIMENTAL_IBMCLOUD_ID}" ]]; then
-        "${IBMCLOUD_CLI}" target -c "${QCEXPERIMENTAL_IBMCLOUD_ID}" -q >/dev/null 2>&1
+      [[ -n "${QCEXPERIMENTAL_IBMCLOUD_ID}" ]] && {
+        "${IBMCLOUD_CLI}" target -c "${QCEXPERIMENTAL_IBMCLOUD_ID}" --unset-resource-group --unset-region -q >/dev/null 2>&1
         export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[experimental]}
-      fi
+      }
       ;;
 
     *)
       echo "Valid accounts are: qcmaster, staging, producton, and experimental... switching by default to QCMaster"
-      ibm::cloud::switch_account qcmaster
       ;;
   esac
 }
@@ -108,27 +107,21 @@ ibm::k8s::_update_cluster() {
       CURRENT_ACCOUNT="${account}"
     fi
 
-    echo "Cluster: ${cluster_name} (${account}:${kind})..."
+    echo "Cluster: ${cluster_name} (${account}:${kind})"
     case ${kind} in
       openshift|ocp)
-        if [[ "${OPENSHIFT_USE_LINK}" == "true" ]]; then
-          command+=" --endpoint link"
-        fi
+        [[ "${OPENSHIFT_USE_LINK}" == "true" ]] && command+=" --endpoint link"
         command+=" --admin"
       ;;
     esac
 
     case "${IKSCC_FEATURE}" in
       true)
-        if [[ -x "${IKSCC}" ]]; then
-          eval "${command}"|${IKSCC} -f - >! "${kubeconfig_filename}"
-        else
-          echo "Warning: No ${IKSCC} tool installed"
-        fi
+        [[ -x "${IKSCC}" ]] && eval "${command}"|${IKSCC} -f - >! "${kubeconfig_filename}"
       ;;
 
       *)
-        eval "${command}" >! "${kubeconfig_filename}"
+        eval "${command}" >! "${kubeconfig_filename}" 2>/dev/null
       ;;
     esac
   fi

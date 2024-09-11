@@ -19,3 +19,5 @@ venv
 # nodeJS
 .node-version
 .pre-commit-config.yaml
+# Direnv
+.envrc

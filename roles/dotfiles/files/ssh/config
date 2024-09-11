@@ -66,6 +66,11 @@ Host rpi.jumphost
   HostName ibmq-bastion.cloud9.ibm.com
   User javier-juarez-martinez
 
+# YON
+Host yon.jumphost
+  HostName ibmq-bastion.cloud9.ibm.com
+  User javier-juarez-martinez
+
 Host *.qnet.local
   User javier-juarez-martinez
   ProxyJump qnet.jumphost
@@ -94,6 +99,10 @@ Host *.rpi.local
   User javier-juarez-martinez
   ProxyJump rpi.jumphost
 
+Host yon-sat-*.yon.local
+  User  javier-juarez-martinez
+  ProxyJump yon.jumphost
+
 # ansible development
 Host ykt39-0?.watson.ibm.com
   User javier-juarez-martinez
@@ -106,18 +115,17 @@ Host gw.infra.quantum.ibm.com:
 ## Global options
 ##
 Host *
-# UserKnownHostsFile       ~/Workspace/ibm/q/projects/infra/ops-datacenter/ansible_known_hosts
-  UserKnownHostsFile       /dev/null
-  StrictHostKeyChecking    no
-  VerifyHostKeyDNS         no
-  GSSAPIAuthentication     yes
-  ForwardX11               no
-  AddKeysToAgent           yes
-  ForwardAgent             yes
-  TCPKeepAlive             yes
-  ServerAliveInterval      15
-  ServerAliveCountMax      4
-  Compression              yes
-  CheckHostIP              no
-# SetEnv                   LC_ALL="UTF8"
-  User                     javier-juarez-martinez
+  UserKnownHostsFile    /dev/null
+  StrictHostKeyChecking no
+  VerifyHostKeyDNS      no
+  GSSAPIAuthentication  yes
+  ForwardX11            no
+  AddKeysToAgent        yes
+  ForwardAgent          yes
+  TCPKeepAlive          yes
+  ServerAliveInterval   15
+  ServerAliveCountMax   4
+  Compression           yes
+  CheckHostIP           no
+  SetEnv                LC_ALL="en_US.UTF8"
+  User                  javier-juarez-martinez
