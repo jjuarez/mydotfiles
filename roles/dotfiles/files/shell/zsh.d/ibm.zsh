@@ -21,13 +21,10 @@ utils::panic() {
 # Configurations
 #
 [[ -s "${HOME}/.env.IBM.Cloud.account.ids" ]] || utils::panic "Warning: I couldn't load the IBMCloud accound ids from: ${HOME}/.env.IBM.Cloud.account.ids" 1
-source "${HOME}/.env.IBM.Cloud.account.ids"
+echo "Loading accounts..." && source "${HOME}/.env.IBM.Cloud.account.ids"
 
 [[ -s "${HOME}/.env.IBM.Cloud.clusters"    ]] || utils::panic "Warning: I couldn't load the IBMCloud cluster list from: ${HOME}/.env.IBM.Cloud.clusters" 2
-source "${HOME}/.env.IBM.Cloud.clusters"
-
-[[ -s "${HOME}/.env.IBM.Cloud.account.sms" ]] || utils::panic "Warning: I couldn't load the IBMCloud Secret Manager endpoint list from: ${HOME}/.env.IBM.Cloud.account.sms" 3
-source "${HOME}/.env.IBM.Cloud.account.sms"
+echo "Loading clusters..." && source "${HOME}/.env.IBM.Cloud.clusters"
 
 #
 # Tools
@@ -47,37 +44,16 @@ ibm::cloud::switch_account() {
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   case "${account_name}" in
-    qcmaster)
-      [[ -n "${QCMASTER_IBMCLOUD_ID}" ]] &&  {
-        "${IBMCLOUD_CLI}" target -c "${QCMASTER_IBMCLOUD_ID}" --unset-resource-group --unset-region -q >/dev/null 2>&1  # By default go to the QCMaster account
-        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[qcmaster]}
-      }
-      ;;
-
-    qsstaging|staging)
-      [[ -n "${QCSTAGING_IBMCLOUD_ID}" ]] &&  {
-        "${IBMCLOUD_CLI}" target -c "${QCSTAGING_IBMCLOUD_ID}" --unset-resource-group --unset-region -q >/dev/null 2>&1
-        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[staging]}
-      }
-      ;;
-
-    qsproduction|production)
-      [[ -n "${QCPRODUCTION_IBMCLOUD_ID}" ]] && {
-        "${IBMCLOUD_CLI}" target -c "${QCPRODUCTION_IBMCLOUD_ID}" --unset-resource-group --unset-region -q >/dev/null 2>&1
-        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[production]}
-      }
-      ;;
-
-    experimental)
-      [[ -n "${QCEXPERIMENTAL_IBMCLOUD_ID}" ]] && {
-        "${IBMCLOUD_CLI}" target -c "${QCEXPERIMENTAL_IBMCLOUD_ID}" --unset-resource-group --unset-region -q >/dev/null 2>&1
-        export SECRETS_MANAGER_URL=${IBMCLOUD_SM_ENDPOINTS[experimental]}
-      }
-      ;;
+    qcm|qcmaster|master|qss|qsstaging|staging|qsp|qsproduction|production|qce|qcexperimental|experimental)
+      if [[ -n "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" ]]; then
+        "${IBMCLOUD_CLI}" target -c "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" --unset-resource-group --unset-region --quiet >/dev/null 2>&1  # By default go to the QCMaster account
+        [[ -n "${IBMCLOUD_SMES[${account_name}]}" ]] && export SECRETS_MANAGER_URL="${IBMCLOUD_SMES[${account_name}]}"
+      fi
+    ;;
 
     *)
-      echo "Valid accounts are: qcmaster, staging, producton, and experimental... switching by default to QCMaster"
-      ;;
+      echo "Valid accounts are: qcmaster, qsstaging, qsproduction, and qcexperimental... switching by default to QCMaster"
+    ;;
   esac
 }
 
