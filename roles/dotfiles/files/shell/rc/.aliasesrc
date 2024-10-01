@@ -2,33 +2,33 @@
 HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"$(brew --prefix 2>/dev/null)"}
 OS="$(uname)"
 
-case "${OS}" in
-  Darwin*)
-    alias netstat='netstat -an -p tcp -f inet'
 
-    [[ -x "${HOMEBREW_PREFIX}/bin/gtar"      ]] && alias tar="${HOMEBREW_PREFIX}/bin/gtar"
-    [[ -x "${HOMEBREW_PREFIX}/bin/gfind"     ]] && alias find="${HOMEBREW_PREFIX}/bin/gfind"
-    [[ -x "${HOMEBREW_PREFIX}/bin/gsed"      ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
-    [[ -x "${HOMEBREW_PREFIX}/bin/kubecolor" ]] && alias k='kubecolor'
-  ;;
-esac
+# Check if we have home brew installed
+if [[ -z "${HOMEBREW_PREFIX}" ]]; then
+  case "${OS}" in
+    Darwin*)
+      alias netstat='netstat -an -p tcp -f inet'
 
-# To use a modern version provided by homebrew and preffers neovim
-if [[ "${HOMEBREW_PREFIX}/bin/nvim" ]]; then
-  alias vim="${HOMEBREW_PREFIX}/bin/nvim"
-  alias vi="${HOMEBREW_PREFIX}/bin/nvim"
-elif [[ "${HOMEBREW_PREFIX}/bin/vim" ]]; then
-  alias vi="${HOMEBREW_PREFIX}/bin/vim"
+      [[ -x "${HOMEBREW_PREFIX}/bin/gtar"      ]] && alias tar="${HOMEBREW_PREFIX}/bin/gtar"
+      [[ -x "${HOMEBREW_PREFIX}/bin/gfind"     ]] && alias find="${HOMEBREW_PREFIX}/bin/gfind"
+      [[ -x "${HOMEBREW_PREFIX}/bin/gsed"      ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
+      [[ -x "${HOMEBREW_PREFIX}/bin/kubecolor" ]] && alias k='kubecolor'
+    ;;
+  esac
+
+  # To use a modern version provided by homebrew and preffers neovim
+  if [[ "${HOMEBREW_PREFIX}/bin/nvim" ]]; then
+    alias vim="${HOMEBREW_PREFIX}/bin/nvim"
+    alias vi="${HOMEBREW_PREFIX}/bin/nvim"
+  elif [[ "${HOMEBREW_PREFIX}/bin/vim" ]]; then
+    alias vi="${HOMEBREW_PREFIX}/bin/vim"
+  fi
 fi
 
 # Commons
-alias cat='bat'
+[[ $(command -v bat 2>/dev/null) ]] && alias cat='bat'
 alias tree='tree -a -I .git'
 
 # path traversal
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ....='cd ../../..'
-
-# Tools
-alias tf='terraform'
