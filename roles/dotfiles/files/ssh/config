@@ -26,7 +26,6 @@ Host corinthcanal.cloud9.ibm.com
 
 # QNet
 Host qnet.jumphost
- #HostName       elmira.watson.ibm.com
   HostName       corinthcanal.cloud9.ibm.com
   User           javier.juarez.martin  # The AD username
   ControlMaster  auto
