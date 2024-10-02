@@ -21,10 +21,10 @@ utils::panic() {
 # Configurations
 #
 [[ -s "${HOME}/.env.IBM.Cloud.account.ids" ]] || utils::panic "Warning: I couldn't load the IBMCloud accound ids from: ${HOME}/.env.IBM.Cloud.account.ids" 1
-echo "Loading accounts..." && source "${HOME}/.env.IBM.Cloud.account.ids"
+source "${HOME}/.env.IBM.Cloud.account.ids"
 
 [[ -s "${HOME}/.env.IBM.Cloud.clusters"    ]] || utils::panic "Warning: I couldn't load the IBMCloud cluster list from: ${HOME}/.env.IBM.Cloud.clusters" 2
-echo "Loading clusters..." && source "${HOME}/.env.IBM.Cloud.clusters"
+source "${HOME}/.env.IBM.Cloud.clusters"
 
 #
 # Tools
