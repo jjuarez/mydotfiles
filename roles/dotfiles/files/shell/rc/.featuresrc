@@ -45,6 +45,9 @@ features::ibmcloud() {
 
   utils::check_file "${HOME}/.env.IBM.Cloud.QSProduction.apikey" || return 1
   source "${HOME}/.env.IBM.Cloud.QSProduction.apikey"
+
+  utils::check_file "${HOME}/.env.IBM.Cloud.QCExperimental.apikey" || return 1
+  source "${HOME}/.env.IBM.Cloud.QCExperimental.apikey"
 }
 
 features::krew() {
