@@ -42,7 +42,8 @@ terraform::state::upgrade() {
 }
 
 terraform::plan() {
-  terraform plan --lock=false --out="${PLAN_FILENAME}"
+  # We need to pass all the command line, for example to allow the alias to work with targets
+  terraform plan --lock=false --out="${PLAN_FILENAME}" "${@}"
 }
 
 terraform::apply() {
@@ -63,5 +64,6 @@ alias tf='terraform'
 alias tfi='terraform::state::init'
 alias tfc='terraform::state::cleanup'
 alias tfu='terraform::state::upgrade'
+alias tfv='terraform validate'
 alias tfp='terraform::plan'
 alias tfa='terraform::apply'
