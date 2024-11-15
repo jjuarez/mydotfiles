@@ -61,9 +61,10 @@ autoload terraform::apply
 
 # aliases
 alias tf='terraform'
-alias tfi='terraform::state::init'
+alias tfa='terraform::apply'
 alias tfc='terraform::state::cleanup'
+alias tff='terraform fmt'
+alias tfi='terraform::state::init'
+alias tfp='terraform::plan'
 alias tfu='terraform::state::upgrade'
 alias tfv='terraform validate'
-alias tfp='terraform::plan'
-alias tfa='terraform::apply'

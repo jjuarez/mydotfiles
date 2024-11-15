@@ -5,12 +5,12 @@ filetype plugin on
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 Plug 'tomtom/tcomment_vim'
 Plug 'ervandew/supertab'
-Plug 'tomasr/molokai'
+Plug 'protesilaos/tempus-themes-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'szw/vim-maximizer'
 Plug 'w0rp/ale'
-" Plug 'klen/python-mode'
+Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
 Plug 'chase/vim-ansible-yaml'
@@ -38,13 +38,10 @@ let g:is_posix = 1
 
 "" The Color Scheme
 try
-  colorscheme molokai
-  let g:rehash256=1
-  let g:colorscheme_bg='dark'
-  let &t_ZH="\e[3m"
-  let &t_ZR="\e[23m"
+  colorscheme tempus_dusk
+  let g:tempus_enforce_background_color=1
 catch
-   colorscheme default
+  colorscheme default
 endtry
 
 execute "set colorcolumn=" . join(range(133,335), ',')
@@ -139,9 +136,13 @@ map <Leader>/ :nohlsearch<CR>
 if !has('nvim')
   set viminfo+=n~/.vim/.viminfo
 else
-  set viminfo+=n~/.local/shared/nvim/.shada
+  set viminfo+=n~/.local/share/nvim/.shada
 endif
 let g:session_autosave='no'
+
+"" Python support
+let g:pymode = 'enable'
+let g:python3_host_prog = expand('./.venv/bin/python3')
 
 "" lightline configuration
 set laststatus=2
@@ -156,6 +157,7 @@ let g:ale_linters = { "python": ["ruff"] }
 let g:ale_fixers = { "python": ["ruff"] }
 
 "" Maximize current split or return to previous
+let g:maximizer_set_default_mapping = 0
 noremap <C-w>m :MaximizerToggle<CR>
 
 "" Allow overriding these settings
