@@ -5,10 +5,7 @@ zmodule input
 zmodule environment
 zmodule ssh
 zmodule exa
-# zmodule agkozak/zsh-z
 zmodule completion
-# zmodule fzf
-# zmodule zsh-users/zsh-completions
 zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-syntax-highlighting
 # Themes
