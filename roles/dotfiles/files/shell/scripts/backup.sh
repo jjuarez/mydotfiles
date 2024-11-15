@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 declare -r WORKSPACE="${HOME}/Workspace"
-declare -r DESTINATION_DIRECTORY="${HOME}/Dropbox/Backups/IBM"
+declare -r DESTINATION_DIRECTORY="${HOME}/Desktop/Backup/Backups/IBM"
 declare BACKUP_DRYRUN
 
 TAR="$(brew --prefix)/bin/gtar"
