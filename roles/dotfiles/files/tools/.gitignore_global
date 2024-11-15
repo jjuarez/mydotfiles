@@ -2,22 +2,27 @@
 .DS_Store
 **.swp
 .envrc
+
 # IDEs
 .vscode
 .idea
+
 # Python
 *.py[cod]
 .venv
 venv
 .python-version
+
 # ruby
 .ruby-version
 .ruby-gemset
 .rubocop.yaml
 .ropeproject/**
 .gems
-# nodeJS
+
+# Node.js
 .node-version
 .pre-commit-config.yaml
-# Direnv
-.envrc
+
+# Terraform
+#*.tfplan
