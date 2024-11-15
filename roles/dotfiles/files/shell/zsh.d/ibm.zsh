@@ -44,7 +44,7 @@ ibm::cloud::switch_account() {
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   case "${account_name}" in
-    qcm|qcmaster|master|qss|qsstaging|staging|qsp|qsproduction|production|qce|qcexperimental|experimental)
+    qcmaster|qsstaging|qsproduction|qcexperimental)
       if [[ -n "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" ]]; then
         "${IBMCLOUD_CLI}" target -c "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" --unset-resource-group --unset-region --quiet >/dev/null 2>&1  # By default go to the QCMaster account
         [[ -n "${IBMCLOUD_SMES[${account_name}]}" ]] && export SECRETS_MANAGER_URL="${IBMCLOUD_SMES[${account_name}]}"
@@ -55,6 +55,15 @@ ibm::cloud::switch_account() {
       echo "Valid accounts are: qcmaster, qsstaging, qsproduction, and qcexperimental... switching by default to QCMaster"
     ;;
   esac
+}
+
+ibm::cloud::target() {
+  local cai
+
+  cai=$(jq -r '.Account.GUID' "${HOME}/.bluemix/config.json")
+  if [[ -n "${cai}" ]]; then
+    echo "${(k)IBMCLOUD_ACCOUNT_IDS[(r)${cai}]}"
+  fi
 }
 
 ibm::cloud::login() {
@@ -132,6 +141,7 @@ ibm::k8s::list() {
 
 # autoloads
 autoload ibm:cloud::login
+autoload ibm:cloud::target
 autoload ibm:cloud::switch_account
 autoload ibm::k8s::update
 autoload ibm::k8s::list
@@ -141,5 +151,5 @@ autoload ibm::k8s::list
 alias ic='ibmcloud'
 alias ic.li='ibm::cloud::login'
 alias ic.lo='ibmcloud logout'
-alias ic.t='ibmcloud target'
+alias ic.t='ibm::cloud::target'
 alias ic.sa='ibm::cloud::switch_account'
