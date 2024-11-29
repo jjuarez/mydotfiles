@@ -15,6 +15,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
 Plug 'chase/vim-ansible-yaml'
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/vim-easy-align'
 call plug#end()
 
 if has('autocmd')
@@ -159,6 +160,9 @@ let g:ale_fixers = { "python": ["ruff"] }
 "" Maximize current split or return to previous
 let g:maximizer_set_default_mapping = 0
 noremap <C-w>m :MaximizerToggle<CR>
+
+"" Easy Align
+nmap ga <Plug>(EasyAlign)
 
 "" Allow overriding these settings
 if filereadable(expand("~/.vimrc.local"))
