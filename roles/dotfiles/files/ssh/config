@@ -1,5 +1,5 @@
 #
-# Development
+# Development
 #
 Host github.com gitlab.com
   User jjuarez
@@ -10,7 +10,7 @@ Host github.com gitlab.com
 Include /Users/jjuarez/.colima/ssh_config
 
 #
-# IBM private network jump hosts
+# IBM private network jump hosts
 #
 
 # JumpHosts (2024/10/31)
@@ -64,7 +64,7 @@ Host bromont.jumphost
   HostName bmt-jump.bromont.can.ibm.com
   User javier-juarez-martinez
 
-# RPI
+# RPI
 Host rpi.jumphost
   HostName ibmq-bastion.cloud9.ibm.com
   User javier-juarez-martinez
