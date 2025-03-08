@@ -27,8 +27,12 @@ PLAN_FILENAME=${PLAN_FILENAME:-${DEFAULT_PLAN_FILENAME}}
 #
 # Wrappers
 #
+terraform::state::wipeoff() {
+  find ${CLOUD_DEPLOYMENT_WORKSPACE} -type d -name .terraform -print|xargs rm -fr
+}
+
 terraform::state::init() {
-  ${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh
+  [[ -x "${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh" ]] && "${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh" "${@}"
 }
 
 terraform::state::cleanup() {
@@ -63,8 +67,9 @@ autoload terraform::apply
 alias tf='terraform'
 alias tfa='terraform::apply'
 alias tfc='terraform::state::cleanup'
-alias tff='terraform fmt'
 alias tfi='terraform::state::init'
+alias tfw='terraform::state::wipeoff'
 alias tfp='terraform::plan'
 alias tfu='terraform::state::upgrade'
+alias tff='terraform fmt'
 alias tfv='terraform validate'
