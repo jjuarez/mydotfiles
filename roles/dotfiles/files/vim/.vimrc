@@ -6,6 +6,7 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 Plug 'tomtom/tcomment_vim'
 Plug 'ervandew/supertab'
 Plug 'protesilaos/tempus-themes-vim'
+" Plug 'ku1ik/vim-monokai'
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'szw/vim-maximizer'
@@ -13,9 +14,9 @@ Plug 'w0rp/ale'
 Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
-Plug 'chase/vim-ansible-yaml'
+" Plug 'chase/vim-ansible-yaml'
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 call plug#end()
 
 if has('autocmd')
@@ -39,6 +40,7 @@ let g:is_posix = 1
 
 "" The Color Scheme
 try
+  " colorscheme monokai
   colorscheme tempus_dusk
   let g:tempus_enforce_background_color=1
 catch
