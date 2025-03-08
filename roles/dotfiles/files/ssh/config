@@ -13,19 +13,21 @@ Include /Users/jjuarez/.colima/ssh_config
 # IBM private network jump hosts
 #
 
-# JumpHosts (2024/10/31)
+#
+# JumpHosts (2025/03/04)
+#
 # QNet:
-# - stockholm-nat.watson.ibm.com SSH pwd + OTP
-# - elmira.watson.ibm.com        SSH key + OTP
-# - saimaa.cloud9.ibm.com        SSH pwd + OTP
-# - corinthcanal.cloud9.ibm.com  SSH key + OTP
+# - corinthcanal.cloud9.ibm.com       SSH Key + OTP
+# - elmira.watson.ibm.com             SSH Key + OTP
+# - saimaa.cloud9.ibm.com             SSH Pwd + OTP
+# - stockholm-nat.watson.ibm.com      SSH Pwd + OTP
 #
 # OpenQ:
+# - champlaincanal-nat.watson.ibm.com SSH Key + OTP
+# - neversink-nat.watson.ibm.com      SSH Key + OTP
 # - fishkill-nat.watson.ibm.com       SSH Pwd + OTP
 # - kisco-nat.watson.ibm.com          SSH Pwd + OTP
-# - champlaincanal-nat.watson.ibm.com SSH key + OTP
-# - neversink-nat.watson.ibm.com      SSH key + OTP
-#
+
 
 # QNet
 Host qnet.jumphost
@@ -35,84 +37,100 @@ Host qnet.jumphost
   ControlPath    /tmp/ssh_mux_qnet.sock
   ControlPersist 2h
 
+Host corinthcanal.cloud9.ibm.com
+  HostName corinthcanal.cloud9.ibm.com
+  User     javier.juarez.martin
+
 # OpenQ
 Host openq.jumphost
-  # HostName       champlaincanal-nat.watson.ibm.com
-  HostName       fishkill-nat.watson.ibm.com
+  HostName       champlaincanal-nat.watson.ibm.com
   User           javier.juarez.martin  # The AD username
   ControlMaster  auto
   ControlPath    /tmp/ssh_mux_openq.sock
   ControlPersist 2h
 
-# SK
-Host sk.jumphost
-  HostName 9.116.12.201  # koshiba
-  User javier-juarez-martinez
-
-# CCF
-Host ccf.jumphost
-  HostName ibmq-bastion.cloud9.ibm.com
-  User javier-juarez-martinez
-
-# EHN
-Host ehn.jumphost
-  HostName pauli.ehningen.de.ibm.com
-  User javier-juarez-martinez
+Host champlaincanal-nat.watson.ibm.com
+  HostName champlaincanal-nat.watson.ibm.com
+  User     javier.juarez.martin
 
 # Bromont
 Host bromont.jumphost
   HostName bmt-jump.bromont.can.ibm.com
-  User javier-juarez-martinez
+  User Javier-Juarez-Martinez
+
+# CCF
+Host ccf.jumphost
+  HostName ibmq-bastion.cloud9.ibm.com
+  User Javier-Juarez-Martinez
+
+# EHN
+Host ehn.jumphost
+  HostName pauli.ehningen.de.ibm.com
+  User Javier-Juarez-Martinez
 
 # RPI
 Host rpi.jumphost
   HostName ibmq-bastion.cloud9.ibm.com
-  User javier-juarez-martinez
+  User Javier-Juarez-Martinez
+
+# SK
+Host sk.jumphost
+  HostName 9.116.12.201  # koshiba
+  User Javier-Juarez-Martinez
 
 # YON
 Host yon.jumphost
   HostName ibmq-bastion.cloud9.ibm.com
-  User javier-juarez-martinez
+  User Javier-Juarez-Martinez
+
+# ZRL
+Host zrl.jumphost
+  HostName zrl-jump.zurich.ibm.com
+  User Javier-Juarez-Martinez
 
 Host *.qnet.local
-  User javier-juarez-martinez
+  User Javier-Juarez-Martinez
   ProxyJump qnet.jumphost
 
 Host *.openq.local
-  User javier-juarez-martinez
+  User Javier-Juarez-Martinez
   ProxyJump openq.jumphost
 
-Host *.sk.local *.uot.local
-  User javier-juarez-martinez
-  ProxyJump sk.jumphost
-
-Host *.ccf.local
-  User javier-juarez-martinez
-  ProxyJump ccf.jumphost
-
 Host *.bmt.local
-  User javier-juarez-martinez
+  User Javier-Juarez-Martinez
   ProxyJump bromont.jumphost
 
+Host *.ccf.local
+  User Javier-Juarez-Martinez
+  ProxyJump ccf.jumphost
+
 Host *.ehn.local
-  User javier-juarez-martinez
+  User Javier-Juarez-Martinez
   ProxyJump ehn.jumphost
 
 Host *.rpi.local
-  User javier-juarez-martinez
+  User Javier-Juarez-Martinez
   ProxyJump rpi.jumphost
 
-Host yon-sat-*.yon.local
-  User  javier-juarez-martinez
+Host *.sk.local *.uot.local
+  User Javier-Juarez-Martinez
+  ProxyJump sk.jumphost
+
+Host *.yon.local
+  User  Javier-Juarez-Martinez
   ProxyJump yon.jumphost
+
+Host *.zrl.local
+  User  Javier-Juarez-Martinez
+  ProxyJump zrl.jumphost
 
 # ansible development
 Host ykt39-0?.watson.ibm.com
-  User javier-juarez-martinez
+  User Javier-Juarez-Martinez
 
 # Wireguard GW
 Host gw.infra.quantum.ibm.com:
-  User root
+  User jj
 
 #
 # Global options
@@ -131,4 +149,4 @@ Host *
   Compression           yes
   CheckHostIP           no
   SetEnv                LC_ALL="en_US.UTF8"
-  User                  javier-juarez-martinez
+  User                  Javier-Juarez-Martinez
