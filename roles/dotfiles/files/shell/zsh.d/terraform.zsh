@@ -45,6 +45,10 @@ terraform::state::upgrade() {
   ${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh --upgrade --force
 }
 
+terraform::state::save() {
+  terraform state pull > $(date +%F)-terraform-state-backup.tfstate
+}
+
 terraform::plan() {
   # We need to pass all the command line, for example to allow the alias to work with targets
   terraform plan --lock=false --out="${PLAN_FILENAME}" "${@}"
@@ -56,8 +60,9 @@ terraform::apply() {
 
 
 # autoloads
-autoload terraform::state::init
 autoload terraform::state::cleanup
+autoload terraform::state::init
+autoload terraform::state::save
 autoload terraform::state::upgrade
 autoload terraform::plan
 autoload terraform::apply
@@ -65,11 +70,12 @@ autoload terraform::apply
 
 # aliases
 alias tf='terraform'
+alias tff='terraform fmt'
+alias tfv='terraform validate'
 alias tfa='terraform::apply'
 alias tfc='terraform::state::cleanup'
 alias tfi='terraform::state::init'
+alias tfs='terraform::state::save'
+alias tfu='terraform::state::upgrade'
 alias tfw='terraform::state::wipeoff'
 alias tfp='terraform::plan'
-alias tfu='terraform::state::upgrade'
-alias tff='terraform fmt'
-alias tfv='terraform validate'
