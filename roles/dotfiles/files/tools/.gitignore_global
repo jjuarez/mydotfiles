@@ -13,16 +13,10 @@
 venv
 .python-version
 
-# ruby
-.ruby-version
-.ruby-gemset
-.rubocop.yaml
-.ropeproject/**
-.gems
-
 # Node.js
 .node-version
 .pre-commit-config.yaml
 
 # Terraform
-#*.tfplan
+#this.tfplan
+#this.tfplan.json
