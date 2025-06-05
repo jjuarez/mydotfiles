@@ -3,20 +3,20 @@ filetype plugin on
 
 " Plug plugin management
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
-Plug 'tomtom/tcomment_vim'
-Plug 'ervandew/supertab'
 Plug 'protesilaos/tempus-themes-vim'
-" Plug 'ku1ik/vim-monokai'
-Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-maximizer'
+Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
+Plug 'fatih/vim-go'
 Plug 'klen/python-mode'
 Plug 'hashivim/vim-terraform'
-Plug 'fatih/vim-go'
-" Plug 'chase/vim-ansible-yaml'
-Plug 'airblade/vim-gitgutter'
-" Plug 'junegunn/vim-easy-align'
+Plug 'mechatroner/rainbow_csv'
+Plug 'chase/vim-ansible-yaml'
+Plug 'ervandew/supertab'
+" Plug 'tsandall/vim-rego'
 call plug#end()
 
 if has('autocmd')
@@ -157,7 +157,7 @@ let g:lightline = { 'colorscheme': 'wombat' }
 
 "" Ale
 let g:ale_linters = { "python": ["ruff"] }
-let g:ale_fixers = { "python": ["ruff"] }
+let g:ale_fixers  = { "python": ["ruff"] }
 
 "" Maximize current split or return to previous
 let g:maximizer_set_default_mapping = 0
