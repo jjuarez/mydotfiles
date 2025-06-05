@@ -28,7 +28,9 @@ PLAN_FILENAME=${PLAN_FILENAME:-${DEFAULT_PLAN_FILENAME}}
 # Wrappers
 #
 terraform::state::wipeoff() {
-  find ${CLOUD_DEPLOYMENT_WORKSPACE} -type d -name .terraform -print|xargs rm -fr
+  for fp in .terraform this.tfplan this.tfplan.json cloud_keys.auto.tfvars; do
+    find ${CLOUD_DEPLOYMENT_WORKSPACE} -name "${fp}" -print|xargs rm -fr
+  done
 }
 
 terraform::state::init() {
