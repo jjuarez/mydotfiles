@@ -1,9 +1,9 @@
 # ZSH Profiling BEGIN
-#zmodload zsh/zprof
+# zmodload zsh/zprof
 
 # SSH keys to load by the agent
-zstyle ':zim:ssh' ids 'id_ed25519.github.com' \
-                      'id_ed25519.github.ibm.com'
+zstyle ':zim:ssh' ids 'id_rsa.github.ibm.com' \
+                      'id_ed25519.github.com'
 
 # Start configuration added by Zim install {{{
 # zimfw configuration
@@ -42,7 +42,7 @@ declare -A FEATURES_CONFIGURATION=(
   [direnv]=true
   [fzf]=true
   [ghe]=true
-  [github]=false
+  [github]=true
   [go]=true
   [ibmcloud]=true
   [krew]=true
@@ -73,4 +73,4 @@ done 2>/dev/null
 [[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
 
 # ZSH Profiling END
-#zprof
+# zprof
