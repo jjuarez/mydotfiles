@@ -18,12 +18,8 @@
     - zshcleanup
 
 - name: ZIMfw installation
-  ansible.builtin.shell: "set -o pipefail && curl -fsSL {{ zimfw.url }} | zsh"
-  args:
-    warn: false
+  ansible.builtin.shell: "set -o pipefail && curl -fsSL {{ dotfiles_zimfw.url }} | zsh"
   when: not dotfiles_zimrc.stat.exists and not dotfiles_zim.stat.exists
-  register: dotfiles_ziminstallation
-  changed_when: dotfiles_ziminstallation.rc != 0
   tags:
     - zsh
 
