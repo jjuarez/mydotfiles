@@ -30,9 +30,9 @@ dotfiles_languages:
 
 dotfiles_homebrew:
   install:
-    url: https://github.com/homebrw/install#install-homebrew
+    url: https://github.com/homebrew/install#install-homebrew
   uninstall:
-    url: https://github.com/homebrw/install#uninstall-homebrew
+    url: https://github.com/homebrew/install#uninstall-homebrew
 
 dotfiles_vim:
   plug:
