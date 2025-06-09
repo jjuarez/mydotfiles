@@ -7,3 +7,4 @@ git/gitconfig
 .vscode
 .venv
 .python-version
+.ansible
