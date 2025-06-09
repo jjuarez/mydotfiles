@@ -23,7 +23,7 @@ source ${ZIM_HOME}/init.zsh
 zmodload -F zsh/terminfo +p:terminfo
 # }}} End configuration added by Zim install
 
-
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
 [[ "${HOME}/.homebrewrc" ]] && source "${HOME}/.homebrewrc"
 
