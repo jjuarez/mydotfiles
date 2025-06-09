@@ -129,7 +129,7 @@ main() {
           features::${toggle} && echo -n "${toggle}: ✨ " || echo -n "${toggle}: ❗️ "
         fi
         ;;
-      *) 
+      *)
         echo -n "${toggle}: 💔  "
         ;;
     esac

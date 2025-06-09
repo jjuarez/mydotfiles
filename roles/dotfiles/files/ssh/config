@@ -1,8 +1,15 @@
 #
-# Development
+# Development
 #
-Host github.com gitlab.com
+Host github.com
   User jjuarez
+
+Host github.ibm.com
+  User Javier-Juarez-Martinez
+
+Host gitlab.com
+  User jjuarez
+
 
 #
 # Colima
@@ -10,24 +17,25 @@ Host github.com gitlab.com
 Include /Users/jjuarez/.colima/ssh_config
 
 #
-# IBM private network jump hosts
+# IBM private network jump hosts
+# JumpHosts (2025/03/04)
 #
-
-# JumpHosts (2024/10/31)
 # QNet:
-# - stockholm-nat.watson.ibm.com SSH pwd + OTP
-# - elmira.watson.ibm.com        SSH key + OTP
-# - saimaa.cloud9.ibm.com        SSH pwd + OTP
-# - corinthcanal.cloud9.ibm.com  SSH key + OTP
+# - corinthcanal.cloud9.ibm.com       SSH Key + OTP
+# - elmira.watson.ibm.com             SSH Key + OTP
+# - saimaa.cloud9.ibm.com             SSH Pwd + OTP
+# - stockholm-nat.watson.ibm.com      SSH Pwd + OTP
 #
 # OpenQ:
+# - champlaincanal-nat.watson.ibm.com SSH Key + OTP
+# - neversink-nat.watson.ibm.com      SSH Key + OTP
 # - fishkill-nat.watson.ibm.com       SSH Pwd + OTP
 # - kisco-nat.watson.ibm.com          SSH Pwd + OTP
-# - champlaincanal-nat.watson.ibm.com SSH key + OTP
-# - neversink-nat.watson.ibm.com      SSH key + OTP
-#
 
+
+#
 # QNet
+#
 Host qnet.jumphost
   HostName       corinthcanal.cloud9.ibm.com
   User           javier.juarez.martin  # The AD username
@@ -35,84 +43,92 @@ Host qnet.jumphost
   ControlPath    /tmp/ssh_mux_qnet.sock
   ControlPersist 2h
 
+Host corinthcanal.cloud9.ibm.com
+  HostName corinthcanal.cloud9.ibm.com
+  User javier.juarez.martin
+
+Host *.qnet.local
+  ProxyJump qnet.jumphost
+
+#
 # OpenQ
+#
 Host openq.jumphost
-  # HostName       champlaincanal-nat.watson.ibm.com
-  HostName       fishkill-nat.watson.ibm.com
+  HostName       champlaincanal-nat.watson.ibm.com
   User           javier.juarez.martin  # The AD username
   ControlMaster  auto
   ControlPath    /tmp/ssh_mux_openq.sock
   ControlPersist 2h
 
-# SK
-Host sk.jumphost
-  HostName 9.116.12.201  # koshiba
-  User javier-juarez-martinez
+Host champlaincanal-nat.watson.ibm.com
+  HostName champlaincanal-nat.watson.ibm.com
+  User javier.juarez.martin
 
-# CCF
-Host ccf.jumphost
-  HostName ibmq-bastion.cloud9.ibm.com
-  User javier-juarez-martinez
-
-# EHN
-Host ehn.jumphost
-  HostName pauli.ehningen.de.ibm.com
-  User javier-juarez-martinez
+Host *.openq.local
+  ProxyJump openq.jumphost
 
 # Bromont
 Host bromont.jumphost
   HostName bmt-jump.bromont.can.ibm.com
-  User javier-juarez-martinez
 
-# RPI
+Host *.bmt.local
+  ProxyJump bromont.jumphost
+
+# CCF
+Host ccf.jumphost
+  HostName ibmq-bastion.cloud9.ibm.com
+  PreferredAuthentications publickey
+
+Host *.ccf.local
+  ProxyJump ccf.jumphost
+
+# EHN
+Host ehn.jumphost
+  HostName pauli.ehningen.de.ibm.com
+  PreferredAuthentications publickey
+
+Host *.ehn.local
+  ProxyJump ehn.jumphost
+
+# RPI
 Host rpi.jumphost
   HostName ibmq-bastion.cloud9.ibm.com
-  User javier-juarez-martinez
+  PreferredAuthentications publickey
+
+Host *.rpi.local
+  ProxyJump rpi.jumphost
+
+# SK
+Host sk.jumphost
+  HostName 9.116.12.201  # koshiba
+  PreferredAuthentications publickey
+
+Host *.sk.local *.uot.local
+  ProxyJump sk.jumphost
 
 # YON
 Host yon.jumphost
   HostName ibmq-bastion.cloud9.ibm.com
-  User javier-juarez-martinez
+  PreferredAuthentications publickey
 
-Host *.qnet.local
-  User javier-juarez-martinez
-  ProxyJump qnet.jumphost
-
-Host *.openq.local
-  User javier-juarez-martinez
-  ProxyJump openq.jumphost
-
-Host *.sk.local *.uot.local
-  User javier-juarez-martinez
-  ProxyJump sk.jumphost
-
-Host *.ccf.local
-  User javier-juarez-martinez
-  ProxyJump ccf.jumphost
-
-Host *.bmt.local
-  User javier-juarez-martinez
-  ProxyJump bromont.jumphost
-
-Host *.ehn.local
-  User javier-juarez-martinez
-  ProxyJump ehn.jumphost
-
-Host *.rpi.local
-  User javier-juarez-martinez
-  ProxyJump rpi.jumphost
-
-Host yon-sat-*.yon.local
-  User  javier-juarez-martinez
+Host *.yon.local
   ProxyJump yon.jumphost
+
+# ZRL
+Host zrl.jumphost
+  HostName zrl-jump.zurich.ibm.com
+  PreferredAuthentications publickey
+
+Host *.zrl.local
+  ProxyJump zrl.jumphost
 
 # ansible development
 Host ykt39-0?.watson.ibm.com
   User javier-juarez-martinez
 
 # Wireguard GW
-Host gw.infra.quantum.ibm.com:
-  User root
+Host gw.infra.quantum.ibm.com
+  User jjuarez
 
 #
 # Global options
@@ -121,14 +137,12 @@ Host *
   UserKnownHostsFile    /dev/null
   StrictHostKeyChecking no
   VerifyHostKeyDNS      no
-  GSSAPIAuthentication  yes
   ForwardX11            no
+  # GSSAPIAuthentication  yes
   AddKeysToAgent        yes
   ForwardAgent          yes
   TCPKeepAlive          yes
-  ServerAliveInterval   15
-  ServerAliveCountMax   4
   Compression           yes
   CheckHostIP           no
-  SetEnv                LC_ALL="en_US.UTF8"
+  SetEnv                LC_ALL="en_US.UTF-8"
   User                  javier-juarez-martinez

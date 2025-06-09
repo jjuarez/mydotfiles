@@ -27,8 +27,14 @@ PLAN_FILENAME=${PLAN_FILENAME:-${DEFAULT_PLAN_FILENAME}}
 #
 # Wrappers
 #
+terraform::state::wipeoff() {
+  for fp in .terraform this.tfplan this.tfplan.json cloud_keys.auto.tfvars; do
+    find ${CLOUD_DEPLOYMENT_WORKSPACE} -name "${fp}" -print|xargs rm -fr
+  done
+}
+
 terraform::state::init() {
-  ${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh
+  [[ -x "${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh" ]] && "${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh" "${@}"
 }
 
 terraform::state::cleanup() {
@@ -39,6 +45,10 @@ terraform::state::cleanup() {
 terraform::state::upgrade() {
   terraform::state::cleanup
   ${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh --upgrade --force
+}
+
+terraform::state::save() {
+  terraform state pull > $(date +%F)-terraform-state-backup.tfstate
 }
 
 terraform::plan() {
@@ -52,8 +62,9 @@ terraform::apply() {
 
 
 # autoloads
-autoload terraform::state::init
 autoload terraform::state::cleanup
+autoload terraform::state::init
+autoload terraform::state::save
 autoload terraform::state::upgrade
 autoload terraform::plan
 autoload terraform::apply
@@ -61,10 +72,12 @@ autoload terraform::apply
 
 # aliases
 alias tf='terraform'
+alias tff='terraform fmt'
+alias tfv='terraform validate'
 alias tfa='terraform::apply'
 alias tfc='terraform::state::cleanup'
-alias tff='terraform fmt'
 alias tfi='terraform::state::init'
-alias tfp='terraform::plan'
+alias tfs='terraform::state::save'
 alias tfu='terraform::state::upgrade'
-alias tfv='terraform validate'
+alias tfw='terraform::state::wipeoff'
+alias tfp='terraform::plan'

@@ -7,6 +7,8 @@ SHELL          := bash
 MAKEFLAGS      += --warn-undefined-variables
 MAKEFLAGS      += --no-builtin-rule
 
+PYTHON            ?= $(shell command -v python3 2>/dev/null)
+PIP               ?= $(shell command -v pip3 2>/dev/null)
 VENV              ?= .venv
 REQUIREMENTS_FILE ?= requirements-dev.txt
 
@@ -40,9 +42,9 @@ test:
 	$(call assert-file,HOMEBREW_FILE)
 
 $(VENV):
-	@python -m venv $(VENV)
-	@pip install --upgrade --quiet pip
-	@pip install --disable-pip-version-check --quiet --requirement $(REQUIREMENTS_FILE)
+	$(PYTHON) -m venv $(VENV)
+	$(PIP) install --upgrade --quiet pip
+	$(PIP) install --disable-pip-version-check --quiet --requirement $(REQUIREMENTS_FILE)
 
 .PHONY: venv/activate
 venv/activate: $(VENV)
