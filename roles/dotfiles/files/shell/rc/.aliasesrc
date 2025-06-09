@@ -13,6 +13,7 @@ utils::check_homebrew() {
 # Tools
 alias tree='tree -a -I .git'
 [[ $(command -v bat 2>/dev/null) ]] && alias cat='bat'
+alias ls='ls --color'
 
 # path traversal
 alias ..='cd ..'
