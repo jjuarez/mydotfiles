@@ -9,11 +9,9 @@ utils::check_homebrew() {
   test -d "${HOMEBREW_PREFIX}
 }
 
-
 # Tools
 alias tree='tree -a -I .git'
 [[ $(command -v bat 2>/dev/null) ]] && alias cat='bat'
-alias ls='ls --color'
 
 # path traversal
 alias ..='cd ..'
@@ -32,7 +30,7 @@ if utils::check_homebrew; then
     ;;
   esac
 
-  # To use a modern version provided by homebrew and preffers neovim
+  # neovim
   if [[ "${HOMEBREW_PREFIX}/bin/nvim" ]]; then
     alias vim="${HOMEBREW_PREFIX}/bin/nvim"
     alias vi="${HOMEBREW_PREFIX}/bin/nvim"
@@ -47,5 +45,12 @@ if utils::check_homebrew; then
 
   if [[ -x "${HOMEBREW_PREFIX}/bin/kubecolor" ]]; then
     alias k='kubecolor'
+  fi
+
+  # eza
+  if [[ -x "${HOMEBREW_PREFIX}/bin/eza" ]]; then
+    alias ls='eza --color'
+  else
+    alias ls='ls --color'
   fi
 fi
