@@ -26,8 +26,17 @@ util::die() {
 
 util::is_git() {
   local -r repository="${1}"
+  local -i result=0
 
-  [ ! -d "${repository}" ] && echo .git || git rev-parse --git-dir > /dev/null 2>&1
+  if [[ -d "${repository}" ]]; then
+    push "${repository}" 
+    result=$(git rev-parse --git-dir > /dev/null 2>&1)
+    # shellcheck disable=SC2164
+    popd
+    return ${result}
+  else
+    return 1
+  fi
 }
 
 command::do_update() {
