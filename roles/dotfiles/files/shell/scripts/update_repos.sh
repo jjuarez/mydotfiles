@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu -o pipefail
+
 declare -r WORKSPACE="${HOME}/Workspace/ibm/quantum/projects/infra"
 
 REPOSITORIES=(
@@ -29,7 +31,8 @@ util::is_git() {
   local -i result=0
 
   if [[ -d "${repository}" ]]; then
-    push "${repository}" 
+    # shellcheck disable=SC2164
+    pushd "${repository}"
     result=$(git rev-parse --git-dir > /dev/null 2>&1)
     # shellcheck disable=SC2164
     popd
