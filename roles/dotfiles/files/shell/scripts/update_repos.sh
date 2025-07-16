@@ -9,6 +9,7 @@ REPOSITORIES=(
   ops-datacenter
   cloud-helm-charts
   gitops-application-deployments
+  utility-dockerfiles
 )
 
 
