@@ -28,18 +28,19 @@ util::die() {
 
 util::is_git() {
   local -r repository="${1}"
-  local -i result=0
+  local result
 
   if [[ -d "${repository}" ]]; then
     # shellcheck disable=SC2164
-    pushd "${repository}"
-    result=$(git rev-parse --git-dir > /dev/null 2>&1)
+    pushd "${repository}" > /dev/null
+    result="$(git rev-parse --git-dir 2> /dev/null)"
     # shellcheck disable=SC2164
-    popd
-    return ${result}
-  else
-    return 1
+    popd > /dev/null
+
+    [[ "${result}" == ".git" ]] && return 0
   fi
+
+  return 1
 }
 
 command::do_update() {
@@ -48,18 +49,19 @@ command::do_update() {
   local default_branch
 
   if util::is_git "${repository_dir}"; then
-    pushd "${repository_dir}" || util::die "Error: I couldn't jump into the directory: ${repository_dir}" 1
-    default_branch=$(git branch --remote --list '*/HEAD' | awk -F/ '{ print $NF }')
-    # git::refresh
-    git switch "${default_branch}"
-    git fetch --append --prune
-    git pull origin "${default_branch}"
+    util::console "Refreshing the ${repository} repository..."
+    pushd "${repository_dir}" > /dev/null || util::die "Error: I couldn't jump into the directory: ${repository_dir}" 1
+    default_branch=$(git branch --remote --list '*/HEAD'|awk -F"/" '{ print $NF }')
+    git switch --quiet "${default_branch}"
+    git fetch --quiet --append --prune
+    git pull --quiet origin "${default_branch}"
     git-delete-merged-branches
     git-delete-squashed-branches
-    git switch -
+    git switch --quiet -
     popd || util::die "Error: I couldn't get out the directory: ${repository_dir}" 2
     return 0
-  else 
+  else
+    util::console "This directory seems like not a git repository" 3
     return 1
   fi
 }
