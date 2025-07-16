@@ -9,8 +9,6 @@ MAKEFLAGS      += --no-builtin-rule
 
 PYTHON            ?= $(shell command -v python3 2>/dev/null)
 PIP               ?= $(shell command -v pip3 2>/dev/null)
-VENV              ?= .venv
-REQUIREMENTS_FILE ?= requirements-dev.txt
 
 DOTFILES          ?= $(HOME)/.mydotfiles
 HOMEBREW_FILE     := $(DOTFILES)/backups/homebrew/Brewfile
@@ -41,30 +39,22 @@ test:
 	$(call assert-file,DOTFILES)
 	$(call assert-file,HOMEBREW_FILE)
 
-$(VENV):
-	$(PYTHON) -m venv $(VENV)
-	$(PIP) install --upgrade --quiet pip
-	$(PIP) install --disable-pip-version-check --quiet --requirement $(REQUIREMENTS_FILE)
-
-.PHONY: venv/activate
-venv/activate: $(VENV)
-	@. $(VENV)/bin/activate
-
 .PHONY: ansible/setup
-ansible/setup: venv/activate ## Install the ansible stuff
-	@. $(VENV)/bin/activate
+ansible/setup: ## Install the ansible stuff
+	@uv --quiet venv
+	@uv --quiet sync
 
 .PHONY: ansible/lint
-ansible/lint: venv/activate ## Run the ansible playbooks in check mode
-	@ansible-lint --exclude ./roles/dotfiles/tasks/.ansible ./roles/dotfiles
+ansible/lint: ## Run the ansible playbooks in check mode
+	@uv run ansible-lint --exclude ./roles/dotfiles/tasks/.ansible ./roles/dotfiles
 
 .PHONY: ansible/check
-ansible/check: venv/activate ## Run the ansible playbooks in check mode
-	@ansible-playbook --check $(ANSIBLE_OPTS) $(ANSIBLE_INVENTORY) $(ANSIBLE_TAGS)
+ansible/check: ## Run the ansible playbooks in check mode
+	@uv run ansible-playbook --check $(ANSIBLE_OPTS) $(ANSIBLE_INVENTORY) $(ANSIBLE_TAGS)
 
 .PHONY: ansible/run
-ansible/run: venv/activate ## Run the ansible playbooks
-	@ansible-playbook $(ANSIBLE_OPTS) $(ANSIBLE_INVENTORY) $(ANSIBLE_TAGS)
+ansible/run: ## Run the ansible playbooks
+	@uv run ansible-playbook $(ANSIBLE_OPTS) $(ANSIBLE_INVENTORY) $(ANSIBLE_TAGS)
 
 .PHONY: shell/lint
 shell/lint: ## Lint all the shellscript
@@ -82,4 +72,4 @@ homebrew/load:
 clean:
 	@find . -type f -name "*.py[co]" -delete
 	@find . -type d -name "__pycache__" -delete
-	@rm -fr $(VENV)
+	@rm -fr .venv
