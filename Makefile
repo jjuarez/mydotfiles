@@ -56,7 +56,7 @@ ansible/setup: venv/activate ## Install the ansible stuff
 
 .PHONY: ansible/lint
 ansible/lint: venv/activate ## Run the ansible playbooks in check mode
-	@ansible-lint
+	@ansible-lint --exclude ./roles/dotfiles/tasks/.ansible ./roles/dotfiles
 
 .PHONY: ansible/check
 ansible/check: venv/activate ## Run the ansible playbooks in check mode

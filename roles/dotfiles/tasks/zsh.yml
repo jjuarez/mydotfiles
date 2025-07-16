@@ -21,8 +21,8 @@
 - name: ZIMfw installation
   ansible.builtin.shell:
     cmd: "set -o pipefail && curl -fsSL {{ dotfiles_zimfw.url }} | zsh"
-  register: zimfw_installation
-  changed_when: zimfw_installation.rc != 0
+  register: dotfiles_zimfw_installation
+  changed_when: dotfiles_zimfw_installation.rc != 0
   when: not dotfiles_zim.stat.exists
   tags:
     - zsh
