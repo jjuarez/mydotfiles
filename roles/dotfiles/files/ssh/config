@@ -122,6 +122,14 @@ Host zrl.jumphost
 Host *.zrl.local
   ProxyJump zrl.jumphost
 
+# BasQ
+Host bsq.jumphost
+  HostName ibmq-bastion.cloud9.ibm.com
+  PreferredAuthentications publickey
+
+Host *.bsq.local
+  ProxyJump bsq.jumphost
+
 # ansible development
 Host ykt39-0?.watson.ibm.com
   User javier-juarez-martinez
