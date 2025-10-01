@@ -142,7 +142,7 @@ Host gw.infra.quantum.ibm.com
 # Global options
 #
 Host *
-  UserKnownHostsFile    /dev/null
+  # UserKnownHostsFile    /dev/null
   StrictHostKeyChecking no
   VerifyHostKeyDNS      no
   ForwardX11            no
