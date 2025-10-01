@@ -18,8 +18,8 @@ venv
 .pre-commit-config.yaml
 
 # Terraform
-this.tfplan
-this.tfplan.json
+#this.tfplan
+#this.tfplan.json
 # Ignore local Terraform state and secrets
 *.auto.tfvars
 *.auto.tfvars.json
