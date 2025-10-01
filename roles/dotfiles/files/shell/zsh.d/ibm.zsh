@@ -132,16 +132,14 @@ ibm::k8s::update() {
   done
 }
 
-ibm::k8s::list() {
-  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
+ibm::cloud::rg_id() {
+  local r rg_name="${1}"
 
-  for cluster data in ${(kv)IBMCLOUD_CLUSTERS}; do
-    local account=$(echo ${data}|awk -F"|" '{ print $1 }')
-    local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
-    local endpoint_type=$(echo ${data}|awk -F"|" '{ print $3 }')
+  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's not ${IBMCLOUD_CLI} installed" 4
 
-    echo "Cluster: ${cluster}, account: ${account}(${IBMCLOUD_ACCOUNTS_IDS[${account}]}), type: ${kind}, endpoint: ${endpoint_type}"
-  done
+  if [[ -n "${rg_name}" ]]; then
+    ${IBMCLOUD_CLI} resource group "${rg_name}" --output=json | jq -r '.[0].id'
+  fi
 }
 
 
@@ -149,6 +147,7 @@ ibm::k8s::list() {
 autoload ibm:cloud::login
 autoload ibm:cloud::target
 autoload ibm:cloud::switch_account
+autoload ibm:cloud::rg_id
 autoload ibm::k8s::update
 autoload ibm::k8s::list
 
