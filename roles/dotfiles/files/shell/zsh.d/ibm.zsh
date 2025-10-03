@@ -46,8 +46,12 @@ ibm::cloud::switch_account() {
   case "${account_name}" in
     qc-master|qs-staging|qs-prod|qc-experimental)
       if [[ -n "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" ]]; then
-        "${IBMCLOUD_CLI}" target -c "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" --unset-resource-group --unset-region --quiet >/dev/null 2>&1  # By default go to the QCMaster account
-        [[ -n "${IBMCLOUD_SMES[${account_name}]}" ]] && export SECRETS_MANAGER_URL="${IBMCLOUD_SMES[${account_name}]}"
+        "${IBMCLOUD_CLI}" target -c "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" --unset-resource-group --unset-region -q >/dev/null 2>&1  # By default go to the QCMaster account
+
+        if [[ -n "${IBMCLOUD_SMES[${account_name}]}" ]]; then
+          # export SECRETS_MANAGER_URL="${IBMCLOUD_SMES[${account_name}]}"
+          "${IBMCLOUD_CLI}" sm config set service-url "${IBMCLOUD_SMES[${account_name}]}"
+        fi
       fi
     ;;
 
@@ -72,8 +76,8 @@ ibm::cloud::login() {
   # To take the advantage of automatic OTPs
   "${IBMCLOUD_CLI}" config --sso-otp auto
 
-  "${IBMCLOUD_CLI}" login --no-region --sso -c "${QCMASTER_IBMCLOUD_ID}" -q &&
-  ibm::cloud::switch_account qcmaster # To ensure that we're pointing to the right SM instance
+  "${IBMCLOUD_CLI}" login --no-region --sso -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1
+  ibm::cloud::switch_account qc-master # To ensure that we're pointing to the right SM instance
 }
 
 ibm::k8s::_update_cluster() {
