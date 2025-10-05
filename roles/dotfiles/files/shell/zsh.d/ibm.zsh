@@ -20,11 +20,11 @@ utils::panic() {
 #
 # Configurations
 #
-[[ -s "${HOME}/.env.IBM.Cloud.account.ids" ]] || utils::panic "Warning: I couldn't load the IBMCloud accound ids from: ${HOME}/.env.IBM.Cloud.account.ids" 1
-source "${HOME}/.env.IBM.Cloud.account.ids"
+#[[ -s "${HOME}/.env.IBM.Cloud.account.ids" ]] || utils::panic "Warning: I couldn't load the IBMCloud accound ids from: ${HOME}/.env.IBM.Cloud.account.ids" 1
+#source "${HOME}/.env.IBM.Cloud.account.ids"
 
-[[ -s "${HOME}/.env.IBM.Cloud.clusters"    ]] || utils::panic "Warning: I couldn't load the IBMCloud cluster list from: ${HOME}/.env.IBM.Cloud.clusters" 2
-source "${HOME}/.env.IBM.Cloud.clusters"
+#[[ -s "${HOME}/.env.IBM.Cloud.clusters"    ]] || utils::panic "Warning: I couldn't load the IBMCloud cluster list from: ${HOME}/.env.IBM.Cloud.clusters" 2
+#source "${HOME}/.env.IBM.Cloud.clusters"
 
 #
 # Tools
@@ -140,16 +140,6 @@ ibm::k8s::list() {
 
 
 # autoloads
-autoload ibm:cloud::login
-autoload ibm:cloud::target
-autoload ibm:cloud::switch_account
-autoload ibm::k8s::update
-autoload ibm::k8s::list
 
 
 # aliases
-alias ic='ibmcloud'
-alias ic.li='ibm::cloud::login'
-alias ic.lo='ibmcloud logout'
-alias ic.t='ibm::cloud::target'
-alias ic.sa='ibm::cloud::switch_account'

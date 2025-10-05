@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # ZSH Profiling BEGIN
 # zmodload zsh/zprof
 
@@ -23,8 +30,14 @@ source ${ZIM_HOME}/init.zsh
 zmodload -F zsh/terminfo +p:terminfo
 # }}} End configuration added by Zim install
 
-export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}
-export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
+[[ -d /opt/homebrew/bin ]] && {
+  export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}
+  export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
+} || {
+  export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
+  export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
+}
+
 [[ "${HOME}/.homebrewrc" ]] && source "${HOME}/.homebrewrc"
 
 export DOTFILES="${HOME}/.mydotfiles"
@@ -35,20 +48,16 @@ export DOTFILES="${HOME}/.mydotfiles"
 export PATH=/usr/local/sbin:${PATH}
 
 # Custom configurations
+export JAVA_HOME=/usr/local/Cellar/openjdk/25
+
 FEATURES_VERBOSE=true
 declare -A FEATURES_CONFIGURATION=(
-  [artifactory]=true
   [atuin]=true
   [direnv]=true
-  [fzf]=true
-  [ghe]=true
-  [github]=true
-  [go]=true
-  [ibmcloud]=true
-  [krew]=true
+  [fzf]=false
+  [github]=false
+  [java]=true
   [pyenv]=true
-  [rust]=true
-  [tfenv]=true
   [volta]=true
   [zoxide]=true
 )
@@ -74,3 +83,6 @@ done 2>/dev/null
 
 # ZSH Profiling END
 # zprof
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

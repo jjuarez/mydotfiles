@@ -1,10 +1,5 @@
 # vim: ft=zsh
 
-features::artifactory() {
-  utils::check_file "${HOME}/.env.IBM.Artifactory.token" || return 1
-  source "${HOME}/.env.IBM.Artifactory.token"
-}
-
 features::atuin() {
   utils::check_command "autin" || return 1
   eval "$(atuin init zsh)"
@@ -21,38 +16,10 @@ features::fzf() {
   source "${HOME}/.fzf.zsh"
 }
 
-features::ghe() {
-  utils::check_file "${HOME}/.env.IBM.GHE.token" || return 1
-  source "${HOME}/.env.IBM.GHE.token"
-}
-
-features::github() {
-  utils::check_file "${HOME}/.env.github.jjuarez.token" || return 1
-  source "${HOME}/.env.github.jjuarez.token"
-}
-
-features::go() {
-  utils::check_file "${HOME}/.gorc" || return 1
-  source "${HOME}/.gorc"
-}
-
-features::ibmcloud() {
-  utils::check_file "${HOME}/.env.IBM.Cloud.QCMaster.apikey" || return 1
-  source "${HOME}/.env.IBM.Cloud.QCMaster.apikey"
-
-  utils::check_file "${HOME}/.env.IBM.Cloud.QSStaging.apikey" || return 1
-  source "${HOME}/.env.IBM.Cloud.QSStaging.apikey"
-
-  utils::check_file "${HOME}/.env.IBM.Cloud.QSProduction.apikey" || return 1
-  source "${HOME}/.env.IBM.Cloud.QSProduction.apikey"
-
-  utils::check_file "${HOME}/.env.IBM.Cloud.QCExperimental.apikey" || return 1
-  source "${HOME}/.env.IBM.Cloud.QCExperimental.apikey"
-}
-
-features::krew() {
-  utils::check_directory "${HOME}/.krew" || return 1
-  export PATH="${PATH}:${HOME}/.krew/bin"
+features::java() {
+  utils::check_command "java" || return 1
+  utils::check_file ${JAVA_HOME}/bin/java || return 1
+  export PATH=${PATH}:${JAVA_HOME}/bin
 }
 
 features::pyenv() {
@@ -63,17 +30,6 @@ features::pyenv() {
   export PYENV_ROOT="${HOME}/.pyenv"
   export PATH="${PYENV_ROOT}/bin:${PATH}"
   eval "$(pyenv init --path)"
-}
-
-features::rust() {
-  utils::check_file "${HOME}/.cargo/env" || return 1
-  source "${HOME}/.cargo/env"
-  export PATH="${HOME}/.cargo/bin:${PATH}"
-}
-
-features::tfenv() {
-  utils::check_command "tfenv" || return 1
-  export PATH="${HOME}/.tfenv/bin:${PATH}"
 }
 
 features::volta() {

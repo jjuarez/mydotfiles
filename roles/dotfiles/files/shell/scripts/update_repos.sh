@@ -5,11 +5,6 @@ set -eu -o pipefail
 declare -r WORKSPACE="${HOME}/Workspace/ibm/quantum/projects/infra"
 
 REPOSITORIES=(
-  cloud-deployment
-  ops-datacenter
-  cloud-helm-charts
-  gitops-application-deployments
-  utility-dockerfiles
 )
 
 

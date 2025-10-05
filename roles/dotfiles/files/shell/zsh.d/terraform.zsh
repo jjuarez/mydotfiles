@@ -20,8 +20,8 @@ DEFAULT_PLAN_FILENAME="this.tfplan"
 CLOUD_DEPLOYMENT_WORKSPACE=${CLOUD_DEPLOYMENT_WORKSPACE:-${DEFAULT_CLOUD_DEPLOYMENT_WORKSPACE}}
 PLAN_FILENAME=${PLAN_FILENAME:-${DEFAULT_PLAN_FILENAME}}
 
-[[ -d "${CLOUD_DEPLOYMENT_WORKSPACE}" ]] || utils::panic "Warning: I couldn't find the ${CLOUD_DEPLOYMENT_WORKSPACE}" 1
-[[ -x "${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh" ]] || utils::panic "Warning: I couldn't find the ${CLOUD_DEPLOYMENT_WORKSPACE}/tfinit.sh script" 2
+#[[ -d "${CLOUD_DEPLOYMENT_WORKSPACE}" ]] || utils::panic "Warning: I couldn't find the ${CLOUD_DEPLOYMENT_WORKSPACE}" 1
+#[[ -x "${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh" ]] || utils::panic "Warning: I couldn't find the ${CLOUD_DEPLOYMENT_WORKSPACE}/tfinit.sh script" 2
 
 
 #
@@ -62,22 +62,22 @@ terraform::apply() {
 
 
 # autoloads
-autoload terraform::state::cleanup
-autoload terraform::state::init
-autoload terraform::state::save
-autoload terraform::state::upgrade
-autoload terraform::plan
-autoload terraform::apply
+# autoload terraform::state::cleanup
+# autoload terraform::state::init
+# autoload terraform::state::save
+# autoload terraform::state::upgrade
+# autoload terraform::plan
+# autoload terraform::apply
 
 
 # aliases
-alias tf='terraform'
-alias tff='terraform fmt'
-alias tfv='terraform validate'
-alias tfa='terraform::apply'
-alias tfc='terraform::state::cleanup'
-alias tfi='terraform::state::init'
-alias tfs='terraform::state::save'
-alias tfu='terraform::state::upgrade'
-alias tfw='terraform::state::wipeoff'
-alias tfp='terraform::plan'
+# alias tf='terraform'
+# alias tff='terraform fmt'
+# alias tfv='terraform validate'
+# alias tfa='terraform::apply'
+# alias tfc='terraform::state::cleanup'
+# alias tfi='terraform::state::init'
+# alias tfs='terraform::state::save'
+# alias tfu='terraform::state::upgrade'
+# alias tfw='terraform::state::wipeoff'
+# alias tfp='terraform::plan'
