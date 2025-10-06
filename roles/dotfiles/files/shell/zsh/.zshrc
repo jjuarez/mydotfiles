@@ -43,13 +43,13 @@ declare -A FEATURES_CONFIGURATION=(
   [fzf]=true
   [ghe]=true
   [github]=true
-  [go]=true
+  [go]=false
   [ibmcloud]=true
   [krew]=true
-  [pyenv]=true
-  [rust]=true
+  [pyenv]=false
+  [rust]=false
   [tfenv]=true
-  [volta]=true
+  [volta]=false
   [zoxide]=true
 )
 
