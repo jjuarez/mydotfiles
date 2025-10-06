@@ -130,6 +130,11 @@ Host bsq.jumphost
 Host *.bsq.local
   ProxyJump bsq.jumphost
 
+# Infra Test boxes
+# Host infra-test-??.openq.local
+#   ProxyJump openq.jumphost
+#   User javier.juarez.martin
+
 # ansible development
 Host ykt39-0?.watson.ibm.com
   User javier-juarez-martinez
