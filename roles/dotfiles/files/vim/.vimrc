@@ -16,7 +16,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
 Plug 'chase/vim-ansible-yaml'
 Plug 'tsandall/vim-rego'
-" Plug 'klen/python-mode'
+Plug 'klen/python-mode'
 call plug#end()
 
 if has('autocmd')
