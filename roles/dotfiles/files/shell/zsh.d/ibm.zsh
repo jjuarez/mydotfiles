@@ -49,7 +49,6 @@ ibm::cloud::switch_account() {
         "${IBMCLOUD_CLI}" target -c "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" --unset-resource-group --unset-region -q >/dev/null 2>&1  # By default go to the QCMaster account
 
         if [[ -n "${IBMCLOUD_SMES[${account_name}]}" ]]; then
-          # export SECRETS_MANAGER_URL="${IBMCLOUD_SMES[${account_name}]}"
           "${IBMCLOUD_CLI}" sm config set service-url "${IBMCLOUD_SMES[${account_name}]}"
         fi
       fi
