@@ -3,7 +3,6 @@ filetype plugin on
 
 " Plug plugin management
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
-Plug 'protesilaos/tempus-themes-vim'
 Plug 'ku1ik/vim-monokai'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
