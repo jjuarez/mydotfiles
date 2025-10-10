@@ -1,5 +1,5 @@
 # ZSH Profiling BEGIN
-# zmodload zsh/zprof
+zmodload zsh/zprof
 
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_rsa.github.ibm.com' \
@@ -41,13 +41,15 @@ declare -A FEATURES_CONFIGURATION=(
   [atuin]=true
   [direnv]=true
   [fzf]=true
+  [git]=true
   [ghe]=true
   [github]=true
   [go]=false
   [ibmcloud]=true
   [krew]=true
-  [pyenv]=true
+  [python]=true
   [rust]=false
+  [terraform]=true
   [tfenv]=true
   [volta]=false
   [zoxide]=true
@@ -64,13 +66,8 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 [[ -L "${HOME}/.p10k.zsh" ]] && source "${HOME}/.p10k.zsh"
 
-# Custonm functions
-for ff in ${HOME}/.zsh.d/*.zsh; do
-  source "${ff}"
-done 2>/dev/null
-
 # Utilities and aliases
 [[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
 
 # ZSH Profiling END
-# zprof
+zprof
