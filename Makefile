@@ -61,7 +61,7 @@ shell/lint: ## Lint all the shellscript
 	@$(SHELLCHECK) $(SHELLCHECK_OPTS) $(SHELL_SCRIPTS)
 
 .PHONY: homebrew/dump
-homebrew/dump: venv/activate ## Save a snapshot of your formulas, casks, taps, etc
+homebrew/dump: ## Save a snapshot of your formulas, casks, taps, etc
 	@brew bundle dump --force --file $(HOMEBREW_FILE)
 
 .PHONY: homebrew/load
