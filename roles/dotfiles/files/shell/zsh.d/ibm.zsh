@@ -60,15 +60,6 @@ ibm::cloud::switch_account() {
   esac
 }
 
-ibm::cloud::target() {
-  local cai
-
-  cai=$(jq -r '.Account.GUID' "${HOME}/.bluemix/config.json")
-  if [[ -n "${cai}" ]]; then
-    echo "${(k)IBMCLOUD_ACCOUNT_IDS[(r)${cai}]}"
-  fi
-}
-
 ibm::cloud::login() {
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
@@ -148,16 +139,13 @@ ibm::cloud::rg_id() {
 
 # autoloads
 autoload ibm:cloud::login
-autoload ibm:cloud::target
 autoload ibm:cloud::switch_account
 autoload ibm:cloud::rg_id
 autoload ibm::k8s::update
-autoload ibm::k8s::list
 
 
 # aliases
 alias ic='ibmcloud'
 alias ic.li='ibm::cloud::login'
 alias ic.lo='ibmcloud logout'
-alias ic.t='ibm::cloud::target'
 alias ic.sa='ibm::cloud::switch_account'
