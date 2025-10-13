@@ -26,11 +26,6 @@ features::ghe() {
   source "${HOME}/.env.IBM.GHE.token"
 }
 
-features::git() {
-  utils::check_file "${HOME}/.mydotfiles/roles/dotfiles/files/shell/zsh.d/git.zsh" || return 1
-  source "${HOME}/.mydotfiles/roles/dotfiles/files/shell/zsh.d/git.zsh" || return 1
-}
-
 features::github() {
   utils::check_file "${HOME}/.env.github.jjuarez.token" || return 1
   source "${HOME}/.env.github.jjuarez.token"
@@ -53,19 +48,11 @@ features::ibmcloud() {
 
   utils::check_file "${HOME}/.env.IBM.Cloud.QCExperimental.apikey" || return 1
   source "${HOME}/.env.IBM.Cloud.QCExperimental.apikey"
-
-  utils::check_file "${HOME}/.mydotfiles/roles/dotfles/files/shell/zsh.d/ibm.zsh"
-  source "${HOME}/.mydotfiles/roles/dotfiles/files/shell/zsh.d/ibm.zsh"
 }
 
 features::krew() {
   utils::check_directory "${HOME}/.krew" || return 1
   export PATH="${PATH}:${HOME}/.krew/bin"
-}
-
-features::python() {
-  utils::check_file "${HOME}/.mydotfiles/roles/dotfiles/files/shell/zsh.d/python.zsh" || return 1
-  source "${HOME}/.mydotfiles/roles/dotfiles/files/shell/zsh.d/python.zsh"
 }
 
 features::rust() {
@@ -77,11 +64,6 @@ features::rust() {
 features::tfenv() {
   utils::check_command "tfenv" || return 1
   export PATH="${HOME}/.tfenv/bin:${PATH}"
-}
-
-features::terraform() {
-  utils::check_file "${HOME}/.mydotfiles/roles/dotfiles/files/shell/zsh.d/terraform.zsh" || return 1
-  source "${HOME}/.mydotfiles/roles/dotfiles/files/shell/zsh.d/terraform.zsh"
 }
 
 features::volta() {

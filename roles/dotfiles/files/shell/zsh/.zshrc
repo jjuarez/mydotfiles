@@ -1,5 +1,5 @@
 # ZSH Profiling BEGIN
-zmodload zsh/zprof
+# zmodload zsh/zprof
 
 # SSH keys to load by the agent
 zstyle ':zim:ssh' ids 'id_rsa.github.ibm.com' \
@@ -27,7 +27,7 @@ export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
 [[ "${HOME}/.homebrewrc" ]] && source "${HOME}/.homebrewrc"
 
-export DOTFILES="${HOME}/.mydotfiles"
+export MYDOTFILES="${HOME}/.mydotfiles"
 
 [[ -d "${HOME}/.bin"       ]] && export PATH=${HOME}/.bin:${PATH}
 [[ -d "${HOME}/.local/bin" ]] && export PATH=${HOME}/.local/bin:${PATH}
@@ -41,15 +41,12 @@ declare -A FEATURES_CONFIGURATION=(
   [atuin]=true
   [direnv]=true
   [fzf]=true
-  [git]=true
   [ghe]=true
   [github]=true
   [go]=false
   [ibmcloud]=true
   [krew]=true
-  [python]=true
   [rust]=false
-  [terraform]=true
   [tfenv]=true
   [volta]=false
   [zoxide]=true
@@ -67,7 +64,11 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 [[ -L "${HOME}/.p10k.zsh" ]] && source "${HOME}/.p10k.zsh"
 
 # Utilities and aliases
+for ff in ${HOME}/.zsh.d/*.zsh; do
+  source "${ff}"
+done
+
 [[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
 
 # ZSH Profiling END
-zprof
+# zprof
