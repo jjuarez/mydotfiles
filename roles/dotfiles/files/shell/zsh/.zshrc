@@ -65,9 +65,13 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 [[ -L "${HOME}/.p10k.zsh" ]] && source "${HOME}/.p10k.zsh"
 
 # Custonm functions
-for ff in ${HOME}/.zsh.d/*.zsh; do
-  source "${ff}"
-done 2>/dev/null
+#
+# NOTE: These scripts won't work without several dependencies
+#
+#for ff in ${HOME}/.zsh.d/*.zsh; do
+#  source "${ff}"
+#done 2>/dev/null
+#
 
 # Utilities and aliases
 [[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
