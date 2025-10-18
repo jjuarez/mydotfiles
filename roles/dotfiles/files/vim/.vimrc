@@ -3,7 +3,6 @@ filetype plugin on
 
 " Plug plugin management
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
-Plug 'protesilaos/tempus-themes-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ervandew/supertab'
@@ -11,9 +10,10 @@ Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-maximizer'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
-Plug 'fatih/vim-go'
-Plug 'hashivim/vim-terraform'
-Plug 'chase/vim-ansible-yaml'
+" Plug 'fatih/vim-go'
+" Plug 'hashivim/vim-terraform'
+" Plug 'chase/vim-ansible-yaml'
+Plug 'ku1ik/vim-monokai' 
 " Plug 'klen/python-mode'
 " Plug 'tsandall/vim-rego'
 call plug#end()
@@ -39,9 +39,7 @@ let g:is_posix = 1
 
 "" The Color Scheme
 try
-  " colorscheme monokai
-  colorscheme tempus_dusk
-  let g:tempus_enforce_background_color=1
+  colorscheme monokai
 catch
   colorscheme default
 endtry
