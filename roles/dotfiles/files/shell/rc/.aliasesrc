@@ -24,9 +24,9 @@ if utils::check_homebrew; then
       alias netstat='netstat -an -p tcp -f inet'
 
       # GNU tools
-      [[ -x "${HOMEBREW_PREFIX}/bin/gtar"      ]] && alias tar="${HOMEBREW_PREFIX}/bin/gtar"
-      [[ -x "${HOMEBREW_PREFIX}/bin/gfind"     ]] && alias find="${HOMEBREW_PREFIX}/bin/gfind"
-      [[ -x "${HOMEBREW_PREFIX}/bin/gsed"      ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
+      [[ -x "${HOMEBREW_PREFIX}/bin/gtar"  ]] && alias tar="${HOMEBREW_PREFIX}/bin/gtar"
+      [[ -x "${HOMEBREW_PREFIX}/bin/gfind" ]] && alias find="${HOMEBREW_PREFIX}/bin/gfind"
+      [[ -x "${HOMEBREW_PREFIX}/bin/gsed"  ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
     ;;
   esac
 
@@ -34,10 +34,9 @@ if utils::check_homebrew; then
   if [[ "${HOMEBREW_PREFIX}/bin/nvim" ]]; then
     alias vim="${HOMEBREW_PREFIX}/bin/nvim"
     alias vi="${HOMEBREW_PREFIX}/bin/nvim"
-    alias v="${HOMEBREW_PREFIX}/bin/nvim"
   elif [[ "${HOMEBREW_PREFIX}/bin/vim" ]]; then
+    alias vim="${HOMEBREW_PREFIX}/bin/vim"
     alias vi="${HOMEBREW_PREFIX}/bin/vim"
-    alias v="${HOMEBREW_PREFIX}/bin/vim"
   fi
 
   # kubecolor
@@ -51,6 +50,6 @@ if utils::check_homebrew; then
   if [[ -x "${HOMEBREW_PREFIX}/bin/eza" ]]; then
     alias ls='eza --color'
   else
-    alias ls='ls --color'
+    alias ls='ls -G'
   fi
 fi
