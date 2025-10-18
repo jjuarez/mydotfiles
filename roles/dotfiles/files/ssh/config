@@ -38,7 +38,7 @@ Include /Users/jjuarez/.colima/ssh_config
 #
 Host qnet.jumphost
   HostName       corinthcanal.cloud9.ibm.com
-  User           javier.juarez.martin  # The AD username
+  User           javier.juarez.martin
   ControlMaster  auto
   ControlPath    /tmp/ssh_mux_qnet.sock
   ControlPersist 2h
@@ -55,7 +55,7 @@ Host *.qnet.local
 #
 Host openq.jumphost
   HostName       champlaincanal-nat.watson.ibm.com
-  User           javier.juarez.martin  # The AD username
+  User           javier.juarez.martin
   ControlMaster  auto
   ControlPath    /tmp/ssh_mux_openq.sock
   ControlPersist 2h
@@ -100,7 +100,7 @@ Host *.rpi.local
 
 # SK
 Host sk.jumphost
-  HostName 9.116.12.201  # koshiba
+  HostName 9.116.12.201
   PreferredAuthentications publickey
 
 Host *.sk.local *.uot.local
