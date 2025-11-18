@@ -50,7 +50,7 @@ command::do_update() {
   local default_branch
 
   if util::is_git "${repository_dir}"; then
-    util::console "Refreshing the ${repository} repository..."
+    util::console "Refreshing: ${repository} repository..."
     pushd "${repository_dir}" > /dev/null || util::die "Error: I couldn't jump into the directory: ${repository_dir}" 1
     default_branch=$(git branch --remote --list '*/HEAD'|awk -F"/" '{ print $NF }')
     git switch --quiet "${default_branch}"
@@ -59,7 +59,7 @@ command::do_update() {
     git-delete-merged-branches
     git-delete-squashed-branches
     git switch --quiet -
-    popd || util::die "Error: I couldn't get out the directory: ${repository_dir}" 2
+    popd > /dev/null || util::die "Error: I couldn't get out the directory: ${repository_dir}" 2
     return 0
   else
     util::console "This directory seems like not a git repository" 3

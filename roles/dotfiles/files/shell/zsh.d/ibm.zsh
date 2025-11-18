@@ -44,26 +44,20 @@ ibm::cloud::switch_account() {
   [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
 
   case "${account_name}" in
-    qcmaster|qsstaging|qsproduction|qcexperimental)
+    qc-master|qs-staging|qs-prod|qc-experimental)
       if [[ -n "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" ]]; then
-        "${IBMCLOUD_CLI}" target -c "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" --unset-resource-group --unset-region --quiet >/dev/null 2>&1  # By default go to the QCMaster account
-        [[ -n "${IBMCLOUD_SMES[${account_name}]}" ]] && export SECRETS_MANAGER_URL="${IBMCLOUD_SMES[${account_name}]}"
+        "${IBMCLOUD_CLI}" target -c "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" --unset-resource-group --unset-region -q >/dev/null 2>&1  # By default go to the QCMaster account
+
+        if [[ -n "${IBMCLOUD_SMES[${account_name}]}" ]]; then
+          "${IBMCLOUD_CLI}" sm config set service-url "${IBMCLOUD_SMES[${account_name}]}" -q
+        fi
       fi
     ;;
 
     *)
-      echo "Valid accounts are: qcmaster, qsstaging, qsproduction, and qcexperimental... switching by default to QCMaster"
+      echo "Valid accounts are: qc-master, qs-staging, qs-prod, and qc-experimental... switching by default to QCMaster"
     ;;
   esac
-}
-
-ibm::cloud::target() {
-  local cai
-
-  cai=$(jq -r '.Account.GUID' "${HOME}/.bluemix/config.json")
-  if [[ -n "${cai}" ]]; then
-    echo "${(k)IBMCLOUD_ACCOUNT_IDS[(r)${cai}]}"
-  fi
 }
 
 ibm::cloud::login() {
@@ -72,8 +66,8 @@ ibm::cloud::login() {
   # To take the advantage of automatic OTPs
   "${IBMCLOUD_CLI}" config --sso-otp auto
 
-  "${IBMCLOUD_CLI}" login --no-region --sso -c "${QCMASTER_IBMCLOUD_ID}" &&
-  ibm::cloud::switch_account qcmaster # To ensure that we're pointing to the right SM instance
+  "${IBMCLOUD_CLI}" login --no-region --sso -c "${QCMASTER_IBMCLOUD_ID}" -q >/dev/null 2>&1
+  ibm::cloud::switch_account qc-master # To ensure that we're pointing to the right SM instance
 }
 
 ibm::k8s::_update_cluster() {
@@ -84,6 +78,7 @@ ibm::k8s::_update_cluster() {
   else
     local account=$(echo ${IBMCLOUD_CLUSTERS[$cluster_name]}|awk -F"|" '{ print $1 }')
     local kind=$(echo ${IBMCLOUD_CLUSTERS[$cluster_name]}|awk -F"|" '{ print $2 }')
+    local endpoint_type=$(echo ${IBMCLOUD_CLUSTERS[$cluster_name]}|awk -F"|" '{ print $3 }')
     local command="${IBMCLOUD_CLI} ks cluster config --cluster ${cluster_name} --output yaml -q"
     local kubeconfig_filename="${HOME}/.kube/${cluster_name}.yml"
 
@@ -92,12 +87,16 @@ ibm::k8s::_update_cluster() {
       CURRENT_ACCOUNT="${account}"
     fi
 
-    echo "Cluster: ${cluster_name} (${account}:${kind})"
+    echo "Cluster: ${cluster_name} (${account}:${kind}:${endpoint_type})"
     case ${kind} in
       openshift|ocp)
         [[ "${OPENSHIFT_USE_LINK}" == "true" ]] && command+=" --endpoint link"
         command+=" --admin"
       ;;
+    esac
+
+    case ${endpoint_type} in
+      private) command+=" --endpoint private" ;;
     esac
 
     case "${IKSCC_FEATURE}" in
@@ -127,29 +126,26 @@ ibm::k8s::update() {
   done
 }
 
-ibm::k8s::list() {
-  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's no ${IBMCLOUD_CLI} installed" 4
+ibm::cloud::rg_id() {
+  local r rg_name="${1}"
 
-  for cluster data in ${(kv)IBMCLOUD_CLUSTERS}; do
-    local account=$(echo ${data}|awk -F"|" '{ print $1 }')
-    local kind=$(echo ${data}|awk -F"|" '{ print $2 }')
+  [[ -x "${IBMCLOUD_CLI}" ]] || utils::panic "There's not ${IBMCLOUD_CLI} installed" 4
 
-    echo "Cluster: ${cluster}, account: ${account}(${IBMCLOUD_ACCOUNTS_IDS[${account}]}), type: ${kind}"
-  done
+  if [[ -n "${rg_name}" ]]; then
+    ${IBMCLOUD_CLI} resource group "${rg_name}" --output=json | jq -r '.[0].id'
+  fi
 }
 
 
 # autoloads
 autoload ibm:cloud::login
-autoload ibm:cloud::target
 autoload ibm:cloud::switch_account
+autoload ibm:cloud::rg_id
 autoload ibm::k8s::update
-autoload ibm::k8s::list
 
 
 # aliases
 alias ic='ibmcloud'
 alias ic.li='ibm::cloud::login'
 alias ic.lo='ibmcloud logout'
-alias ic.t='ibm::cloud::target'
 alias ic.sa='ibm::cloud::switch_account'

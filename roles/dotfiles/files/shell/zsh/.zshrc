@@ -27,7 +27,7 @@ export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$(brew --prefix)}
 [[ "${HOME}/.homebrewrc" ]] && source "${HOME}/.homebrewrc"
 
-export DOTFILES="${HOME}/.mydotfiles"
+export MYDOTFILES="${HOME}/.mydotfiles"
 
 [[ -d "${HOME}/.bin"       ]] && export PATH=${HOME}/.bin:${PATH}
 [[ -d "${HOME}/.local/bin" ]] && export PATH=${HOME}/.local/bin:${PATH}
@@ -43,13 +43,12 @@ declare -A FEATURES_CONFIGURATION=(
   [fzf]=true
   [ghe]=true
   [github]=true
-  [go]=true
+  [go]=false
   [ibmcloud]=true
   [krew]=true
-  [pyenv]=true
-  [rust]=true
+  [rust]=false
   [tfenv]=true
-  [volta]=true
+  [volta]=false
   [zoxide]=true
 )
 
@@ -64,12 +63,11 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 [[ -L "${HOME}/.p10k.zsh" ]] && source "${HOME}/.p10k.zsh"
 
-# Custonm functions
+# Utilities and aliases
 for ff in ${HOME}/.zsh.d/*.zsh; do
   source "${ff}"
-done 2>/dev/null
+done
 
-# Utilities and aliases
 [[ -f "${HOME}/.aliasesrc" ]] && source "${HOME}/.aliasesrc"
 
 # ZSH Profiling END

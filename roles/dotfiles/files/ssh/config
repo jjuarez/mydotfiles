@@ -122,6 +122,19 @@ Host zrl.jumphost
 Host *.zrl.local
   ProxyJump zrl.jumphost
 
+# BasQ
+Host bsq.jumphost
+  HostName ibmq-bastion.cloud9.ibm.com
+  PreferredAuthentications publickey
+
+Host *.bsq.local
+  ProxyJump bsq.jumphost
+
+# Infra Test boxes
+# Host infra-test-??.openq.local
+#   ProxyJump openq.jumphost
+#   User javier.juarez.martin
+
 # ansible development
 Host ykt39-0?.watson.ibm.com
   User javier-juarez-martinez
@@ -134,7 +147,7 @@ Host gw.infra.quantum.ibm.com
 # Global options
 #
 Host *
-  UserKnownHostsFile    /dev/null
+  # UserKnownHostsFile    /dev/null
   StrictHostKeyChecking no
   VerifyHostKeyDNS      no
   ForwardX11            no
