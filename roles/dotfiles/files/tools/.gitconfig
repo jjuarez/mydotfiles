@@ -1,16 +1,17 @@
 [alias]
-  ci         = commit
-  co         = checkout
-  sw         = switch
-  st         = status -sb
-  branches   = branch -a
-  merged     = branch --remotes --merged
-  remotes    = remote -v
-  last       = log -1 HEAD
-  unstage    = reset HEAD --
-  tree       = log --oneline --decorate --graph
-  ts         = tag --sort=-committerdate
-  lg         = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso8601-strict
+  ci             = commit
+  co             = checkout
+  sw             = switch
+  st             = status -sb
+  branches       = branch -a
+  local-branches = branch
+  merged         = branch --remotes --merged
+  remotes        = remote -v
+  last           = log -1 HEAD
+  unstage        = reset HEAD --
+  tree           = log --oneline --decorate --graph
+  ts             = tag --sort=-committerdate
+  lg             = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso8601-strict
 
 [branch]
 	sort = -committerdate
