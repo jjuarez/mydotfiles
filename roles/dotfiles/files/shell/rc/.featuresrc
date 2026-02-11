@@ -36,6 +36,12 @@ features::go() {
   source "${HOME}/.gorc"
 }
 
+features::java() {
+  utils::check_file $(brew --prefix)/opt/openjdk/libexec/openjdk.jdk
+  utils::check_file "${HOME}/.javarc" || return 1
+  source "${HOME}/.javarc"
+}
+
 features::ibmcloud() {
   utils::check_file "${HOME}/.env.IBM.Cloud.QCMaster.apikey" || return 1
   source "${HOME}/.env.IBM.Cloud.QCMaster.apikey"
