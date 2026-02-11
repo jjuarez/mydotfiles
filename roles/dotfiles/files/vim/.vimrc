@@ -3,21 +3,26 @@ filetype plugin on
 
 " Plug plugin management
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+" Interface customizations
 Plug 'ku1ik/vim-monokai'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ervandew/supertab'
 Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-maximizer'
+" Development support
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
-" Plug 'chrisbra/csv.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
 Plug 'chase/vim-ansible-yaml'
 Plug 'tsandall/vim-rego'
+Plug 'ziglang/zig.vim'
+Plug 'rust-lang/rust.vim'
 Plug 'klen/python-mode'
 call plug#end()
+
 
 if has('autocmd')
   filetype plugin indent on
@@ -158,6 +163,8 @@ let g:lightline = { 'colorscheme': 'wombat' }
 "" Ale
 let g:ale_linters = { "python": ["ruff"] }
 let g:ale_fixers  = { "python": ["ruff"] }
+
+
 
 "" Maximize current split or return to previous
 let g:maximizer_set_default_mapping = 0
