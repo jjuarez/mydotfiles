@@ -5,10 +5,13 @@ set -eu -o pipefail
 declare -r WORKSPACE="${HOME}/Workspace/ibm/quantum/projects/infra"
 
 REPOSITORIES=(
+  argo-workflows
+  atlantis
   cloud-deployment
-  ops-datacenter
   cloud-helm-charts
   gitops-application-deployments
+  mirror-images
+  ops-datacenter
   utility-dockerfiles
 )
 
