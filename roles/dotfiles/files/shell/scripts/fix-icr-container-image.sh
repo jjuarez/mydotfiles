@@ -7,22 +7,19 @@ declare -r DEFAULT_PLATFORM="linux/amd64"
 declare -r DEFAULT_ICR="icr.io"
 declare -r DEFAULT_ICR_NS="qc-staging-ext-images"
 
-declare -A ICR_NAMESPACES=(
-
-
 
 PLATFORM="${PLATFORM:-${DEFAULT_PLATFORM}}"
 ICR="${ICR:-${DEFAULT_ICR}}"
 ICR_NS="${ICR_NS:-${DEFAULT_ICR_NS}}"
 
 
-utils::console() {
+utils::console( ) {
   local -r message="${1}"
 
   [[ -n "${message}" ]] && echo -e "${message}" >&2
 }
 
-utils::panic() {
+utils::panic( ) {
   local -r message="${1}"
   local -ri exit_code=${2}
 
@@ -30,7 +27,7 @@ utils::panic() {
   exit ${exit_code}
 }
 
-image::fix() {
+image::fix( ) {
   local -r image="${1}"
   local -r icr_image="${ICR}/${ICR_NS}/${image}"
 
