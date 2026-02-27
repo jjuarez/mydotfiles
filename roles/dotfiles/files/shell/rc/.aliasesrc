@@ -11,11 +11,12 @@ utils::check_homebrew() {
 
 # Tools
 alias tree='tree -a -I .git'
-[[ $(command -v bat 2>/dev/null) ]] && alias cat='bat'
+if [[ $(command -v bat 2>/dev/null) ]]; then 
+  alias cat='bat'
+fi
 
 # path traversal
 alias ..='cd ..'
-alias ...='cd ../..'
 
 # Check if we have home brew installed
 if utils::check_homebrew; then
@@ -24,9 +25,9 @@ if utils::check_homebrew; then
       alias netstat='netstat -an -p tcp -f inet'
 
       # GNU tools
-      [[ -x "${HOMEBREW_PREFIX}/bin/gtar"      ]] && alias tar="${HOMEBREW_PREFIX}/bin/gtar"
-      [[ -x "${HOMEBREW_PREFIX}/bin/gfind"     ]] && alias find="${HOMEBREW_PREFIX}/bin/gfind"
-      [[ -x "${HOMEBREW_PREFIX}/bin/gsed"      ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
+      [[ -x "${HOMEBREW_PREFIX}/bin/gtar"  ]] && alias tar="${HOMEBREW_PREFIX}/bin/gtar"
+      [[ -x "${HOMEBREW_PREFIX}/bin/gfind" ]] && alias find="${HOMEBREW_PREFIX}/bin/gfind"
+      [[ -x "${HOMEBREW_PREFIX}/bin/gsed"  ]] && alias sed="${HOMEBREW_PREFIX}/bin/gsed"
     ;;
   esac
 
@@ -34,10 +35,9 @@ if utils::check_homebrew; then
   if [[ "${HOMEBREW_PREFIX}/bin/nvim" ]]; then
     alias vim="${HOMEBREW_PREFIX}/bin/nvim"
     alias vi="${HOMEBREW_PREFIX}/bin/nvim"
-    alias v="${HOMEBREW_PREFIX}/bin/nvim"
+    alias vimdiff="${HOMEBREW_PREFIX}/bin/nvim -d"
   elif [[ "${HOMEBREW_PREFIX}/bin/vim" ]]; then
     alias vi="${HOMEBREW_PREFIX}/bin/vim"
-    alias v="${HOMEBREW_PREFIX}/bin/vim"
   fi
 
   # kubecolor
