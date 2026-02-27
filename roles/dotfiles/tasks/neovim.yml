@@ -4,7 +4,7 @@
 #
 - name: Neovim configuration directory
   ansible.builtin.file:
-    path: "{{ dotfiles_home_directory }}/.config/nvim"
+    path: "{{ dotfiles_home_directory }}/.config"
     mode: "0750"
     state: directory
   tags:
@@ -12,46 +12,18 @@
 
 - name: Neovim configuration directory stat
   ansible.builtin.stat:
-    path: "{{ dotfiles_home_directory }}/.config/nvim"
+    path: "{{ dotfiles_home_directory }}/.config"
   register: dotfiles_neovim_configuration_directory
   tags:
     - neovim
-    - neovimcleanup
-
-- name: Neovim configuration directory cleanup
-  ansible.builtin.file:
-    path: "{{ dotfiles_home_directory }}/.config/nvim"
-    state: absent
-  when: dotfiles_neovim_configuration_directory.stat.exists
-  tags:
-    - neovimcleanup
-    - never
 
 - name: Neovim configuration file
   ansible.builtin.file:
-    src: "{{ role_path }}/files/neovim/init.vim"
-    dest: "{{ dotfiles_home_directory }}/.config/nvim/init.vim"
+    src: "{{ role_path }}/files/nvim"
+    dest: "{{ dotfiles_home_directory }}/.config/nvim"
     state: link
     force: true
   when:
     - dotfiles_neovim_configuration_directory.stat.exists
   tags:
     - neovim
-
-- name: Neovim configuration file stat
-  ansible.builtin.stat:
-    path: "{{ dotfiles_home_directory }}/.config/nvim/init.vim"
-  register: dotfiles_neovim_configuration_file
-  tags:
-    - neovim
-    - neovimcleanup
-    - never
-
-- name: Neovim configuration file cleanup
-  ansible.builtin.file:
-    path: "{{ dotfiles_home_directory }}/.config/nvim/init.vim"
-    state: absent
-  when: dotfiles_neovim_configuration_file.stat.exists
-  tags:
-    - neovimcleanup
-    - never

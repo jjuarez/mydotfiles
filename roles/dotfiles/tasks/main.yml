@@ -9,8 +9,8 @@
   tags:
     - dotfiles
 
-- name: Skeletons support
-  ansible.builtin.import_tasks: skeletons.yml
+- name: Templates support
+  ansible.builtin.import_tasks: templates.yml
   tags:
     - dotfiles
 
@@ -36,11 +36,6 @@
 
 - name: ZSH support
   ansible.builtin.import_tasks: zsh.yml
-  tags:
-    - dotfiles
-
-- name: VIM support
-  ansible.builtin.import_tasks: vim.yml
   tags:
     - dotfiles
 
