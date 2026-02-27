@@ -1,0 +1,29 @@
+---
+#
+# Skeletons
+#
+- name: Templates directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/templates"
+    dest: "{{ dotfiles_home_directory }}/.templates"
+    state: link
+    force: true
+  tags:
+    - templates
+
+- name: Templates directory stat
+  ansible.builtin.stat:
+    path: "{{ dotfiles_home_directory }}/.templates"
+  register: dotfiles_templates_directory
+  tags:
+    - templates
+    - templatescleanup
+
+- name: Templates directory cleanup
+  ansible.builtin.file:
+    path: "{{ dotfiles_home_directory }}/.templates"
+    state: absent
+  when: dotfiles_templates_directory.stat.exists
+  tags:
+    - templatescleanup
+    - never
