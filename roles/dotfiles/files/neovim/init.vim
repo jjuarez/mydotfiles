@@ -1,8 +1,4 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath=&runtimepath
-
-source ~/.vimrc
-
-if exists('nvim')
-  tnoremap <Esc> <C-\><C-n>
+" Compatibility shim: delegate to Lua config.
+if filereadable(expand('~/.config/nvim/init.lua'))
+  execute 'luafile' fnameescape(expand('~/.config/nvim/init.lua'))
 endif
