@@ -1,6 +1,6 @@
 [project]
 name = "mydotfiles"
-version = "4.16.1"
+version = "4.17.0"
 authors = [
   { name = "Javier Juarez", email = "jj@chainedto.cloud" },
 ]
