@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # ZSH Profiling BEGIN
 # zmodload zsh/zprof
 
@@ -58,12 +65,6 @@ declare -A FEATURES_CONFIGURATION=(
 # zsh plugins
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=lightgrey,bg=black"
 
-# themes
-ZSH_THEME="powerlevel10k"
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-
-[[ -L "${HOME}/.p10k.zsh" ]] && source "${HOME}/.p10k.zsh"
-
 # Utilities and aliases
 for ff in ${HOME}/.zsh.d/*.zsh; do
   source "${ff}"
@@ -73,3 +74,6 @@ done
 
 # ZSH Profiling END
 # zprof
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
