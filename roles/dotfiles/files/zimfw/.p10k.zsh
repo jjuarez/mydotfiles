@@ -34,7 +34,7 @@
     os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
-    # prompt_char           # prompt symbol
+    prompt_char           # prompt symbol
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
@@ -51,9 +51,9 @@
     # anaconda                # conda environment (https://conda.io/)
     # pyenv                   # python environment (https://github.com/pyenv/pyenv)
     goenv                   # go environment (https://github.com/syndbg/goenv)
-    nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
-    nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
-    nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
+    # nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
+    # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+    # nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
     # node_version          # node.js version
     # go_version            # go version (https://golang.org)
     # rust_version          # rustc version (https://www.rust-lang.org)
@@ -98,9 +98,9 @@
     # disk_usage            # disk usage
     # ram                   # free RAM
     # swap                  # used swap
-    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
-    timewarrior             # timewarrior tracking status (https://timewarrior.net/)
-    taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
+    # todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
+    # timewarrior             # timewarrior tracking status (https://timewarrior.net/)
+    # taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     per_directory_history   # Oh My Zsh per-directory-history local/global indicator
     # cpu_arch              # CPU architecture
     time                    # current time
