@@ -13,8 +13,8 @@ REPOSITORIES=(
   mirror-images
   ops-datacenter
   utility-dockerfiles
+  vt-infrastructure
 )
-
 
 util::console() {
   local message="${1}"
@@ -36,10 +36,10 @@ util::is_git() {
 
   if [[ -d "${repository}" ]]; then
     # shellcheck disable=SC2164
-    pushd "${repository}" > /dev/null
-    result="$(git rev-parse --git-dir 2> /dev/null)"
+    pushd "${repository}" >/dev/null
+    result="$(git rev-parse --git-dir 2>/dev/null)"
     # shellcheck disable=SC2164
-    popd > /dev/null
+    popd >/dev/null
 
     [[ "${result}" == ".git" ]] && return 0
   fi
@@ -54,15 +54,15 @@ command::do_update() {
 
   if util::is_git "${repository_dir}"; then
     util::console "Refreshing: ${repository} repository..."
-    pushd "${repository_dir}" > /dev/null || util::die "Error: I couldn't jump into the directory: ${repository_dir}" 1
-    default_branch=$(git branch --remote --list '*/HEAD'|awk -F"/" '{ print $NF }')
+    pushd "${repository_dir}" >/dev/null || util::die "Error: I couldn't jump into the directory: ${repository_dir}" 1
+    default_branch=$(git branch --remote --list '*/HEAD' | awk -F"/" '{ print $NF }')
     git switch --quiet "${default_branch}"
     git fetch --quiet --append --prune
     git pull --quiet origin "${default_branch}"
     git-delete-merged-branches
     git-delete-squashed-branches
     git switch --quiet -
-    popd > /dev/null || util::die "Error: I couldn't get out the directory: ${repository_dir}" 2
+    popd >/dev/null || util::die "Error: I couldn't get out the directory: ${repository_dir}" 2
     return 0
   else
     util::console "This directory seems like not a git repository" 3
