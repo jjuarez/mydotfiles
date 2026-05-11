@@ -15,12 +15,6 @@ features::direnv() {
   eval "$(direnv hook zsh)"
 }
 
-features::fzf() {
-  utils::check_command "fzf" || return 1
-  utils::check_file "${HOME}/.fzf.zsh" || return 1
-  source "${HOME}/.fzf.zsh"
-}
-
 features::ghe() {
   utils::check_file "${HOME}/.env.IBM.GHE.token" || return 1
   source "${HOME}/.env.IBM.GHE.token"
@@ -70,6 +64,7 @@ features::rust() {
 features::tfenv() {
   utils::check_command "tfenv" || return 1
   export PATH="${HOME}/.tfenv/bin:${PATH}"
+  export TFENV_AUTO_INSTALL="false"
 }
 
 features::volta() {
