@@ -75,7 +75,7 @@ features::volta() {
 
 features::zoxide() {
   utils::check_command "zoxide" || return 1
-  eval "$(zoxide init --cmd cd zsh)"
+  eval "$(zoxide init zsh --cmd cd)"
 }
 
 #
@@ -112,7 +112,7 @@ utils::check_file() {
 # ::main::
 #
 main() {
-  echo -n "Features:[ "
+  echo -n "Features: "
   for toggle activated in ${(kv)FEATURES_CONFIGURATION}; do
     case "${activated}" in
       true)
@@ -121,11 +121,11 @@ main() {
         fi
         ;;
       *)
-        echo -n "${toggle}: 💔  "
+        echo -n "${toggle}: 💔 "
         ;;
     esac
   done
-  echo "]"
+  echo
 }
 
 # ::main::
