@@ -24,8 +24,6 @@ Include /Users/jjuarez/.colima/ssh_config
 # - corinthcanal.cloud9.ibm.com       SSH Key + OTP
 # - pok003-jump-01.cloud9.ibm.com     SSH Key + OTP
 # - pok003-jump-02.cloud9.ibm.com     SSH Key + OTP
-# - elmira.watson.ibm.com             SSH Key + OTP [RETIRED]
-# - saimaa.cloud9.ibm.com             SSH Pwd + OTP
 # - stockholm-nat.watson.ibm.com      SSH Pwd + OTP
 #
 # OpenQ:
@@ -36,138 +34,73 @@ Include /Users/jjuarez/.colima/ssh_config
 
 
 #
-# QNet
+# JumpHosts
 #
+Host ibmq.jumphost
+  HostName       ibmq-bastion.cloud9.ibm.com
+  User           javier.juarez.martin
+  ControlMaster  auto
+  ControlPath    /tmp/ssh_mux_ibmq.sock
+  ControlPersist 8h
+
 Host qnet.jumphost
   HostName       corinthcanal.cloud9.ibm.com
-  # HostName       pok003-jump-01.cloud9.ibm.com
-  # HostName       pok003-jump-02.cloud9.ibm.com
-  User           javier.juarez.martin  # The AD username
+  User           javier.juarez.martin
   ControlMaster  auto
   ControlPath    /tmp/ssh_mux_qnet.sock
-  ControlPersist 2h
+  ControlPersist 8h
 
-Host corinthcanal.cloud9.ibm.com
-  HostName corinthcanal.cloud9.ibm.com
-  User javier.juarez.martin
+Host openq.jumphost
+  HostName       champlaincanal-nat.watson.ibm.com
+  User           javier.juarez.martin
+  ControlMaster  auto
+  ControlPath    /tmp/ssh_mux_openq.sock
+  ControlPersist 8h
 
-Host pok003-jump-01.cloud9.ibm.com
-  HostName pok003-jump-01.cloud9.ibm.com
-  User javier.juarez.martin
+# BMT
+Host *.bmt.local
+  ProxyJump bmt-jump.bromont.can.ibm.com
 
-Host pok003-jump-02.cloud9.ibm.com
-  HostName pok003-jump-02.cloud9.ibm.com
-  User javier.juarez.martin
+# EHN
+Host *.ehn.local
+  ProxyJump ehn2-jump-01.ehningen.de.ibm.com
 
+# SK
+Host *.sk.local *.uot.local
+  ProxyJump koshiba.hakozaki.ibm.com
+
+Host *.zrl.local
+  ProxyJump zrl-jump.zrl.ch.ibm.com
+
+# QNet
 Host *.qnet.local
   ProxyJump qnet.jumphost
 
-#
-# OpenQ
-#
-Host openq.jumphost
-  HostName       champlaincanal-nat.watson.ibm.com
-  User           javier.juarez.martin  # The AD username
-  ControlMaster  auto
-  ControlPath    /tmp/ssh_mux_openq.sock
-  ControlPersist 2h
+Host *.ccf.local *.rpi.local *.rkn.local *.yon.local *.bsq.local
+  ProxyJump ibmq.jumphost
 
-Host champlaincanal-nat.watson.ibm.com
-  HostName champlaincanal-nat.watson.ibm.com
-  User javier.juarez.martin
-
+# OpenQ
 Host *.openq.local
   ProxyJump openq.jumphost
 
-# Bromont
-Host bromont.jumphost
-  HostName bmt-jump.bromont.can.ibm.com
 
-Host *.bmt.local
-  ProxyJump bromont.jumphost
-
-# CCF
-Host ccf.jumphost
-  HostName ibmq-bastion.cloud9.ibm.com
-  PreferredAuthentications publickey
-
-Host *.ccf.local
-  ProxyJump ccf.jumphost
-
-# EHN
-Host ehn.jumphost
-  HostName pauli.ehningen.de.ibm.com
-  PreferredAuthentications publickey
-
-Host *.ehn.local
-  ProxyJump ehn.jumphost
-
-# RPI
-Host rpi.jumphost
-  HostName ibmq-bastion.cloud9.ibm.com
-  PreferredAuthentications publickey
-
-Host *.rpi.local
-  ProxyJump rpi.jumphost
-
-# SK
-Host sk.jumphost
-  HostName 9.116.12.201  # koshiba
-  PreferredAuthentications publickey
-
-Host *.sk.local *.uot.local
-  ProxyJump sk.jumphost
-
-# YON
-Host yon.jumphost
-  HostName ibmq-bastion.cloud9.ibm.com
-  PreferredAuthentications publickey
-
-Host *.yon.local
-  ProxyJump yon.jumphost
-
-# ZRL
-Host zrl.jumphost
-  HostName zrl-jump.zurich.ibm.com
-  PreferredAuthentications publickey
-
-Host *.zrl.local
-  ProxyJump zrl.jumphost
-
-# BasQ
-Host bsq.jumphost
-  HostName ibmq-bastion.cloud9.ibm.com
-  PreferredAuthentications publickey
-
-Host *.bsq.local
-  ProxyJump bsq.jumphost
-
-# Infra Test boxes
-# Host infra-test-??.openq.local
-#   ProxyJump openq.jumphost
-#   User javier.juarez.martin
-
-# ansible development
-Host ykt39-0?.watson.ibm.com
-  User javier-juarez-martinez
-
-# Wireguard GW
+# Wireguard GateWay
 Host gw.infra.quantum.ibm.com
   User jjuarez
+
 
 #
 # Global options
 #
 Host *
-  # UserKnownHostsFile    /dev/null
+  User                  javier-juarez-martinez
+  UserKnownHostsFile    /dev/null
   StrictHostKeyChecking no
   VerifyHostKeyDNS      no
   ForwardX11            no
-  # GSSAPIAuthentication  yes
   AddKeysToAgent        yes
   ForwardAgent          yes
   TCPKeepAlive          yes
   Compression           yes
   CheckHostIP           no
   SetEnv                LC_ALL="en_US.UTF-8"
-  User                  javier-juarez-martinez
