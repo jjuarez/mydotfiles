@@ -94,7 +94,7 @@ Host gw.infra.quantum.ibm.com
 #
 Host *
   User                  javier-juarez-martinez
-  UserKnownHostsFile    /dev/null
+  # UserKnownHostsFile    /dev/null
   StrictHostKeyChecking no
   VerifyHostKeyDNS      no
   ForwardX11            no
