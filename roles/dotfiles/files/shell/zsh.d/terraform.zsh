@@ -15,7 +15,7 @@ utils::panic() {
 # Configurations
 #
 DEFAULT_CLOUD_DEPLOYMENT_WORKSPACE="${HOME}/workspace/ibm/quantum/projects/infra/cloud-deployment"
-DEFAULT_PLAN_FILENAME="this.tfplan"
+DEFAULT_PLAN_FILENAME="local.tfplan"
 
 CLOUD_DEPLOYMENT_WORKSPACE=${CLOUD_DEPLOYMENT_WORKSPACE:-${DEFAULT_CLOUD_DEPLOYMENT_WORKSPACE}}
 PLAN_FILENAME=${PLAN_FILENAME:-${DEFAULT_PLAN_FILENAME}}
@@ -28,7 +28,7 @@ PLAN_FILENAME=${PLAN_FILENAME:-${DEFAULT_PLAN_FILENAME}}
 # Wrappers
 #
 terraform::state::wipeoff() {
-  for fp in .terraform this.tfplan this.tfplan.json this.tfplan.md cloud_keys.auto.tfvars; do
+  for fp in .terraform "${PLAN_FILENAME}" local.tfplan.json local.tfplan.md cloud_keys.auto.tfvars; do
     find ${CLOUD_DEPLOYMENT_WORKSPACE} -name "${fp}" -print|xargs rm -fr
   done
 }
@@ -42,18 +42,13 @@ terraform::state::cleanup() {
   [[ -f "${PLAN_FILENAME}" ]] && rm -f "${PLAN_FILENAME}"
 }
 
-terraform::state::upgrade() {
-  terraform::state::cleanup
-  ${CLOUD_DEPLOYMENT_WORKSPACE}/tools/tfinit.sh --upgrade --force
-}
-
-terraform::state::save() {
-  terraform state pull > $(date +%F)-terraform-state-backup.tfstate
-}
-
 terraform::plan() {
   # We need to pass all the command line, for example to allow the alias to work with targets
   terraform plan --lock=false --out="${PLAN_FILENAME}" "${@}"
+}
+
+terraform::plan::show() {
+  [[ -f "${PLAN_FILENAME}" ]] && terraform show "${@}" "${PLAN_FILENAME}"
 }
 
 terraform::apply() {
@@ -64,9 +59,9 @@ terraform::apply() {
 # autoloads
 autoload terraform::state::cleanup
 autoload terraform::state::init
-autoload terraform::state::save
 autoload terraform::state::upgrade
 autoload terraform::plan
+autoload terraform::plan::show
 autoload terraform::apply
 
 
@@ -74,10 +69,9 @@ autoload terraform::apply
 alias tf='terraform'
 alias tff='terraform fmt'
 alias tfv='terraform validate'
-alias tfa='terraform::apply'
 alias tfc='terraform::state::cleanup'
 alias tfi='terraform::state::init'
-alias tfs='terraform::state::save'
-alias tfu='terraform::state::upgrade'
 alias tfw='terraform::state::wipeoff'
 alias tfp='terraform::plan'
+alias tfps='terraform::plan::show'
+alias tfa='terraform::apply'
