@@ -48,11 +48,11 @@ terraform::plan() {
 }
 
 terraform::plan::show() {
-  [[ -f "${PLAN_FILENAME}" ]] && terraform show "${@}" "${PLAN_FILENAME}"
+  [[ -f "${PLAN_FILENAME}" ]] && terraform show "${@}" "${PLAN_FILENAME}" || utils::panic "No ${PLAN_FILENAME} plan file" 1
 }
 
 terraform::apply() {
-  [[ -f "${PLAN_FILENAME}" ]] && terraform apply "${PLAN_FILENAME}"
+  [[ -f "${PLAN_FILENAME}" ]] && terraform apply "${PLAN_FILENAME}" || utils::panic "No ${PLAN_FILENAME} plan file" 1
 }
 
 
