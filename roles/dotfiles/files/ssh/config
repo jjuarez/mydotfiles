@@ -38,7 +38,7 @@ Include /Users/jjuarez/.colima/ssh_config
 #
 Host ibmq.jumphost
   HostName       ibmq-bastion.cloud9.ibm.com
-  User           javier.juarez.martin
+  User           javier.juarez.martinez
   ControlMaster  auto
   ControlPath    /tmp/ssh_mux_ibmq.sock
   ControlPersist 8h
@@ -66,8 +66,12 @@ Host *.ehn.local
   ProxyJump ehn2-jump-01.ehningen.de.ibm.com
 
 # SK
-Host *.sk.local *.uot.local
+Host *.sk.local
   ProxyJump koshiba.hakozaki.ibm.com
+
+# UOT
+Host *.uot.local
+  ProxyJump ibmq.jumphost
 
 Host *.zrl.local
   ProxyJump zrl-jump.zrl.ch.ibm.com
@@ -86,7 +90,10 @@ Host *.openq.local
 
 # Wireguard GateWay
 Host gw.infra.quantum.ibm.com
-  User jjuarez
+  User root
+
+Host gw.quantum.test.cloud.ibm.com
+  User root
 
 
 #
