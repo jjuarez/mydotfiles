@@ -78,6 +78,11 @@ features::zoxide() {
   eval "$(zoxide init zsh --cmd cd)"
 }
 
+features::nono() {
+  utils::check_command "nono" || return 1
+  alias claude="nono run --profile claude-ibm --credential ete-litellm --allow-cwd -- claude"
+}
+
 #
 # Utils
 #
