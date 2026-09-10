@@ -1,4 +1,10 @@
 #
+# Configurations
+#
+ACCOUNTS_CONFIG_FILE="${HOME}/.env.IBM.Cloud.account.ids"
+CLUSTERS_CONFIG_FILE="${HOME}/.env.IBM.Cloud.clusters"
+
+#
 # Switches
 #
 IKSCC_FEATURE=${IKSCC_FEATURE:-"true"}
@@ -11,7 +17,6 @@ IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 KUBIE=$(command -v kubie 2>/dev/null)
 KUBECTL=$(command -v kubectl 2>/dev/null)
-
 
 #
 # General utilities
@@ -34,7 +39,7 @@ utils::checks() {
 # Specific utilities
 #
 ibm::cloud::switch_account() {
-  local -r account_name="${1:-qc-master}"
+  local -r account_name="${1}"
 
   utils::checks
 
@@ -68,7 +73,7 @@ ibm::cloud::login() {
 }
 
 ibm::cloud::resource_group_id() {
-  local r rg_name="${1}"
+  local -r rg_name="${1}"
 
   utils::checks
 
@@ -141,19 +146,12 @@ ibm::k8s::update() {
   utils::checks
 
   if [[ -z "${list_of_clusters}" ]]; then
-    list_of_clusters=${(k)IBMCLOUD_CLUSTERS}
+    list_of_clusters="${(k)IBMCLOUD_CLUSTERS}"
   fi
 
   for cluster in $(echo "${list_of_clusters}" | tr ' ' '\n'); do
     ibm::k8s::_update_cluster ${cluster}
   done
-}
-
-ibm::k8s::wipeout() {
-  [[ -d "${HOME}/.kube/cache"      ]] && rm -fr "${HOME}/.kube/cache"
-  [[ -d "${HOME}/.kube/http-cache" ]] && rm -fr "${HOME}/.kube/http-cache"
-
-  find ${HOME}/.kube -type f -iname "*.yml" -delete
 }
 
 ibm::k8s::check() {
@@ -164,6 +162,15 @@ ibm::k8s::check() {
     echo "Cluster: ${context}: $(${KUBIE} exec ${context} default ${KUBECTL} get --raw='/readyz' --request-timeout=5s)"
   done
 }
+
+ibm::k8s::wipeout() {
+  [[ -d "${HOME}/.kube/cache"      ]] && rm -fr "${HOME}/.kube/cache"
+  [[ -d "${HOME}/.kube/http-cache" ]] && rm -fr "${HOME}/.kube/http-cache"
+  [[ -s "${HOME}/.kube/config"     ]] && rm -f "${HOME}/.kube/config"
+
+  find "${HOME}/.kube" -type f -iname "*.yml" -delete
+}
+
 
 #
 # ::main::
@@ -176,15 +183,14 @@ alias ic.lo='ibmcloud logout'
 alias ic.sa='ibm::cloud::switch_account'
 alias ic.rgid='ibm::cloud::resource_group_id'
 
-# Configurations
-if [[ -s "${HOME}/.env.IBM.Cloud.account.ids" ]]; then
-  source "${HOME}/.env.IBM.Cloud.account.ids"
-else
-  utils::panic "Warning: I couldn't load the IBMCloud account ids from: ${HOME}/.env.IBM.Cloud.account.ids" 1
-fi
-
-if [[ -s "${HOME}/.env.IBM.Cloud.clusters" ]]; then
-  source "${HOME}/.env.IBM.Cloud.clusters"
-else
-  utils::panic "Warning: I couldn't load the IBMCloud cluster list from: ${HOME}/.env.IBM.Cloud.clusters" 2
-fi
+# Load configurations — must be sourced at top level so the `typeset -A`
+# declarations in the config files land in global scope, not a function-local
+# one (sourcing inside a function makes the arrays vanish when it returns).
+for _cfg in "${CLUSTERS_CONFIG_FILE}" "${ACCOUNTS_CONFIG_FILE}"; do
+  if [[ -s "${_cfg}" ]]; then
+    source "${_cfg}"
+  else
+    echo "Warning: couldn't load IBM Cloud config from: ${_cfg}" >&2
+  fi
+done
+unset _cfg
