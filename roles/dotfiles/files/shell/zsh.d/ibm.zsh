@@ -159,7 +159,7 @@ ibm::k8s::check() {
 
   for context_file in $(find "${HOME}/.kube" -type f -iname "*.yml" -print); do
     context=$(basename -s .yml ${context_file})
-    echo "Cluster: ${context}: $(${KUBIE} exec ${context} default ${KUBECTL} get --raw='/readyz' --request-timeout=5s)"
+    echo "Cluster ${context}:$(${KUBIE} exec ${context} default ${KUBECTL} get --raw='/readyz' --request-timeout=5s 2>/dev/null)"
   done
 }
 
