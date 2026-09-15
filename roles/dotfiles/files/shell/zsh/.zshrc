@@ -51,7 +51,6 @@ declare -A FEATURES_CONFIGURATION=(
   [github]=true
   [go]=true
   [ibmcloud]=true
-  [java]=false
   [krew]=true
   [nono]=true
   [rust]=false
