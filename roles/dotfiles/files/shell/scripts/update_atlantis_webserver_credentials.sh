@@ -79,4 +79,5 @@ if "${OP}" item get "${ITEM_TITLE}" --vault "${ITEM_VAULT}" >/dev/null 2>&1; the
   "${OP}" item delete "${ITEM_TITLE}" --vault "${ITEM_VAULT}" --archive
 fi
 
-echo "${item}" | "${OP}" item create --favorite <<<"${item}"
+# echo "${item}" | "${OP}" item create --favorite <<<"${item}"
+echo "${item}" | "${OP}" item create --favorite
