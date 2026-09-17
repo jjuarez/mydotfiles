@@ -1,88 +1,5 @@
 # vim: ft=zsh
 
-features::artifactory() {
-  utils::check_file "${HOME}/.env.IBM.Artifactory.token" || return 1
-  source "${HOME}/.env.IBM.Artifactory.token"
-}
-
-features::atuin() {
-  utils::check_command "autin" || return 1
-  eval "$(atuin init zsh)"
-}
-
-features::direnv() {
-  utils::check_command "direnv" || return 1
-  eval "$(direnv hook zsh)"
-}
-
-features::fzf() {
-  utils::check_command "fzf" || return 1
-  utils::check_file "${HOME}/.fzf.zsh" || return 1
-  source "${HOME}/.fzf.zsh"
-}
-
-features::ghe() {
-  utils::check_file "${HOME}/.env.IBM.GHE.token" || return 1
-  source "${HOME}/.env.IBM.GHE.token"
-}
-
-features::github() {
-  utils::check_file "${HOME}/.env.github.jjuarez.token" || return 1
-  source "${HOME}/.env.github.jjuarez.token"
-}
-
-features::go() {
-  utils::check_file "${HOME}/.gorc" || return 1
-  source "${HOME}/.gorc"
-}
-
-features::java() {
-  utils::check_file $(brew --prefix)/opt/openjdk/libexec/openjdk.jdk
-  utils::check_file "${HOME}/.javarc" || return 1
-  source "${HOME}/.javarc"
-}
-
-features::ibmcloud() {
-  utils::check_file "${HOME}/.env.IBM.Cloud.QCMaster.apikey" || return 1
-  source "${HOME}/.env.IBM.Cloud.QCMaster.apikey"
-
-  utils::check_file "${HOME}/.env.IBM.Cloud.QSStaging.apikey" || return 1
-  source "${HOME}/.env.IBM.Cloud.QSStaging.apikey"
-
-  utils::check_file "${HOME}/.env.IBM.Cloud.QSProduction.apikey" || return 1
-  source "${HOME}/.env.IBM.Cloud.QSProduction.apikey"
-
-  utils::check_file "${HOME}/.env.IBM.Cloud.QCExperimental.apikey" || return 1
-  source "${HOME}/.env.IBM.Cloud.QCExperimental.apikey"
-}
-
-features::krew() {
-  utils::check_directory "${HOME}/.krew" || return 1
-  export PATH="${PATH}:${HOME}/.krew/bin"
-}
-
-features::rust() {
-  utils::check_file "${HOME}/.cargo/env" || return 1
-  source "${HOME}/.cargo/env"
-  export PATH="${HOME}/.cargo/bin:${PATH}"
-}
-
-features::tfenv() {
-  utils::check_command "tfenv" || return 1
-  export PATH="${HOME}/.tfenv/bin:${PATH}"
-}
-
-features::volta() {
-  utils::check_directory "${HOME}/.volta" || return 1
-  export VOLTA_HOME="${HOME}/.volta"
-  export PATH="${VOLTA_HOME}/bin:${PATH}"
-}
-
-features::zoxide() {
-  utils::check_command "zoxide" || return 1
-  eval "$(zoxide init --cmd cd zsh)"
-}
-
 #
 # Utils
 #
@@ -113,11 +30,101 @@ utils::check_file() {
   esac
 }
 
+
+#
+# Features/Toggles
+#
+features::artifactory() {
+  utils::check_file "${HOME}/.env.IBM.Artifactory.token" || return 1
+
+  source "${HOME}/.env.IBM.Artifactory.token"
+}
+
+features::atuin() {
+  utils::check_command "autin" || return 1
+
+  eval "$(atuin init zsh)"
+}
+
+features::direnv() {
+  utils::check_command "direnv" || return 1
+
+  eval "$(direnv hook zsh)"
+}
+
+features::ghe() {
+  utils::check_file "${HOME}/.env.IBM.GHE.token" || return 1
+
+  source "${HOME}/.env.IBM.GHE.token"
+}
+
+features::github() {
+  utils::check_file "${HOME}/.env.github.jjuarez.token" || return 1
+
+  source "${HOME}/.env.github.jjuarez.token"
+}
+
+features::go() {
+  utils::check_file "${HOME}/.gorc" || return 1
+
+  source "${HOME}/.gorc"
+}
+
+features::ibmcloud() {
+  for acf in qc-experimental qc-master qs-staging qs-prod; do
+    utils::check_file "${HOME}/.env.IBM.Cloud.${acf}.apikey" || return 1
+
+    source "${HOME}/.env.IBM.Cloud.${acf}.apikey"
+  done
+}
+
+features::krew() {
+  utils::check_directory "${HOME}/.krew" || return 1
+
+  export PATH="${PATH}:${HOME}/.krew/bin"
+}
+
+features::rust() {
+  utils::check_file "${HOME}/.cargo/env" || return 1
+
+  source "${HOME}/.cargo/env"
+  export PATH="${HOME}/.cargo/bin:${PATH}"
+}
+
+features::tfenv() {
+  utils::check_command "tfenv" || return 1
+
+  export PATH="${HOME}/.tfenv/bin:${PATH}"
+  export TFENV_AUTO_INSTALL="false"
+}
+
+features::volta() {
+  utils::check_directory "${HOME}/.volta" || return 1
+
+  export VOLTA_HOME="${HOME}/.volta"
+  export PATH="${VOLTA_HOME}/bin:${PATH}"
+}
+
+features::zoxide() {
+  utils::check_command "zoxide" || return 1
+
+  eval "$(zoxide init zsh --cmd cd)"
+}
+
+features::nono() {
+  local -r claude_profile="claude-ibm"
+
+  utils::check_command "nono" || return 1
+  utils::check_file "${HOME}/.config/nono/profiles/${claude_profile}.json" || return 1
+
+  alias claude="nono run --silent --profile claude-ibm --credential ete-litellm --proxy-ca-validity 7 --allow-cwd -- claude"
+}
+
 #
 # ::main::
 #
 main() {
-  echo -n "Features:[ "
+  echo -n "Features: "
   for toggle activated in ${(kv)FEATURES_CONFIGURATION}; do
     case "${activated}" in
       true)
@@ -126,12 +133,14 @@ main() {
         fi
         ;;
       *)
-        echo -n "${toggle}: 💔  "
+        echo -n "${toggle}: 💔 "
         ;;
     esac
   done
-  echo "]"
+  echo
 }
 
+#
 # ::main::
+#
 main
