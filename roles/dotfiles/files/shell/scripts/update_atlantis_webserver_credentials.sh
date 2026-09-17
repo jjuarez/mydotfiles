@@ -12,7 +12,7 @@ declare -r ITEM_URL="https://atlantis.quantum-computing.ibm.com"
 
 utils::panic() {
   local -r message="${1}"
-  local -r exit_code="${2:-1}"
+  local -r exit_code="${2:-0}"
 
   [[ -n "${message}" ]] && {
     echo -e "${message}" >&2
@@ -79,5 +79,4 @@ if "${OP}" item get "${ITEM_TITLE}" --vault "${ITEM_VAULT}" >/dev/null 2>&1; the
   "${OP}" item delete "${ITEM_TITLE}" --vault "${ITEM_VAULT}" --archive
 fi
 
-echo "${item}" | ${JQ}
-"${OP}" item create <<<"${item}"
+echo "${item}" | "${OP}" item create --favorite <<<"${item}"
