@@ -12,10 +12,10 @@ declare -r ITEM_USERNAME="javier.juarez.martinez@ibm.com"
 
 # Each entry is <environment variable holding the key>:<1Password item title>
 declare -ra API_KEYS=(
-  "QCMASTER_IBMCLOUD_API_KEY:IBM Cloud QC-Master"
-  "QCEXPERIMENTAL_IBMCLOUD_API_KEY:IBM Cloud QC-Experimental"
-  "QSSTAGING_IBMCLOUD_API_KEY:IBM Cloud QS-Staging"
-  "QSPROD_IBMCLOUD_API_KEY:IBM Cloud QS-Prod"
+  "QCMASTER_IBMCLOUD_API_KEY:IBMCloud.QC-Master"
+  "QCEXPERIMENTAL_IBMCLOUD_API_KEY:IBMCloud.QC-Experimental"
+  "QSSTAGING_IBMCLOUD_API_KEY:IBMCloud.QS-Staging"
+  "QSPROD_IBMCLOUD_API_KEY:IBMCloud.QS-Prod"
 )
 
 utils::panic() {
