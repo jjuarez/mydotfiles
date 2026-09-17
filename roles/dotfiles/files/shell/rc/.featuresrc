@@ -71,7 +71,7 @@ features::go() {
 }
 
 features::ibmcloud() {
-  for acf in QCMaster QSStaging QSProduction QCExperimental; do
+  for acf in qc-experimental qc-master qs-staging qs-prod; do
     utils::check_file "${HOME}/.env.IBM.Cloud.${acf}.apikey" || return 1
 
     source "${HOME}/.env.IBM.Cloud.${acf}.apikey"
@@ -112,8 +112,11 @@ features::zoxide() {
 }
 
 features::nono() {
+  local -r claude_profile="claude-ibm"
+
   utils::check_command "nono" || return 1
-  utils::check_file "${HOME}/.config/nono/profiles/claude-ibm.json" || return 1
+  utils::check_file "${HOME}/.config/nono/profiles/${claude_profile}.json" || return 1
+  utils::check_file "${HOME}/.env.IBM.litellm.apikey"
 
   alias claude="nono run --silent --profile claude-ibm --credential ete-litellm --proxy-ca-validity 7 --allow-cwd -- claude"
 }
