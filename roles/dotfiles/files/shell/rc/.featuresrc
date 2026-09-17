@@ -116,7 +116,6 @@ features::nono() {
 
   utils::check_command "nono" || return 1
   utils::check_file "${HOME}/.config/nono/profiles/${claude_profile}.json" || return 1
-  utils::check_file "${HOME}/.env.IBM.litellm.apikey"
 
   alias claude="nono run --silent --profile claude-ibm --credential ete-litellm --proxy-ca-validity 7 --allow-cwd -- claude"
 }
