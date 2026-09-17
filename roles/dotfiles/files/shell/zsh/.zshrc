@@ -44,7 +44,7 @@ export PATH=/usr/local/sbin:${PATH}
 # Custom configurations
 FEATURES_VERBOSE=true
 declare -A FEATURES_CONFIGURATION=(
-  [artifactory]=true
+  [artifactory]=false
   [atuin]=true
   [direnv]=true
   [ghe]=true
