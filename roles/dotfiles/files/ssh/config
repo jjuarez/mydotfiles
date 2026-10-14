@@ -1,14 +1,14 @@
 #
 # Development
 #
+Host gitlab.com
+  User jjuarez
+
 Host github.com
   User jjuarez
 
 Host github.ibm.com
   User Javier-Juarez-Martinez
-
-Host gitlab.com
-  User jjuarez
 
 
 #
@@ -38,7 +38,7 @@ Include /Users/jjuarez/.colima/ssh_config
 #
 Host ibmq.jumphost
   HostName       ibmq-bastion.cloud9.ibm.com
-  User           javier.juarez.martinez
+  User           javier.juarez.martin
   ControlMaster  auto
   ControlPath    /tmp/ssh_mux_ibmq.sock
   ControlPersist 8h
@@ -87,14 +87,11 @@ Host *.ccf.local *.rpi.local *.rkn.local *.yon.local *.bsq.local
 Host *.openq.local
   ProxyJump openq.jumphost
 
-
-# Wireguard GateWay
-Host gw.infra.quantum.ibm.com
-  User root
-
-Host gw.quantum.test.cloud.ibm.com
-  User root
-
+# WireGruard gateway
+Host wg-gateway-us-east-1
+  HostName wg-gateway-us-east-1.quantum.test.cloud.ibm.com
+  User ubuntu
+  IdentityFile ~/.ssh/id_rsa.github.ibm.com
 
 #
 # Global options
