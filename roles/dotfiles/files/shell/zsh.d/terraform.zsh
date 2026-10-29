@@ -44,7 +44,7 @@ terraform::state::cleanup() {
 
 terraform::plan() {
   # We need to pass all the command line, for example to allow the alias to work with targets
-  terraform plan --lock=false --out="${PLAN_FILENAME}" "${@}"
+  terraform plan -lock=false --out="${PLAN_FILENAME}" -detailed-exitcode "${@}"
 }
 
 terraform::plan::show() {
