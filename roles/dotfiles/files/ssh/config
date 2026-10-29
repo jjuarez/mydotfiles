@@ -43,6 +43,10 @@ Host ibmq.jumphost
   ControlPath    /tmp/ssh_mux_ibmq.sock
   ControlPersist 8h
 
+Host ibmq-bastion.cloud9.ibm.com
+  HostName       ibmq-bastion.cloud9.ibm.com
+  User           javier.juarez.martin
+
 Host qnet.jumphost
   HostName       corinthcanal.cloud9.ibm.com
   User           javier.juarez.martin
