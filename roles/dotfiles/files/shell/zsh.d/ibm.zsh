@@ -44,7 +44,7 @@ ibm::cloud::switch_account() {
   utils::checks
 
   case "${account_name}" in
-    qc-master|qs-staging|qs-prod|qc-experimental)
+    qc-experimental|qc-master|qs-staging|qs-production|qs-prod)
       if [[ -n "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" ]]; then
         "${IBMCLOUD_CLI}" target -c "${IBMCLOUD_ACCOUNT_IDS[${account_name}]}" --unset-resource-group --unset-region -q >/dev/null 2>&1  # By default go to the QCMaster account
 

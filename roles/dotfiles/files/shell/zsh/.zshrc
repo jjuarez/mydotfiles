@@ -53,6 +53,7 @@ declare -A FEATURES_CONFIGURATION=(
   [ibmcloud]=true
   [krew]=true
   [nono]=true
+  [op]=true
   [rust]=false
   [tfenv]=true
   [volta]=false

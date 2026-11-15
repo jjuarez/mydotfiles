@@ -15,7 +15,7 @@ ibm::utils::validate_account() {
   local -r account="${1}"
 
   case ${account} in
-    qc-master|qs-staging|qs-prod) return 0 ;;
+    qc-master|qs-staging|qs-production|qs-prod) return 0 ;;
     *) return 1
   esac
 }
@@ -26,7 +26,7 @@ ibm::icr::login() {
   local -rA IBMCLOUD_API_KEYS=(
     qc-master  "${QCMASTER_IBMCLOUD_API_KEY}"
     qs-staging "${QSSTAGING_IBMCLOUD_API_KEY}"
-    qs-prod    "${QSPROD_IBMCLOUD_API_KEY}"
+    qs-prod    "${QSPRODUCTION_IBMCLOUD_API_KEY}"
   )
   local -r api_key="${IBMCLOUD_API_KEYS[${account}]}"
 
@@ -47,9 +47,10 @@ docker::retag() {
     global "icr.io"
     )
   local -rA icr_namespaces=(
-    qc-master  "quantum-mirror-images"
-    qs-staging "qc-staging-ext-images"
-    qs-prod    "qc-production-ext-images"
+    qc-master     "quantum-mirror-images"
+    qs-staging    "qc-staging-ext-images"
+    qs-production "qc-production-ext-images"
+    qs-prod       "qc-production-ext-images"
     )
 
   [[ -n "${image}" ]] || return 1
