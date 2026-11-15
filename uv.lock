@@ -9,7 +9,7 @@ resolution-markers = [
 
 [[package]]
 name = "ansible-compat"
-version = "26.10.0"
+version = "26.11.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ansible-core" },
@@ -18,9 +18,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "subprocess-tee" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/44/f9/2074324a0c404e5f7d547fdaaa93042a792c66e2031ba02c972df67aed22/ansible_compat-26.10.0.tar.gz", hash = "sha256:b0fcc0b9585611045b4b91268d3b4337c9159ae0dc550b69a553a33af48af826", size = 256765, upload-time = "2026-10-12T08:35:47.127Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e8/b3/64652d98718d5a597a15c2eb95e55fd6935b1c4eeee316370e5a498a2a6e/ansible_compat-26.11.0.tar.gz", hash = "sha256:35cbe829e0b5a9acb85d34b8d5da2eb45acaf767f6651f90e0ab2f3a96a060bb", size = 295998, upload-time = "2026-11-05T08:41:46.716Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b5/d2/09209cd7868af83c7d4f6ad26874f9c933c0a2566c06fe8524bd0a10d810/ansible_compat-26.10.0-py3-none-any.whl", hash = "sha256:700f0778fbb348daf6ee58941871e8ca77a987702993e8bf7895761d036d6450", size = 28994, upload-time = "2026-10-12T08:35:45.522Z" },
+    { url = "https://files.pythonhosted.org/packages/88/3e/696ba32885c888867214baba910cc07c13aa410884a04ff0892f9b744e3c/ansible_compat-26.11.0-py3-none-any.whl", hash = "sha256:c06a486b39ced440f9f6fb9a99583c73d9239c94ece822a27ea2242173462dda", size = 29027, upload-time = "2026-11-05T08:41:45.462Z" },
 ]
 
 [[package]]
@@ -41,7 +41,7 @@ wheels = [
 
 [[package]]
 name = "ansible-lint"
-version = "26.10.1"
+version = "26.11.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ansible-compat" },
@@ -61,9 +61,9 @@ dependencies = [
     { name = "wcmatch" },
     { name = "yamllint" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/fe/55/94814bfe335b58e1f65c0b2e6c8d0676737eadd7cc1466d8fe7213345a13/ansible_lint-26.10.1.tar.gz", hash = "sha256:a746c6f3cb5719d1c202bc14e956ef3b0eca704025d1aa92707a27fc73ed73ea", size = 829069, upload-time = "2026-10-13T12:45:06.196Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/bc/22/4db7a3ab031c7f08f6b1340df9fbc7b730a2ee25ec21047c1a3da445af0a/ansible_lint-26.11.0.tar.gz", hash = "sha256:74813203aa5450d720c3d86b9d0d4ddc51d30e36ac69e1f0d9f7650f5a3b5dd3", size = 876436, upload-time = "2026-11-05T08:50:53.758Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f3/c7/80a6ac01d970257979f8f18e34e5a1a4c1ad356ea8507425fe74ea9178bc/ansible_lint-26.10.1-py3-none-any.whl", hash = "sha256:cc26d405ee38c3390e80ec18c4137b5685c36d03ce7d4d8233b0470d9a0e21e9", size = 342245, upload-time = "2026-10-13T12:45:04.243Z" },
+    { url = "https://files.pythonhosted.org/packages/92/74/15896e47ad1087c1549f7d863631d05d661df0123747622e4cdab88c1428/ansible_lint-26.11.0-py3-none-any.whl", hash = "sha256:b778ea87fa873384b373e8c3fe53a06b3acc7b72ac283e2d2070f76fdf9f8358", size = 349253, upload-time = "2026-11-05T08:50:51.623Z" },
 ]
 
 [[package]]
@@ -114,11 +114,11 @@ wheels = [
 
 [[package]]
 name = "bracex"
-version = "3.2.1"
+version = "3.2.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/4d/fc/137095eb2f24ccf0b4db196abd9f5cfe74398a834af51d4bc4876e0beaf0/bracex-3.2.1.tar.gz", hash = "sha256:07a9b2100ceecc0c24afa1a1714bf8d4a6abb43d592939455f662b682ac9baa4", size = 32694, upload-time = "2026-11-03T14:13:43.53Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2d/1f/b7ce2efe406b87bb3693d587b91bcd8fa9030888870ceff29e4a0d233cb2/bracex-3.2.2.tar.gz", hash = "sha256:d18976160b3ba01a57d5c53a5c8c3aa2506efa9e0a3a62467251f82b8f563fde", size = 34980, upload-time = "2026-11-07T21:28:25.433Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/47/ae/30dd8b027b4032b27e81364de5b74bfbef50b3c84c6aa0ead351bbb3749c/bracex-3.2.1-py3-none-any.whl", hash = "sha256:e8622d46b60ef6062b4091033f97a304e1b205e70c0285743c5038b73886a47e", size = 12527, upload-time = "2026-11-03T14:13:42.032Z" },
+    { url = "https://files.pythonhosted.org/packages/21/b5/52a750a062db07ba056cde1c52c802b898a96b70953389a0b2247e18f210/bracex-3.2.2-py3-none-any.whl", hash = "sha256:284d59c4656e5a0421ff691402074bd5847049d50410535764a2c522a47095bc", size = 14151, upload-time = "2026-11-07T21:28:24.028Z" },
 ]
 
 [[package]]
@@ -221,11 +221,11 @@ wheels = [
 
 [[package]]
 name = "click"
-version = "8.5.0"
+version = "8.5.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/c7/0e/7fa0ef50764b67090eca4114772a2abf8b6148198475e54c660b97caeee6/click-8.5.0.tar.gz", hash = "sha256:ba0d2089de75ea0310e2dde03160e6ca10009947fb95a182f9b54021bb272e34", size = 382235, upload-time = "2026-08-26T13:33:14.56Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/45/37/edbf1b0707709013c0cf2e8317e03d97ed29bf4cac709fe328904ae92a38/click-8.5.1.tar.gz", hash = "sha256:9bbfada76703fd1d784b83eea012e3e8c6a001a876543ef104fa56aaaeb072b4", size = 399151, upload-time = "2026-11-06T17:37:01.021Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/50/6c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3/click-8.5.0-py3-none-any.whl", hash = "sha256:255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360", size = 125251, upload-time = "2026-08-26T13:33:12.928Z" },
+    { url = "https://files.pythonhosted.org/packages/31/7d/164b7ffc8624fe9efb4221bf9af485d5c1e41b9ae118045d2b6dc5457d8b/click-8.5.1-py3-none-any.whl", hash = "sha256:8bb5376d2006950386f8c6427613334a2acadc5f559cb80e638d00b4df957e37", size = 126163, upload-time = "2026-11-06T17:36:59.287Z" },
 ]
 
 [[package]]
@@ -317,11 +317,11 @@ wheels = [
 
 [[package]]
 name = "filelock"
-version = "4.2.7"
+version = "4.2.10"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e0/14/73688a22e91cfcfc6837a011ffa572e2ba3c348765f7bd482d8436fa9b6f/filelock-4.2.7.tar.gz", hash = "sha256:31f6f7e3a8b6f0bd89114d30c5d5218ea1cfb63e5c4aa695b7559314a209bc7f", size = 661450, upload-time = "2026-11-02T16:09:15.119Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a1/cf/05bcdacabdc0aec7dc8e19d76281bd82325df62dae3b6430e9ba57397689/filelock-4.2.10.tar.gz", hash = "sha256:fcc3c0cb8bfe7f4b3bb0e231c04b15dbad068cb3c2515f343d8fde4dce93bd5d", size = 670595, upload-time = "2026-11-09T18:58:00.54Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1d/1a/1fcf0d3886bad15b92459a0e529dd86a1ec4d9ef30e789df48044fd3698c/filelock-4.2.7-py3-none-any.whl", hash = "sha256:d08972bbca2b8767ee552aff877b091dd111ffb1d22de7de885766ea7d719d5e", size = 164345, upload-time = "2026-11-02T16:09:13.588Z" },
+    { url = "https://files.pythonhosted.org/packages/ef/90/5d0096a325aa0f83ba7a3968bfb485b67e32c947bdf9cd0fcb4b485be718/filelock-4.2.10-py3-none-any.whl", hash = "sha256:9479aaeb4db20b5a53e3da28493edd24720b66b8a0b84030aa56ccdf243d6857", size = 218040, upload-time = "2026-11-09T18:57:59.088Z" },
 ]
 
 [[package]]
@@ -552,11 +552,11 @@ wheels = [
 
 [[package]]
 name = "platformdirs"
-version = "4.14.3"
+version = "4.14.5"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/9a/6e/886dc7c9d21e2d95aceb696f1e31271742033aeef3661f6e9c8921493592/platformdirs-4.14.3.tar.gz", hash = "sha256:021add1ab113483edbcd4694f5fbb2d688b893ea30d35e1155bb371cf4be0be8", size = 71124, upload-time = "2026-11-01T16:27:32.928Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d7/9a/8475be631fb33ca1466915e70fd594c42a4e84b512db650eaa14f90fe75d/platformdirs-4.14.5.tar.gz", hash = "sha256:32e9921db7385aa8169bee4fe9501923e5715ba9fb7ea3b9c69b0d8e0639f7a1", size = 71464, upload-time = "2026-11-04T16:54:50.358Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/93/41/f0aa003909ee77a9e7e55f8659abb635ca23ab0d022a449bbb18da87a1ef/platformdirs-4.14.3-py3-none-any.whl", hash = "sha256:cba2d05fe5e18b26b1fa6f376b8e6234c012abe1f8696c486fface7d0054e931", size = 35276, upload-time = "2026-11-01T16:27:31.498Z" },
+    { url = "https://files.pythonhosted.org/packages/7c/ae/ecbbbfd0e4343a6a521d49b3c8656fb4643dee2a4f6eaf941cf3280391a8/platformdirs-4.14.5-py3-none-any.whl", hash = "sha256:8e778c6fa421516f4d3369449f8df3b0e1b72c0e0005fe88e3ec772d0a14e750", size = 35402, upload-time = "2026-11-04T16:54:48.875Z" },
 ]
 
 [[package]]
@@ -878,14 +878,14 @@ wheels = [
 
 [[package]]
 name = "wcmatch"
-version = "12.0"
+version = "12.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "bracex" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/60/81/eb96ce41e8def4ff3b02cec7d1d92e3682597de5064d8687ac88d1734f18/wcmatch-12.0.tar.gz", hash = "sha256:80ebfdf510d5fef580c4fc662b9eba76b331cff20d7913fc6e722edcb199cbe6", size = 161277, upload-time = "2026-11-03T14:23:48.017Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2e/17/bf44790f97414e37885830139933b4e96faac71560768ae9f9e458dbd936/wcmatch-12.0.1.tar.gz", hash = "sha256:4ea6acef75b657bf71ac8fa9520165bf5ae55120c4e655895a5b7d4c69896c5e", size = 163680, upload-time = "2026-11-07T21:45:37.072Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/22/8d/fb9b889e282a73e4423bd10f1ac358dd68b3e78fd099fab17f270a482157/wcmatch-12.0-py3-none-any.whl", hash = "sha256:46f7965313cfe65d8be049ab91095a5908be96ebb43e5d16da608b158825113c", size = 50558, upload-time = "2026-11-03T14:23:46.592Z" },
+    { url = "https://files.pythonhosted.org/packages/8a/24/8a5bbb3e73962b5bc901966f926b4fe25cbc9d1170ad9b4d9938441dbdc3/wcmatch-12.0.1-py3-none-any.whl", hash = "sha256:0e11b0bf1700bc8222ad5e7dc79fb326d9e0304458c7e2c25419ab6d26d07d8e", size = 51084, upload-time = "2026-11-07T21:45:35.661Z" },
 ]
 
 [[package]]
