@@ -17,6 +17,7 @@ IBMCLOUD_CLI=$(command -v ibmcloud 2>/dev/null)
 IKSCC=$(command -v ikscc 2>/dev/null)
 KUBIE=$(command -v kubie 2>/dev/null)
 KUBECTL=$(command -v kubectl 2>/dev/null)
+JQ=$(command -v jq 2>/dev/null)
 
 #
 # General utilities
@@ -171,6 +172,61 @@ ibm::k8s::wipeout() {
   find "${HOME}/.kube" -type f -iname "*.yml" -delete
 }
 
+#
+# Get a SM secret by name
+#
+ibm::sm::arbitrary::get() {
+  local -r secret_name="${1}"
+  local -r secret_group_name="${2}"
+
+  [[ -n "${secret_name}" ]] || return 1
+  [[ -n "${secret_group_name}" ]] || return 1
+
+  ${IBMCLOUD_CLI} sm secret-by-name \
+    --secret-type arbitrary \
+    --secret-group-name ${secret_group_name} \
+    --name ${secret_name} --output=json
+}
+
+ibm::sm::username_password::get() {
+  local -r secret_name="${1}"
+  local -r secret_group_name="${2}"
+
+  [[ -n "${secret_name}" ]] || return 1
+  [[ -n "${secret_group_name}" ]] || return 1
+
+  ${IBMCLOUD_CLI} sm secret-by-name \
+    --secret-type username_password \
+    --secret-group-name ${secret_group_name} \
+    --name ${secret_name} --output=json
+}
+
+ibm::sm::iam_credentials::get() {
+  local -r secret_name="${1}"
+  local -r secret_group_name="${2}"
+
+  [[ -n "${secret_name}" ]] || return 1
+  [[ -n "${secret_group_name}" ]] || return 1
+
+  ${IBMCLOUD_CLI} sm secret-by-name \
+    --secret-type iam_credentials \
+    --secret-group-name ${secret_group_name} \
+    --name ${secret_name} --output=json
+}
+
+ibm::sm::service_credentials::get() {
+  local -r secret_name="${1}"
+  local -r secret_group_name="${2}"
+
+  [[ -n "${secret_name}" ]] || return 1
+  [[ -n "${secret_group_name}" ]] || return 1
+
+  ${IBMCLOUD_CLI} sm secret-by-name \
+    --secret-type service_credentials \
+    --secret-group-name ${secret_group_name} \
+    --name ${secret_name} --output=json
+}
+
 
 #
 # ::main::
@@ -182,6 +238,10 @@ alias ic.li='ibm::cloud::login'
 alias ic.lo='ibmcloud logout'
 alias ic.sa='ibm::cloud::switch_account'
 alias ic.rgid='ibm::cloud::resource_group_id'
+alias sma='ibm::sm::arbitrary::get'
+alias smu='ibm::sm::username_password::get'
+alias smi='ibm::sm::iam_credentials::get'
+alias sms='ibm::sm::service_credentials::get'
 
 # Load configurations — must be sourced at top level so the `typeset -A`
 # declarations in the config files land in global scope, not a function-local
