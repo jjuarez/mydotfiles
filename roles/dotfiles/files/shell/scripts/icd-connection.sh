@@ -9,6 +9,7 @@ Take a look at the README.md file
 COMMENT
 
 declare -r CREDENTIALS_FILE="credentials.json"
+declare -r SM_CREDENTIALS_TTL="86400"
 
 
 IBMCLOUD_CLI="$(command -v ibmcloud 2>/dev/null)"
@@ -105,7 +106,8 @@ sm::credentials::create() {
     --secret-type service_credentials \
     --secret-group-id "${sm_secret_group_id}" \
     --secret-name "${db}-infra" \
-    --secret-description "Infrastructure temporary access for ${db}" \
+    --secret-description "Infrastructure temporary access for the ${db} ICD" \
+    --secret-ttl ${SM_CREDENTIALS_TTL} \
     --secret-source-service "{\"instance\": {\"crn\": \"${db_crn}\"}, \"role\": {\"crn\": \"crn:v1:bluemix:public:iam::::serviceRole:Writer\"}}" \
     --output=json > "${cf}"
 }
@@ -158,6 +160,6 @@ db::config() {
     *mongo*) db::config::mongodb "${cf}" ;;
      *psql*) db::config::postgresql "${cf}" ;;
     *redis*) db::config::redis "${cf}" ;;
-          *) utils::panic "DB type ${db} it not supported" 4
+          *) utils::panic "DB type ${db} it not supported... yet" 4
   esac
 }

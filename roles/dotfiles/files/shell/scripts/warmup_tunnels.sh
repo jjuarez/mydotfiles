@@ -14,6 +14,8 @@ declare -r DEFAULT_LOG_LEVEL="INFO"
 declare -r SSH="/usr/bin/ssh"
 declare -r QNET_JUMP_HOST="qnet.jumphost"
 declare -r QNET_SOCKET="/tmp/ssh_mux_qnet.sock"
+declare -r IBMQ_JUMP_HOST="ibmq.jumphost"
+declare -r IBMQ_SOCKET="/tmp/ssh_mux_ibmq.sock"
 declare -r OPENQ_JUMP_HOST="openq.jumphost"
 declare -r OPENQ_SOCKET="/tmp/ssh_mux_openq.sock"
 
@@ -35,7 +37,7 @@ utils::console() {
 
 utils::setup() {
   case ${DEBUG} in
-    true) LOG_LEVEL="DEBUG" ;;
+  true) LOG_LEVEL="DEBUG" ;;
   esac
 }
 
@@ -46,6 +48,10 @@ utils::cleanup() {
 
   if [[ -S "${QNET_SOCKET}" ]]; then
     rm -f "${QNET_SOCKET}"
+  fi
+
+  if [[ -S "${IBMQ_SOCKET}" ]]; then
+    rm -f "${IBMQ_SOCKET}"
   fi
 }
 
@@ -68,11 +74,12 @@ main() {
   utils::setup
 
   case ${CLEANUP} in
-    true) utils::cleanup ;;
+  true) utils::cleanup ;;
   esac
 
   activate::ssh_tunnel "${OPENQ_JUMP_HOST}" "${OPENQ_SOCKET}"
   activate::ssh_tunnel "${QNET_JUMP_HOST}" "${QNET_SOCKET}"
+  activate::ssh_tunnel "${IBMQ_JUMP_HOST}" "${IBMQ_SOCKET}"
 }
 
 #

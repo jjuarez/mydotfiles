@@ -1,6 +1,6 @@
 return {
   --
-  -- TComment
+  -- Terraform
   --
   {
     "hashivim/vim-terraform",
